@@ -39,7 +39,7 @@ Slides: [Sophisticated subsetting](https://cm.jazznbass.de/R_intro/02-Basics_sop
 
 Slides: [Libraries, projects, and importing data](https://cm.jazznbass.de/R_intro/02b-Basics_misc.html)
 
-Example file: [cars.xlsx](https://cm.jazznbass.de/R_intro/cars.xlsx)
+Example file: [cars.xlsx](material/cars.xlsx)
 
 # Session 5: Rmarkdown
 
