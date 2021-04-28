@@ -6,7 +6,7 @@ navbar:
   left:
     - text: "Slides"
       href: course_R_intro.html
-    - text: "About"
+    - text: "Homepage"
       href: https://jazznbass.github.io/homepage/
       
   right:
@@ -19,7 +19,7 @@ navbar:
       
 output:
   html_document:
-    theme: spacelab
+    theme: yeti
     highlight: tango
     css: style_add.css
     include:
