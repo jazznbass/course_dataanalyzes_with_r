@@ -1,0 +1,83 @@
+---
+title: "The Rmarkdown silly example"
+author: "Jürgen Wilbert"
+date: "12.12.2019"
+output:
+  word_document: default
+  html_document:
+    df_print: paged
+  pdf_document: default
+---
+
+# header one
+## header two
+### header three
+
+This is *italic* this is **bold**, and ***this is both!!!***.
+
+An unordered list:
+
+- Helmut
+- Gerhard
+- Angela
+
+An ordered list:
+
+1. Bush
+2. Obama
+3. Trump
+
+Combined:
+  
+1. Sour
+    - Lime
+    - Envy
+2. Sweet
+    - Honey
+    - love
+  
+
+# Example
+
+Now follow some examples. We start with some analyses on Star Wars characters.
+
+The package `dplyr` has a database included.
+
+## Starwars
+
+```{r include=FALSE}
+library(dplyr) # needed for the starwars database
+library(knitr) # needed for the kable() function
+```
+
+The Starwars data set contains the following variables:
+
+```{r echo = FALSE}
+names(starwars)
+```
+
+Do different species have different hights?
+
+```{r echo = FALSE, fig.cap = "Hight distribution of Star Wars species"}
+dat <- starwars[starwars$species %in% c("Droid", "Human", "Wookiee"),]
+boxplot(dat$height ~ dat$species)
+```
+
+Is there a gender bias in Star Wars?
+
+```{r echo = FALSE}
+tab <- table(starwars$gender)
+kable(tab, caption = "Gender distribution of Star Wars characters")
+```
+
+And finally, from which homeworlds do the characters come from?
+
+```{r echo = FALSE}
+filter <- names(which(table(starwars$species) > 2))
+dat <- starwars[starwars$species %in% filter,]
+tab <- table(dat$homeworld, dat$species)
+tab <- rbind(tab, total = margin.table(tab, 2))
+kable(tab)
+```
+
+

@@ -1,0 +1,73 @@
+---
+title: "Courses: Introduction to data analysis with R"
+---
+
+# Courses: Introduction to data analysis with R
+
+# Session 1: Introduction
+
+<iframe src="https://www.youtube.com/embed/iy83IemM1a8" width="640" height="360">
+</iframe>
+
+Slides: [Introduction](https://cm.jazznbass.de/R_intro/01-Introduction.html)
+
+# Session 1b: RStudio
+
+<iframe src="https://www.youtube.com/embed/why3CoIAqmw" width="640" height="360">
+</iframe>
+
+# Session 2: Basics: Datatypes
+
+<iframe src="https://www.youtube.com/embed/pxDu-POlewY" width="640" height="360">
+</iframe>
+
+Slides: [Basics](https://cm.jazznbass.de/R_intro/02-Basics_1.html)
+
+
+# Session 3: Sophisticated subsetting
+
+<iframe src="https://www.youtube.com/embed/tNbkof8i3WU" width="640" height="360">
+</iframe>
+
+Slides: [Sophisticated subsetting](https://cm.jazznbass.de/R_intro/02-Basics_soph_sub.html)
+
+
+# Session 4: Libraries, projects, and importing data
+
+<iframe src="https://www.youtube.com/embed/CdlQRgkmj-c" width="640" height="360">
+</iframe>
+
+Slides: [Libraries, projects, and importing data](https://cm.jazznbass.de/R_intro/02b-Basics_misc.html)
+
+Example file: [cars.xlsx](https://cm.jazznbass.de/R_intro/cars.xlsx)
+
+# Session 5: Rmarkdown
+
+<iframe src="https://www.youtube.com/embed/6yOSmk-HNFs" width="640" height="360">
+</iframe>
+
+Slides: [Rmarkdown](https://cm.jazznbass.de/R_intro/03-Rmarkdown.html)
+
+# Session 6: tidyverse
+
+<iframe src="https://www.youtube.com/embed/h4cV7uKP6FQ" width="640" height="360">
+</iframe>
+
+Slides: [Rmarkdown](https://cm.jazznbass.de/R_intro/04-Tidyverse.html)
+
+
+# Session 7: Data preparation with dplyr
+
+<iframe src="https://www.youtube.com/embed/Z2s4eGXR82s" width="640" height="360">
+</iframe>
+
+Slides: [dplyr](https://cm.jazznbass.de/R_intro/04b-dplyr.html)
+
+
+# Session 8: Graphics with gpplot2
+
+<iframe src="https://www.youtube.com/embed/LMA-kvP2Ar8" width="640" height="360">
+</iframe>
+
+Slides: [ggplot2](https://cm.jazznbass.de/R_intro/06-ggplot2.html)
+
