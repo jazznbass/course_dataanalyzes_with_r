@@ -1,21 +1,9 @@
 ---
 title: "Tidyverse"
 subtitle: 'R code gets easier and more readable'
-company: "University of Potsdam"
-author: "Jürgen Wilbert"
-date: "`r paste0('Version: ', format(Sys.time(), '%d %B %Y'), '<br><br>- arrow keys: move through slides <br>- f: toggle full-screen')`"
-output:
-  ioslides_presentation: 
-    css: styles.css
-    logo: img/ZEIF.png
-    widescreen: yes
-    df_print: kable
-  html_document: default
-  pdf_document: default
-  beamer_presentation: default
-  powerpoint_presentation:
-    reference_doc: template.pptx
-  slidy_presentation: default
+company: "`r if(exists('info')) info$company`"
+author: "`r if(exists('info')) info$author`"
+date: "`r if(exists('info')) info$date`"
 ---
 
 ```{r setup, include=FALSE}

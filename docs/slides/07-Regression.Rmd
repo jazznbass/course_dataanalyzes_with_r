@@ -10,12 +10,6 @@ output:
     logo: img/ZEIF.png
     widescreen: yes
     df_print: kable
-  html_document: default
-  pdf_document: default
-  powerpoint_presentation:
-    reference_doc: template.pptx
-  beamer_presentation: default
-  slidy_presentation: default
 ---
 
 ```{r setup, include=FALSE}

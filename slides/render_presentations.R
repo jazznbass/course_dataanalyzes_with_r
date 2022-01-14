@@ -2,9 +2,9 @@
 
 info <-
   list(
-  company = "University Potsdam",
+  company = "University of Potsdam",
   author = "Jürgen Wilbert",
-  date = paste0('Version: ', format(Sys.time(), '%d %B %Y'), '<br><br>- arrow keys: move through slides <br>- f: toggle full-screen')
+  date = paste0('Version: ', format(Sys.time(), '%d %B %Y'))
 )
 
 files <- dir(pattern = "*.Rmd")
@@ -22,9 +22,16 @@ files <- c(
   #"07-Regression.Rmd"
 )
 
-files <-"06-ggplot2.Rmd" # "06-ggplot2.Rmd"
+files <- c(
+  #"01-Introduction_xa.Rmd",
+  "07-Regression_XA.Rmd"
+  #"08-single-case.Rmd"        
+)
 
 for(file  in files) {
-  rmarkdown::render(file, output_dir =  'html')
+  rmarkdown::render(
+    file,
+    output_dir = "html"
+  )
 }
 

@@ -1,0 +1,19 @@
+.blue {
+  color: blue;
+}
+
+.emphasized {
+  color: black;
+  font-size: 1.2em;
+}
+
+.red2 {
+  color: red;
+  font-weight: bold;
+}
+
+
+.smaller {
+    font-size: 20px;
+    padding: 1em 4em 1em 4em;
+}

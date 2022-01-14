@@ -1,4 +1,5 @@
 
+setwd(file.path(DIR$WEBSITES, "course_dataanalyzes_with_R", "slides"))
 
 info <-
   list(
@@ -10,7 +11,7 @@ info <-
 files <- dir(pattern = "*.Rmd")
 
 files <- c(
-#  "01-Introduction.Rmd"
+  "01-Introduction.Rmd",
   "02-Basics_1.Rmd",
   "02-Basics_soph_sub.Rmd",
   "02b-Basics_misc.Rmd"
@@ -22,9 +23,11 @@ files <- c(
   #"07-Regression.Rmd"
 )
 
-files <-"06-ggplot2.Rmd" # "06-ggplot2.Rmd"
+files <-"01-Introduction.Rmd" # "06-ggplot2.Rmd"
+
+
 
 for(file  in files) {
-  rmarkdown::render(file, output_dir =  'html')
+  rmarkdown::render(file)
 }
 

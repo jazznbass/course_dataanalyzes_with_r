@@ -4,17 +4,11 @@ author: "Jürgen Wilbert"
 company: "University of Potsdam"
 date: "`r paste0('Version: ', format(Sys.time(), '%d %B %Y'), '<br><br>- arrow keys: move through slides <br>- f: toggle full-screen')`"
 output:
-  powerpoint_presentation:
-    reference_doc: template.pptx
-  html_document: default
-  pdf_document: default
-  beamer_presentation: default
   ioslides_presentation: 
     css: styles.css
     logo: img/ZEIF.png
     widescreen: yes
     df_print: kable
-  slidy_presentation: default
 ---
 
 ```{r setup, include=FALSE}
