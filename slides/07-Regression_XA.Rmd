@@ -14,11 +14,13 @@ opts_chunk$set(echo = TRUE, warning = FALSE, message = FALSE, comment = "")
 
 background-image: url("DEFOCUSED.png")
 
-# Goals
+# Prerequisite
 
-- An introduction to regression analyses
+- You have basic knowledge on statistical regression
 
-- An introduction to fitting regression models in R
+# Goal
+
+- You know how to fit regression models in R
 
 ---
 
@@ -67,6 +69,31 @@ text(x = 0.6, y = 4, "Slope ß1")
 
 # Example
 
+
+```{r echo = FALSE}
+ggplot(cars, aes(x = speed, y = dist)) +
+  geom_point() +
+  ggtitle("Breaking distances at various speeds") + 
+  geom_text(x = 10, y = 100, label = paste0("Correlation r = ", round(cor(cars$speed, cars$dist), 2)))
+```
+
+---
+
+# Example
+
+
+```{r echo = FALSE}
+ggplot(cars, aes(x = speed, y = dist)) +
+  geom_point() +
+  geom_smooth(method = "lm") +
+  ggtitle("Breaking distances at various speeds") + 
+  geom_text(x = 10, y = 100, label = paste0("Correlation r = ", round(cor(cars$speed, cars$dist), 2)))
+```
+
+---
+
+# Example
+
 .pull-left[
 
 ```{r echo = FALSE}
@@ -74,6 +101,7 @@ ggplot(cars, aes(x = speed, y = dist)) +
   geom_point() +
   geom_smooth(method = "lm") +
   ggtitle("Breaking distances at various speeds") + 
+  xlim(0,25) + 
   geom_text(x = 10, y = 100, label = paste0("Correlation r = ", round(cor(cars$speed, cars$dist), 2)))
 ```
 
@@ -181,7 +209,7 @@ ggplot(temp_carbon, aes(x = year,
 - A `formula` can take multiple predictors:  
 `y ~ x1 + x2`
 
-- An Interaction describes a relation between two (or more) predictors where influence of one predictor changes with the value of the other predictor (e.g. weight and smoking  influence blood pressure. And the influence of smoking is even higher for those who are overweight).
+- An Interaction describes a relation between two (or more) predictors where the influence of one predictor changes with the value of the other predictor (e.g. weight and smoking  influence blood pressure. And the influence of smoking is even higher for those who are overweight).
 
 - An interaction is modeled with a `:` sign:  
 y ~ x1 + x2 + x1:x2

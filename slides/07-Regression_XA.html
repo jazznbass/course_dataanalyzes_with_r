@@ -3,7 +3,6 @@
   <head>
     <title>Regression</title>
     <meta charset="utf-8" />
-    <meta name="author" content="Jürgen Wilbert" />
     <script src="libs/header-attrs-2.11/header-attrs.js"></script>
     <link href="libs/remark-css-0.0.1/default.css" rel="stylesheet" />
     <link href="libs/remark-css-0.0.1/default-fonts.css" rel="stylesheet" />
@@ -15,8 +14,7 @@ class: center, middle, title-slide
 
 # Regression
 ## Estimating models and predicting values with R
-### Jürgen Wilbert
-### Version: 13 January 2022
+### 
 
 ---
 
@@ -25,11 +23,13 @@ class: center, middle, title-slide
 
 background-image: url("DEFOCUSED.png")
 
-# Goals
+# Prerequisite
 
-- An introduction to regression analyses
+- You have basic knowledge on statistical regression
 
-- An introduction to fitting regression models in R
+# Goal
+
+- You know how to fit regression models in R
 
 ---
 
@@ -74,9 +74,23 @@ background-image: url("DEFOCUSED.png")
 
 # Example
 
-.pull-left[
 
 ![](07-Regression_XA_files/figure-html/unnamed-chunk-2-1.png)&lt;!-- --&gt;
+
+---
+
+# Example
+
+
+![](07-Regression_XA_files/figure-html/unnamed-chunk-3-1.png)&lt;!-- --&gt;
+
+---
+
+# Example
+
+.pull-left[
+
+![](07-Regression_XA_files/figure-html/unnamed-chunk-4-1.png)&lt;!-- --&gt;
 
 ]
 
@@ -199,7 +213,7 @@ ggplot(mtcars, aes(x = mpg, y = wt)) +
   geom_smooth(method = "lm")
 ```
 
-![](07-Regression_XA_files/figure-html/unnamed-chunk-6-1.png)&lt;!-- --&gt;
+![](07-Regression_XA_files/figure-html/unnamed-chunk-8-1.png)&lt;!-- --&gt;
 ]
  
 ---
@@ -262,7 +276,7 @@ ggplot(temp_carbon, aes(x = year,
   geom_smooth(method = "lm")
 ```
 
-![](07-Regression_XA_files/figure-html/unnamed-chunk-8-1.png)&lt;!-- --&gt;
+![](07-Regression_XA_files/figure-html/unnamed-chunk-10-1.png)&lt;!-- --&gt;
 ] 
  
  
@@ -273,7 +287,7 @@ ggplot(temp_carbon, aes(x = year,
 - A `formula` can take multiple predictors:  
 `y ~ x1 + x2`
 
-- An Interaction describes a relation between two (or more) predictors where influence of one predictor changes with the value of the other predictor (e.g. weight and smoking  influence blood pressure. And the influence of smoking is even higher for those who are overweight).
+- An Interaction describes a relation between two (or more) predictors where the influence of one predictor changes with the value of the other predictor (e.g. weight and smoking  influence blood pressure. And the influence of smoking is even higher for those who are overweight).
 
 - An interaction is modeled with a `:` sign:  
 y ~ x1 + x2 + x1:x2
