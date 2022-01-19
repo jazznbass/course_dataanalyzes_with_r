@@ -1,0 +1,519 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>Analyzing single-case data</title>
+    <meta charset="utf-8" />
+    <script src="libs/header-attrs-2.11/header-attrs.js"></script>
+    <link href="libs/remark-css-0.0.1/default.css" rel="stylesheet" />
+    <link href="libs/remark-css-0.0.1/default-fonts.css" rel="stylesheet" />
+    <script src="libs/kePrint-0.0.1/kePrint.js"></script>
+    <link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
+    <link rel="stylesheet" href="styles_xa.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, title-slide
+
+# Analyzing single-case data
+### 
+
+---
+
+
+background-image: url("DEFOCUSED.png")
+
+
+
+# Goals
+
+- An introduction to single-case analyses
+
+- An introduction to analyzing single case data with the package R
+
+---
+
+# Scan
+
+- `scan` (single-case data analyses) is an R package with comprehensive functions.
+
+- It is available through `cran` --&gt; `install.packages("scan")`.
+
+- There is a webpage of the `scan` package: https://jazznbass.github.io/scan/
+
+- And you find a book at: https://jazznbass.github.io/scan-Book/
+
+- This session will make extensive use of the scan-book.
+
+(There is also a development version available through github --&gt;  `devtools::install_github("jazznbass/scan", dependencies = TRUE)`.  
+You need the `devtools` package to run the `install_github()` function.  
+Windows users: make sure you have Rtools (https://cran.r-project.org/bin/windows/Rtools/) installed.)
+
+---
+
+# Task: Creating a single-case data frame
+
+.pull-left[
+- Read the chapters 4.1 and 4.2 of the scan-book: https://jazznbass.github.io/scan-Book/managing-single-case-data.html.
+
+- Recreate the *single case data frame* to the right with the `scdf()` function.
+]
+.pull-right[
+&lt;table class=" lightable-classic" style="width: auto !important; "&gt;
+&lt;caption&gt;Single case data frame with 2 cases&lt;/caption&gt;
+ &lt;thead&gt;
+&lt;tr&gt;
+&lt;th style="border-bottom:hidden;padding-bottom:0; padding-left:3px;padding-right:3px;text-align: center; " colspan="3"&gt;&lt;div style="border-bottom: 1px solid #ddd; padding-bottom: 5px; "&gt;Leo&lt;/div&gt;&lt;/th&gt;
+&lt;th style="border-bottom:hidden;padding-bottom:0; padding-left:3px;padding-right:3px;text-align: center; " colspan="3"&gt;&lt;div style="border-bottom: 1px solid #ddd; padding-bottom: 5px; "&gt;Jacob&lt;/div&gt;&lt;/th&gt;
+&lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;th style="text-align:center;"&gt; values &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; mt &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; phase &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; values &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; mt &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; phase &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 1 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 1 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; A &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 2 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 1 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; A &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 3 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 2 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; A &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 1 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 2 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; A &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 4 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 3 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; A &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 7 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 3 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; A &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 4 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 4 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; B &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 5 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 4 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; B &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 6 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 5 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; B &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 8 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 5 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; B &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 4 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 6 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; B &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 6 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 6 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; B &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 4 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 7 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; E &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 5 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 7 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; B &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 3 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 8 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; E &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 1 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 8 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; E &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 5 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 9 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; E &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 2 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 9 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; E &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 5 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 10 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; E &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+]
+
+---
+
+### Solution
+
+
+```r
+case1 &lt;- scdf(c(A = 1,3,4, B = 4,6,4, E = 4,3,5), name = "Leo")
+# alterntively: scdf(c(1,3,4, 4,6,4, 4,3,5), phase.design = c(A = 3, B = 3, C = 3))
+case2 &lt;- scdf(c(A = 2,1,7, B = 5,8,6,5, E = 1,2,5), name = "Jacob")
+study &lt;- c(case1, case2)
+study
+```
+
+```
+#A single-case data frame with 2 cases
+
+ Leo: values mt phase | Jacob: values mt phase |
+           1  1     A |             2  1     A |
+           3  2     A |             1  2     A |
+           4  3     A |             7  3     A |
+           4  4     B |             5  4     B |
+           6  5     B |             8  5     B |
+           4  6     B |             6  6     B |
+           4  7     E |             5  7     B |
+           3  8     E |             1  8     E |
+           5  9     E |             2  9     E |
+                      |             5 10     E |
+```
+
+---
+
+# Task: Creating a plot
+
+.pull-left[
+- Read the chapters 5 to 5.3 of the scan-book: https://jazznbass.github.io/scan-Book/creating-a-single-case-data-plot.html.
+
+- Recreate the plot to the right (use the `study` object from the previous example). Hint: The red lines indicate the medians.
+]
+.pull-right[
+![](08-single-case_files/figure-html/unnamed-chunk-3-1.png)&lt;!-- --&gt;
+]
+
+---
+
+### Solution
+
+
+```r
+plot(
+  study,
+  phase.names = c(
+    "Baseline", "Intervention", "Follow-Up"
+  ),
+  ylab = "Score",
+  xlab = "Week",
+  main = "Intervention effect on reading score",
+  lines = list(
+    type = "median", col = "red", lwd = 3
+  ),
+  marks = list(
+    positions = list( c(5, 8), c(3, 5)), 
+    col = 'blue', cex = 2.5, pch = 1
+  ),
+  ylim = c(0, 10)
+)
+```
+
+---
+
+# Task: Descriptive statistics
+
+- Read chapters 6.1 of the scan-book: https://jazznbass.github.io/scan-Book/describe-and-manipulate-single-case-data-frames.html#describing-and-summarizing
+
+- Generate descriptive statistics of the `study` scdf with the `describe()` function.
+
+
+---
+
+### Solution
+
+
+```r
+describe(study)
+```
+
+```
+Describe Single-Case Data
+
+         Leo Jacob
+Design A-B-E A-B-E
+n.A        3     3
+n.B        3     4
+n.E        3     3
+mis.A      0     0
+mis.B      0     0
+mis.E      0     0
+
+          Leo Jacob
+m.A     2.667 3.333
+m.B     4.667 6.000
+m.E     4.000 2.667
+md.A        3     2
+md.B      4.0   5.5
+md.E        4     2
+sd.A    1.528 3.215
+sd.B    1.155 1.414
+sd.E    1.000 2.082
+mad.A   1.483 1.483
+mad.B   0.000 0.741
+mad.E   1.483 1.483
+min.A       1     1
+min.B       4     5
+min.E       3     1
+max.A       4     7
+max.B       6     8
+max.E       5     5
+trend.A   1.5   2.5
+trend.B   0.0  -0.2
+trend.E   0.5   2.0
+```
+
+---
+
+# Task: Overlap indices
+
+- Read chapters 7 to 7.5 of the scan-book: https://jazznbass.github.io/scan-Book/overlapping-indices.html#overlapping-indices
+
+- Generate overlap statistics of the `study` scdf with the `overlap()` function comparing 1. phase A against B and 2. phases A and E against phase B.
+
+
+---
+
+### Solution
+
+.pull-left[
+
+```r
+overlap(study, phases = list(1, 2))
+```
+
+```
+Overlap Indices
+
+Comparing phase 1 against phase 2 
+
+               Leo Jacob
+Design       A-B-E A-B-E
+PND             33    25
+PEM            100   100
+PET              0     0
+NAP             89    75
+NAP rescaled    78    50
+PAND            75    57
+Tau_U          0.3   0.2
+Base_Tau      0.67  0.39
+Diff_mean     2.00  2.67
+Diff_trend    -1.5  -2.7
+SMD           1.31  0.83
+Hedges_g      1.18  0.86
+```
+]
+
+.pull-right[
+
+```r
+overlap(study, phases = list(c(1,3), 2)) # alternatively: list(c("A", "E"), "B")
+```
+
+```
+Overlap Indices
+
+Comparing phases 1 + 3 against phase 2 
+
+               Leo Jacob
+Design       A-B-E A-B-E
+PND             33    25
+PEM            100   100
+PET            100   100
+NAP             78    83
+NAP rescaled    56    67
+PAND            56    65
+Tau_U         0.03  0.28
+Base_Tau      0.44  0.52
+Diff_mean     1.33  3.00
+Diff_trend   -0.28 -0.23
+SMD           0.98  1.22
+Hedges_g      0.97  1.38
+```
+]
+
+---
+
+# Task: piecewise-regression analyzes
+
+- Read chapters 8 and 8.1 of the scan-book: https://jazznbass.github.io/scan-Book/piecewise-linear-regressions.html#piecewise-linear-regressions
+
+- Fit a regression model for the first case of `study` (`study$Leo`) and exclude the `slope` effect from the model.
+
+---
+
+### Solution
+
+
+```r
+plm(study$Leo, trend = FALSE)
+```
+
+```
+Piecewise Regression Analysis
+
+Dummy model:  B&amp;L-B 
+
+Fitted a gaussian distribution.
+F(4, 4) = 0.76; p = 0.601; R² = 0.432; Adjusted R² = -0.136
+
+                  B   2.5% 97.5%    SE     t     p delta R²
+Intercept     2.667  0.985 4.348 0.858 3.108 0.036         
+Level phase B 2.000 -2.756 6.756 2.427 0.824 0.456   0.0964
+Level phase E 0.333 -4.423 5.090 2.427 0.137 0.897   0.0027
+Slope phase B 0.000 -2.060 2.060 1.051 0.000 1.000   0.0000
+Slope phase E 0.500 -1.560 2.560 1.051 0.476 0.659   0.0321
+
+Autocorrelations of the residuals
+ lag    cr
+   1 -0.47
+   2  0.15
+   3 -0.15
+
+Formula: values ~ 1 + phaseB + phaseE + interB + interE
+```
+
+---
+class: center, middle
+# This is the end of the introduction! Thanx!
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"highlightStyle": "github",
+"highlightLines": true,
+"countIncrementalSlides": false,
+"ratio": "16:10"
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>
