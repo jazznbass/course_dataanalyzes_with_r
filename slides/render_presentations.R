@@ -24,8 +24,8 @@ files <- c(
 
 files <- c(
   #"01-Introduction_xa.Rmd",
-  #"07-Regression_XA.Rmd"
-  "08-single-case.Rmd"  
+  "07-Regression_XA.Rmd"
+  #"08-single-case.Rmd"  
   
 )
 

@@ -1,10 +1,11 @@
-company: Potsdam University
-author: Yep Jürgen Wilbert
-date: "`r if(exists('info')) info$date`"
-output:
-  ioslides_presentation: 
-    css: styles.css
-    logo: img/ZEIF.png
-    widescreen: yes
-    df_print: kable
-
+xaringan::moon_reader:
+  lib_dir: libs
+  css: ["default", "default-fonts","styles_xa.css"]
+  nature:
+    highlightStyle: github
+    highlightLines: yes
+    countIncrementalSlides: no
+    ratio: '16:10'
+    titleSlideClass: [center, middle]
+  self_contained: true
+  

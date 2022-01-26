@@ -1,0 +1,319 @@
+---
+title: "dplyr"
+subtitle: 'A package tailed towards the manipulation of data frames'
+company: "`r if(exists('info')) info$company`"
+author: "`r if(exists('info')) info$author`"
+date: "`r if(exists('info')) info$date`"
+---
+
+```{r setup, include=FALSE}
+library(knitr)
+library(tidyverse)
+opts_chunk$set(echo = TRUE, warning = FALSE, message = FALSE)
+
+uwezo <- readRDS("uwezo_2015_clean.rds")
+
+stop_video <- function() {
+  out <- ""
+  #out <- '<div class="red2">**Please stop the video here! Continue after completing the task!**</div>'
+  cat(out)
+}
+
+```
+
+---
+
+# dyplyr
+
+- [`dplyr`](https://dplyr.tidyverse.org/) is a package tailed towards data manipulation.
+
+--
+
+- `filter()` picks cases based on their values.
+
+--
+
+- `select()` picks variables based on their names.
+
+--
+
+- `mutate()` adds new variables that are functions of existing variables
+
+--
+
+- `summarise()` reduces multiple values down to a single summary.
+
+--
+
+- `group_by()` allows to perform any operation by grouping variables.
+
+--
+
+- `arrange()` changes the ordering of the rows.
+
+---
+
+# `filter()` picks cases based on their values
+
+`filter(.data, ...)` 
+
+```{r eval = FALSE}
+# Without %>%:
+filter(mtcars, disp > 350 & mpg < 11)
+
+# with %>%
+mtcars %>%
+  filter(disp > 350 & mpg < 11)
+```
+
+Note: You don't have to provide the name of a data object within the dplyr function!
+
+***not***: `filter(mtcars, mtcars$disp > 350 & mtcars$mpg < 11)`
+
+***but***: `filter(mtcars, disp > 350 & mpg < 11)`
+
+---
+
+# Task
+
+- Take the `uwezo` database. `uwezo <- readRDS("uwezo_2015_clean.rds")`
+- Filter all cases from the district `Abim` where the gender of the interviewed person is `Male` (Hint: variables `id_districtName` and `hh_gender`)
+
+```{r results = 'asis', echo = FALSE}
+stop_video()
+```
+
+---
+
+```{r}
+library(tidyverse)
+uwezo %>% 
+  filter(id_districtName == "Abim" & hh_gender == "Male")
+```
+
+---
+
+# `select()` picks variables based on their names
+
+`select(.data, ...)` 
+
+```{r eval = FALSE}
+# Either column numbers or column names
+mtcars %>% select(1, 3, carb)
+# Use the `:` symbol for ranges
+mtcars %>% select(1:3, am:carb)
+# use `-` to drop variables and keep the others
+mtcars %>% select(-am, -(1:3), -(disp:drat))
+```
+
+`starts_with()` and `ends_with()` can be used to select variables by parts of their names:
+
+```{r eval = FALSE}
+mtcars %>% select(starts_with("d"))
+mtcars %>% select(-ends_with("b"))
+```
+
+---
+
+# Task
+
+- Take the `uwezo` database.
+- Filter for `Male` interviewed person and select the variables `answering_person, hh_age, and hh_edu_raw` (Hint: variable `species`)
+
+```{r results = 'asis', echo = FALSE}
+stop_video()
+```
+
+---
+
+```{r}
+uwezo %>% 
+  filter(hh_gender == "Male") %>% 
+  select(answering_person, hh_age, hh_edu_raw)
+```
+
+---
+
+# relocate() changes the column order
+
+The `relocate()` function helps to rearrange the columns of a data frame 
+
+```{r}
+starwars %>% 
+  relocate(name, birth_year, sex)
+```
+
+---
+
+# `mutate()` adds new variables that are functions of existing variables
+
+`mutate(.data, ...)`
+
+```{r eval = TRUE}
+mtcars %>%
+  mutate(
+    efficiency = mpg / disp,
+    effect = round(hp / mpg * 100)
+  )
+
+```
+
+---
+
+# Task
+
+- Take the `uwezo` database.
+- Create a new variable `age_median_split` for age of the interviewed person (median split; TRUE is upper half and FALSE = lower half)
+- Filter all cases from the lower half
+- Select `hh_size, house_wall`
+
+```{r results = 'asis', echo = FALSE}
+stop_video()
+```
+
+---
+
+```{r}
+uwezo %>%
+  mutate(age_median_split = hh_age >= median(hh_age, na.rm = TRUE)) %>%
+  filter(age_median_split == FALSE) %>%
+  select(hh_size, house_wall)
+```
+
+---
+
+# `summarise()` reduces multiple values down to a single summary.
+
+```{r}
+mtcars %>%
+  summarise(
+    mean_mpg = mean(mpg),
+    sd_mpg = sd(mpg),
+    n = n()
+  )
+```
+
+---
+
+# Task
+
+- Take the `uwezo` database.
+- Filter district `Abim`
+- Calculate the mean and sd for hh_females and hh_males (Note: don't forget to remove NA values: `na.rm = TRUE`)
+
+```{r results = 'asis', echo = FALSE}
+stop_video()
+```
+
+---
+
+```{r}
+uwezo %>%
+  filter(id_districtName == "Abim") %>%
+  summarise(
+    mean_female = mean(hh_females, na.rm = TRUE),
+    sd_female = sd(hh_females, na.rm = TRUE),
+    mean_male = mean(hh_males, na.rm = TRUE),
+    sd_male = sd(hh_males, na.rm = TRUE),
+  )
+```
+
+---
+
+# `group_by()` allows to perform any operation by grouping variables.
+
+```{r}
+mtcars %>% group_by(cyl) %>%
+  summarise(
+    mean_mpg = mean(mpg),
+    sd_mpg = sd(mpg),
+    n = n()
+  )
+```
+
+---
+
+```{r}
+mtcars %>% group_by(cyl, am) %>%
+  summarise(
+    mean_mpg = mean(mpg),
+    sd_mpg = sd(mpg),
+    n = n()
+  )
+```
+
+---
+
+# Task
+
+- Take the `uwezo` database.
+- Group by district
+- Calculate the mean of hh_size
+- And the number of cases per group (Hint: `n()`)
+
+```{r results = 'asis', echo = FALSE}
+stop_video()
+```
+
+---
+
+```{r}
+uwezo %>%
+  group_by(id_districtName) %>%
+  summarise(
+    size = mean(hh_size, na.rm = TRUE),
+    n = n()
+  )
+```
+
+---
+
+# `arrange()` changes the ordering of the rows
+
+`arrange(.data, ...)`
+
+```{r}
+dat <- data.frame(age = c(5,5,6,7,6), sen = c(0, 1, 1, 0, 0), points = c(34, 55, 22, 11, 9))
+dat %>%
+  arrange(sen, age) 
+```
+
+---
+
+# `desc()` specifies a variable to be arranged descending
+
+```{r}
+dat %>%
+  arrange(sen, desc(points))
+```
+
+---
+
+# Task
+
+- Take the `starwars` database.
+- Calculate the bmi.
+- Summarize the median of the bmi grouped by species.
+- round the bmi to one decimal.
+- Also calculate the `n` for each group.
+- Only show cases with `n > 2`.
+- Arrange the resulting table. Sort by `n` in descending order.
+
+```{r results = 'asis', echo = FALSE}
+stop_video()
+```
+
+---
+
+```{r}
+starwars %>% 
+  mutate(bmi = mass / (height / 100)^2) %>% 
+  group_by(species) %>% 
+  summarise(
+    mean_bmi = median(bmi, na.rm = TRUE) %>% round(1), 
+    n = n()
+  ) %>%
+  filter(n >2) %>%
+  arrange(desc(n))
+           
+```

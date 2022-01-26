@@ -1,0 +1,182 @@
+---
+title: "Analyzing single-case data"
+company: "`r if(exists('info')) info$company`"
+author: "`r if(exists('info')) info$author`"
+date: "`r if(exists('info')) info$date`"
+---
+
+background-image: url("DEFOCUSED.png")
+
+```{r setup, include=FALSE}
+library(knitr)
+library(tidyverse)
+opts_chunk$set(echo = TRUE, warning = FALSE, message = FALSE, comment = "")
+```
+
+# Goals
+
+- An introduction to single-case analyses
+
+- An introduction to analyzing single case data with the package R
+
+---
+
+# Scan
+
+- `scan` (single-case data analyses) is an R package with comprehensive functions.
+
+- It is available through `cran` --> `install.packages("scan")`.
+
+- There is a webpage of the `scan` package: https://jazznbass.github.io/scan/
+
+- And you find a book at: https://jazznbass.github.io/scan-Book/
+
+- This session will make extensive use of the scan-book.
+
+(There is also a development version available through github -->  `devtools::install_github("jazznbass/scan", dependencies = TRUE)`.  
+You need the `devtools` package to run the `install_github()` function.  
+Windows users: make sure you have Rtools (https://cran.r-project.org/bin/windows/Rtools/) installed.)
+
+---
+
+# Task: Creating a single-case data frame
+
+.pull-left[
+- Read the chapters 4.1 and 4.2 of the scan-book: https://jazznbass.github.io/scan-Book/managing-single-case-data.html.
+
+- Recreate the *single case data frame* to the right with the `scdf()` function.
+]
+.pull-right[
+```{r echo = FALSE}
+case1 <- scdf(c(A = 1,3,4, B = 4,6,4, E = 4,3,5), name = "Leo")
+case2 <- scdf(c(A = 2,1,7, B = 5,8,6,5, E = 1,2,5), name = "Jacob")
+study <- c(case1, case2)
+export(study)
+
+```
+]
+
+---
+
+### Solution
+
+```{r}
+case1 <- scdf(c(A = 1,3,4, B = 4,6,4, E = 4,3,5), name = "Leo")
+# alterntively: scdf(c(1,3,4, 4,6,4, 4,3,5), phase.design = c(A = 3, B = 3, C = 3))
+case2 <- scdf(c(A = 2,1,7, B = 5,8,6,5, E = 1,2,5), name = "Jacob")
+study <- c(case1, case2)
+study
+```
+
+---
+
+# Task: Creating a plot
+
+.pull-left[
+- Read the chapters 5 to 5.3 of the scan-book: https://jazznbass.github.io/scan-Book/creating-a-single-case-data-plot.html.
+
+- Recreate the plot to the right (use the `study` object from the previous example). Hint: The red lines indicate the medians.
+]
+.pull-right[
+```{r echo = FALSE}
+plot(
+  study,
+  phase.names = c("Baseline", "Intervention", "Follow-Up"),
+  ylab = "Score",
+  xlab = "Week",
+  main = "Intervention effect on reading score",
+  lines = list(type = "median", col = "red", lwd = 3),
+  marks = list(
+    positions = list( c(5, 8), c(3, 5)), 
+    col = 'blue', cex = 2.5, pch = 1
+  ),
+  ylim = c(0, 10)
+)
+```
+]
+
+---
+
+### Solution
+
+```{r eval = FALSE}
+plot(
+  study,
+  phase.names = c(
+    "Baseline", "Intervention", "Follow-Up"
+  ),
+  ylab = "Score",
+  xlab = "Week",
+  main = "Intervention effect on reading score",
+  lines = list(
+    type = "median", col = "red", lwd = 3
+  ),
+  marks = list(
+    positions = list( c(5, 8), c(3, 5)), 
+    col = 'blue', cex = 2.5, pch = 1
+  ),
+  ylim = c(0, 10)
+)
+```
+
+---
+
+# Task: Descriptive statistics
+
+- Read chapters 6.1 of the scan-book: https://jazznbass.github.io/scan-Book/describe-and-manipulate-single-case-data-frames.html#describing-and-summarizing
+
+- Generate descriptive statistics of the `study` scdf with the `describe()` function.
+
+
+---
+
+### Solution
+
+```{r}
+describe(study)
+```
+
+---
+
+# Task: Overlap indices
+
+- Read chapters 7 to 7.5 of the scan-book: https://jazznbass.github.io/scan-Book/overlapping-indices.html#overlapping-indices
+
+- Generate overlap statistics of the `study` scdf with the `overlap()` function comparing 1. phase A against B and 2. phases A and E against phase B.
+
+
+---
+
+### Solution
+
+.pull-left[
+```{r}
+overlap(study, phases = list(1, 2))
+```
+]
+
+.pull-right[
+```{r}
+overlap(study, phases = list(c(1,3), 2)) # alternatively: list(c("A", "E"), "B")
+```
+]
+
+---
+
+# Task: piecewise-regression analyzes
+
+- Read chapters 8 and 8.1 of the scan-book: https://jazznbass.github.io/scan-Book/piecewise-linear-regressions.html#piecewise-linear-regressions
+
+- Fit a regression model for the first case of `study` (`study$Leo`) and exclude the `slope` effect from the model.
+
+---
+
+### Solution
+
+```{r}
+plm(study$Leo, trend = FALSE)
+```
+
+---
+class: center, middle
+# This is the end of the introduction! Thanx!
