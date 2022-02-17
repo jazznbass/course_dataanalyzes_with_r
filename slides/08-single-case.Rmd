@@ -62,7 +62,7 @@ export(study)
 
 ```{r}
 case1 <- scdf(c(A = 1,3,4, B = 4,6,4, E = 4,3,5), name = "Leo")
-# alterntively: scdf(c(1,3,4, 4,6,4, 4,3,5), phase.design = c(A = 3, B = 3, C = 3))
+# alternatively: scdf(c(1,3,4, 4,6,4, 4,3,5), phase.design = c(A = 3, B = 3, C = 3))
 case2 <- scdf(c(A = 2,1,7, B = 5,8,6,5, E = 1,2,5), name = "Jacob")
 study <- c(case1, case2)
 study

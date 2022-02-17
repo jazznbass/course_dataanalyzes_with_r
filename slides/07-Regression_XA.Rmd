@@ -10,6 +10,17 @@ company: "`r if(exists('info')) info$company`"
 library(knitr)
 library(tidyverse)
 opts_chunk$set(echo = TRUE, warning = FALSE, message = FALSE, comment = "")
+
+stop_video <- function() {
+  out <- '
+  
+--
+  
+  .red2[**Please stop the video here! Continue after completing the task!**]
+  '
+  cat(out)
+}
+
 ```
 
 background-image: url("DEFOCUSED.png")
@@ -26,7 +37,37 @@ background-image: url("DEFOCUSED.png")
 
 # Regression
 
+- In a statistical regression you explain a variable (criteria or dependent variable) by one or more other variables (predictors or independent variables).
+
+--
+
+- You *regress* the criteria variable on the predictor variables.
+
+--
+
+- E.g.: You want to explain the *life expectancy* by certain aspects of behavior (diet, physical activity), environmental aspects (polution, health care).
+
+--
+
+- Therefore, you try to set up a mathematical function which tries to estimate what *life expectancy* a person has given all the other variables.
+
+
+---
+
+# Regression formula
+
 .pull-left[
+
+```{r echo = FALSE, fig.height=5, fig.width=5}
+x <- c(1,3,1,5,6,5,7,8,9,8,10,9)
+y <- c(2,1,4,5,5,6,5,7,8,8,9,10)
+plot(x, y, type = "p", xlab = "Predictor X", ylab = "Criteria Y", 
+     xlim = c(0,10), ylim = c(0,10), xaxs="i",yaxs="i", col = "blue", lwd = 2)
+```
+
+]
+
+.pull-right[
 
 $y_i = \beta_0 + \beta_1X_i + e_i$  
 
@@ -38,14 +79,34 @@ $X$ = Predictor variable
 $e$ = Error term
 ]
 
-.pull-right[
+---
+
+# Regression formula
+
+.pull-left[
 
 ```{r echo = FALSE, fig.height=5, fig.width=5}
-plot(c(0,1), c(1,5), type = "l", xlab = "Predictor X", ylab = "Criteria Y", ylim = c(0,5))
-text(x = 0.6, y = 4, "Slope ß1")
-
+x <- c(1,3,1,5,6,5,7,8,9,8,10,9)
+y <- c(2,1,4,5,5,6,5,7,8,8,9,10)
+plot(x, y, type = "p", xlab = "Predictor X", ylab = "Criteria Y", 
+     xlim = c(0,10), ylim = c(0,10), xaxs="i",yaxs="i", col = "blue", lwd = 2)
+text(x = 5, y = 6.5, "Slope ß1")
+fit <- lm(y~x)
+abline(fit, col = "red", lwd = 2)
 ```
 
+]
+
+.pull-right[
+
+$y_i = \beta_0 + \beta_1X_i + e_i$  
+
+$y$ = Criteria variable  
+$i$ = Subject number (measurement number)  
+$\beta_0$ = Intercept of $y$  
+$\beta_1$ = Weight of predictor $X$  
+$X$ = Predictor variable  
+$e$ = Error term
 ]
 
 ---
@@ -143,6 +204,10 @@ $F(1, 48) = 89.57; p < .001 ; R² = .65$
 
 - Regress mileage `mpg` on car weight `wt` (that is, predict mileage by means of weight).
 
+```{r results = 'asis', echo = FALSE}
+stop_video()
+```
+
 ---
 
 .pull-left[
@@ -177,6 +242,10 @@ ggplot(mtcars, aes(x = mpg, y = wt)) +
 - Add a regression line with (`geom_smooth(method = "lm")`).
 
 - Regress `temp_anomaly` on `year` (that is, predict temp_anomaly by means of year).
+
+```{r results = 'asis', echo = FALSE}
+stop_video()
+```
 
 ---
 
@@ -234,6 +303,10 @@ summary(fit)
 - Take the interaction into account.
 
 - How to interpret the estimates?
+
+```{r results = 'asis', echo = FALSE}
+stop_video()
+```
 
 ---
 
@@ -307,6 +380,10 @@ fit <- lm(height ~ sex, data = heights)
 summary(fit)
 ```
 
+```{r results = 'asis', echo = FALSE}
+stop_video()
+```
+
 ---
 
 # Contrasts
@@ -361,7 +438,9 @@ coefficients(fit)
 
 - Set the contrasts of the factor to *Treatment* and calculate the model
 
-- Compare the results of the two models and discuss them with you seatmate
+```{r results = 'asis', echo = FALSE}
+stop_video()
+```
 
 ---
 
@@ -370,11 +449,18 @@ mtcars$am_factor <- factor(mtcars$am, labels = c("Automatic", "Manual"))
 contrasts(mtcars$am_factor) <- contr.helmert(2)
 fit1 <- lm(mpg ~ wt + am_factor + wt:am_factor, data = mtcars)
 summary(fit1)
+```
+
+---
+
+```{r}
 contrasts(mtcars$am_factor) <- contr.treatment(2)
 fit2 <- lm(mpg ~ wt + am_factor + wt:am_factor, data = mtcars)
 summary(fit2)
 
 ```
+
+
 
 ---
 class: center, middle
