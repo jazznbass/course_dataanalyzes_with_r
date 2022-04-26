@@ -1,0 +1,13 @@
+.blue {
+  color: blue;
+}
+
+.emphasized {
+  color: black;
+  font-size: 1.2em;
+}
+
+.red2 {
+  color: red;
+  font-weight: bold;
+}

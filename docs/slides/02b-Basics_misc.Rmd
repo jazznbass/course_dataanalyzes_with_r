@@ -9,6 +9,12 @@ output:
     logo: img/ZEIF.png
     widescreen: yes
     df_print: kable
+  html_document: default
+  pdf_document: default
+  beamer_presentation: default
+  powerpoint_presentation:
+    reference_doc: template.pptx
+  slidy_presentation: default
 ---
 
 ```{r setup, include=FALSE}

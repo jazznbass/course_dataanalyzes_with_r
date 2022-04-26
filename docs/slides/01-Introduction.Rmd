@@ -1,5 +1,8 @@
 ---
 title: "Introduction"
+company: "`r if(exists('info')) info$company`"
+author: "`r if(exists('info')) info$author`"
+date: "`r if(exists('info')) info$date`"
 ---
 
 ```{r setup, include=FALSE}
