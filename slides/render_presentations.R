@@ -10,24 +10,18 @@ info <-
 files <- dir(pattern = "*.Rmd")
 
 files <- c(
-  "01-Introduction.Rmd",
- "02-Basics_1.Rmd",
+  #"01-Introduction.Rmd",
+ #"02-Basics_1.Rmd",
 
 
-   "02-Basics_soph_sub.Rmd",
-  "02b-Basics_misc.Rmd"
+   "02-Basics_soph_sub.Rmd"
+#  "02b-Basics_misc.Rmd"
 #  "03-Rmarkdown.Rmd",
 #  "04-Tidyverse.Rmd",
 #  "04b-dplyr.Rmd",
 #  "06-ggplot2.Rmd",
 #  "05-Statistics.Rmd"
   #"07-Regression.Rmd"
-)
-
-files <- c(
-  #"01-Introduction_xa.Rmd",
-  "07-Regression_XA.Rmd"
-  #"08-single-case.Rmd"        
 )
 
 for(file  in files) {

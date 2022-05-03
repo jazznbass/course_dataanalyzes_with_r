@@ -30,7 +30,7 @@
       // Author information
       presenters: [
             {
-        name:  'Jürgen Wilbert' ,
+        name:  '' ,
         company: '',
         gplus: '',
         twitter: '',
@@ -193,7 +193,6 @@ slide:not(.current) .plotly.html-widget{
       <h1 data-config-title><!-- populated from slide_config.json --></h1>
       
       <p data-config-presenter><!-- populated from slide_config.json --></p>
-            <p style="margin-top: 6px; margin-left: -2px;">Version: 03 Mai 2022</p>
           </hgroup>
   </slide>
 
@@ -768,11 +767,10 @@ age &gt; 4</pre>
 
 </article></slide><slide class=""><hgroup><h2>Task</h2></hgroup><article  class="build smaller" id="task-5">
 
-<p>Create a vector<br/><code>income &lt;- c(5000, 4000, 3000, 2000, 1000)</code> and a vector<br/><code>happiness &lt;- c(20, 35, 30, 10, 50)</code>.</p>
+<p>Create a vector<br/><code>income &lt;- c(5000, 4000, 3000, 2000, 1000)</code> and a vector<br/><code>happiness &lt;- c(20, 35, 30, 10, 50)</code>.<br/>1. Use <em>relational</em> and <em>logical</em> operations to determine for each element whether the <code>income</code> is larger than <code>2500</code> and at the same time <code>happiness</code> is above <code>25</code>.</p>
 
 <ol>
-<li><p>Use <em>relational</em> and <em>logical</em> operations to determine for each element whether the <code>income</code> is larger than <code>2500</code> and at the same time <code>happiness</code> is above <code>25</code>.</p></li>
-<li><p>Calculate the proportion.</p></li>
+<li>Calculate the proportion.</li>
 </ol>
 
 <div class="red2">
@@ -956,90 +954,9 @@ cor(diet4[[&quot;weight&quot;]], diet4[[&quot;Time&quot;]])</pre>
 
 <p>The correlation is larger for Diet 4. This suggests that Diet 4 has a stronger impact an the chicken’s weight.</p>
 
-</article></slide><slide class=""><hgroup><h2>The <code>subset()</code> function {smaller}</h2></hgroup><article  id="the-subset-function-smaller">
+</article></slide><slide class=""><hgroup><h2>The <code>subset()</code> function</h2></hgroup><article  id="the-subset-function">
 
-<p>R comes with a function to make subsetting a bit more straight forward.</p>
-
-<p><code>subset()</code> has the main arguments:</p>
-
-<ul>
-<li><code>x</code> : A data.frame<br/></li>
-<li><code>subset</code> : A logical vector for filtering rows<br/></li>
-<li><code>select</code> : expression, indicating columns to select from a data frame</li>
-</ul>
-
-<p>and returns a data.frame.</p>
-
-<pre class = 'prettyprint lang-r'>subset(study, gender == &quot;F&quot; &amp; IQ &gt; 89, c(sen, gender, IQ))</pre>
-
-<div class="kable-table">
-<table class = 'rmdtable'>
-<tr class="header">
-<th align="left"></th>
-<th align="right">sen</th>
-<th align="left">gender</th>
-<th align="right">IQ</th>
-</tr>
-<tr class="odd">
-<td align="left">3</td>
-<td align="right">0</td>
-<td align="left">F</td>
-<td align="right">90</td>
-</tr>
-<tr class="even">
-<td align="left">5</td>
-<td align="right">0</td>
-<td align="left">F</td>
-<td align="right">99</td>
-</tr>
-</table></div>
-
-<p>Variable names must be provided without quotes and without the name of the data.frame.</p>
-
-</article></slide><slide class=""><hgroup><h2>Task</h2></hgroup><article  id="task-7">
-
-<p>Take the <code>mtcars</code> dataset and filter cases (here: car models) with 6 cylinders (variable <code>cyl</code>) and automatic transmission (value <code>1</code> in variable <code>am</code>).<br/>Select the variables <code>mpg</code>, <code>am</code>, <code>gear</code>, <code>cyl</code>.<br/>Use the <code>subset</code> function.</p>
-
-<div class="red2">
-<strong>:-)</strong></div>
-
-</article></slide><slide class=""><hgroup><h2>Task - solutions</h2></hgroup><article  id="task---solutions-2">
-
-<p>Take the <code>mtcars</code> dataset and filter cases (here: car models) with 6 cylinders (variable <code>cyl</code>) and automatic transmission (value <code>1</code> in variable <code>am</code>).<br/>Select the variables <code>mpg</code>, <code>am</code>, <code>gear</code>, <code>cyl</code>.<br/>Use the <code>subset</code> function.</p>
-
-<pre class = 'prettyprint lang-r'>subset(mtcars, cyl == 6 &amp; am == 1, c(mpg, am, gear, cyl))</pre>
-
-<div class="kable-table">
-<table class = 'rmdtable'>
-<tr class="header">
-<th align="left"></th>
-<th align="right">mpg</th>
-<th align="right">am</th>
-<th align="right">gear</th>
-<th align="right">cyl</th>
-</tr>
-<tr class="odd">
-<td align="left">Mazda RX4</td>
-<td align="right">21.0</td>
-<td align="right">1</td>
-<td align="right">4</td>
-<td align="right">6</td>
-</tr>
-<tr class="even">
-<td align="left">Mazda RX4 Wag</td>
-<td align="right">21.0</td>
-<td align="right">1</td>
-<td align="right">4</td>
-<td align="right">6</td>
-</tr>
-<tr class="odd">
-<td align="left">Ferrari Dino</td>
-<td align="right">19.7</td>
-<td align="right">1</td>
-<td align="right">5</td>
-<td align="right">6</td>
-</tr>
-</table></div></article></slide>
+<p>R comes with a function to make subsetting a bit more straight forward.</p></article></slide>
 
 
   <slide class="backdrop"></slide>

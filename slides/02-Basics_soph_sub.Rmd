@@ -3,18 +3,29 @@ title: "R Basic Concepts: <br>Sophisticated subsetting"
 company: "`r if(exists('info')) info$company`"
 author: "`r if(exists('info')) info$author`"
 date: "`r if(exists('info')) info$date`"
+output:
+  ioslides_presentation: 
+    css: styles.css
+    widescreen: yes
+    logo: img/ZEIF.png
+    df_print: kable
 ---
 
 ```{r setup, include=FALSE}
 library(knitr)
 library(tidyverse)
-opts_chunk$set(echo = TRUE, warning = FALSE, message = FALSE)
-study <- data.frame(
-  sen    = c(0, 1, 0, 1, 0, 1),
-  gender = c("M", "M", "F", "M", "F", "F"),
-  age    = c(12, 13, 11, 10, 11, 14),
-  IQ     = c(90, 85, 90, 87, 99, 89)
-)
+
+stop_video <- function() {
+  #out <- '<div class="red2">**Please stop the video here! Continue after completing the task!**</div>'
+  out <- '<div class="red2">**:-)**</div>'
+  cat(out)
+}
+
+
+opts_chunk$set(echo = TRUE, warning = FALSE, 
+               message = FALSE, comment = "")
+
+
 ```
 
 # Sophisticated selections
@@ -81,18 +92,24 @@ age[x]
 ```
 
 ```{r echo = FALSE}
-data.frame(age = age, x = x, 'Select?' = ifelse(x, "**select**", "drop"), "Result" = ifelse(x, age, ""), check.names = FALSE)
+data.frame(age = age, "x <- age > 5" = x, 'Select?' = ifelse(x, "**select**", "drop"), "Result" = ifelse(x, age, ""), check.names = FALSE)
 ```
 
 ## Task {.build}
 
-Create a new vector `friends <- c(4, 5, 6, 3, 7, 2, 3)`. Show all values of that vector `>= 4`.
+Create a new vector `friends <- c(4, 5, 6, 3, 7, 2, 3)`.  
+Show all values of that vector `>= 4`.
 
-<div class="red2">**Please stop the video here! Continue after completing the task!**</div> 
+
+```{r results = 'asis', echo = FALSE}
+stop_video()
+```
+
 
 ## Task - solution 
 
-Create a new vector `friends <- c(4, 5, 6, 3, 7, 2, 3)`. Show all values of that vector `>= 4`.
+Create a new vector `friends <- c(4, 5, 6, 3, 7, 2, 3)`.  
+Show all values of that vector `>= 4`.
 
 ```{r}
 friends <- c(4, 5, 6, 3, 7, 2, 3)
@@ -100,7 +117,7 @@ friends[friends >= 4]
 ```
 
 
-## which() {.build .smaller}
+## which() {.build}
 
 The `which()` functions gives the **indices** of the elements that are `TRUE`.  
 It takes a *logical vector* as an *argument*.
@@ -108,7 +125,18 @@ It takes a *logical vector* as an *argument*.
 ```{r}
 x <- c(TRUE, FALSE, FALSE, TRUE)
 which(x)
+```
 
+`which()` can handle missing values:
+
+```{r}
+x <- c(TRUE, FALSE, NA, FALSE, TRUE, NA)
+which(x)
+```
+
+---
+
+```{r}
 age <- c(12, 4, 3, 8)
 x <- age < 5
 x
@@ -122,10 +150,28 @@ age <- c(12, 4, 3, 8)
 x <- age < 5
 x
 which(x)
+age[which(x)]
 ```
 
 ```{r echo = FALSE}
-data.frame('Index' = 1:length(x), '`age`' = age, '`x <- age < 5`' = x, '`which(x)`' = ifelse(x, 1:length(x), ""), check.names = FALSE)
+data.frame('Index' = 1:length(x), 
+           'age' = age, 
+           'x <- age < 5' = x, 
+           'which(x)' = ifelse(x, 1:length(x), ""), 
+           'age[which(x)]' = ifelse(x, age[1:length(x)], ""),
+           check.names = FALSE)
+```
+
+
+## Why use which? {.build .smaller}
+
+```{r}
+age = c(NA, 12, 4, 3, NA, 8, 7, 4, 3, 6, 4, 3)
+x <- age < 6
+x
+age[x]
+mean(age[x])
+mean(age[which(x)])
 ```
 
 ## Task {.build}
@@ -134,7 +180,11 @@ Create a vector `x <- c(1, 4, 5, 3, 4, 5)` and identify:
 1. Which elements are larger or equal than three?     
 2. Create a new vector from `x` containing all elements that are **not** four. Note: Use the `which()` function for this task.
 
-<div class="red2">**Please stop the video here! Continue after completing the task!**</div> 
+
+```{r results = 'asis', echo = FALSE}
+stop_video()
+```
+
 
 ## Task - solution
 
@@ -152,10 +202,24 @@ y
 
 ## Selecting cases with logical vectors {.build}
 
-Logical vectors can also be appplied to *data frames* for selecting cases:
+Logical vectors can also be appplied to *data frames* for selecting cases.
+
+Let us take an example data frame:
 
 ```{r}
-# Either directly:
+study <- data.frame(
+  sen    = c(0, 1, 0, 1, 0, 1),
+  gender = c("M", "M", "F", "M", "F", "F"),
+  age    = c(12, 13, 11, 10, 11, 14),
+  IQ     = c(90, 85, 90, 87, 99, 89)
+)
+```
+
+---
+
+Select with bracket subsetting or the `which()` function:
+
+```{r}
 study_no_sen <- study[study[["sen"]] == 0, ]
 study_no_sen
 
@@ -168,7 +232,11 @@ study_no_sen <- study[filter, ]
 
 Calculate the `mean` of `IQ` for students with and without sen.
 
-<div class="red2">**Please stop the video here! Continue after completing the task!**</div> 
+
+```{r results = 'asis', echo = FALSE}
+stop_video()
+```
+
 
 ## Task - solution
 
@@ -215,7 +283,7 @@ x | y
 
 ## Logical Operator with vectors {.build .smaller}
 
-When applied to **two** vectors, logical operations result in a new vector.  
+When applied to vectors, logical operations result in a new vector.  
 Operations are applied to each element one by one.
 
 ```{r}
@@ -236,19 +304,23 @@ Create two vectors:
 `glasses <- c(TRUE, TRUE, FALSE, TRUE, FALSE)`  
 `hyperintelligent <- c(TRUE, FALSE, FALSE, TRUE, FALSE)`
 
-Determine for each element whether 'glasses' and 'hyperintelligent' are TRUE at the same time.
+Determine for each element whether `glasses` and `hyperintelligent` are TRUE at the same time.
 
-<div class="red2">**Please stop the video here! Continue after completing the task!**</div> 
+
+```{r results = 'asis', echo = FALSE}
+stop_video()
+```
+
 
 
 ## Task - solutions
 
 Create two vectors:
 
-`glasses <- c(TRUE, TRUE, FALSE, TRUE, FALSE)` 
+`glasses <- c(TRUE, TRUE, FALSE, TRUE, FALSE)`  
 `hyperintelligent <- c(TRUE, FALSE, FALSE, TRUE, FALSE)`
 
-Determine for each element whether 'glasses' and 'hyperintelligent' are TRUE at the same time.
+Determine for each element whether `glasses` and `hyperintelligent` are TRUE at the same time.
 
 ```{r}
 glasses <- c(TRUE, TRUE, FALSE, TRUE, FALSE)
@@ -260,6 +332,42 @@ glasses & hyperintelligent
 
 ```{r echo = FALSE}
 data.frame('glasses' = glasses, 'hyperintelligent' = hyperintelligent,  'glasses & hyperintelligent' = glasses & hyperintelligent, check.names = FALSE)
+```
+
+## `sum()` and `mean()` with logical vectors:
+
+When a logical vector is applied to a numeric function (e.g. `mean()` or `sum()`), `TRUE` is counted as `1` and `FALSE` as `0`:
+
+`sum()` then gives the number of elements that are TRUE.  
+`mean()` gives the proportion of elements that are TRUE.
+
+
+```{r}
+# e.g.:
+sum(c(TRUE, FALSE, TRUE))
+mean(c(TRUE, FALSE, TRUE, FALSE))
+```
+
+## Task
+
+Take the data from the last example and calculate the sum and proportion of cases that wear glasses and are hyperintelligent.
+
+`glasses <- c(TRUE, TRUE, FALSE, TRUE, FALSE)`  
+`hyperintelligent <- c(TRUE, FALSE, FALSE, TRUE, FALSE)`    
+
+
+```{r results = 'asis', echo = FALSE}
+stop_video()
+```
+
+## Task - solutions
+
+Take the data from the last example and calculate the sum and proportion of cases that wear glasses and are hyperintelligent.
+
+
+```{r}
+sum(glasses & hyperintelligent)
+mean(glasses & hyperintelligent)
 ```
 
 ## Combining logical and relational operators {.build}
@@ -277,22 +385,28 @@ age > 4 & gender == 0
 Create a vector  
 `income <- c(5000, 4000, 3000, 2000, 1000)` and a vector  
 `happiness <- c(20, 35, 30, 10, 50)`.  
-Use *relational* and *logical* operations to determine for each element whether the `income` is larger than `2500` and at the same time `happiness` is above `25`.
 
-<div class="red2">**Please stop the video here! Continue after completing the task!**</div> 
+1. Use *relational* and *logical* operations to determine for each element whether the `income` is larger than `2500` and at the same time `happiness` is above `25`.
 
-```{r}
+2. Calculate the proportion.
+
+```{r results = 'asis', echo = FALSE}
+stop_video()
+```
+
+## Task - solution {.smaller}
+
+1. Use *relational* and *logical* operations to determine for each element whether the `income` is larger than `2500` and at the same time `happiness` is above `25`.
+
+2. Calculate the proportion.
+
+
+```{r include = FALSE}
 income <- c(5000, 4000, 3000, 2000, 1000)
 happiness <- c(20, 35, 30, 10, 50)
 income > 2500 & happiness > 25
 ```
 
-## Task - solution {.smaller}
-
-Create a vector  
-`income <- c(5000, 4000, 3000, 2000, 1000)` and a vector  
-`happiness <- c(20, 35, 30, 10, 50)`.  
-Use *relational* and *logical* operations to determine for each element whether the `income` is larger than `2500` and at the same time `happiness` is above `25`.
 
 ---
 
@@ -305,6 +419,14 @@ income > 2500 & happiness > 25
 ```{r echo = FALSE}
 kable(data.frame('income' = income, 'happiness' = happiness, 'income > 2500' = income > 2500, 'happiness > 25' = happiness > 25, 'income > 2500 &<br>happiness > 25' = income > 2500 & happiness > 25, check.names = FALSE))
 
+```
+
+---
+
+... and the proportion
+
+```{r}
+mean(income > 2500 & happiness > 25)
 ```
 
 ## Subsetting data frames with logical and relational operators {.build .smaller}
@@ -332,7 +454,11 @@ The data set is already included in R.
 5. Repeat steps 3 and 4 for `Diet == 4`.
 6. What can you see?
 
-<div class="red2">**Please stop the video here! Continue after completing the task!**</div> 
+
+```{r results = 'asis', echo = FALSE}
+stop_video()
+```
+
 
 ---
 
@@ -344,4 +470,54 @@ filter <- ChickWeight[["Diet"]] ==  4 & ChickWeight[["Time"]] < 16
 diet4 <- ChickWeight[filter,]
 cor(diet4[["weight"]], diet4[["Time"]])
 ```
+
+The correlation is larger for Diet 4. This suggests that Diet 4 has a stronger impact an the chicken's weight.
+
+## The `subset()` function {smaller}
+
+R comes with a function to make subsetting a bit more straight forward.
+
+
+`subset()` has the main arguments:
+
+- `x` : A data.frame  
+- `subset` : A logical vector for filtering rows  
+- `select` : expression, indicating columns to select from a data frame
+
+
+and returns a data.frame.
+
+```{r}
+subset(study, gender == "F" & IQ > 89, c(sen, gender, IQ))
+```
+
+Variable names must be provided without quotes and without the name of the data.frame.
+
+## Task
+
+Take the `mtcars` dataset and filter cases (here: car models) with 6 cylinders (variable `cyl`) and automatic transmission (value `1` in variable `am`).  
+Select the variables `mpg`, `am`, `gear`, `cyl`.  
+Use the `subset` function.
+
+
+
+```{r results = 'asis', echo = FALSE}
+stop_video()
+```
+
+
+## Task - solutions
+
+Take the `mtcars` dataset and filter cases (here: car models) with 6 cylinders (variable `cyl`) and automatic transmission (value `1` in variable `am`).  
+Select the variables `mpg`, `am`, `gear`, `cyl`.  
+Use the `subset` function.
+
+
+
+```{r}
+subset(mtcars, cyl == 6 & am == 1, c(mpg, am, gear, cyl))
+
+```
+
+
 
