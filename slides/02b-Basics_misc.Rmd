@@ -21,6 +21,14 @@ output:
 library(knitr)
 library(tidyverse)
 opts_chunk$set(echo = TRUE, warning = FALSE, message = FALSE)
+
+stop_video <- function() {
+  #out <- '<div class="red2">**Please stop the video here! Continue after completing the task!**</div>'
+  out <- '<div class="red2">**:-)**</div>'
+  cat(out)
+}
+
+
 ```
 
 # Extending R
@@ -86,7 +94,7 @@ You can start a `project` from R studio through:
 - Close and reopen R Studio
 - Open the project through:
   - File <img src="img/right_arrow.jpg" width="30" /> Recent projects
-  - Or the project menue in the uper right corner of R Studio
+  - Or the project menue in the upper right corner of R Studio
 
 # External data
 
@@ -124,26 +132,22 @@ Note: `View()` opens a new tab in RStudio with the content of a data frame (e.g.
 
 - Calculate the *mean* of `mpg` (miles per gallon) for cars with 4, 6, and 8 cylinders (variable `cly`).
 
-<div class="red2">**Please stop the video here! Continue after completing the task!**</div> 
+```{r results = 'asis', echo = FALSE}
+stop_video()
+```
 
 ## Task - solution
 
 - Calculate the *mean* of `mpg` (miles per gallon) for cars with 4, 6, and 8 cylinders (variable `cly`).
 
 ```{r eval=FALSE}
-dat_4 <- dat[dat[["cyl"]] == 4, "mpg"]
-dat_6 <- dat[dat[["cyl"]] == 6, "mpg"]
-dat_8 <- dat[dat[["cyl"]] == 8, "mpg"]
-mean(dat_4)
-mean(dat_6)
-mean(dat_8)
+mean(dat$mpg[dat$cyl == 4])
+mean(dat$mpg[dat$cyl == 6])
+mean(dat$mpg[dat$cyl == 8])
 ```
 
 ```{r echo = FALSE}
-dat_4 <- mtcars[mtcars[["cyl"]] == 4, "mpg"]
-dat_6 <- mtcars[mtcars[["cyl"]] == 6, "mpg"]
-dat_8 <- mtcars[mtcars[["cyl"]] == 8, "mpg"]
-mean(dat_4)
-mean(dat_6)
-mean(dat_8)
+mean(dat$mpg[dat$cyl == 4])
+mean(dat$mpg[dat$cyl == 6])
+mean(dat$mpg[dat$cyl == 8])
 ```

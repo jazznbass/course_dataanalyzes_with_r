@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>R Basic Concepts:  Sophisticated subsetting</title>
+  <title>Create new variables in data frame</title>
 
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="chrome=1">
@@ -19,7 +19,7 @@
     var SLIDE_CONFIG = {
       // Slide settings
       settings: {
-                title: 'R Basic Concepts: <br>Sophisticated subsetting',
+                title: 'Create new variables in data frame',
                         useBuilds: true,
         usePrettify: true,
         enableSlideAreas: true,
@@ -29,14 +29,6 @@
 
       // Author information
       presenters: [
-            {
-        name:  'Jürgen Wilbert' ,
-        company: '',
-        gplus: '',
-        twitter: '',
-        www: '',
-        github: ''
-      },
             ]
     };
   </script>
@@ -193,879 +185,654 @@ slide:not(.current) .plotly.html-widget{
       <h1 data-config-title><!-- populated from slide_config.json --></h1>
       
       <p data-config-presenter><!-- populated from slide_config.json --></p>
-            <p style="margin-top: 6px; margin-left: -2px;">Version: 10 Mai 2022</p>
           </hgroup>
   </slide>
 
-<slide class="segue dark nobackground level1"><hgroup class = 'auto-fadein'><h2>Sophisticated selections</h2></hgroup><article  id="sophisticated-selections">
+<slide class=""><hgroup><h2>Create a new variable in a dataset with missing values</h2></hgroup><article  id="create-a-new-variable-in-a-dataset-with-missing-values">
 
-</article></slide><slide class=""><hgroup><h2>Relational operators</h2></hgroup><article  class="build" id="relational-operators">
-
-<p>Relational operators compare two values and return a logical value (<code>TRUE</code> or <code>FALSE</code>)</p>
-
-<table class = 'rmdtable'>
-<tr class="header">
-<th align="left">Operator</th>
-<th align="left">Relation</th>
-<th align="left">Example</th>
-</tr>
-<tr class="odd">
-<td align="left"><code>==</code></td>
-<td align="left">is identical</td>
-<td align="left">x == y</td>
-</tr>
-<tr class="even">
-<td align="left"><code>!=</code></td>
-<td align="left">is not identical</td>
-<td align="left">x != y</td>
-</tr>
-<tr class="odd">
-<td align="left"><code>&gt;</code></td>
-<td align="left">is greater</td>
-<td align="left">x &gt; y</td>
-</tr>
-<tr class="even">
-<td align="left"><code>&gt;=</code></td>
-<td align="left">is greater or identical</td>
-<td align="left">x &gt;= y</td>
-</tr>
-<tr class="odd">
-<td align="left"><code>&lt;</code></td>
-<td align="left">is less</td>
-<td align="left">x &lt; y</td>
-</tr>
-<tr class="even">
-<td align="left"><code>&lt;=</code></td>
-<td align="left">is less or identical</td>
-<td align="left">x &lt;= y</td>
-</tr>
-</table>
-
-</article></slide><slide class=""><hgroup><h2>Examples</h2></hgroup><article  class="build" id="examples">
-
-<pre class = 'prettyprint lang-r'>7 &gt; 2</pre>
-
-<pre >[1] TRUE</pre>
-
-<pre class = 'prettyprint lang-r'>7 &lt;=  10</pre>
-
-<pre >[1] TRUE</pre>
-
-<pre class = 'prettyprint lang-r'>5 == 4</pre>
-
-<pre >[1] FALSE</pre>
-
-<pre class = 'prettyprint lang-r'>5 != 6</pre>
-
-<pre >[1] TRUE</pre>
-
-</article></slide><slide class=""><hgroup><h2>Relational vectors and characters</h2></hgroup><article  id="relational-vectors-and-characters">
-
-<p>Only <code>==</code> and <code>!=</code> can be applied to non numerical objects:</p>
-
-<pre class = 'prettyprint lang-r'>&quot;Hamster&quot; == &quot;Mouse&quot;</pre>
-
-<pre >[1] FALSE</pre>
-
-<pre class = 'prettyprint lang-r'>&quot;Hamster&quot; != &quot;Mouse&quot;</pre>
-
-<pre >[1] TRUE</pre>
-
-</article></slide><slide class=""><hgroup><h2>Relational operators and vectors</h2></hgroup><article  class="smaller" id="relational-operators-and-vectors">
-
-<pre class = 'prettyprint lang-r'>age &lt;- c(12, 4, 3, 8, 4, 2, 1)
-age &lt; 5</pre>
-
-<pre >[1] FALSE  TRUE  TRUE FALSE  TRUE  TRUE  TRUE</pre>
-
-<div class="kable-table">
-<table class = 'rmdtable'>
-<tr class="header">
-<th align="right">age</th>
-<th align="left">age &lt; 5</th>
-</tr>
-<tr class="odd">
-<td align="right">12</td>
-<td align="left">FALSE</td>
-</tr>
-<tr class="even">
-<td align="right">4</td>
-<td align="left">TRUE</td>
-</tr>
-<tr class="odd">
-<td align="right">3</td>
-<td align="left">TRUE</td>
-</tr>
-<tr class="even">
-<td align="right">8</td>
-<td align="left">FALSE</td>
-</tr>
-<tr class="odd">
-<td align="right">4</td>
-<td align="left">TRUE</td>
-</tr>
-<tr class="even">
-<td align="right">2</td>
-<td align="left">TRUE</td>
-</tr>
-<tr class="odd">
-<td align="right">1</td>
-<td align="left">TRUE</td>
-</tr>
-</table></div>
-
-</article></slide><slide class=""><hgroup><h2>Using logical vectors to select values</h2></hgroup><article  id="using-logical-vectors-to-select-values">
-
-<p>When you put a logical vector within square brackets <code>[ ]</code> after an object, all elements of that object with a <code>TRUE</code> in the logical vector are selected:</p>
-
-<pre class = 'prettyprint lang-r'>age &lt;- c(12, 4, 3, 8)
-x &lt;- age &gt; 5
-x</pre>
-
-<pre >[1]  TRUE FALSE FALSE  TRUE</pre>
-
-<pre class = 'prettyprint lang-r'>age[x]</pre>
-
-<pre >[1] 12  8</pre>
-
-</article></slide><slide class=""><hgroup><h2>Using logical vectors to select values</h2></hgroup><article  id="using-logical-vectors-to-select-values-1">
-
-<pre class = 'prettyprint lang-r'>age &lt;- c(12, 4, 3, 8)
-x &lt;- age &gt; 5
-age[x]</pre>
-
-<div class="kable-table">
-<table class = 'rmdtable'>
-<tr class="header">
-<th align="right">age</th>
-<th align="left">x &lt;- age &gt; 5</th>
-<th align="left">Select?</th>
-<th align="left">Result</th>
-</tr>
-<tr class="odd">
-<td align="right">12</td>
-<td align="left">TRUE</td>
-<td align="left"><strong>select</strong></td>
-<td align="left">12</td>
-</tr>
-<tr class="even">
-<td align="right">4</td>
-<td align="left">FALSE</td>
-<td align="left">drop</td>
-<td align="left"></td>
-</tr>
-<tr class="odd">
-<td align="right">3</td>
-<td align="left">FALSE</td>
-<td align="left">drop</td>
-<td align="left"></td>
-</tr>
-<tr class="even">
-<td align="right">8</td>
-<td align="left">TRUE</td>
-<td align="left"><strong>select</strong></td>
-<td align="left">8</td>
-</tr>
-</table></div>
-
-</article></slide><slide class=""><hgroup><h2>Task</h2></hgroup><article  class="build" id="task">
-
-<p>Create a new vector <code>friends &lt;- c(4, 5, 6, 3, 7, 2, 3)</code>.<br/>Show all values of that vector <code>&gt;= 4</code>.</p>
-
-<div class="red2">
-<strong>:-)</strong></div>
-
-</article></slide><slide class=""><hgroup><h2>Task - solution</h2></hgroup><article  id="task---solution">
-
-<p>Create a new vector <code>friends &lt;- c(4, 5, 6, 3, 7, 2, 3)</code>.<br/>Show all values of that vector <code>&gt;= 4</code>.</p>
-
-<pre class = 'prettyprint lang-r'>friends &lt;- c(4, 5, 6, 3, 7, 2, 3)
-friends[friends &gt;= 4]</pre>
-
-<pre >[1] 4 5 6 7</pre>
-
-</article></slide><slide class=""><hgroup><h2>which()</h2></hgroup><article  class="build" id="which">
-
-<p>The <code>which()</code> functions gives the <strong>indices</strong> of the elements that are <code>TRUE</code>.<br/>It takes a <em>logical vector</em> as an <em>argument</em>.</p>
-
-<pre class = 'prettyprint lang-r'>x &lt;- c(TRUE, FALSE, FALSE, TRUE)
-which(x)</pre>
-
-<pre >[1] 1 4</pre>
-
-<p><code>which()</code> can handle missing values:</p>
-
-<pre class = 'prettyprint lang-r'>x &lt;- c(TRUE, FALSE, NA, FALSE, TRUE, NA)
-which(x)</pre>
-
-<pre >[1] 1 5</pre>
-
-</article></slide><slide class=""><hgroup><h2></h2></hgroup><article >
-
-<pre class = 'prettyprint lang-r'>age &lt;- c(12, 4, 3, 8)
-x &lt;- age &lt; 5
-x</pre>
-
-<pre >[1] FALSE  TRUE  TRUE FALSE</pre>
-
-<pre class = 'prettyprint lang-r'>which(x)</pre>
-
-<pre >[1] 2 3</pre>
-
-</article></slide><slide class=""><hgroup><h2></h2></hgroup><article >
-
-<pre class = 'prettyprint lang-r'>age &lt;- c(12, 4, 3, 8)
-x &lt;- age &lt; 5
-x
-which(x)
-age[which(x)]</pre>
-
-<div class="kable-table">
-<table class = 'rmdtable'>
-<tr class="header">
-<th align="right">Index</th>
-<th align="right">age</th>
-<th align="left">x &lt;- age &lt; 5</th>
-<th align="left">which(x)</th>
-<th align="left">age[which(x)]</th>
-</tr>
-<tr class="odd">
-<td align="right">1</td>
-<td align="right">12</td>
-<td align="left">FALSE</td>
-<td align="left"></td>
-<td align="left"></td>
-</tr>
-<tr class="even">
-<td align="right">2</td>
-<td align="right">4</td>
-<td align="left">TRUE</td>
-<td align="left">2</td>
-<td align="left">4</td>
-</tr>
-<tr class="odd">
-<td align="right">3</td>
-<td align="right">3</td>
-<td align="left">TRUE</td>
-<td align="left">3</td>
-<td align="left">3</td>
-</tr>
-<tr class="even">
-<td align="right">4</td>
-<td align="right">8</td>
-<td align="left">FALSE</td>
-<td align="left"></td>
-<td align="left"></td>
-</tr>
-</table></div>
-
-</article></slide><slide class=""><hgroup><h2>Why use which?</h2></hgroup><article  class="build smaller" id="why-use-which">
-
-<pre class = 'prettyprint lang-r'>age = c(NA, 12, 4, 3, NA, 8, 7, 4, 3, 6, 4, 3)
-x &lt;- age &lt; 6
-x</pre>
-
-<pre > [1]    NA FALSE  TRUE  TRUE    NA FALSE FALSE  TRUE  TRUE FALSE  TRUE  TRUE</pre>
-
-<pre class = 'prettyprint lang-r'>age[x]</pre>
-
-<pre >[1] NA  4  3 NA  4  3  4  3</pre>
-
-<pre class = 'prettyprint lang-r'>mean(age[x])</pre>
-
-<pre >[1] NA</pre>
-
-<pre class = 'prettyprint lang-r'>mean(age[which(x)])</pre>
-
-<pre >[1] 3.5</pre>
-
-</article></slide><slide class=""><hgroup><h2>Task</h2></hgroup><article  class="build" id="task-1">
-
-<p>Create a vector <code>x &lt;- c(1, 4, 5, 3, 4, 5)</code> and identify:<br/>1. Which elements are larger or equal than three?<br/>2. Create a new vector from <code>x</code> containing all elements that are <strong>not</strong> four. Note: Use the <code>which()</code> function for this task.</p>
-
-<div class="red2">
-<strong>:-)</strong></div>
-
-</article></slide><slide class=""><hgroup><h2>Task - solution</h2></hgroup><article  id="task---solution-1">
-
-<p>Create a vector <code>x &lt;- c(1, 4, 5, 3, 4, 5)</code> and identify:<br/>1. Which elements are larger or equal than three?<br/>2. Create a new vector from <code>x</code> containing all elements that are <strong>not</strong> four. Note: Use the <code>which()</code> function for this task.</p>
-
-<pre class = 'prettyprint lang-r'>x &lt;- c(1, 4, 5, 3, 4, 5)
-which(x &gt;= 3)</pre>
-
-<pre >[1] 2 3 4 5 6</pre>
-
-<pre class = 'prettyprint lang-r'>y &lt;- x[which(x != 4)]
-y</pre>
-
-<pre >[1] 1 5 3 5</pre>
-
-</article></slide><slide class=""><hgroup><h2>Selecting cases with logical vectors</h2></hgroup><article  class="build" id="selecting-cases-with-logical-vectors">
-
-<p>Logical vectors can also be appplied to <em>data frames</em> for selecting cases.</p>
-
-<p>Let us take an example data frame:</p>
+<p>Please copy this syntax into R-Studio and execute:</p>
 
 <pre class = 'prettyprint lang-r'>study &lt;- data.frame(
-  sen    = c(0, 1, 0, 1, 0, 1),
-  gender = c(&quot;M&quot;, &quot;M&quot;, &quot;F&quot;, &quot;M&quot;, &quot;F&quot;, &quot;F&quot;),
-  age    = c(12, 13, 11, 10, 11, 14),
-  IQ     = c(90, 85, 90, 87, 99, 89)
+  sen    = factor(c(0, 1, 0, 1, 0, 1), labels = c(&quot;no sen&quot;, &quot;sen&quot;), levels = 0:1),
+  gender = factor(c(1,2,2,1,2,1), labels = c(&quot;Male&quot;, &quot;Female&quot;), levels = 1:2),
+  age  = c(150, 156, 138, 126, 136, 162),
+  IQ     = c(90, 85, 90, 87, 99, 89),
+  Q1     = c(1, 5, 3, 4, 2, 3),
+  Q2     = c(2, 5, 3, 4, 5, 2),
+  Q3     = c(1, 5, 3, 5, 2, 1)
+  
 )</pre>
 
-</article></slide><slide class=""><hgroup><h2></h2></hgroup><article >
+</article></slide><slide class=""><hgroup><h2>Create a new variable in a dataset</h2></hgroup><article  class="smaller" id="create-a-new-variable-in-a-dataset">
 
-<p>Select with bracket subsetting or the <code>which()</code> function:</p>
+<p>With missing values:</p>
 
-<pre class = 'prettyprint lang-r'>study_no_sen &lt;- study[study[[&quot;sen&quot;]] == 0, ]
-study_no_sen</pre>
+<pre class = 'prettyprint lang-r'>study$Q4 &lt;- NA</pre>
+
+<p>With specific values:</p>
+
+<pre class = 'prettyprint lang-r'>study$Q5 &lt;- c(5, 1, 4, 2, 1, 3)
+study</pre>
 
 <div class="kable-table">
 <table class = 'rmdtable'>
 <tr class="header">
-<th align="left"></th>
-<th align="right">sen</th>
+<th align="left">sen</th>
 <th align="left">gender</th>
 <th align="right">age</th>
 <th align="right">IQ</th>
+<th align="right">Q1</th>
+<th align="right">Q2</th>
+<th align="right">Q3</th>
+<th align="left">Q4</th>
+<th align="right">Q5</th>
 </tr>
 <tr class="odd">
-<td align="left">1</td>
-<td align="right">0</td>
-<td align="left">M</td>
-<td align="right">12</td>
+<td align="left">no sen</td>
+<td align="left">Male</td>
+<td align="right">150</td>
 <td align="right">90</td>
-</tr>
-<tr class="even">
-<td align="left">3</td>
-<td align="right">0</td>
-<td align="left">F</td>
-<td align="right">11</td>
-<td align="right">90</td>
-</tr>
-<tr class="odd">
-<td align="left">5</td>
-<td align="right">0</td>
-<td align="left">F</td>
-<td align="right">11</td>
-<td align="right">99</td>
-</tr>
-</table></div>
-
-<pre class = 'prettyprint lang-r'># Or using the which() function
-filter &lt;- which(study[[&quot;sen&quot;]] == 0)
-study_no_sen &lt;- study[filter, ]</pre>
-
-</article></slide><slide class=""><hgroup><h2>Task</h2></hgroup><article  class="build" id="task-2">
-
-<p>Calculate the <code>mean</code> of <code>IQ</code> for students with and without sen.</p>
-
-<div class="red2">
-<strong>:-)</strong></div>
-
-</article></slide><slide class=""><hgroup><h2>Task - solution</h2></hgroup><article  id="task---solution-2">
-
-<p>Calculate the <code>mean</code> of <code>IQ</code> for students with and without sen.</p>
-
-<pre class = 'prettyprint lang-r'>filter &lt;- which(study[[&quot;sen&quot;]] == 0)
-mean(study[[&quot;IQ&quot;]][filter])</pre>
-
-<pre >[1] 93</pre>
-
-<pre class = 'prettyprint lang-r'>filter &lt;- which(study[[&quot;sen&quot;]] == 1)
-mean(study[[&quot;IQ&quot;]][filter])</pre>
-
-<pre >[1] 87</pre>
-
-</article></slide><slide class=""><hgroup><h2>Logical Operations</h2></hgroup><article  id="logical-operations">
-
-<p>Logical operations are applied to logical values.</p>
-
-<table class = 'rmdtable'>
-<tr class="header">
-<th align="left">Operator</th>
-<th align="left">Operation</th>
-<th align="left">Example</th>
-<th align="left">Results</th>
-</tr>
-<tr class="odd">
-<td align="left"><code>!</code></td>
-<td align="left">Not</td>
-<td align="left"><code>! x</code></td>
-<td align="left"><code>TRUE when x = FALSE and FALSE when x = TRUE</code></td>
-</tr>
-<tr class="even">
-<td align="left"><code>&amp;</code></td>
-<td align="left">AND</td>
-<td align="left"><code>x &amp; y</code></td>
-<td align="left"><code>TRUE when x and y are TRUE else FALSE</code></td>
-</tr>
-<tr class="odd">
-<td align="left"><code>|</code></td>
-<td align="left">OR</td>
-<td align="left"><code>x | y</code></td>
-<td align="left"><code>TRUE when x or y is TRUE else FALSE</code></td>
-</tr>
-</table>
-
-<br>
-
-<div class="emphasized">
-<p>Note: To get the | sign:<br/>On a german Mac keyboard press: option + 7<br/>On a german Windows keyboard press: AltGr + &lt;</p></div>
-
-</article></slide><slide class=""><hgroup><h2>Example</h2></hgroup><article  class="build smaller" id="example">
-
-<pre class = 'prettyprint lang-r'>x &lt;- TRUE
-y &lt;- FALSE</pre>
-
-<pre class = 'prettyprint lang-r'>!x</pre>
-
-<pre >[1] FALSE</pre>
-
-<pre class = 'prettyprint lang-r'>!y</pre>
-
-<pre >[1] TRUE</pre>
-
-<pre class = 'prettyprint lang-r'>x &amp; y</pre>
-
-<pre >[1] FALSE</pre>
-
-<pre class = 'prettyprint lang-r'>x | y</pre>
-
-<pre >[1] TRUE</pre>
-
-</article></slide><slide class=""><hgroup><h2>Logical Operator with vectors</h2></hgroup><article  class="build smaller" id="logical-operator-with-vectors">
-
-<p>When applied to vectors, logical operations result in a new vector.<br/>Operations are applied to each element one by one.</p>
-
-<pre class = 'prettyprint lang-r'>x &lt;- c(TRUE, FALSE, TRUE,  FALSE)
-y &lt;- c(TRUE, FALSE, FALSE, TRUE)</pre>
-
-<pre class = 'prettyprint lang-r'>!x</pre>
-
-<pre >[1] FALSE  TRUE FALSE  TRUE</pre>
-
-<pre class = 'prettyprint lang-r'>x &amp; y</pre>
-
-<pre >[1]  TRUE FALSE FALSE FALSE</pre>
-
-<pre class = 'prettyprint lang-r'>x | y</pre>
-
-<pre >[1]  TRUE FALSE  TRUE  TRUE</pre>
-
-</article></slide><slide class=""><hgroup><h2>Task</h2></hgroup><article  class="build" id="task-3">
-
-<p>Create two vectors:</p>
-
-<p><code>glasses &lt;- c(TRUE, TRUE, FALSE, TRUE, FALSE)</code><br/><code>hyperintelligent &lt;- c(TRUE, FALSE, FALSE, TRUE, FALSE)</code></p>
-
-<p>Determine for each element whether <code>glasses</code> and <code>hyperintelligent</code> are TRUE at the same time.</p>
-
-<div class="red2">
-<strong>:-)</strong></div>
-
-</article></slide><slide class=""><hgroup><h2>Task - solutions</h2></hgroup><article  id="task---solutions">
-
-<p>Create two vectors:</p>
-
-<p><code>glasses &lt;- c(TRUE, TRUE, FALSE, TRUE, FALSE)</code><br/><code>hyperintelligent &lt;- c(TRUE, FALSE, FALSE, TRUE, FALSE)</code></p>
-
-<p>Determine for each element whether <code>glasses</code> and <code>hyperintelligent</code> are TRUE at the same time.</p>
-
-<pre class = 'prettyprint lang-r'>glasses &lt;- c(TRUE, TRUE, FALSE, TRUE, FALSE)
-hyperintelligent &lt;- c(TRUE, FALSE, FALSE, TRUE, FALSE)
-glasses &amp; hyperintelligent</pre>
-
-<pre >[1]  TRUE FALSE FALSE  TRUE FALSE</pre>
-
-</article></slide><slide class=""><hgroup><h2></h2></hgroup><article >
-
-<div class="kable-table">
-<table class = 'rmdtable'>
-<tr class="header">
-<th align="left">glasses</th>
-<th align="left">hyperintelligent</th>
-<th align="left">glasses &amp; hyperintelligent</th>
-</tr>
-<tr class="odd">
-<td align="left">TRUE</td>
-<td align="left">TRUE</td>
-<td align="left">TRUE</td>
-</tr>
-<tr class="even">
-<td align="left">TRUE</td>
-<td align="left">FALSE</td>
-<td align="left">FALSE</td>
-</tr>
-<tr class="odd">
-<td align="left">FALSE</td>
-<td align="left">FALSE</td>
-<td align="left">FALSE</td>
-</tr>
-<tr class="even">
-<td align="left">TRUE</td>
-<td align="left">TRUE</td>
-<td align="left">TRUE</td>
-</tr>
-<tr class="odd">
-<td align="left">FALSE</td>
-<td align="left">FALSE</td>
-<td align="left">FALSE</td>
-</tr>
-</table></div>
-
-</article></slide><slide class=""><hgroup><h2><code>sum()</code> and <code>mean()</code> with logical vectors:</h2></hgroup><article  id="sum-and-mean-with-logical-vectors">
-
-<p>When a logical vector is applied to a numeric function (e.g. <code>mean()</code> or <code>sum()</code>), <code>TRUE</code> is counted as <code>1</code> and <code>FALSE</code> as <code>0</code>:</p>
-
-<p><code>sum()</code> then gives the number of elements that are TRUE.<br/><code>mean()</code> gives the proportion of elements that are TRUE.</p>
-
-<pre class = 'prettyprint lang-r'># e.g.:
-sum(c(TRUE, FALSE, TRUE))</pre>
-
-<pre >[1] 2</pre>
-
-<pre class = 'prettyprint lang-r'>mean(c(TRUE, FALSE, TRUE, FALSE))</pre>
-
-<pre >[1] 0.5</pre>
-
-</article></slide><slide class=""><hgroup><h2>Task</h2></hgroup><article  id="task-4">
-
-<p>Take the data from the last example and calculate the sum and proportion of cases that wear glasses and are hyperintelligent.</p>
-
-<p><code>glasses &lt;- c(TRUE, TRUE, FALSE, TRUE, FALSE)</code><br/><code>hyperintelligent &lt;- c(TRUE, FALSE, FALSE, TRUE, FALSE)</code></p>
-
-<div class="red2">
-<strong>:-)</strong></div>
-
-</article></slide><slide class=""><hgroup><h2>Task - solutions</h2></hgroup><article  id="task---solutions-1">
-
-<p>Take the data from the last example and calculate the sum and proportion of cases that wear glasses and are hyperintelligent.</p>
-
-<pre class = 'prettyprint lang-r'>sum(glasses &amp; hyperintelligent)</pre>
-
-<pre >[1] 2</pre>
-
-<pre class = 'prettyprint lang-r'>mean(glasses &amp; hyperintelligent)</pre>
-
-<pre >[1] 0.4</pre>
-
-</article></slide><slide class=""><hgroup><h2>Combining logical and relational operators</h2></hgroup><article  class="build" id="combining-logical-and-relational-operators">
-
-<pre class = 'prettyprint lang-r'>age &lt;- c(12, 4, 3, 8, 4, 2, 1, 7, 4)
-gender &lt;- c(0, 1, 0, 1, 0, 0, 0, 0, 1)
-age &gt; 4</pre>
-
-<pre >[1]  TRUE FALSE FALSE  TRUE FALSE FALSE FALSE  TRUE FALSE</pre>
-
-<pre class = 'prettyprint lang-r'>gender == 0</pre>
-
-<pre >[1]  TRUE FALSE  TRUE FALSE  TRUE  TRUE  TRUE  TRUE FALSE</pre>
-
-<pre class = 'prettyprint lang-r'>age &gt; 4 &amp; gender == 0</pre>
-
-<pre >[1]  TRUE FALSE FALSE FALSE FALSE FALSE FALSE  TRUE FALSE</pre>
-
-</article></slide><slide class=""><hgroup><h2>Task</h2></hgroup><article  class="build smaller" id="task-5">
-
-<p>Create a vector<br/><code>income &lt;- c(5000, 4000, 3000, 2000, 1000)</code> and a vector<br/><code>happiness &lt;- c(20, 35, 30, 10, 50)</code>.</p>
-
-<ol>
-<li><p>Use <em>relational</em> and <em>logical</em> operations to determine for each element whether the <code>income</code> is larger than <code>2500</code> and at the same time <code>happiness</code> is above <code>25</code>.</p></li>
-<li><p>Calculate the proportion.</p></li>
-</ol>
-
-<div class="red2">
-<strong>:-)</strong></div>
-
-</article></slide><slide class=""><hgroup><h2>Task - solution</h2></hgroup><article  class="smaller" id="task---solution-3">
-
-<ol>
-<li><p>Use <em>relational</em> and <em>logical</em> operations to determine for each element whether the <code>income</code> is larger than <code>2500</code> and at the same time <code>happiness</code> is above <code>25</code>.</p></li>
-<li><p>Calculate the proportion.</p></li>
-</ol>
-
-</article></slide><slide class=""><hgroup><h2></h2></hgroup><article >
-
-<pre class = 'prettyprint lang-r'>income &lt;- c(5000, 4000, 3000, 2000, 1000)
-happiness &lt;- c(20, 35, 30, 10, 50)
-income &gt; 2500 &amp; happiness &gt; 25</pre>
-
-<table class = 'rmdtable'>
-<tr class="header">
-<th align="right">income</th>
-<th align="right">happiness</th>
-<th align="left">income &gt; 2500</th>
-<th align="left">happiness &gt; 25</th>
-<th align="left">income &gt; 2500 &amp;<br>happiness &gt; 25</th>
-</tr>
-<tr class="odd">
-<td align="right">5000</td>
-<td align="right">20</td>
-<td align="left">TRUE</td>
-<td align="left">FALSE</td>
-<td align="left">FALSE</td>
-</tr>
-<tr class="even">
-<td align="right">4000</td>
-<td align="right">35</td>
-<td align="left">TRUE</td>
-<td align="left">TRUE</td>
-<td align="left">TRUE</td>
-</tr>
-<tr class="odd">
-<td align="right">3000</td>
-<td align="right">30</td>
-<td align="left">TRUE</td>
-<td align="left">TRUE</td>
-<td align="left">TRUE</td>
-</tr>
-<tr class="even">
-<td align="right">2000</td>
-<td align="right">10</td>
-<td align="left">FALSE</td>
-<td align="left">FALSE</td>
-<td align="left">FALSE</td>
-</tr>
-<tr class="odd">
-<td align="right">1000</td>
-<td align="right">50</td>
-<td align="left">FALSE</td>
-<td align="left">TRUE</td>
-<td align="left">FALSE</td>
-</tr>
-</table>
-
-</article></slide><slide class=""><hgroup><h2></h2></hgroup><article >
-
-<p>… and the proportion</p>
-
-<pre class = 'prettyprint lang-r'>mean(income &gt; 2500 &amp; happiness &gt; 25)</pre>
-
-<pre >[1] 0.4</pre>
-
-</article></slide><slide class=""><hgroup><h2>Subsetting data frames with logical and relational operators</h2></hgroup><article  class="build smaller" id="subsetting-data-frames-with-logical-and-relational-operators">
-
-<pre class = 'prettyprint lang-r'>study</pre>
-
-<div class="kable-table">
-<table class = 'rmdtable'>
-<tr class="header">
-<th align="right">sen</th>
-<th align="left">gender</th>
-<th align="right">age</th>
-<th align="right">IQ</th>
-</tr>
-<tr class="odd">
-<td align="right">0</td>
-<td align="left">M</td>
-<td align="right">12</td>
-<td align="right">90</td>
-</tr>
-<tr class="even">
 <td align="right">1</td>
-<td align="left">M</td>
-<td align="right">13</td>
-<td align="right">85</td>
-</tr>
-<tr class="odd">
-<td align="right">0</td>
-<td align="left">F</td>
-<td align="right">11</td>
-<td align="right">90</td>
-</tr>
-<tr class="even">
+<td align="right">2</td>
 <td align="right">1</td>
-<td align="left">M</td>
-<td align="right">10</td>
-<td align="right">87</td>
-</tr>
-<tr class="odd">
-<td align="right">0</td>
-<td align="left">F</td>
-<td align="right">11</td>
-<td align="right">99</td>
-</tr>
-<tr class="even">
-<td align="right">1</td>
-<td align="left">F</td>
-<td align="right">14</td>
-<td align="right">89</td>
-</tr>
-</table></div>
-
-</article></slide><slide class=""><hgroup><h2></h2></hgroup><article >
-
-<pre class = 'prettyprint lang-r'>filter &lt;- study[[&quot;sen&quot;]] == 1 &amp; study[[&quot;gender&quot;]] == &quot;M&quot;
-study[filter, ]</pre>
-
-<div class="kable-table">
-<table class = 'rmdtable'>
-<tr class="header">
-<th align="left"></th>
-<th align="right">sen</th>
-<th align="left">gender</th>
-<th align="right">age</th>
-<th align="right">IQ</th>
-</tr>
-<tr class="odd">
-<td align="left">2</td>
-<td align="right">1</td>
-<td align="left">M</td>
-<td align="right">13</td>
-<td align="right">85</td>
-</tr>
-<tr class="even">
-<td align="left">4</td>
-<td align="right">1</td>
-<td align="left">M</td>
-<td align="right">10</td>
-<td align="right">87</td>
-</tr>
-</table></div>
-
-</article></slide><slide class=""><hgroup><h2>Task</h2></hgroup><article  id="task-6">
-
-<p>Use the <code>ChickWeight</code> data frame for the following task.<br/>The data set is already included in R.</p>
-
-<ol>
-<li>Look into the data set with <code>?ChickWeight</code>.</li>
-<li>Get all variable names of the data frame with the <code>names()</code> function (<code>names(ChickWeight)</code>).</li>
-<li>Select cases from <strong>ChickWeight</strong> with <code>Diet == 1</code> and <code>Time &lt; 16</code>.</li>
-<li>For these cases, calculate the correlation between <code>weight</code> and <code>Time</code>. Note: Use the <code>cor()</code> function (e.g., <code>cor(x, y)</code>)</li>
-<li>Repeat steps 3 and 4 for <code>Diet == 4</code>.</li>
-<li>What can you see?</li>
-</ol>
-
-<div class="red2">
-<strong>:-)</strong></div>
-
-</article></slide><slide class=""><hgroup><h2></h2></hgroup><article >
-
-<pre class = 'prettyprint lang-r'>filter &lt;- ChickWeight[[&quot;Diet&quot;]] ==  1 &amp; ChickWeight[[&quot;Time&quot;]] &lt; 16
-diet1 &lt;- ChickWeight[filter,]
-cor(diet1[[&quot;weight&quot;]], diet1[[&quot;Time&quot;]])</pre>
-
-<pre >[1] 0.8109772</pre>
-
-<pre class = 'prettyprint lang-r'>filter &lt;- ChickWeight[[&quot;Diet&quot;]] ==  4 &amp; ChickWeight[[&quot;Time&quot;]] &lt; 16
-diet4 &lt;- ChickWeight[filter,]
-cor(diet4[[&quot;weight&quot;]], diet4[[&quot;Time&quot;]])</pre>
-
-<pre >[1] 0.9720822</pre>
-
-<p>The correlation is larger for Diet 4. This suggests that Diet 4 has a stronger impact an the chicken’s weight.</p>
-
-</article></slide><slide class=""><hgroup><h2>The <code>subset()</code> function {smaller}</h2></hgroup><article  id="the-subset-function-smaller">
-
-<p>R comes with a function to make subsetting a bit more straight forward.</p>
-
-<p><code>subset()</code> has the main arguments:</p>
-
-<ul>
-<li><code>x</code> : A data.frame<br/></li>
-<li><code>subset</code> : A logical vector for filtering rows<br/></li>
-<li><code>select</code> : expression, indicating columns to select from a data frame</li>
-</ul>
-
-<p>and returns a data.frame.</p>
-
-<pre class = 'prettyprint lang-r'>subset(study, gender == &quot;F&quot; &amp; IQ &gt; 89, c(sen, gender, IQ))</pre>
-
-<div class="kable-table">
-<table class = 'rmdtable'>
-<tr class="header">
-<th align="left"></th>
-<th align="right">sen</th>
-<th align="left">gender</th>
-<th align="right">IQ</th>
-</tr>
-<tr class="odd">
-<td align="left">3</td>
-<td align="right">0</td>
-<td align="left">F</td>
-<td align="right">90</td>
-</tr>
-<tr class="even">
-<td align="left">5</td>
-<td align="right">0</td>
-<td align="left">F</td>
-<td align="right">99</td>
-</tr>
-</table></div>
-
-<p>Variable names must be provided without quotes and without the name of the data.frame.</p>
-
-</article></slide><slide class=""><hgroup><h2>Task</h2></hgroup><article  id="task-7">
-
-<p>Take the <code>mtcars</code> dataset and filter cases (here: car models) with 6 cylinders (variable <code>cyl</code>) and automatic transmission (value <code>1</code> in variable <code>am</code>).<br/>Select the variables <code>mpg</code>, <code>am</code>, <code>gear</code>, <code>cyl</code>.<br/>Use the <code>subset</code> function.</p>
-
-<div class="red2">
-<strong>:-)</strong></div>
-
-</article></slide><slide class=""><hgroup><h2>Task - solutions</h2></hgroup><article  id="task---solutions-2">
-
-<p>Take the <code>mtcars</code> dataset and filter cases (here: car models) with 6 cylinders (variable <code>cyl</code>) and automatic transmission (value <code>1</code> in variable <code>am</code>).<br/>Select the variables <code>mpg</code>, <code>am</code>, <code>gear</code>, <code>cyl</code>.<br/>Use the <code>subset</code> function.</p>
-
-<pre class = 'prettyprint lang-r'>subset(mtcars, cyl == 6 &amp; am == 1, c(mpg, am, gear, cyl))</pre>
-
-<div class="kable-table">
-<table class = 'rmdtable'>
-<tr class="header">
-<th align="left"></th>
-<th align="right">mpg</th>
-<th align="right">am</th>
-<th align="right">gear</th>
-<th align="right">cyl</th>
-</tr>
-<tr class="odd">
-<td align="left">Mazda RX4</td>
-<td align="right">21.0</td>
-<td align="right">1</td>
-<td align="right">4</td>
-<td align="right">6</td>
-</tr>
-<tr class="even">
-<td align="left">Mazda RX4 Wag</td>
-<td align="right">21.0</td>
-<td align="right">1</td>
-<td align="right">4</td>
-<td align="right">6</td>
-</tr>
-<tr class="odd">
-<td align="left">Ferrari Dino</td>
-<td align="right">19.7</td>
-<td align="right">1</td>
+<td align="left">NA</td>
 <td align="right">5</td>
+</tr>
+<tr class="even">
+<td align="left">sen</td>
+<td align="left">Female</td>
+<td align="right">156</td>
+<td align="right">85</td>
+<td align="right">5</td>
+<td align="right">5</td>
+<td align="right">5</td>
+<td align="left">NA</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="left">no sen</td>
+<td align="left">Female</td>
+<td align="right">138</td>
+<td align="right">90</td>
+<td align="right">3</td>
+<td align="right">3</td>
+<td align="right">3</td>
+<td align="left">NA</td>
+<td align="right">4</td>
+</tr>
+<tr class="even">
+<td align="left">sen</td>
+<td align="left">Male</td>
+<td align="right">126</td>
+<td align="right">87</td>
+<td align="right">4</td>
+<td align="right">4</td>
+<td align="right">5</td>
+<td align="left">NA</td>
+<td align="right">2</td>
+</tr>
+<tr class="odd">
+<td align="left">no sen</td>
+<td align="left">Female</td>
+<td align="right">136</td>
+<td align="right">99</td>
+<td align="right">2</td>
+<td align="right">5</td>
+<td align="right">2</td>
+<td align="left">NA</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="left">sen</td>
+<td align="left">Male</td>
+<td align="right">162</td>
+<td align="right">89</td>
+<td align="right">3</td>
+<td align="right">2</td>
+<td align="right">1</td>
+<td align="left">NA</td>
+<td align="right">3</td>
+</tr>
+</table></div>
+
+</article></slide><slide class=""><hgroup><h2>Create new variables from existing ones</h2></hgroup><article  id="create-new-variables-from-existing-ones">
+
+<pre class = 'prettyprint lang-r'>study$age2 &lt;- study$age / 12
+study</pre>
+
+<div class="kable-table">
+<table class = 'rmdtable'>
+<tr class="header">
+<th align="left">sen</th>
+<th align="left">gender</th>
+<th align="right">age</th>
+<th align="right">IQ</th>
+<th align="right">Q1</th>
+<th align="right">Q2</th>
+<th align="right">Q3</th>
+<th align="left">Q4</th>
+<th align="right">Q5</th>
+<th align="right">age2</th>
+</tr>
+<tr class="odd">
+<td align="left">no sen</td>
+<td align="left">Male</td>
+<td align="right">150</td>
+<td align="right">90</td>
+<td align="right">1</td>
+<td align="right">2</td>
+<td align="right">1</td>
+<td align="left">NA</td>
+<td align="right">5</td>
+<td align="right">12.50000</td>
+</tr>
+<tr class="even">
+<td align="left">sen</td>
+<td align="left">Female</td>
+<td align="right">156</td>
+<td align="right">85</td>
+<td align="right">5</td>
+<td align="right">5</td>
+<td align="right">5</td>
+<td align="left">NA</td>
+<td align="right">1</td>
+<td align="right">13.00000</td>
+</tr>
+<tr class="odd">
+<td align="left">no sen</td>
+<td align="left">Female</td>
+<td align="right">138</td>
+<td align="right">90</td>
+<td align="right">3</td>
+<td align="right">3</td>
+<td align="right">3</td>
+<td align="left">NA</td>
+<td align="right">4</td>
+<td align="right">11.50000</td>
+</tr>
+<tr class="even">
+<td align="left">sen</td>
+<td align="left">Male</td>
+<td align="right">126</td>
+<td align="right">87</td>
+<td align="right">4</td>
+<td align="right">4</td>
+<td align="right">5</td>
+<td align="left">NA</td>
+<td align="right">2</td>
+<td align="right">10.50000</td>
+</tr>
+<tr class="odd">
+<td align="left">no sen</td>
+<td align="left">Female</td>
+<td align="right">136</td>
+<td align="right">99</td>
+<td align="right">2</td>
+<td align="right">5</td>
+<td align="right">2</td>
+<td align="left">NA</td>
+<td align="right">1</td>
+<td align="right">11.33333</td>
+</tr>
+<tr class="even">
+<td align="left">sen</td>
+<td align="left">Male</td>
+<td align="right">162</td>
+<td align="right">89</td>
+<td align="right">3</td>
+<td align="right">2</td>
+<td align="right">1</td>
+<td align="left">NA</td>
+<td align="right">3</td>
+<td align="right">13.50000</td>
+</tr>
+</table></div>
+
+</article></slide><slide class=""><hgroup><h2>Drop a variable</h2></hgroup><article  id="drop-a-variable">
+
+<pre class = 'prettyprint lang-r'>study &lt;- subset(study, select = -age2)
+# or: study[, -10]
+study</pre>
+
+<div class="kable-table">
+<table class = 'rmdtable'>
+<tr class="header">
+<th align="left">sen</th>
+<th align="left">gender</th>
+<th align="right">age</th>
+<th align="right">IQ</th>
+<th align="right">Q1</th>
+<th align="right">Q2</th>
+<th align="right">Q3</th>
+<th align="left">Q4</th>
+<th align="right">Q5</th>
+</tr>
+<tr class="odd">
+<td align="left">no sen</td>
+<td align="left">Male</td>
+<td align="right">150</td>
+<td align="right">90</td>
+<td align="right">1</td>
+<td align="right">2</td>
+<td align="right">1</td>
+<td align="left">NA</td>
+<td align="right">5</td>
+</tr>
+<tr class="even">
+<td align="left">sen</td>
+<td align="left">Female</td>
+<td align="right">156</td>
+<td align="right">85</td>
+<td align="right">5</td>
+<td align="right">5</td>
+<td align="right">5</td>
+<td align="left">NA</td>
+<td align="right">1</td>
+</tr>
+<tr class="odd">
+<td align="left">no sen</td>
+<td align="left">Female</td>
+<td align="right">138</td>
+<td align="right">90</td>
+<td align="right">3</td>
+<td align="right">3</td>
+<td align="right">3</td>
+<td align="left">NA</td>
+<td align="right">4</td>
+</tr>
+<tr class="even">
+<td align="left">sen</td>
+<td align="left">Male</td>
+<td align="right">126</td>
+<td align="right">87</td>
+<td align="right">4</td>
+<td align="right">4</td>
+<td align="right">5</td>
+<td align="left">NA</td>
+<td align="right">2</td>
+</tr>
+<tr class="odd">
+<td align="left">no sen</td>
+<td align="left">Female</td>
+<td align="right">136</td>
+<td align="right">99</td>
+<td align="right">2</td>
+<td align="right">5</td>
+<td align="right">2</td>
+<td align="left">NA</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="left">sen</td>
+<td align="left">Male</td>
+<td align="right">162</td>
+<td align="right">89</td>
+<td align="right">3</td>
+<td align="right">2</td>
+<td align="right">1</td>
+<td align="left">NA</td>
+<td align="right">3</td>
+</tr>
+</table></div>
+
+</article></slide><slide class=""><hgroup><h2>Task</h2></hgroup><article  id="task">
+
+<p>Create a new variable <code>Q_sum_1_3</code> as the sum of <code>Q1</code> to <code>Q3</code>.</p>
+
+<div class="red2">
+<strong>:-)</strong></div>
+
+</article></slide><slide class=""><hgroup><h2></h2></hgroup><article >
+
+<pre class = 'prettyprint lang-r'>study$Q_sum_1_3 &lt;- with(study, Q1 + Q2 + Q3)
+# or:
+study$Q_sum_1_3 &lt;- study$Q1 + study$Q2 + study$Q3
+study</pre>
+
+<div class="kable-table">
+<table class = 'rmdtable'>
+<tr class="header">
+<th align="left">sen</th>
+<th align="left">gender</th>
+<th align="right">age</th>
+<th align="right">IQ</th>
+<th align="right">Q1</th>
+<th align="right">Q2</th>
+<th align="right">Q3</th>
+<th align="left">Q4</th>
+<th align="right">Q5</th>
+<th align="right">Q_sum_1_3</th>
+</tr>
+<tr class="odd">
+<td align="left">no sen</td>
+<td align="left">Male</td>
+<td align="right">150</td>
+<td align="right">90</td>
+<td align="right">1</td>
+<td align="right">2</td>
+<td align="right">1</td>
+<td align="left">NA</td>
+<td align="right">5</td>
+<td align="right">4</td>
+</tr>
+<tr class="even">
+<td align="left">sen</td>
+<td align="left">Female</td>
+<td align="right">156</td>
+<td align="right">85</td>
+<td align="right">5</td>
+<td align="right">5</td>
+<td align="right">5</td>
+<td align="left">NA</td>
+<td align="right">1</td>
+<td align="right">15</td>
+</tr>
+<tr class="odd">
+<td align="left">no sen</td>
+<td align="left">Female</td>
+<td align="right">138</td>
+<td align="right">90</td>
+<td align="right">3</td>
+<td align="right">3</td>
+<td align="right">3</td>
+<td align="left">NA</td>
+<td align="right">4</td>
+<td align="right">9</td>
+</tr>
+<tr class="even">
+<td align="left">sen</td>
+<td align="left">Male</td>
+<td align="right">126</td>
+<td align="right">87</td>
+<td align="right">4</td>
+<td align="right">4</td>
+<td align="right">5</td>
+<td align="left">NA</td>
+<td align="right">2</td>
+<td align="right">13</td>
+</tr>
+<tr class="odd">
+<td align="left">no sen</td>
+<td align="left">Female</td>
+<td align="right">136</td>
+<td align="right">99</td>
+<td align="right">2</td>
+<td align="right">5</td>
+<td align="right">2</td>
+<td align="left">NA</td>
+<td align="right">1</td>
+<td align="right">9</td>
+</tr>
+<tr class="even">
+<td align="left">sen</td>
+<td align="left">Male</td>
+<td align="right">162</td>
+<td align="right">89</td>
+<td align="right">3</td>
+<td align="right">2</td>
+<td align="right">1</td>
+<td align="left">NA</td>
+<td align="right">3</td>
 <td align="right">6</td>
 </tr>
 </table></div>
 
-</article></slide><slide class=""><hgroup><h2>So many ways of subsetting … an overview</h2></hgroup><article  id="so-many-ways-of-subsetting-an-overview">
+</article></slide><slide class=""><hgroup><h2>Task</h2></hgroup><article  id="task-1">
 
-<p>Subset a data frame (and get a new data frame)</p>
+<p>Create the variables <code>age_year</code> and <code>age_month</code> where both variables do not have decimals</p>
 
-<pre class = 'prettyprint lang-r'>mtcars[mtcars[[&quot;cyl&quot;]] == 6 &amp; mtcars[[&quot;am&quot;]] == 1, c(&quot;mpg&quot;, &quot;am&quot;, &quot;gear&quot;, &quot;cyl&quot;)]
+<p>(tip: <code>trunc</code> function or the <code>%%</code> modulo operator and the integer division <code>%/%</code> operator. Use the help function if needed)</p>
 
-mtcars[mtcars$cyl == 6 &amp; mtcars$am == 1, c(&quot;mpg&quot;, &quot;am&quot;, &quot;gear&quot;, &quot;cyl&quot;)]
+<div class="red2">
+<strong>:-)</strong></div>
 
-subset(mtcars, cyl == 6 &amp; am == 1, c(mpg, am, gear, cyl))
+</article></slide><slide class=""><hgroup><h2></h2></hgroup><article >
 
-with(mtcars, 
-  mtcars[cyl == 6 &amp; am == 1, c(&quot;mpg&quot;, &quot;am&quot;, &quot;gear&quot;, &quot;cyl&quot;)]
-)</pre>
+<pre class = 'prettyprint lang-r'>study$age_year &lt;- trunc(study$age /12)
+study$age_month &lt;- study$age - (study$age_year * 12)
 
-</article></slide><slide class=""><hgroup><h2>So many ways of subsetting … an overview</h2></hgroup><article  id="so-many-ways-of-subsetting-an-overview-1">
+# or
 
-<p>Extract a variable from a data frame (and get a numeric or character vector)</p>
+study$age_year &lt;- study$age %/% 12
+study$age_month &lt;- study$age %% 12
 
-<pre class = 'prettyprint lang-r'>mtcars[[&quot;mpg&quot;]][mtcars[[&quot;cyl&quot;]] == 6 &amp; mtcars[[&quot;am&quot;]] == 1]
 
-mtcars$mpg[mtcars$cyl == 6 &amp; mtcars$am == 1]
+study</pre>
 
-subset(mtcars, cyl == 6 &amp; am == 1, mpg, drop = TRUE)
+<div class="kable-table">
+<table class = 'rmdtable'>
+<tr class="header">
+<th align="left">sen</th>
+<th align="left">gender</th>
+<th align="right">age</th>
+<th align="right">IQ</th>
+<th align="right">Q1</th>
+<th align="right">Q2</th>
+<th align="right">Q3</th>
+<th align="left">Q4</th>
+<th align="right">Q5</th>
+<th align="right">Q_sum_1_3</th>
+<th align="right">age_year</th>
+<th align="right">age_month</th>
+</tr>
+<tr class="odd">
+<td align="left">no sen</td>
+<td align="left">Male</td>
+<td align="right">150</td>
+<td align="right">90</td>
+<td align="right">1</td>
+<td align="right">2</td>
+<td align="right">1</td>
+<td align="left">NA</td>
+<td align="right">5</td>
+<td align="right">4</td>
+<td align="right">12</td>
+<td align="right">6</td>
+</tr>
+<tr class="even">
+<td align="left">sen</td>
+<td align="left">Female</td>
+<td align="right">156</td>
+<td align="right">85</td>
+<td align="right">5</td>
+<td align="right">5</td>
+<td align="right">5</td>
+<td align="left">NA</td>
+<td align="right">1</td>
+<td align="right">15</td>
+<td align="right">13</td>
+<td align="right">0</td>
+</tr>
+<tr class="odd">
+<td align="left">no sen</td>
+<td align="left">Female</td>
+<td align="right">138</td>
+<td align="right">90</td>
+<td align="right">3</td>
+<td align="right">3</td>
+<td align="right">3</td>
+<td align="left">NA</td>
+<td align="right">4</td>
+<td align="right">9</td>
+<td align="right">11</td>
+<td align="right">6</td>
+</tr>
+<tr class="even">
+<td align="left">sen</td>
+<td align="left">Male</td>
+<td align="right">126</td>
+<td align="right">87</td>
+<td align="right">4</td>
+<td align="right">4</td>
+<td align="right">5</td>
+<td align="left">NA</td>
+<td align="right">2</td>
+<td align="right">13</td>
+<td align="right">10</td>
+<td align="right">6</td>
+</tr>
+<tr class="odd">
+<td align="left">no sen</td>
+<td align="left">Female</td>
+<td align="right">136</td>
+<td align="right">99</td>
+<td align="right">2</td>
+<td align="right">5</td>
+<td align="right">2</td>
+<td align="left">NA</td>
+<td align="right">1</td>
+<td align="right">9</td>
+<td align="right">11</td>
+<td align="right">4</td>
+</tr>
+<tr class="even">
+<td align="left">sen</td>
+<td align="left">Male</td>
+<td align="right">162</td>
+<td align="right">89</td>
+<td align="right">3</td>
+<td align="right">2</td>
+<td align="right">1</td>
+<td align="left">NA</td>
+<td align="right">3</td>
+<td align="right">6</td>
+<td align="right">13</td>
+<td align="right">6</td>
+</tr>
+</table></div>
 
-with(mtcars, mpg[cyl == 6 &amp; am == 1])</pre></article></slide>
+</article></slide><slide class=""><hgroup><h2>The apply function</h2></hgroup><article  class="smaller" id="the-apply-function">
+
+<p>The <code>apply</code> function applies a function to every row or column of a data frame.</p>
+
+<ol>
+<li><p>The first argument is the data frame object.</p></li>
+<li><p>The second argument is the margin (1 for rows and 2 for columns).</p></li>
+<li><p>The third argument is a function name (e.g. mean).</p></li>
+<li><p>Further arguments are arguments to the function provided in 3.</p></li>
+</ol>
+
+<p>E.g.:</p>
+
+<pre class = 'prettyprint lang-r'>study$Q_sum_1_2 &lt;- apply(study[, c(&quot;Q1&quot;, &quot;Q2&quot;)], 1, sum)
+study</pre>
+
+<div class="kable-table">
+<table class = 'rmdtable'>
+<tr class="header">
+<th align="left">sen</th>
+<th align="left">gender</th>
+<th align="right">age</th>
+<th align="right">IQ</th>
+<th align="right">Q1</th>
+<th align="right">Q2</th>
+<th align="right">Q3</th>
+<th align="left">Q4</th>
+<th align="right">Q5</th>
+<th align="right">Q_sum_1_3</th>
+<th align="right">age_year</th>
+<th align="right">age_month</th>
+<th align="right">Q_sum_1_2</th>
+</tr>
+<tr class="odd">
+<td align="left">no sen</td>
+<td align="left">Male</td>
+<td align="right">150</td>
+<td align="right">90</td>
+<td align="right">1</td>
+<td align="right">2</td>
+<td align="right">1</td>
+<td align="left">NA</td>
+<td align="right">5</td>
+<td align="right">4</td>
+<td align="right">12</td>
+<td align="right">6</td>
+<td align="right">3</td>
+</tr>
+<tr class="even">
+<td align="left">sen</td>
+<td align="left">Female</td>
+<td align="right">156</td>
+<td align="right">85</td>
+<td align="right">5</td>
+<td align="right">5</td>
+<td align="right">5</td>
+<td align="left">NA</td>
+<td align="right">1</td>
+<td align="right">15</td>
+<td align="right">13</td>
+<td align="right">0</td>
+<td align="right">10</td>
+</tr>
+<tr class="odd">
+<td align="left">no sen</td>
+<td align="left">Female</td>
+<td align="right">138</td>
+<td align="right">90</td>
+<td align="right">3</td>
+<td align="right">3</td>
+<td align="right">3</td>
+<td align="left">NA</td>
+<td align="right">4</td>
+<td align="right">9</td>
+<td align="right">11</td>
+<td align="right">6</td>
+<td align="right">6</td>
+</tr>
+<tr class="even">
+<td align="left">sen</td>
+<td align="left">Male</td>
+<td align="right">126</td>
+<td align="right">87</td>
+<td align="right">4</td>
+<td align="right">4</td>
+<td align="right">5</td>
+<td align="left">NA</td>
+<td align="right">2</td>
+<td align="right">13</td>
+<td align="right">10</td>
+<td align="right">6</td>
+<td align="right">8</td>
+</tr>
+<tr class="odd">
+<td align="left">no sen</td>
+<td align="left">Female</td>
+<td align="right">136</td>
+<td align="right">99</td>
+<td align="right">2</td>
+<td align="right">5</td>
+<td align="right">2</td>
+<td align="left">NA</td>
+<td align="right">1</td>
+<td align="right">9</td>
+<td align="right">11</td>
+<td align="right">4</td>
+<td align="right">7</td>
+</tr>
+<tr class="even">
+<td align="left">sen</td>
+<td align="left">Male</td>
+<td align="right">162</td>
+<td align="right">89</td>
+<td align="right">3</td>
+<td align="right">2</td>
+<td align="right">1</td>
+<td align="left">NA</td>
+<td align="right">3</td>
+<td align="right">6</td>
+<td align="right">13</td>
+<td align="right">6</td>
+<td align="right">5</td>
+</tr>
+</table></div>
+
+</article></slide><slide class=""><hgroup><h2>Task</h2></hgroup><article  id="task-2">
+
+<p>Create a new variable <code>Q_sum</code> with the sum of Q1 to Q5 (sums should be build when NAs are in the data)</p>
+
+</article></slide><slide class=""><hgroup><h2></h2></hgroup><article >
+
+<pre class = 'prettyprint lang-r'>study$Q_sum &lt;- apply(subset(study, select = Q1:Q5), 1, sum, na.rm = TRUE)</pre></article></slide>
 
 
   <slide class="backdrop"></slide>

@@ -198,7 +198,7 @@ slide:not(.current) .plotly.html-widget{
 
 <slide class="segue dark nobackground level1"><hgroup class = 'auto-fadein'><h2>Sophisticated selections</h2></hgroup><article  id="sophisticated-selections">
 
-</article></slide><slide class=""><hgroup><h2>Relational operators</h2></hgroup><article  class="build" id="relational-operators">
+</article></slide><slide class=""><hgroup><h2>Relational operators</h2></hgroup><article  id="relational-operators" class="build">
 
 <p>Relational operators compare two values and return a logical value (<code>TRUE</code> or <code>FALSE</code>)</p>
 
@@ -240,7 +240,7 @@ slide:not(.current) .plotly.html-widget{
 </tr>
 </table>
 
-</article></slide><slide class=""><hgroup><h2>Examples</h2></hgroup><article  class="build" id="examples">
+</article></slide><slide class=""><hgroup><h2>Examples</h2></hgroup><article  id="examples" class="build">
 
 <pre class = 'prettyprint lang-r'>7 &gt; 2</pre>
 
@@ -270,7 +270,7 @@ slide:not(.current) .plotly.html-widget{
 
 <pre >[1] TRUE</pre>
 
-</article></slide><slide class=""><hgroup><h2>Relational operators and vectors</h2></hgroup><article  class="smaller" id="relational-operators-and-vectors">
+</article></slide><slide class=""><hgroup><h2>Relational operators and vectors</h2></hgroup><article  id="relational-operators-and-vectors" class="smaller">
 
 <pre class = 'prettyprint lang-r'>age &lt;- c(12, 4, 3, 8, 4, 2, 1)
 age &lt; 5</pre>
@@ -367,7 +367,7 @@ age[x]</pre>
 </tr>
 </table></div>
 
-</article></slide><slide class=""><hgroup><h2>Task</h2></hgroup><article  class="build" id="task">
+</article></slide><slide class=""><hgroup><h2>Task</h2></hgroup><article  id="task" class="build">
 
 <p>Create a new vector <code>friends &lt;- c(4, 5, 6, 3, 7, 2, 3)</code>.<br/>Show all values of that vector <code>&gt;= 4</code>.</p>
 
@@ -383,7 +383,7 @@ friends[friends &gt;= 4]</pre>
 
 <pre >[1] 4 5 6 7</pre>
 
-</article></slide><slide class=""><hgroup><h2>which()</h2></hgroup><article  class="build" id="which">
+</article></slide><slide class=""><hgroup><h2>which()</h2></hgroup><article  id="which" class="build">
 
 <p>The <code>which()</code> functions gives the <strong>indices</strong> of the elements that are <code>TRUE</code>.<br/>It takes a <em>logical vector</em> as an <em>argument</em>.</p>
 
@@ -458,7 +458,7 @@ age[which(x)]</pre>
 </tr>
 </table></div>
 
-</article></slide><slide class=""><hgroup><h2>Why use which?</h2></hgroup><article  class="build smaller" id="why-use-which">
+</article></slide><slide class=""><hgroup><h2>Why use which?</h2></hgroup><article  id="why-use-which" class="build smaller">
 
 <pre class = 'prettyprint lang-r'>age = c(NA, 12, 4, 3, NA, 8, 7, 4, 3, 6, 4, 3)
 x &lt;- age &lt; 6
@@ -478,7 +478,7 @@ x</pre>
 
 <pre >[1] 3.5</pre>
 
-</article></slide><slide class=""><hgroup><h2>Task</h2></hgroup><article  class="build" id="task-1">
+</article></slide><slide class=""><hgroup><h2>Task</h2></hgroup><article  id="task-1" class="build">
 
 <p>Create a vector <code>x &lt;- c(1, 4, 5, 3, 4, 5)</code> and identify:<br/>1. Which elements are larger or equal than three?<br/>2. Create a new vector from <code>x</code> containing all elements that are <strong>not</strong> four. Note: Use the <code>which()</code> function for this task.</p>
 
@@ -499,7 +499,7 @@ y</pre>
 
 <pre >[1] 1 5 3 5</pre>
 
-</article></slide><slide class=""><hgroup><h2>Selecting cases with logical vectors</h2></hgroup><article  class="build" id="selecting-cases-with-logical-vectors">
+</article></slide><slide class=""><hgroup><h2>Selecting cases with logical vectors</h2></hgroup><article  id="selecting-cases-with-logical-vectors" class="build">
 
 <p>Logical vectors can also be appplied to <em>data frames</em> for selecting cases.</p>
 
@@ -555,7 +555,7 @@ study_no_sen</pre>
 filter &lt;- which(study[[&quot;sen&quot;]] == 0)
 study_no_sen &lt;- study[filter, ]</pre>
 
-</article></slide><slide class=""><hgroup><h2>Task</h2></hgroup><article  class="build" id="task-2">
+</article></slide><slide class=""><hgroup><h2>Task</h2></hgroup><article  id="task-2" class="build">
 
 <p>Calculate the <code>mean</code> of <code>IQ</code> for students with and without sen.</p>
 
@@ -612,7 +612,7 @@ mean(study[[&quot;IQ&quot;]][filter])</pre>
 <div class="emphasized">
 <p>Note: To get the | sign:<br/>On a german Mac keyboard press: option + 7<br/>On a german Windows keyboard press: AltGr + &lt;</p></div>
 
-</article></slide><slide class=""><hgroup><h2>Example</h2></hgroup><article  class="build smaller" id="example">
+</article></slide><slide class=""><hgroup><h2>Example</h2></hgroup><article  id="example" class="build smaller">
 
 <pre class = 'prettyprint lang-r'>x &lt;- TRUE
 y &lt;- FALSE</pre>
@@ -633,7 +633,7 @@ y &lt;- FALSE</pre>
 
 <pre >[1] TRUE</pre>
 
-</article></slide><slide class=""><hgroup><h2>Logical Operator with vectors</h2></hgroup><article  class="build smaller" id="logical-operator-with-vectors">
+</article></slide><slide class=""><hgroup><h2>Logical Operator with vectors</h2></hgroup><article  id="logical-operator-with-vectors" class="build smaller">
 
 <p>When applied to vectors, logical operations result in a new vector.<br/>Operations are applied to each element one by one.</p>
 
@@ -652,7 +652,7 @@ y &lt;- c(TRUE, FALSE, FALSE, TRUE)</pre>
 
 <pre >[1]  TRUE FALSE  TRUE  TRUE</pre>
 
-</article></slide><slide class=""><hgroup><h2>Task</h2></hgroup><article  class="build" id="task-3">
+</article></slide><slide class=""><hgroup><h2>Task</h2></hgroup><article  id="task-3" class="build">
 
 <p>Create two vectors:</p>
 
@@ -749,7 +749,7 @@ sum(c(TRUE, FALSE, TRUE))</pre>
 
 <pre >[1] 0.4</pre>
 
-</article></slide><slide class=""><hgroup><h2>Combining logical and relational operators</h2></hgroup><article  class="build" id="combining-logical-and-relational-operators">
+</article></slide><slide class=""><hgroup><h2>Combining logical and relational operators</h2></hgroup><article  id="combining-logical-and-relational-operators" class="build">
 
 <pre class = 'prettyprint lang-r'>age &lt;- c(12, 4, 3, 8, 4, 2, 1, 7, 4)
 gender &lt;- c(0, 1, 0, 1, 0, 0, 0, 0, 1)
@@ -765,18 +765,19 @@ age &gt; 4</pre>
 
 <pre >[1]  TRUE FALSE FALSE FALSE FALSE FALSE FALSE  TRUE FALSE</pre>
 
-</article></slide><slide class=""><hgroup><h2>Task</h2></hgroup><article  class="build smaller" id="task-5">
+</article></slide><slide class=""><hgroup><h2>Task</h2></hgroup><article  id="task-5" class="build smaller">
 
-<p>Create a vector<br/><code>income &lt;- c(5000, 4000, 3000, 2000, 1000)</code> and a vector<br/><code>happiness &lt;- c(20, 35, 30, 10, 50)</code>.<br/>1. Use <em>relational</em> and <em>logical</em> operations to determine for each element whether the <code>income</code> is larger than <code>2500</code> and at the same time <code>happiness</code> is above <code>25</code>.</p>
+<p>Create a vector<br/><code>income &lt;- c(5000, 4000, 3000, 2000, 1000)</code> and a vector<br/><code>happiness &lt;- c(20, 35, 30, 10, 50)</code>.</p>
 
 <ol>
-<li>Calculate the proportion.</li>
+<li><p>Use <em>relational</em> and <em>logical</em> operations to determine for each element whether the <code>income</code> is larger than <code>2500</code> and at the same time <code>happiness</code> is above <code>25</code>.</p></li>
+<li><p>Calculate the proportion.</p></li>
 </ol>
 
 <div class="red2">
 <strong>:-)</strong></div>
 
-</article></slide><slide class=""><hgroup><h2>Task - solution</h2></hgroup><article  class="smaller" id="task---solution-3">
+</article></slide><slide class=""><hgroup><h2>Task - solution</h2></hgroup><article  id="task---solution-3" class="smaller">
 
 <ol>
 <li><p>Use <em>relational</em> and <em>logical</em> operations to determine for each element whether the <code>income</code> is larger than <code>2500</code> and at the same time <code>happiness</code> is above <code>25</code>.</p></li>
@@ -842,7 +843,7 @@ income &gt; 2500 &amp; happiness &gt; 25</pre>
 
 <pre >[1] 0.4</pre>
 
-</article></slide><slide class=""><hgroup><h2>Subsetting data frames with logical and relational operators</h2></hgroup><article  class="build smaller" id="subsetting-data-frames-with-logical-and-relational-operators">
+</article></slide><slide class=""><hgroup><h2>Subsetting data frames with logical and relational operators</h2></hgroup><article  id="subsetting-data-frames-with-logical-and-relational-operators" class="build smaller">
 
 <pre class = 'prettyprint lang-r'>study</pre>
 
@@ -954,9 +955,150 @@ cor(diet4[[&quot;weight&quot;]], diet4[[&quot;Time&quot;]])</pre>
 
 <p>The correlation is larger for Diet 4. This suggests that Diet 4 has a stronger impact an the chicken’s weight.</p>
 
-</article></slide><slide class=""><hgroup><h2>The <code>subset()</code> function</h2></hgroup><article  id="the-subset-function">
+</article></slide><slide class=""><hgroup><h2>The <code>subset()</code> function {smaller}</h2></hgroup><article  id="the-subset-function-smaller">
 
-<p>R comes with a function to make subsetting a bit more straight forward.</p></article></slide>
+<p>R comes with a function to make subsetting a bit more straight forward.</p>
+
+<p><code>subset()</code> has the main arguments:</p>
+
+<ul>
+<li><code>x</code> : A data.frame<br/></li>
+<li><code>subset</code> : A logical vector for filtering rows<br/></li>
+<li><code>select</code> : expression, indicating columns to select from a data frame</li>
+</ul>
+
+<p>and returns a data.frame.</p>
+
+<pre class = 'prettyprint lang-r'>subset(study, gender == &quot;F&quot; &amp; IQ &gt; 89, c(sen, gender, IQ))</pre>
+
+<div class="kable-table">
+<table class = 'rmdtable'>
+<tr class="header">
+<th align="left"></th>
+<th align="right">sen</th>
+<th align="left">gender</th>
+<th align="right">IQ</th>
+</tr>
+<tr class="odd">
+<td align="left">3</td>
+<td align="right">0</td>
+<td align="left">F</td>
+<td align="right">90</td>
+</tr>
+<tr class="even">
+<td align="left">5</td>
+<td align="right">0</td>
+<td align="left">F</td>
+<td align="right">99</td>
+</tr>
+</table></div>
+
+<p>Variable names must be provided without quotes and without the name of the data.frame.</p>
+
+</article></slide><slide class=""><hgroup><h2>Task</h2></hgroup><article  id="task-7">
+
+<p>Take the <code>mtcars</code> dataset and filter cases (here: car models) with 6 cylinders (variable <code>cyl</code>) and automatic transmission (value <code>1</code> in variable <code>am</code>).<br/>Select the variables <code>mpg</code>, <code>am</code>, <code>gear</code>, <code>cyl</code>.<br/>Use the <code>subset</code> function.</p>
+
+<div class="red2">
+<strong>:-)</strong></div>
+
+</article></slide><slide class=""><hgroup><h2>Task - solutions</h2></hgroup><article  id="task---solutions-2">
+
+<p>Take the <code>mtcars</code> dataset and filter cases (here: car models) with 6 cylinders (variable <code>cyl</code>) and automatic transmission (value <code>1</code> in variable <code>am</code>).<br/>Select the variables <code>mpg</code>, <code>am</code>, <code>gear</code>, <code>cyl</code>.<br/>Use the <code>subset</code> function.</p>
+
+<pre class = 'prettyprint lang-r'>subset(mtcars, cyl == 6 &amp; am == 1, c(mpg, am, gear, cyl))</pre>
+
+<div class="kable-table">
+<table class = 'rmdtable'>
+<tr class="header">
+<th align="left"></th>
+<th align="right">mpg</th>
+<th align="right">am</th>
+<th align="right">gear</th>
+<th align="right">cyl</th>
+</tr>
+<tr class="odd">
+<td align="left">Mazda RX4</td>
+<td align="right">21.0</td>
+<td align="right">1</td>
+<td align="right">4</td>
+<td align="right">6</td>
+</tr>
+<tr class="even">
+<td align="left">Mazda RX4 Wag</td>
+<td align="right">21.0</td>
+<td align="right">1</td>
+<td align="right">4</td>
+<td align="right">6</td>
+</tr>
+<tr class="odd">
+<td align="left">Ferrari Dino</td>
+<td align="right">19.7</td>
+<td align="right">1</td>
+<td align="right">5</td>
+<td align="right">6</td>
+</tr>
+</table></div>
+
+</article></slide><slide class=""><hgroup><h2>So many ways of subsetting … an overview</h2></hgroup><article  id="so-many-ways-of-subsetting-an-overview">
+
+<p>Subset a data frame (and get a new data frame)</p>
+
+<pre class = 'prettyprint lang-r'>mtcars[mtcars[[&quot;cyl&quot;]] == 6 &amp; mtcars[[&quot;am&quot;]] == 1, c(&quot;mpg&quot;, &quot;am&quot;, &quot;gear&quot;, &quot;cyl&quot;)]
+
+mtcars[mtcars$cyl == 6 &amp; mtcars$am == 1, c(&quot;mpg&quot;, &quot;am&quot;, &quot;gear&quot;, &quot;cyl&quot;)]
+
+subset(mtcars, cyl == 6 &amp; am == 1, c(mpg, am, gear, cyl))
+
+with(mtcars, 
+  mtcars[cyl == 6 &amp; am == 1, c(&quot;mpg&quot;, &quot;am&quot;, &quot;gear&quot;, &quot;cyl&quot;)]
+)</pre>
+
+</article></slide><slide class=""><hgroup><h2>So many ways of subsetting … an overview</h2></hgroup><article  id="so-many-ways-of-subsetting-an-overview-1">
+
+<p>Extract a variable from a data frame (and get a numeric or character vector)</p>
+
+<pre class = 'prettyprint lang-r'>mtcars[[&quot;mpg&quot;]][mtcars[[&quot;cyl&quot;]] == 6 &amp; mtcars[[&quot;am&quot;]] == 1]
+
+mtcars$mpg[mtcars$cyl == 6 &amp; mtcars$am == 1]
+
+subset(mtcars, cyl == 6 &amp; am == 1, mpg, drop = TRUE)
+
+with(mtcars, mpg[cyl == 6 &amp; am == 1])</pre>
+
+</article></slide><slide class=""><hgroup><h2>Odd behaviour:</h2></hgroup><article  id="odd-behaviour" class="smaller">
+
+<p>For base R data frames this creates a vector:</p>
+
+<pre class = 'prettyprint lang-r'>mtcars[mtcars[[&quot;cyl&quot;]] == 6 &amp; mtcars[[&quot;am&quot;]] == 1, &quot;mpg&quot;]</pre>
+
+<pre >[1] 21.0 21.0 19.7</pre>
+
+<p>This should have resulted in a data frame with one variable but is automatically reduced to a vector.<br/>Add <code>drop = FALSE</code> to get standard behavior.</p>
+
+<pre class = 'prettyprint lang-r'>mtcars[mtcars[[&quot;cyl&quot;]] == 6 &amp; mtcars[[&quot;am&quot;]] == 1, &quot;mpg&quot;, drop = FALSE]</pre>
+
+<div class="kable-table">
+<table class = 'rmdtable'>
+<tr class="header">
+<th align="left"></th>
+<th align="right">mpg</th>
+</tr>
+<tr class="odd">
+<td align="left">Mazda RX4</td>
+<td align="right">21.0</td>
+</tr>
+<tr class="even">
+<td align="left">Mazda RX4 Wag</td>
+<td align="right">21.0</td>
+</tr>
+<tr class="odd">
+<td align="left">Ferrari Dino</td>
+<td align="right">19.7</td>
+</tr>
+</table></div>
+
+<p>Some modern implementations of data frames (like <code>tibbles</code>) changed this behavior.<br/>Therefore, I recommend not to use it.</p></article></slide>
 
 
   <slide class="backdrop"></slide>

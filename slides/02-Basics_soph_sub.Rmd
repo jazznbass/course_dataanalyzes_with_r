@@ -520,4 +520,58 @@ subset(mtcars, cyl == 6 & am == 1, c(mpg, am, gear, cyl))
 ```
 
 
+## So many ways of subsetting ... an overview
+
+Subset a data frame (and get a new data frame)
+
+```{r, eval = FALSE}
+
+mtcars[mtcars[["cyl"]] == 6 & mtcars[["am"]] == 1, c("mpg", "am", "gear", "cyl")]
+
+mtcars[mtcars$cyl == 6 & mtcars$am == 1, c("mpg", "am", "gear", "cyl")]
+
+subset(mtcars, cyl == 6 & am == 1, c(mpg, am, gear, cyl))
+
+with(mtcars, 
+  mtcars[cyl == 6 & am == 1, c("mpg", "am", "gear", "cyl")]
+)
+
+
+```
+
+## So many ways of subsetting ... an overview
+
+Extract a variable from a data frame (and get a numeric or character vector)
+
+```{r, eval = FALSE}
+
+mtcars[["mpg"]][mtcars[["cyl"]] == 6 & mtcars[["am"]] == 1]
+
+mtcars$mpg[mtcars$cyl == 6 & mtcars$am == 1]
+
+subset(mtcars, cyl == 6 & am == 1, mpg, drop = TRUE)
+
+with(mtcars, mpg[cyl == 6 & am == 1])
+
+
+```
+
+## Odd behaviour: {.smaller}
+
+For base R data frames this creates a vector:
+
+```{r}
+mtcars[mtcars[["cyl"]] == 6 & mtcars[["am"]] == 1, "mpg"]
+
+```
+
+This should have resulted in a data frame with one variable but is automatically reduced to a vector.  
+Add `drop = FALSE` to get standard behavior.
+
+```{r}
+mtcars[mtcars[["cyl"]] == 6 & mtcars[["am"]] == 1, "mpg", drop = FALSE]
+```
+
+Some modern implementations of data frames (like `tibbles`) changed this behavior.  
+Therefore, I recommend not to use it.
 

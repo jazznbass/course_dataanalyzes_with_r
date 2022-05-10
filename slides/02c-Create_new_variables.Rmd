@@ -1,0 +1,156 @@
+---
+title: "Create new variables in data frame"
+date: "`r if(exists('info')) info$date`"
+company: "`r if(exists('info')) info$company`"
+output:
+  ioslides_presentation: 
+    css: styles.css
+    widescreen: yes
+    logo: img/ZEIF.png
+    df_print: kable
+---
+
+```{r setup, include=FALSE}
+library(knitr)
+library(tidyverse)
+opts_chunk$set(echo = TRUE, warning = FALSE, message = FALSE, comment = "")
+
+stop_video <- function() {
+  #out <- '<div class="red2">**Please stop the video here! Continue after completing the task!**</div>'
+  out <- '<div class="red2">**:-)**</div>'
+  cat(out)
+}
+
+
+```
+
+## Create a new variable in a dataset with missing values
+
+Please copy this syntax into R-Studio and execute:
+
+```{r}
+study <- data.frame(
+  sen    = factor(c(0, 1, 0, 1, 0, 1), labels = c("no sen", "sen"), levels = 0:1),
+  gender = factor(c(1,2,2,1,2,1), labels = c("Male", "Female"), levels = 1:2),
+  age  = c(150, 156, 138, 126, 136, 162),
+  IQ     = c(90, 85, 90, 87, 99, 89),
+  Q1     = c(1, 5, 3, 4, 2, 3),
+  Q2     = c(2, 5, 3, 4, 5, 2),
+  Q3     = c(1, 5, 3, 5, 2, 1)
+  
+)
+```
+
+
+## Create a new variable in a dataset {.smaller}
+
+With missing values:
+
+```{r}
+study$Q4 <- NA
+```
+
+With specific values:
+
+```{r}
+study$Q5 <- c(5, 1, 4, 2, 1, 3)
+study
+```
+
+## Create new variables from existing ones
+
+```{r}
+study$age2 <- study$age / 12
+study
+```
+
+## Drop a variable
+
+
+```{r}
+study <- subset(study, select = -age2)
+# or: study[, -10]
+study
+
+```
+
+
+## Task
+
+Create a new variable `Q_sum_1_3` as the sum of `Q1` to `Q3`.
+
+
+```{r results = 'asis', echo = FALSE}
+stop_video()
+```
+
+---
+
+```{r}
+study$Q_sum_1_3 <- with(study, Q1 + Q2 + Q3)
+# or:
+study$Q_sum_1_3 <- study$Q1 + study$Q2 + study$Q3
+study
+```
+
+
+## Task
+
+Create the variables `age_year` and `age_month` where both variables do not have decimals 
+
+(tip: `trunc` function or the `%%` modulo operator and the integer division `%/%` operator. Use the help function if needed)
+
+
+```{r results = 'asis', echo = FALSE}
+stop_video()
+```
+
+---
+
+```{r}
+study$age_year <- trunc(study$age /12)
+study$age_month <- study$age - (study$age_year * 12)
+
+# or
+
+study$age_year <- study$age %/% 12
+study$age_month <- study$age %% 12
+
+
+study
+```
+
+## The apply function {.smaller}
+
+The `apply` function applies a function to every row or column of a data frame.
+
+1. The first argument is the data frame object.
+
+2. The second argument is the margin (1 for rows and 2 for columns).
+
+3. The third argument is a function name (e.g. mean).
+
+4. Further arguments are arguments to the function provided in 3.
+
+
+E.g.:
+
+```{r}
+study$Q_sum_1_2 <- apply(study[, c("Q1", "Q2")], 1, sum)
+study
+```
+
+
+
+## Task
+
+Create a new variable `Q_sum` with the sum of Q1 to Q5 (sums should be build when NAs are in the data)
+
+---
+
+```{r}
+study$Q_sum <- apply(subset(study, select = Q1:Q5), 1, sum, na.rm = TRUE)
+
+```
+
+
