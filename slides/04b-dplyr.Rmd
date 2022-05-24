@@ -9,7 +9,6 @@ output:
     css: styles.css
     logo: img/ZEIF.png
     widescreen: yes
-    df_print: paged
   html_document: default
   pdf_document: default
   beamer_presentation: default
@@ -24,7 +23,8 @@ library(tidyverse)
 opts_chunk$set(echo = TRUE, warning = FALSE, message = FALSE)
 
 stop_video <- function() {
-  out <- '<div class="red2">**Please stop the video here! Continue after completing the task!**</div>'
+  #out <- '<div class="red2">**Please stop the video here! Continue after completing the task!**</div>'
+  out <- '<div class="red2">**:-)**</div>'
   cat(out)
 }
 
@@ -113,13 +113,13 @@ starwars %>%
   select(name:mass)
 ```
 
-## everything() use select to rearrange columns
+## relocate() to rearrange columns
 
-The `everything()` function helps to rearrange the columns of a data frame 
+The `relocate()` function helps to rearrange the columns of a data frame 
 
 ```{r}
 starwars %>% 
-  select(name, birth_year, sex, everything())
+  relocate(name, birth_year, sex)
 ```
 
 

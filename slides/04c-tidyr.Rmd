@@ -1,0 +1,36 @@
+---
+title: "Transform a data frame"
+company: "University of Potsdam"
+author: "Jürgen Wilbert"
+date: "`r paste0('Version: ', format(Sys.time(), '%d %B %Y'), '<br><br>- arrow keys: move through slides <br>- f: toggle full-screen')`"
+output:
+  ioslides_presentation: 
+    css: styles.css
+    logo: img/ZEIF.png
+    widescreen: yes
+  html_document: default
+  pdf_document: default
+  beamer_presentation: default
+  powerpoint_presentation:
+    reference_doc: template.pptx
+  slidy_presentation: default
+---
+
+```{r setup, include=FALSE}
+library(knitr)
+library(tidyverse)
+opts_chunk$set(echo = TRUE, warning = FALSE, message = FALSE)
+
+stop_video <- function() {
+  #out <- '<div class="red2">**Please stop the video here! Continue after completing the task!**</div>'
+  out <- '<div class="red2">**:-)**</div>'
+  cat(out)
+}
+
+```
+
+## Functions we will address today {.build}
+
+- `pivot_longer()`: switch from a wide format (with many columns) to a long format (with fewer columns) 
+- `full_join()`, `left_join()`: Merge two dataframes into one with a key variable.
+

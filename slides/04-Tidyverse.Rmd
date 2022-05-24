@@ -4,15 +4,28 @@ subtitle: 'R code gets easier and more readable'
 company: "`r if(exists('info')) info$company`"
 author: "`r if(exists('info')) info$author`"
 date: "`r if(exists('info')) info$date`"
+output:
+  ioslides_presentation: 
+    css: styles.css
+    logo: img/ZEIF.png
+    widescreen: yes
+    df_print: paged
+  html_document: default
+  pdf_document: default
+  beamer_presentation: default
+  powerpoint_presentation:
+    reference_doc: template.pptx
+  slidy_presentation: default
 ---
 
 ```{r setup, include=FALSE}
 library(knitr)
 library(tidyverse)
-opts_chunk$set(echo = TRUE, warning = FALSE, message = FALSE)
+opts_chunk$set(echo = TRUE, warning = FALSE, message = FALSE, comment= "")
 
 stop_video <- function() {
-  out <- '<div class="red2">**Please stop the video here! Continue after completing the task!**</div>'
+  #out <- '<div class="red2">**Please stop the video here! Continue after completing the task!**</div>'
+  out <- '<div class="red2">**:-)**</div>'
   cat(out)
 }
 
