@@ -34,3 +34,21 @@ stop_video <- function() {
 - `pivot_longer()`: switch from a wide format (with many columns) to a long format (with fewer columns) 
 - `full_join()`, `left_join()`: Merge two dataframes into one with a key variable.
 
+## `pivot_longer()`
+
+- `cols`: The columns to be aggregated into a new variable.  
+- `names_to`: The name of the new variable containing the names of the aggregated columns.  
+- `values_to`: The name of the variable containing the values of the aggregated columns.  
+
+## 
+
+```{r}
+relig_income %>%
+  pivot_longer(2:11, names_to = "income", values_to = "count")
+```
+
+```{r}
+billboard %>%
+  pivot_longer(starts_with("wk"), names_to = "week", values_to = "position", values_drop_na = TRUE)
+```
+
