@@ -24,7 +24,7 @@ files <- c(
   #"07-Regression.Rmd"
 )
 
-files <- "02c-Create_new_variables.html"
+files <- "05-Statistics.Rmd"
 
 for(file  in files) {
   rmarkdown::render(
