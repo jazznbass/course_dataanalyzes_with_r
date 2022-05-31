@@ -211,7 +211,7 @@ addmargins(tab)
 
 ## Task
 
-- Take the `heights` dataset from the `dslabls` library.  
+- Take the `heights` dataset from the `dslabs` library.  
 - Create a cross table depicting: The percentage of females and males that are above and below a height of 170 cm.  
 
 ##
