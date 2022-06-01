@@ -164,7 +164,7 @@ mtcars %>%
     min = min(lpk),
     max = max(lpk)
   ) %>%
-  mutate(across(is.numeric, round, 1))
+  mutate(across(where(is.numeric), round, 1))
 
 ```
 
@@ -274,7 +274,7 @@ mtcars %>%
 
 Recreate the previous task. This time using dplyr:
 
-- Take the `heights` dataset from the `dslabls` library.  
+- Take the `heights` dataset from the `dslabs` library.  
 - Create a cross table depicting: The percentage of females and males that are above and below a height of 170 cm.  
 
 This is a hard task ...
