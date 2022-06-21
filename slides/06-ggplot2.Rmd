@@ -24,9 +24,11 @@ library(tidyverse)
 opts_chunk$set(echo = TRUE, warning = FALSE, message = FALSE)
 
 stop_video <- function() {
-  out <- '<div class="red2">**Please stop the video here! Continue after completing the task!**</div>'
+  #out <- '<div class="red2">**Please stop the video here! Continue after completing the task!**</div>'
+   out <- '<div class="red2">**:-)**</div>'
   cat(out)
 }
+
 
 ```
 
@@ -246,8 +248,13 @@ ggplot(df, aes(x = type, y = mean)) +
 
 - Take the `starwars` database.
 - Calculate the bmi. (`mutate(bmi = mass / (height / 100)^2)`)
-- Summar  ise the median of the bmi grouped by species. (`summarise(mean_bmi = median(bmi, na.rm = TRUE)`)
+- Filter all `bmi < 100`.
+- Summarise the median of the bmi grouped by species. 
 - Create a fitting barplot.
+- Add the following layer. Otherwise the x-labels will overlap:  
+`theme(axis.text.x = element_text(angle = 40, hjust=1))`  
+
+Hint: (`summarise(mean_bmi = median(bmi, na.rm = TRUE)`)  
 
 ```{r results = 'asis', echo = FALSE}
 stop_video()
@@ -258,12 +265,14 @@ stop_video()
 ```{r message=FALSE, warning=FALSE, fig.height=4}
 starwars %>% 
   mutate(bmi = mass / (height / 100)^2) %>% 
+  filter(bmi < 100) %>%
   group_by(species) %>% 
   summarise(
     mean_bmi = median(bmi, na.rm = TRUE)
   ) %>%
   ggplot(aes(species, mean_bmi)) +
-    geom_bar(stat = "identity")
+    geom_bar(stat = "identity") +
+    theme(axis.text.x = element_text(angle = 40, hjust=1))
            
 ```
 
@@ -300,10 +309,12 @@ economics %>%
 
 - Install and activate the library `dslabs`.
 - Take the dataframe `gapminder`.
-- Group the data by `year` and `continent`. (`group_by(year, continent)`)
+- Group the data by `year` and `continent`.
 - Use the `summarize()` function to calculate the mean of `infant_mortality`.
 - Create a line and dot plot with `year` on x-axis,  mean of `infant_mortality` on y-axis, and `continent` as line/dot colours.
 - Add a `smooth` layer. 
+
+Hint: `group_by(year, continent)`  
 
 ```{r results = 'asis', echo = FALSE}
 stop_video()
@@ -329,6 +340,9 @@ When you have multiple values ordered in a categorical variable. Simple plots be
 ```{r fig.height=3}
 ggplot(mpg,aes(drv, hwy)) +
   geom_point()
+# Note: hwy is highway miles per gallon
+# drv is the type of drive train, where f = front-wheel drive, r = rear wheel drive, 4 = 4wd
+
 ```
 
 ## Distributions of multiple datapoints in categories (2)
@@ -371,13 +385,31 @@ ggplot(mpg,aes(drv, hwy)) +geom_violin()
 - Change axis labels: labs(x = NULL, y = NULL) (e.g. labs(x = "Categories", y = "Mean"))
 - Change axis scales: ylim(min = 0, max = 10) ; xlim(min = 0, max = 10)
 
+## Task
 
-## {.smaller}
+## Facets {.smaller}
+
+Facets are another basic aesthetics. A plot is organizes multiple times by a categorical variable:
+
 
 ```{r}
 ggplot(mpg, aes(cty, hwy)) + 
   geom_point() +
-  facet_wrap(~class)
+  facet_wrap(vars(class)) # or facet_wrap(~class)
+```
+
+# Task
+
+```{r}
+economics %>%
+  mutate(
+    year = format(date, format = "%Y"),
+    saving_rate = cut(psavert, breaks = 3, labels = c("Low","Medium","High"))
+  ) %>%
+  ggplot(aes(year, unemploy/pop*100)) + 
+    geom_point(size = 0.5) +
+    facet_wrap(~saving_rate) +
+    theme(axis.text.x = element_text(angle = 90, hjust=1, size = 5))
 ```
 
 ## {.smaller}
