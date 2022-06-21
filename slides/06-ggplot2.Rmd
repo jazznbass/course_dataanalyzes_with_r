@@ -400,6 +400,21 @@ ggplot(mpg, aes(cty, hwy)) +
 
 # Task
 
+- Take the economics dataset  
+- Create a new Variable `year` by extracting the yeat from the `date` variable.
+- Turn the saving rate variable `psavert` in to a categorical variable `saving_rate` with three levels
+- Plot year by unemployment rate with facets for `saving_rate`.
+
+Hint1: `year = format(date, format = "%Y")`  
+Hint2: `saving_rate = cut(psavert, breaks = 3, labels = c("Low","Medium","High"))`  
+Hint3: unemployment rate: `unemploy / pop * 100`
+
+```{r results = 'asis', echo = FALSE}
+stop_video()
+```
+
+***
+
 ```{r}
 economics %>%
   mutate(
