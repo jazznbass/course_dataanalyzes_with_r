@@ -398,7 +398,7 @@ ggplot(mpg, aes(cty, hwy)) +
   facet_wrap(vars(class)) # or facet_wrap(~class)
 ```
 
-# Task
+## Task
 
 - Take the economics dataset  
 - Create a new Variable `year` by extracting the yeat from the `date` variable.
@@ -413,7 +413,7 @@ Hint3: unemployment rate: `unemploy / pop * 100`
 stop_video()
 ```
 
-***
+## {.smaller}
 
 ```{r}
 economics %>%
