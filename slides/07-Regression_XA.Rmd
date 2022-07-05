@@ -4,6 +4,17 @@ subtitle: "Estimating models and predicting values with R"
 author: "`r if(exists('info')) info$author`"
 date: "`r if(exists('info')) info$date`"
 company: "`r if(exists('info')) info$company`"
+output:
+  xaringan::moon_reader:
+    lib_dir: libs
+    css: ["default", "default-fonts","styles_xa.css"]
+    nature:
+      highlightStyle: github
+      highlightLines: yes
+      countIncrementalSlides: no
+      ratio: '16:10'
+      titleSlideClass: [center, middle]
+    self_contained: true
 ---
 
 ```{r setup, include=FALSE}
