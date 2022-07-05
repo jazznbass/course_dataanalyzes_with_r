@@ -40,15 +40,100 @@ stop_video <- function() {
 - `names_to`: The name of the new variable containing the names of the aggregated columns.  
 - `values_to`: The name of the variable containing the values of the aggregated columns.  
 
-## 
+## Example
+
+We have such a dataframe:
+
+```{r echo = FALSE}
+kable(relig_income) %>% kableExtra::kable_classic_2()
+```
+
+## We want such a plot:
+
+```{r echo = FALSE}
+relig_income %>% 
+  rowwise() %>%
+  mutate(total = sum(c_across(2:11))) %>%
+  ungroup() %>%
+  filter(total >= 500) %>%
+  mutate(across(2:11, ~ . / total * 100)) %>%
+  pivot_longer(2:11, names_to = "income", values_to = "count") %>%
+  mutate(income = factor(income, levels = names(relig_income)[2:11])) %>%
+  ggplot(aes(x = income, y = count)) +
+    geom_bar(stat = "identity", position = "dodge") +
+    facet_wrap(~religion) + 
+    theme_classic() + 
+    theme(axis.text.x = element_text(angle = 45, size = 7, hjust = 1)) +
+    ylab("%")
+```
+
+
+## Step 1: Tur the count values into percentages:
+
 
 ```{r}
-relig_income %>%
-  pivot_longer(2:11, names_to = "income", values_to = "count")
+# with dplyr:
+new_df <- relig_income %>% 
+  rowwise() %>%
+  mutate(total = sum(c_across(2:11))) %>%
+  ungroup() %>%
+  mutate(across(2:11, ~ . / total * 100))
+
+# with base R
+new_df <- as.data.frame(relig_income)
+new_df$total <- apply(new_df[, 2:11], 1, sum)
+
+for(i in 1:nrow(new_df))  
+  new_df[i, 2:11] <- new_df[i, 2:11] / new_df[i, "total"] * 100
 ```
+
+```{r echo = FALSE}
+new_df
+```
+
+## Step 2: Turn data into long format:
+
+
+```{r}
+# tidy R
+new_religion <- relig_income %>%
+  pivot_longer(col = 2:11, names_to = "income", values_to = "count")
+
+
+#  base R:
+new_long <- data.frame(
+  religion = rep(NA, nrow(new_df) * 10), 
+  income = rep(names(new_df)[2:11], nrow(new_df)), 
+  count = rep(NA, nrow(new_df) * 10))
+
+new_long$religion <- rep(new_df$religion, each = 10)
+
+for(i in 1:nrow(new_df))
+  new_long$count[((i-1)*10+1):((i-1)*10+10)] <- new_df[i, 2:11]
+
+```
+
+```{r echo = FALSE}
+kable(new_long) %>% kableExtra::kable_classic_2()
+```
+## Create the plot
+
+```{r echo = FALSE}
+new_long %>%
+  
+ggplot(aes(x = income, y = count)) +
+    geom_bar(stat = "identity", position = "dodge") +
+    facet_wrap(~religion) + 
+    theme(axis.text.x = element_text(angle = 90))
+```
+
+
+
+##
 
 ```{r}
 billboard %>%
   pivot_longer(starts_with("wk"), names_to = "week", values_to = "position", values_drop_na = TRUE)
 ```
+
 
