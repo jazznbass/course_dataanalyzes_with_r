@@ -281,11 +281,40 @@ summary(fit)
 
 - Centering is achieved by subtracting the mean of a variable from each measurement of that variable. That is, the value 0 now depicts the average.
 
-```{r eval=FALSE}
+```{r eval=TRUE}
 dat <- gapminder
 dat$year <- dat$year - mean(dat$year, na.rm = TRUE)
 # alternatively, use the scale function to center a variable:
 dat$fertility <- scale(dat$fertility, scale = FALSE)
+```
+
+---
+
+.pull-left[
+```{r}
+ggplot(gapminder, aes(x = year, y = infant_mortality)) +
+  geom_point() + 
+  geom_smooth(method = "lm") + 
+  annotate("label", x = 0,y = 3011, label = "Intercept y = 3011", vjust = 1, hjust = 0) +
+  annotate("point", x = 0, y = 3011, 
+  colour = "red", size = 1.5)
+```
+]
+
+.pull-right[
+```{r}
+ggplot(dat, aes(x = year, y = infant_mortality)) +
+  geom_point() + 
+  geom_smooth(method = "lm") +
+  annotate("label", x = 0,y = 57, label = "Intercept  y = 57", vjust = 0) +
+  annotate("point", x = 0, y = 57, 
+  colour = "red", size = 1.5)
+```
+]
+
+---
+
+```{r eval=FALSE}
 fit <- lm(infant_mortality ~ year + fertility + fertility:year, data = dat)
 summary(fit)
 ```
@@ -400,11 +429,18 @@ mtcars$am_factor <- factor(mtcars$am, labels = c("Automatic", "Manual"))
 contrasts(mtcars$am_factor) <- contr.helmert(2)
 fit1 <- lm(mpg ~ wt + am_factor + wt:am_factor, data = mtcars)
 summary(fit1)
+
+
+```
+
+---
+
+```{r}
 contrasts(mtcars$am_factor) <- contr.treatment(2)
 fit2 <- lm(mpg ~ wt + am_factor + wt:am_factor, data = mtcars)
 summary(fit2)
-
 ```
+
 
 ---
 class: center, middle
