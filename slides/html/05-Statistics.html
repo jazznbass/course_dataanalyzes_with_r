@@ -4356,6 +4356,230 @@ if (document.readyState !== "loading" &&
 
 
 </script>
+  <script>$(document).ready(function(){
+    if (typeof $('[data-toggle="tooltip"]').tooltip === 'function') {
+        $('[data-toggle="tooltip"]').tooltip();
+    }
+    if ($('[data-toggle="popover"]').popover === 'function') {
+        $('[data-toggle="popover"]').popover();
+    }
+});
+</script>
+  <style type="text/css">
+.lightable-minimal {
+border-collapse: separate;
+border-spacing: 16px 1px;
+width: 100%;
+margin-bottom: 10px;
+}
+.lightable-minimal td {
+margin-left: 5px;
+margin-right: 5px;
+}
+.lightable-minimal th {
+margin-left: 5px;
+margin-right: 5px;
+}
+.lightable-minimal thead tr:last-child th {
+border-bottom: 2px solid #00000050;
+empty-cells: hide;
+}
+.lightable-minimal tbody tr:first-child td {
+padding-top: 0.5em;
+}
+.lightable-minimal.lightable-hover tbody tr:hover {
+background-color: #f5f5f5;
+}
+.lightable-minimal.lightable-striped tbody tr:nth-child(even) {
+background-color: #f5f5f5;
+}
+.lightable-classic {
+border-top: 0.16em solid #111111;
+border-bottom: 0.16em solid #111111;
+width: 100%;
+margin-bottom: 10px;
+margin: 10px 5px;
+}
+.lightable-classic tfoot tr td {
+border: 0;
+}
+.lightable-classic tfoot tr:first-child td {
+border-top: 0.14em solid #111111;
+}
+.lightable-classic caption {
+color: #222222;
+}
+.lightable-classic td {
+padding-left: 5px;
+padding-right: 5px;
+color: #222222;
+}
+.lightable-classic th {
+padding-left: 5px;
+padding-right: 5px;
+font-weight: normal;
+color: #222222;
+}
+.lightable-classic thead tr:last-child th {
+border-bottom: 0.10em solid #111111;
+}
+.lightable-classic.lightable-hover tbody tr:hover {
+background-color: #F9EEC1;
+}
+.lightable-classic.lightable-striped tbody tr:nth-child(even) {
+background-color: #f5f5f5;
+}
+.lightable-classic-2 {
+border-top: 3px double #111111;
+border-bottom: 3px double #111111;
+width: 100%;
+margin-bottom: 10px;
+}
+.lightable-classic-2 tfoot tr td {
+border: 0;
+}
+.lightable-classic-2 tfoot tr:first-child td {
+border-top: 3px double #111111;
+}
+.lightable-classic-2 caption {
+color: #222222;
+}
+.lightable-classic-2 td {
+padding-left: 5px;
+padding-right: 5px;
+color: #222222;
+}
+.lightable-classic-2 th {
+padding-left: 5px;
+padding-right: 5px;
+font-weight: normal;
+color: #222222;
+}
+.lightable-classic-2 tbody tr:last-child td {
+border-bottom: 3px double #111111;
+}
+.lightable-classic-2 thead tr:last-child th {
+border-bottom: 1px solid #111111;
+}
+.lightable-classic-2.lightable-hover tbody tr:hover {
+background-color: #F9EEC1;
+}
+.lightable-classic-2.lightable-striped tbody tr:nth-child(even) {
+background-color: #f5f5f5;
+}
+.lightable-material {
+min-width: 100%;
+white-space: nowrap;
+table-layout: fixed;
+font-family: Roboto, sans-serif;
+border: 1px solid #EEE;
+border-collapse: collapse;
+margin-bottom: 10px;
+}
+.lightable-material tfoot tr td {
+border: 0;
+}
+.lightable-material tfoot tr:first-child td {
+border-top: 1px solid #EEE;
+}
+.lightable-material th {
+height: 56px;
+padding-left: 16px;
+padding-right: 16px;
+}
+.lightable-material td {
+height: 52px;
+padding-left: 16px;
+padding-right: 16px;
+border-top: 1px solid #eeeeee;
+}
+.lightable-material.lightable-hover tbody tr:hover {
+background-color: #f5f5f5;
+}
+.lightable-material.lightable-striped tbody tr:nth-child(even) {
+background-color: #f5f5f5;
+}
+.lightable-material.lightable-striped tbody td {
+border: 0;
+}
+.lightable-material.lightable-striped thead tr:last-child th {
+border-bottom: 1px solid #ddd;
+}
+.lightable-material-dark {
+min-width: 100%;
+white-space: nowrap;
+table-layout: fixed;
+font-family: Roboto, sans-serif;
+border: 1px solid #FFFFFF12;
+border-collapse: collapse;
+margin-bottom: 10px;
+background-color: #363640;
+}
+.lightable-material-dark tfoot tr td {
+border: 0;
+}
+.lightable-material-dark tfoot tr:first-child td {
+border-top: 1px solid #FFFFFF12;
+}
+.lightable-material-dark th {
+height: 56px;
+padding-left: 16px;
+padding-right: 16px;
+color: #FFFFFF60;
+}
+.lightable-material-dark td {
+height: 52px;
+padding-left: 16px;
+padding-right: 16px;
+color: #FFFFFF;
+border-top: 1px solid #FFFFFF12;
+}
+.lightable-material-dark.lightable-hover tbody tr:hover {
+background-color: #FFFFFF12;
+}
+.lightable-material-dark.lightable-striped tbody tr:nth-child(even) {
+background-color: #FFFFFF12;
+}
+.lightable-material-dark.lightable-striped tbody td {
+border: 0;
+}
+.lightable-material-dark.lightable-striped thead tr:last-child th {
+border-bottom: 1px solid #FFFFFF12;
+}
+.lightable-paper {
+width: 100%;
+margin-bottom: 10px;
+color: #444;
+}
+.lightable-paper tfoot tr td {
+border: 0;
+}
+.lightable-paper tfoot tr:first-child td {
+border-top: 1px solid #00000020;
+}
+.lightable-paper thead tr:last-child th {
+color: #666;
+vertical-align: bottom;
+border-bottom: 1px solid #00000020;
+line-height: 1.15em;
+padding: 10px 5px;
+}
+.lightable-paper td {
+vertical-align: middle;
+border-bottom: 1px solid #00000010;
+line-height: 1.15em;
+padding: 7px 5px;
+}
+.lightable-paper.lightable-hover tbody tr:hover {
+background-color: #F9EEC1;
+}
+.lightable-paper.lightable-striped tbody tr:nth-child(even) {
+background-color: #00000008;
+}
+.lightable-paper.lightable-striped tbody td {
+border: 0;
+}
+</style>
 
   <style type="text/css">
 
@@ -4497,7 +4721,7 @@ slide:not(.current) .plotly.html-widget{
       <h1 data-config-title><!-- populated from slide_config.json --></h1>
       <h2 data-config-subtitle><!-- populated from slide_config.json --></h2>
       <p data-config-presenter><!-- populated from slide_config.json --></p>
-            <p style="margin-top: 6px; margin-left: -2px;">Version: 01 June 2022</p>
+            <p style="margin-top: 6px; margin-left: -2px;">Version: 11 July 2022</p>
           </hgroup>
   </slide>
 
@@ -4635,7 +4859,7 @@ slide:not(.current) .plotly.html-widget{
     min = min(lpk),
     max = max(lpk)
   ) %&gt;%
-  mutate(across(is.numeric, round, 1))</pre>
+  mutate(across(where(is.numeric), round, 1))</pre>
 
 <div data-pagedtable="false">
 <script data-pagedtable-source type="application/json">
@@ -4759,20 +4983,37 @@ tab</pre>
 {"columns":[{"label":["cyl"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["am"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["n"],"name":[3],"type":["int"],"align":["right"]}],"data":[{"1":"4","2":"0","3":"3"},{"1":"4","2":"1","3":"8"},{"1":"6","2":"0","3":"4"},{"1":"6","2":"1","3":"3"},{"1":"8","2":"0","3":"12"},{"1":"8","2":"1","3":"2"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
   </script></div>
 
-</article></slide><slide class=""><hgroup><h2>Tables with dplyr: <code>pivot_wider()</code></h2></hgroup><article  id="tables-with-dplyr-pivot_wider" class="smaller">
+</article></slide><slide class=""><hgroup><h2>Shortcut for simple count tables</h2></hgroup><article  id="shortcut-for-simple-count-tables">
 
-<p><code>pivot_wider()</code>:<br/>creates separate variables from the levels of a factor variable and the values of a second variable</p>
+<pre class = 'prettyprint lang-r'># Because it is shorter, I don&#39;t use pipes here (but I could!)
+count(mtcars, cyl) </pre>
 
-</article></slide><slide class=""><hgroup><h2></h2></hgroup><article  id="section-7" class="smaller">
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":["cyl"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["n"],"name":[2],"type":["int"],"align":["right"]}],"data":[{"1":"4","2":"11"},{"1":"6","2":"7"},{"1":"8","2":"14"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script></div>
 
-<pre class = 'prettyprint lang-r'>mtcars %&gt;% group_by(cyl, am) %&gt;% summarise(n = n())</pre>
+<pre class = 'prettyprint lang-r'>count(mtcars, cyl, am) </pre>
 
 <div data-pagedtable="false">
 <script data-pagedtable-source type="application/json">
 {"columns":[{"label":["cyl"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["am"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["n"],"name":[3],"type":["int"],"align":["right"]}],"data":[{"1":"4","2":"0","3":"3"},{"1":"4","2":"1","3":"8"},{"1":"6","2":"0","3":"4"},{"1":"6","2":"1","3":"3"},{"1":"8","2":"0","3":"12"},{"1":"8","2":"1","3":"2"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
   </script></div>
 
-<pre class = 'prettyprint lang-r'>mtcars %&gt;% group_by(cyl, am) %&gt;% summarise(n = n()) %&gt;%
+</article></slide><slide class=""><hgroup><h2>Tables with dplyr: <code>pivot_wider()</code></h2></hgroup><article  id="tables-with-dplyr-pivot_wider" class="smaller">
+
+<p><code>pivot_wider()</code>:<br/>creates separate variables from the levels of a factor variable and the values of a second variable</p>
+
+</article></slide><slide class=""><hgroup><h2></h2></hgroup><article  id="section-7" class="smaller">
+
+<pre class = 'prettyprint lang-r'>mtcars %&gt;% count(cyl, am)</pre>
+
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":["cyl"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["am"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["n"],"name":[3],"type":["int"],"align":["right"]}],"data":[{"1":"4","2":"0","3":"3"},{"1":"4","2":"1","3":"8"},{"1":"6","2":"0","3":"4"},{"1":"6","2":"1","3":"3"},{"1":"8","2":"0","3":"12"},{"1":"8","2":"1","3":"2"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script></div>
+
+<pre class = 'prettyprint lang-r'>mtcars %&gt;% count(cyl, am) %&gt;%
   pivot_wider(names_from = &quot;am&quot;, values_from = &quot;n&quot;)</pre>
 
 <div data-pagedtable="false">
@@ -4784,8 +5025,7 @@ tab</pre>
 
 <pre class = 'prettyprint lang-r'>mtcars %&gt;% 
   mutate(am = factor(am, labels = c(&quot;Manual&quot;, &quot;Automatic&quot;))) %&gt;%
-  group_by(cyl, am) %&gt;% 
-  summarise(n = n()) %&gt;%
+  count(cyl, am) %&gt;% 
   pivot_wider(names_from = &quot;am&quot;, values_from = &quot;n&quot;) %&gt;%
   rename(&quot;Cylinders&quot; = &quot;cyl&quot;)</pre>
 
@@ -4813,13 +5053,12 @@ tab</pre>
 
 heights %&gt;%
   mutate(category = ifelse(height * 2.54 &lt;= 170, &quot;size_a&quot;, &quot;size_b&quot;)) %&gt;% 
-  group_by(sex, category) %&gt;%
-  summarise(n = n()) %&gt;% 
+  count(sex, category) %&gt;%
   pivot_wider(names_from = &quot;category&quot;, values_from = &quot;n&quot;) %&gt;%
   mutate(
     &quot;% &lt;= 170&quot; = size_a / (size_a + size_b) * 100,
     &quot;% &gt; 170&quot; = size_b / (size_a + size_b) * 100,
-    across(is.numeric, round, 1)
+    across(where(is.numeric), round, 1)
   ) %&gt;%
   select(1, 4, 5)</pre>
 
@@ -4851,9 +5090,7 @@ heights %&gt;%
 <pre class = 'prettyprint lang-r'>mtcars %&gt;% 
   mutate(am = factor(am, labels = c(&quot;Manual&quot;, &quot;Automatic&quot;))) %&gt;%
   group_by(cyl, am) %&gt;% 
-  summarise(
-    n = n(), M = mean(mpg), SD = sd(mpg)
-  ) %&gt;%
+  summarise(n = n(), M = mean(mpg), SD = sd(mpg)) %&gt;%
   pivot_wider(names_from = &quot;am&quot;, values_from = c(&quot;n&quot;, &quot;M&quot;, &quot;SD&quot;)) %&gt;%
   round(1)</pre>
 
@@ -4862,13 +5099,29 @@ heights %&gt;%
 {"columns":[{"label":["cyl"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["n_Manual"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["n_Automatic"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["M_Manual"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["M_Automatic"],"name":[5],"type":["dbl"],"align":["right"]},{"label":["SD_Manual"],"name":[6],"type":["dbl"],"align":["right"]},{"label":["SD_Automatic"],"name":[7],"type":["dbl"],"align":["right"]}],"data":[{"1":"4","2":"3","3":"8","4":"22.9","5":"28.1","6":"1.5","7":"4.5"},{"1":"6","2":"4","3":"3","4":"19.1","5":"20.6","6":"1.6","7":"0.8"},{"1":"8","2":"12","3":"2","4":"15.1","5":"15.4","6":"2.8","7":"0.6"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
   </script></div>
 
+</article></slide><slide class=""><hgroup><h2></h2></hgroup><article  id="section-10">
+
+<p>Set argument <code>names_vary = &quot;slowest&quot;</code> for a differrent ordering of variables:</p>
+
+<pre class = 'prettyprint lang-r'>mtcars %&gt;% 
+  mutate(am = factor(am, labels = c(&quot;Manual&quot;, &quot;Automatic&quot;))) %&gt;%
+  group_by(cyl, am) %&gt;% 
+  summarise(n = n(), M = mean(mpg), SD = sd(mpg)) %&gt;%
+  pivot_wider(names_from = &quot;am&quot;, values_from = c(&quot;n&quot;, &quot;M&quot;, &quot;SD&quot;), names_vary = &quot;slowest&quot;) %&gt;%
+  round(1)</pre>
+
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":["cyl"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["n_Manual"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["M_Manual"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["SD_Manual"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["n_Automatic"],"name":[5],"type":["dbl"],"align":["right"]},{"label":["M_Automatic"],"name":[6],"type":["dbl"],"align":["right"]},{"label":["SD_Automatic"],"name":[7],"type":["dbl"],"align":["right"]}],"data":[{"1":"4","2":"3","3":"22.9","4":"1.5","5":"8","6":"28.1","7":"4.5"},{"1":"6","2":"4","3":"19.1","4":"1.6","5":"3","6":"20.6","7":"0.8"},{"1":"8","2":"12","3":"15.1","4":"2.8","5":"2","6":"15.4","7":"0.6"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script></div>
+
 </article></slide><slide class=""><hgroup><h2>Task</h2></hgroup><article  id="task-3">
 
 <ul>
 <li>Take the <code>storms</code> dataset and calculate n and mean of the wind speed (<code>wind</code>) by month (<code>month</code>) and storm classification (<code>status</code>) in a crosstable.</li>
 </ul>
 
-</article></slide><slide class=""><hgroup><h2></h2></hgroup><article  id="section-10">
+</article></slide><slide class=""><hgroup><h2></h2></hgroup><article  id="section-11">
 
 <pre class = 'prettyprint lang-r'>storms %&gt;% 
   group_by(month, status) %&gt;%
@@ -4883,6 +5136,252 @@ heights %&gt;%
 <script data-pagedtable-source type="application/json">
 {"columns":[{"label":["month"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["n_hurricane"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["n_tropical depression"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["n_tropical storm"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["M_hurricane"],"name":[5],"type":["dbl"],"align":["right"]},{"label":["M_tropical depression"],"name":[6],"type":["dbl"],"align":["right"]},{"label":["M_tropical storm"],"name":[7],"type":["dbl"],"align":["right"]}],"data":[{"1":"1","2":"5","3":"2","4":"23","5":"70","6":"30","7":"48"},{"1":"4","2":"NA","3":"NA","4":"13","5":"NA","6":"NA","7":"45"},{"1":"5","2":"NA","3":"40","4":"50","5":"NA","6":"28","7":"42"},{"1":"6","2":"18","3":"169","4":"187","5":"70","6":"27","7":"44"},{"1":"7","2":"100","3":"349","4":"474","5":"81","6":"26","7":"45"},{"1":"8","2":"776","3":"717","4":"1214","5":"85","6":"27","7":"45"},{"1":"9","2":"1793","3":"1085","4":"2016","5":"89","6":"28","7":"46"},{"1":"10","2":"701","3":"379","4":"913","5":"85","6":"28","7":"46"},{"1":"11","2":"187","3":"136","4":"387","5":"83","6":"28","7":"48"},{"1":"12","2":"33","3":"21","4":"71","5":"68","6":"30","7":"44"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
   </script></div>
+
+</article></slide><slide class=""><hgroup><h2>Design example:</h2></hgroup><article  id="design-example">
+
+<p>Replicate and try to understand the following table example:</p>
+
+<pre class = 'prettyprint lang-r'>library(kableExtra)
+tab &lt;- mtcars %&gt;% 
+  group_by(cyl, am) %&gt;% 
+  summarise(n = n(), M = mean(mpg), SD = sd(mpg)) %&gt;%
+  pivot_wider(names_from = &quot;am&quot;, values_from = c(&quot;n&quot;, &quot;M&quot;, &quot;SD&quot;), names_vary = &quot;slowest&quot;) 
+
+names(tab) &lt;- c(&quot;Cylinders&quot;, &quot;n&quot;, &quot;M&quot;, &quot;SD&quot;, &quot;n&quot;, &quot;M&quot;, &quot;SD&quot;)
+
+kable(tab, 
+  caption =  &quot;Table 1.&lt;br&gt;Miles per gallon by cylinders and gearshift&quot;, 
+  digits = 1, 
+  full_width = FALSE
+) %&gt;% 
+  kable_classic_2() %&gt;%
+  add_header_above(c(&quot; &quot; = 1, &quot;Automatic&quot; = 3, &quot;Manual&quot; = 3))</pre>
+
+</article></slide><slide class=""><hgroup><h2></h2></hgroup><article  id="section-12">
+
+<table class=" lightable-classic-2" style="font-family: &quot;Arial Narrow&quot;, &quot;Source Sans Pro&quot;, sans-serif; margin-left: auto; margin-right: auto;">
+
+<caption>
+
+Table 1.<br>Miles per gallon by cylinders and gearshift
+
+</caption>
+
+<thead>
+
+<tr>
+
+<th style="empty-cells: hide;" colspan="1">
+
+</th>
+
+<th style="padding-bottom:0; padding-left:3px;padding-right:3px;text-align: center; " colspan="3">
+
+<div style="border-bottom: 1px solid #111111; margin-bottom: -1px; ">
+Automatic</div>
+
+</th>
+
+<th style="padding-bottom:0; padding-left:3px;padding-right:3px;text-align: center; " colspan="3">
+
+<div style="border-bottom: 1px solid #111111; margin-bottom: -1px; ">
+Manual</div>
+
+</th>
+
+</tr>
+
+<tr>
+
+<th style="text-align:right;">
+
+Cylinders
+
+</th>
+
+<th style="text-align:right;">
+
+n
+
+</th>
+
+<th style="text-align:right;">
+
+M
+
+</th>
+
+<th style="text-align:right;">
+
+SD
+
+</th>
+
+<th style="text-align:right;">
+
+n
+
+</th>
+
+<th style="text-align:right;">
+
+M
+
+</th>
+
+<th style="text-align:right;">
+
+SD
+
+</th>
+
+</tr>
+
+</thead>
+
+<tbody>
+
+<tr>
+
+<td style="text-align:right;">
+
+4
+
+</td>
+
+<td style="text-align:right;">
+
+3
+
+</td>
+
+<td style="text-align:right;">
+
+22.9
+
+</td>
+
+<td style="text-align:right;">
+
+1.5
+
+</td>
+
+<td style="text-align:right;">
+
+8
+
+</td>
+
+<td style="text-align:right;">
+
+28.1
+
+</td>
+
+<td style="text-align:right;">
+
+4.5
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:right;">
+
+6
+
+</td>
+
+<td style="text-align:right;">
+
+4
+
+</td>
+
+<td style="text-align:right;">
+
+19.1
+
+</td>
+
+<td style="text-align:right;">
+
+1.6
+
+</td>
+
+<td style="text-align:right;">
+
+3
+
+</td>
+
+<td style="text-align:right;">
+
+20.6
+
+</td>
+
+<td style="text-align:right;">
+
+0.8
+
+</td>
+
+</tr>
+
+<tr>
+
+<td style="text-align:right;">
+
+8
+
+</td>
+
+<td style="text-align:right;">
+
+12
+
+</td>
+
+<td style="text-align:right;">
+
+15.1
+
+</td>
+
+<td style="text-align:right;">
+
+2.8
+
+</td>
+
+<td style="text-align:right;">
+
+2
+
+</td>
+
+<td style="text-align:right;">
+
+15.4
+
+</td>
+
+<td style="text-align:right;">
+
+0.6
+
+</td>
+
+</tr>
+
+</tbody>
+
+</table>
 
 </article></slide><slide class="segue dark nobackground level1"><hgroup class = 'auto-fadein'><h2>Inferential statistics</h2></hgroup><article  id="inferential-statistics">
 
@@ -4948,7 +5447,7 @@ chisq.test(tab) # Alternatively: chisq.test(dat$treatment, dat$improvement)</pre
 <div class="red2">
 <strong>:-)</strong></div>
 
-</article></slide><slide class=""><hgroup><h2></h2></hgroup><article  id="section-11">
+</article></slide><slide class=""><hgroup><h2></h2></hgroup><article  id="section-13">
 
 <pre class = 'prettyprint lang-r'>tab &lt;- table(starwars$eye_color, starwars$hair_color)
 chisq.test(tab)</pre>
@@ -5032,7 +5531,7 @@ t.test(extra ~ group, data = sleep)</pre>
 <div class="red2">
 <strong>:-)</strong></div>
 
-</article></slide><slide class=""><hgroup><h2></h2></hgroup><article  id="section-12" class="smaller">
+</article></slide><slide class=""><hgroup><h2></h2></hgroup><article  id="section-14" class="smaller">
 
 <pre class = 'prettyprint lang-r'>library(dplyr)
 sleep %&gt;% group_by(group) %&gt;%
@@ -5068,7 +5567,7 @@ sleep %&gt;% group_by(group) %&gt;%
 <div class="red2">
 <strong>:-)</strong></div>
 
-</article></slide><slide class=""><hgroup><h2></h2></hgroup><article  id="section-13">
+</article></slide><slide class=""><hgroup><h2></h2></hgroup><article  id="section-15">
 
 <pre class = 'prettyprint lang-r'>install.packages(&quot;dslabs&quot;)</pre>
 
@@ -5084,7 +5583,7 @@ gapminder %&gt;% group_by(continent) %&gt;%
 {"columns":[{"label":["continent"],"name":[1],"type":["fct"],"align":["left"]},{"label":["mean"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["median"],"name":[3],"type":["dbl"],"align":["right"]}],"data":[{"1":"Africa","2":"95.12395","3":"93.40"},{"1":"Americas","2":"42.88145","3":"30.80"},{"1":"Asia","2":"55.26174","3":"43.10"},{"1":"Europe","2":"15.33022","3":"11.25"},{"1":"Oceania","2":"39.10136","3":"29.10"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
   </script></div>
 
-</article></slide><slide class=""><hgroup><h2></h2></hgroup><article  id="section-14">
+</article></slide><slide class=""><hgroup><h2></h2></hgroup><article  id="section-16">
 
 <pre class = 'prettyprint lang-r'>x &lt;- gapminder %&gt;% filter(region == &quot;Southern Europe&quot;) %&gt;% select(infant_mortality)
 y &lt;- gapminder %&gt;% filter(region == &quot;Eastern Europe&quot;) %&gt;% select(infant_mortality)

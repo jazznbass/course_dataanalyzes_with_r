@@ -228,9 +228,9 @@ ggplot(mpg, aes(drv)) +
   geom_bar(fill = "red", width = 0.8)
 ```
 
-## `geom_bar()`
+## `geom_col()`
 
-- With the argument `stat = "identity"`, bar heights and bar categories are taken from the x and y variables:
+- With the `geom_col()` function, bar heights and bar categories are taken from the x and y variables:
 
 ## Example
 
@@ -240,7 +240,7 @@ df <- data.frame(
   mean = c(2.5, 4.4, 6.3)
 )
 ggplot(df, aes(x = type, y = mean)) +
-  geom_bar(stat = "identity")
+  geom_col()
 
 ```
 
@@ -271,7 +271,7 @@ starwars %>%
     mean_bmi = median(bmi, na.rm = TRUE)
   ) %>%
   ggplot(aes(species, mean_bmi)) +
-    geom_bar(stat = "identity") +
+    geom_col() +
     theme(axis.text.x = element_text(angle = 40, hjust=1))
            
 ```

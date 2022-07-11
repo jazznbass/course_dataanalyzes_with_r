@@ -237,6 +237,14 @@ mtcars %>%
   summarise(n = n())
 
 ```
+## Shortcut for simple count tables
+
+```{r}
+# Because it is shorter, I don't use pipes here (but I could!)
+count(mtcars, cyl) 
+count(mtcars, cyl, am) 
+```
+
 
 ## Tables with dplyr: `pivot_wider()` {.smaller}
 
@@ -247,12 +255,12 @@ creates separate variables from the levels of a factor variable and the values o
 ## {.smaller} 
 
 ```{r}
-mtcars %>% group_by(cyl, am) %>% summarise(n = n())
+mtcars %>% count(cyl, am)
 ```
 
 
 ```{r}
-mtcars %>% group_by(cyl, am) %>% summarise(n = n()) %>%
+mtcars %>% count(cyl, am) %>%
   pivot_wider(names_from = "am", values_from = "n")
 
 ```
@@ -263,8 +271,7 @@ mtcars %>% group_by(cyl, am) %>% summarise(n = n()) %>%
 ```{r}
 mtcars %>% 
   mutate(am = factor(am, labels = c("Manual", "Automatic"))) %>%
-  group_by(cyl, am) %>% 
-  summarise(n = n()) %>%
+  count(cyl, am) %>% 
   pivot_wider(names_from = "am", values_from = "n") %>%
   rename("Cylinders" = "cyl")
 
@@ -292,13 +299,12 @@ library(dslabs)
 
 heights %>%
   mutate(category = ifelse(height * 2.54 <= 170, "size_a", "size_b")) %>% 
-  group_by(sex, category) %>%
-  summarise(n = n()) %>% 
+  count(sex, category) %>%
   pivot_wider(names_from = "category", values_from = "n") %>%
   mutate(
     "% <= 170" = size_a / (size_a + size_b) * 100,
     "% > 170" = size_b / (size_a + size_b) * 100,
-    across(is.numeric, round, 1)
+    across(where(is.numeric), round, 1)
   ) %>%
   select(1, 4, 5)
 
@@ -326,10 +332,22 @@ mtcars %>%
 mtcars %>% 
   mutate(am = factor(am, labels = c("Manual", "Automatic"))) %>%
   group_by(cyl, am) %>% 
-  summarise(
-    n = n(), M = mean(mpg), SD = sd(mpg)
-  ) %>%
+  summarise(n = n(), M = mean(mpg), SD = sd(mpg)) %>%
   pivot_wider(names_from = "am", values_from = c("n", "M", "SD")) %>%
+  round(1)
+
+```
+
+## 
+
+Set argument `names_vary = "slowest"` for a differrent ordering of variables:
+
+```{r}
+mtcars %>% 
+  mutate(am = factor(am, labels = c("Manual", "Automatic"))) %>%
+  group_by(cyl, am) %>% 
+  summarise(n = n(), M = mean(mpg), SD = sd(mpg)) %>%
+  pivot_wider(names_from = "am", values_from = c("n", "M", "SD"), names_vary = "slowest") %>%
   round(1)
 
 ```
@@ -350,6 +368,42 @@ storms %>%
   pivot_wider(names_from = "status", values_from = c("n", "M")) %>%
   round()
   
+```
+
+## Design example:
+
+Replicate and try to understand the following table example:
+
+```{r eval = FALSE}
+library(kableExtra)
+tab <- mtcars %>% 
+  group_by(cyl, am) %>% 
+  summarise(n = n(), M = mean(mpg), SD = sd(mpg)) %>%
+  pivot_wider(names_from = "am", values_from = c("n", "M", "SD"), names_vary = "slowest") 
+
+names(tab) <- c("Cylinders", "n", "M", "SD", "n", "M", "SD")
+
+kable(tab, 
+  caption =  "Table 1.<br>Miles per gallon by cylinders and gearshift", 
+  digits = 1, 
+  full_width = FALSE
+) %>% 
+  kable_classic() %>%
+  add_header_above(c(" " = 1, "Automatic" = 3, "Manual" = 3))
+```
+
+##
+
+
+```{r echo = FALSE}
+library(kableExtra)
+tab <- mtcars %>% 
+  group_by(cyl, am) %>% 
+  summarise(n = n(), M = mean(mpg), SD = sd(mpg)) %>%
+  pivot_wider(names_from = "am", values_from = c("n", "M", "SD"), names_vary = "slowest") 
+names(tab) <- c("Cylinders", "n", "M", "SD", "n", "M", "SD")
+kable(tab, caption =  "Table 1.<br>Miles per gallon by cylinders and gearshift", digits = 1) %>% kable_classic() %>%
+  add_header_above(c(" " = 1, "Automatic" = 3, "Manual" = 3))
 ```
 
 
