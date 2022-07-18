@@ -1,8 +1,8 @@
 ---
 title: "Transform a data frame"
-company: "University of Potsdam"
-author: "Jürgen Wilbert"
-date: "`r paste0('Version: ', format(Sys.time(), '%d %B %Y'), '<br><br>- arrow keys: move through slides <br>- f: toggle full-screen')`"
+company: "`r if(exists('info')) info$company`"
+author: "`r if(exists('info')) info$author`"
+date: "`r if(exists('info')) info$date`"
 output:
   ioslides_presentation: 
     css: styles.css
