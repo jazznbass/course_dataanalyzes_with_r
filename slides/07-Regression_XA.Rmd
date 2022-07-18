@@ -145,7 +145,6 @@ fit
 ```
 
 $dist_i = -17.579 + 3.932 * speed_i$
-
 ]
 
 ---
@@ -414,7 +413,7 @@ coefficients(fit)
 
 - Predict `mpg` by `wt` and the transmission type `am` and their interaction
 
-- By deafult `am` is not a factor. Please create a factor for `am` first
+- By default `am` is not a factor. Please create a factor `transmission` for `am` first
 
 - Set the contrasts of the factor to *Helmert* and calculate the model.
 
@@ -425,20 +424,48 @@ coefficients(fit)
 ---
 
 ```{r}
-mtcars$am_factor <- factor(mtcars$am, labels = c("Automatic", "Manual"))
-contrasts(mtcars$am_factor) <- contr.helmert(2)
-fit1 <- lm(mpg ~ wt + am_factor + wt:am_factor, data = mtcars)
+mtcars$transmission <- factor(mtcars$am, labels = c("Automatic", "Manual"))
+mtcars$wt_centered <- scale(mtcars$wt, scale = FALSE)
+contrasts(mtcars$transmission) <- contr.helmert(2)
+fit1 <- lm(mpg ~ wt_centered + transmission + wt_centered:transmission, data = mtcars)
 summary(fit1)
-
-
 ```
 
 ---
 
 ```{r}
-contrasts(mtcars$am_factor) <- contr.treatment(2)
-fit2 <- lm(mpg ~ wt + am_factor + wt:am_factor, data = mtcars)
+contrasts(mtcars$transmission) <- contr.treatment(2)
+fit2 <- lm(mpg ~ wt_centered + transmission + wt_centered:transmission, data = mtcars)
 summary(fit2)
+```
+
+---
+class: smaller
+# Design example
+
+
+```{r}
+library(sjPlot)
+tab_model(fit1)
+```
+
+---
+class: smaller
+
+
+```{r}
+tab_model(fit1, fit2)
+```
+
+---
+class: smaller
+
+
+```{r}
+tab_model(fit1, fit2,
+  show.ci = FALSE, show.se = TRUE,string.se = "se", string.est = "B",
+  dv.labels = c("Model with helmert contrast", "Model with treatment contrast")
+)
 ```
 
 

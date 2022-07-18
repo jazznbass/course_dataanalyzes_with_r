@@ -68,7 +68,7 @@ relig_income %>%
 ```
 
 
-## Step 1: Tur the count values into percentages:
+## Step 1: Turn the count values into percentages:
 
 
 ```{r}
@@ -116,6 +116,7 @@ for(i in 1:nrow(new_df))
 ```{r echo = FALSE}
 kable(new_long) %>% kableExtra::kable_classic_2()
 ```
+
 ## Create the plot
 
 ```{r echo = FALSE}

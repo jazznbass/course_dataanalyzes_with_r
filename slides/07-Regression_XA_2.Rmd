@@ -77,7 +77,7 @@ text(x = 0.6, y = 4, "Slope ß1")
 
 - ***Formulas*** are a basic data type that is applied in many R functions.
 
-- Basic structur:  ***dependent variable ~ explanatory variables***  
+- Basic structure:  ***dependent variable ~ explanatory variables***  
 (e.g. ***y ~ x1 + x2***)
 
 - `data` takes a dataframe
@@ -374,7 +374,7 @@ coefficients(fit)
 
 - Predict `mpg` by `wt` and the transmission type `am` and their interaction
 
-- By deafult `am` is not a factor. Please create a factor for `am` first
+- By default `am` is not a factor. Please create a factor `transmission` for `am` first
 
 - Set the contrasts of the factor to *Helmert* and calculate the model.
 
@@ -385,15 +385,26 @@ coefficients(fit)
 ---
 
 ```{r}
-mtcars$am_factor <- factor(mtcars$am, labels = c("Automatic", "Manual"))
-contrasts(mtcars$am_factor) <- contr.helmert(2)
-fit1 <- lm(mpg ~ wt + am_factor + wt:am_factor, data = mtcars)
+mtcars$transmission <- factor(mtcars$am, labels = c("Automatic", "Manual"))
+contrasts(mtcars$transmission) <- contr.helmert(2)
+fit1 <- lm(mpg ~ wt + transmission + wt:transmission, data = mtcars)
 summary(fit1)
-contrasts(mtcars$am_factor) <- contr.treatment(2)
-fit2 <- lm(mpg ~ wt + am_factor + wt:am_factor, data = mtcars)
+contrasts(mtcars$transmission) <- contr.treatment(2)
+fit2 <- lm(mpg ~ wt + transmission + wt:transmission, data = mtcars)
 summary(fit2)
 
 ```
+
+# Design example
+
+
+```{r}
+library(sjPlot)
+tab_model(fit1, fit2,
+  show.ci = FALSE, show.se = TRUE,string.se = "se", string.est = "B",dv.labels = c("Model with helmert contrast", "Model with treatment contrast")
+)
+```
+
 
 ---
 class: center, middle
