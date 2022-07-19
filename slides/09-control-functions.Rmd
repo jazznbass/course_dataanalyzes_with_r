@@ -332,16 +332,30 @@ w20_die(results)
 
 ##
 
+With a for loop:
+
 ```{r eval = FALSE}
 w20_die <- function(dice) {
-  out <- c()
+  out <- dice
   for(i in 1:length(dice)) {
-    out[i] <- dice[i]
     if (dice[i] < 1 || dice[i] > 20) out[i] <- "This is not a decent W20 die!"
     if (dice[i] == 20) out[i] <- "Critical hit!!"
     if (dice[i] == 1) out[i] <- "Epic fail"
   }
   out
 }
+```
+
+With subsetting:
+
+```{r}
+w20_die <- function(dice) {
+  out <- dice
+  out[dice < 1 & dice > 20] <- "This is not a decent W20 die!"
+  out[dice == 20] <- "Critical hit!!"
+  out[dice == 1] <- "Epic fail"
+  out
+}
+```
 ```
 
