@@ -335,7 +335,7 @@ mtcars %>%
 
 ## 
 
-Set argument `names_vary = "slowest"` for a differrent ordering of variables:
+Set argument `names_vary = "slowest"` for a different ordering of variables:
 
 ```{r}
 mtcars %>% 
