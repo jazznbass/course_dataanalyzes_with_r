@@ -1,22 +1,22 @@
 ---
-title: "Transform a data frame"
+  title: "Transform a data frame"
 company: "`r if(exists('info')) info$company`"
 author: "`r if(exists('info')) info$author`"
 date: "`r if(exists('info')) info$date`"
 output:
   ioslides_presentation: 
-    css: styles.css
-    logo: img/ZEIF.png
-    widescreen: yes
-  html_document: default
-  pdf_document: default
-  beamer_presentation: default
-  powerpoint_presentation:
-    reference_doc: template.pptx
-  slidy_presentation: default
+  css: styles.css
+logo: img/ZEIF.png
+widescreen: yes
+html_document: default
+pdf_document: default
+beamer_presentation: default
+powerpoint_presentation:
+  reference_doc: template.pptx
+slidy_presentation: default
 ---
-
-```{r setup, include=FALSE}
+  
+  ```{r setup, include=FALSE}
 library(knitr)
 library(tidyverse)
 opts_chunk$set(echo = TRUE, warning = FALSE, message = FALSE)
@@ -29,26 +29,64 @@ stop_video <- function() {
 
 ```
 
-## Functions we will address today {.build}
-
-- `pivot_longer()`: switch from a wide format (with many columns) to a long format (with fewer columns) 
-- `full_join()`, `left_join()`: Merge two dataframes into one with a key variable.
-
 ## `pivot_longer()`
 
 - `cols`: The columns to be aggregated into a new variable.  
 - `names_to`: The name of the new variable containing the names of the aggregated columns.  
-- `values_to`: The name of the variable containing the values of the aggregated columns.  
+- `values_to`: The name of the variable containing the values of the aggregated columns.
 
-## Example
+## Example {.smaller}
+
+```{r}
+df <- data.frame(player=c('A', 'B', 'C', 'D'),
+                 year1=c(12, 15, 19, 19),
+                 year2=c(22, 29, 18, 12))
+
+df
+
+```
+
+##
+
+```{r}
+df %>% pivot_longer(cols = 2:3, names_to = 'year', values_to = 'points')
+```
+
+
+## Task {.smaller}
+
+- Take the `billboard` dataset. It looks like this:
+  
+  ```{r echo = FALSE}
+billboard %>% slice(1:5) %>% kable()
+```
+
+- Use the `pivot_longer()` function to create a dataset that looks like this:
+  
+  ```{r echo = FALSE}
+billboard %>%
+  pivot_longer(starts_with("wk"), names_to = "week", values_to = "position", values_drop_na = TRUE) %>%
+  slice(1:5) %>% kable()
+```
+
+##
+
+```{r}
+billboard %>%
+  pivot_longer(starts_with("wk"), names_to = "week", 
+               values_to = "position", values_drop_na = TRUE)
+```
+
+
+## Complex example {.smaller}
 
 We have such a dataframe:
-
-```{r echo = FALSE}
+  
+  ```{r echo = FALSE}
 kable(relig_income) %>% kableExtra::kable_classic_2()
 ```
 
-## We want such a plot:
+## We want such a plot: {.smaller}
 
 ```{r echo = FALSE}
 relig_income %>% 
@@ -60,15 +98,15 @@ relig_income %>%
   pivot_longer(2:11, names_to = "income", values_to = "count") %>%
   mutate(income = factor(income, levels = names(relig_income)[2:11])) %>%
   ggplot(aes(x = income, y = count)) +
-    geom_bar(stat = "identity", position = "dodge") +
-    facet_wrap(~religion) + 
-    theme_classic() + 
-    theme(axis.text.x = element_text(angle = 45, size = 7, hjust = 1)) +
-    ylab("%")
+  geom_bar(stat = "identity", position = "dodge") +
+  facet_wrap(~religion) + 
+  theme_classic() + 
+  theme(axis.text.x = element_text(angle = 45, size = 7, hjust = 1)) +
+  ylab("%")
 ```
 
 
-## Step 1: Turn the count values into percentages:
+## Step 1: Turn the count values into percentages: {.smaller}
 
 
 ```{r}
@@ -77,11 +115,14 @@ new_df <- relig_income %>%
   rowwise() %>%
   mutate(total = sum(c_across(2:11))) %>%
   ungroup() %>%
-  mutate(across(2:11, ~ . / total * 100))
+  mutate(across(2:11, ~ . / total * 100)) %>%
+  filter(total >= 500)
 
 # with base R
 new_df <- as.data.frame(relig_income)
 new_df$total <- apply(new_df[, 2:11], 1, sum)
+new_df <- new_df[new_df$total >= 500,]
+
 
 for(i in 1:nrow(new_df))  
   new_df[i, 2:11] <- new_df[i, 2:11] / new_df[i, "total"] * 100
@@ -91,12 +132,12 @@ for(i in 1:nrow(new_df))
 new_df
 ```
 
-## Step 2: Turn data into long format:
+## Step 2: Turn data into long format: {.smaller}
 
 
 ```{r}
 # tidy R
-new_religion <- relig_income %>%
+new_religion <- new_df %>%
   pivot_longer(col = 2:11, names_to = "income", values_to = "count")
 
 
@@ -117,22 +158,19 @@ for(i in 1:nrow(new_df))
 kable(new_long) %>% kableExtra::kable_classic_2()
 ```
 
-## Create the plot
+## Create the plot {.smaller}
 
 ```{r echo = FALSE}
-new_long %>%
-  
-ggplot(aes(x = income, y = count)) +
-    geom_bar(stat = "identity", position = "dodge") +
-    facet_wrap(~religion) + 
-    theme(axis.text.x = element_text(angle = 90))
+new_religion %>%
+  mutate(income = factor(income, levels = names(relig_income)[2:11])) %>%
+  ggplot(aes(x = income, y = count)) +
+  geom_bar(stat = "identity", position = "dodge") +
+  facet_wrap(~religion) + 
+  theme_classic() + 
+  theme(axis.text.x = element_text(angle = 45, size = 7, hjust = 1)) +
+  ylab("%")
 ```
 
-##
 
-```{r}
-billboard %>%
-  pivot_longer(starts_with("wk"), names_to = "week", values_to = "position", values_drop_na = TRUE)
-```
 
 
