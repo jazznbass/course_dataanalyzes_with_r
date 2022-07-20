@@ -24,7 +24,7 @@ files <- c(
   #"07-Regression.Rmd"
 )
 
-files <- "05-Statistics.Rmd"
+files <- "09-control-functions.Rmd"
 
 for(file  in files) {
   rmarkdown::render(
