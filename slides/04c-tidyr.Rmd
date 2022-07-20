@@ -128,8 +128,6 @@ ggplot(aes(x = income, y = count)) +
     theme(axis.text.x = element_text(angle = 90))
 ```
 
-
-
 ##
 
 ```{r}

@@ -30,7 +30,7 @@
       // Author information
       presenters: [
             {
-        name:  '' ,
+        name:  'Jürgen Wilbert' ,
         company: '',
         gplus: '',
         twitter: '',
@@ -3225,6 +3225,7 @@ slide:not(.current) .plotly.html-widget{
       <h1 data-config-title><!-- populated from slide_config.json --></h1>
       
       <p data-config-presenter><!-- populated from slide_config.json --></p>
+            <p style="margin-top: 6px; margin-left: -2px;">Version: 20 July 2022</p>
           </hgroup>
   </slide>
 
@@ -3240,7 +3241,10 @@ slide:not(.current) .plotly.html-widget{
 
 <p>The expression can take multiple lines which are enclosed with braces:</p>
 
-<p><code>if (age &gt;= 18 &amp;&amp; gender == &quot;male&quot;) {</code><br/><code>adult &lt;- TRUE</code><br/><code>n_males &lt;- n_males + 1</code><br/><code>}</code></p>
+<pre class = 'prettyprint lang-r'>if (age &gt;= 18 &amp;&amp; gender == &quot;male&quot;) { 
+  adult &lt;- TRUE
+  n_males &lt;- n_males + 1
+}</pre>
 
 </article></slide><slide class=""><hgroup><h2>if-else control structures</h2></hgroup><article  id="if-else-control-structures">
 
@@ -3252,9 +3256,17 @@ slide:not(.current) .plotly.html-widget{
 
 <p><code>if (age &gt;= 18) out &lt;- &quot;full-aged&quot; else out &lt;- &quot;underage&quot;</code></p>
 
-<p>This can also take multiple commands:</p>
+</article></slide><slide class=""><hgroup><h2>More complex example</h2></hgroup><article  id="more-complex-example">
 
-<p><code>if (age &gt;= 18 &amp;&amp; gender == &quot;male&quot;) {</code><br/><code>adult &lt;- TRUE</code><br/><code>n_males &lt;- n_males + 1</code><br/><code>} else if (age &gt;= 18 &amp;&amp; gender == &quot;female&quot;) {</code> <code>adult &lt;- TRUE</code><br/><code>n_females &lt;- n_females + 1</code><br/><code>} else if (age &lt; 18) {</code><br/><code>adult &lt;- FALSE</code><br/><code>}</code></p>
+<pre class = 'prettyprint lang-r'>if (age &gt;= 18 &amp;&amp; gender == &quot;male&quot;) {  
+  adult &lt;- TRUE  
+  n_males &lt;- n_males + 1  
+} else if (age &gt;= 18 &amp;&amp; gender == &quot;female&quot;) { 
+  adult &lt;- TRUE  
+  n_females &lt;- n_females + 1  
+} else if (age &lt; 18) {    
+  adult &lt;- FALSE  
+}</pre>
 
 </article></slide><slide class=""><hgroup><h2></h2></hgroup><article  id="section">
 
@@ -3273,7 +3285,7 @@ if (age &gt;= 18) cat(&quot;Adult!&quot;) else cat(&quot;Underage!&quot;)</pre>
 
 <pre class = 'prettyprint lang-r'>age &lt;- c(15, 18, 14, 12)
 ifelse(age &gt;= 18, &quot;adult&quot;, &quot;underage&quot;)
-&gt; [1] &quot;underage&quot; &quot;adult&quot;    &quot;underage&quot; &quot;underage&quot;</pre>
+[1] &quot;underage&quot; &quot;adult&quot;    &quot;underage&quot; &quot;underage&quot;</pre>
 
 </article></slide><slide class=""><hgroup><h2>Task: Read the code</h2></hgroup><article  id="task-read-the-code">
 
@@ -3313,34 +3325,34 @@ if (language == &quot;english&quot;) {
 results &lt;- ifelse(age &lt; cut_full_aged, label_underage, label_adult)
 
 results
-&gt; [1] &quot;Minderjährig&quot; &quot;Volljährig&quot;   &quot;Volljährig&quot;   &quot;Volljährig&quot;   &quot;Minderjährig&quot;
-&gt; [6] &quot;Volljährig&quot;</pre>
+[1] &quot;Minderjährig&quot; &quot;Volljährig&quot;   &quot;Volljährig&quot;   &quot;Volljährig&quot;   &quot;Minderjährig&quot;
+[6] &quot;Volljährig&quot;  </pre>
 
 </article></slide><slide class=""><hgroup><h2>Task: Read the code</h2></hgroup><article  id="task-read-the-code-1">
 
-<p>What is contained in <code>results</code> after executing the code?</p>
+<p>What is contained in <code>res</code> after executing the code?</p>
 
-<pre class = 'prettyprint lang-r'>bj &lt;- 1900 + 1:5 * 20
-results &lt;- ifelse(bj &gt; 1996, &quot;Generation Z&quot;, 
-                  ifelse(bj &gt; 1980, &quot;Millenial&quot;, 
-                         ifelse(bj &gt; 1964, &quot;Generation X&quot;, 
-                                ifelse(bj &gt;1945, &quot;Babyboomer&quot;, 
-                                       ifelse(bj &gt; 1927, &quot;Silent generation&quot;, &quot;Unknown&quot;)))))
+<pre class = 'prettyprint lang-r'>by &lt;- 1900 + 1:5 * 20
+res &lt;- ifelse(by &gt; 1996, &quot;Generation Z&quot;, 
+                  ifelse(by &gt; 1980, &quot;Millenial&quot;, 
+                         ifelse(by &gt; 1964, &quot;Generation X&quot;, 
+                                ifelse(by &gt;1945, &quot;Babyboomer&quot;, 
+                                       ifelse(by &gt; 1927, &quot;Silent generation&quot;, &quot;Unknown&quot;)))))
                        
 </pre>
 
 </article></slide><slide class=""><hgroup><h2></h2></hgroup><article  id="section-2">
 
 <pre class = 'prettyprint lang-r'>by &lt;- 1900 + 1:5 * 20
-results &lt;- ifelse(by &gt; 1996, &quot;Generation Z&quot;, 
+res &lt;- ifelse(by &gt; 1996, &quot;Generation Z&quot;, 
                   ifelse(by &gt; 1980, &quot;Millenial&quot;, 
                          ifelse(by &gt; 1964, &quot;Generation X&quot;, 
                                 ifelse(by &gt;1945, &quot;Babyboomer&quot;, 
                                        ifelse(by &gt; 1927, &quot;Silent generation&quot;, &quot;Unknown&quot;)))))
                        
-results
-&gt; [1] &quot;Unknown&quot;           &quot;Silent generation&quot; &quot;Babyboomer&quot;       
-&gt; [4] &quot;Generation X&quot;      &quot;Generation Z&quot;</pre>
+res
+[1] &quot;Unknown&quot;           &quot;Silent generation&quot; &quot;Babyboomer&quot;       
+[4] &quot;Generation X&quot;      &quot;Generation Z&quot;     </pre>
 
 </article></slide><slide class=""><hgroup><h2>For loops</h2></hgroup><article  id="for-loops">
 
@@ -3351,16 +3363,16 @@ results
 <p>example:</p>
 
 <pre class = 'prettyprint lang-r'>for (i in 1:10) print(i)
-&gt; [1] 1
-&gt; [1] 2
-&gt; [1] 3
-&gt; [1] 4
-&gt; [1] 5
-&gt; [1] 6
-&gt; [1] 7
-&gt; [1] 8
-&gt; [1] 9
-&gt; [1] 10</pre>
+[1] 1
+[1] 2
+[1] 3
+[1] 4
+[1] 5
+[1] 6
+[1] 7
+[1] 8
+[1] 9
+[1] 10</pre>
 
 </article></slide><slide class=""><hgroup><h2></h2></hgroup><article  id="section-3">
 
@@ -3373,9 +3385,9 @@ for(i in c(20, 12, 15, 16, 18)) {
   if (i &lt; 18) minor = minor + 1
 }
 cat(&quot;Adults:&quot;, adult)
-&gt; Adults: 2
+Adults: 2
 cat(&quot;Minors:&quot;, minor)
-&gt; Minors: 3</pre>
+Minors: 3</pre>
 
 </article></slide><slide class=""><hgroup><h2></h2></hgroup><article  id="section-4">
 
@@ -3393,8 +3405,7 @@ for(i in 1:length(age1)) {
   comparison &lt;- c(comparison, tmp)
 }
 
-comparison
-</pre>
+comparison</pre>
 
 </article></slide><slide class=""><hgroup><h2></h2></hgroup><article  id="section-5">
 
@@ -3412,44 +3423,21 @@ for(i in 1:nrow(mtcars)) {
   }
 }
 
-mtcars[, c(&quot;mpg&quot;, &quot;cyl&quot;, &quot;wt&quot;, &quot;impact&quot;)]
-</pre>
+mtcars[, c(&quot;mpg&quot;, &quot;cyl&quot;, &quot;wt&quot;, &quot;impact&quot;)]</pre>
 
 </article></slide><slide class=""><hgroup><h2></h2></hgroup><article  id="section-6">
 
-<pre >&gt;                      mpg cyl    wt      impact
-&gt; Mazda RX4           21.0   6 2.620     average
-&gt; Mazda RX4 Wag       21.0   6 2.875     average
-&gt; Datsun 710          22.8   4 2.320  Light eco!
-&gt; Hornet 4 Drive      21.4   6 3.215     average
-&gt; Hornet Sportabout   18.7   8 3.440     average
-&gt; Valiant             18.1   6 3.460     average
-&gt; Duster 360          14.3   8 3.570     average
-&gt; Merc 240D           24.4   4 3.190     average
-&gt; Merc 230            22.8   4 3.150     average
-&gt; Merc 280            19.2   6 3.440     average
-&gt; Merc 280C           17.8   6 3.440     average
-&gt; Merc 450SE          16.4   8 4.070 Big waster!
-&gt; Merc 450SL          17.3   8 3.730     average
-&gt; Merc 450SLC         15.2   8 3.780     average
-&gt; Cadillac Fleetwood  10.4   8 5.250 Big waster!
-&gt; Lincoln Continental 10.4   8 5.424 Big waster!
-&gt; Chrysler Imperial   14.7   8 5.345 Big waster!
-&gt; Fiat 128            32.4   4 2.200  Light eco!
-&gt; Honda Civic         30.4   4 1.615  Light eco!
-&gt; Toyota Corolla      33.9   4 1.835  Light eco!
-&gt; Toyota Corona       21.5   4 2.465     average
-&gt; Dodge Challenger    15.5   8 3.520     average
-&gt; AMC Javelin         15.2   8 3.435     average
-&gt; Camaro Z28          13.3   8 3.840     average
-&gt; Pontiac Firebird    19.2   8 3.845     average
-&gt; Fiat X1-9           27.3   4 1.935  Light eco!
-&gt; Porsche 914-2       26.0   4 2.140  Light eco!
-&gt; Lotus Europa        30.4   4 1.513  Light eco!
-&gt; Ford Pantera L      15.8   8 3.170     average
-&gt; Ferrari Dino        19.7   6 2.770     average
-&gt; Maserati Bora       15.0   8 3.570     average
-&gt; Volvo 142E          21.4   4 2.780     average</pre>
+<pre >                   mpg cyl    wt     impact
+Mazda RX4         21.0   6 2.620    average
+Mazda RX4 Wag     21.0   6 2.875    average
+Datsun 710        22.8   4 2.320 Light eco!
+Hornet 4 Drive    21.4   6 3.215    average
+Hornet Sportabout 18.7   8 3.440    average
+Valiant           18.1   6 3.460    average
+Duster 360        14.3   8 3.570    average
+Merc 240D         24.4   4 3.190    average
+Merc 230          22.8   4 3.150    average
+Merc 280          19.2   6 3.440    average</pre>
 
 </article></slide><slide class=""><hgroup><h2>Functions</h2></hgroup><article  id="functions">
 
@@ -3463,9 +3451,9 @@ mtcars[, c(&quot;mpg&quot;, &quot;cyl&quot;, &quot;wt&quot;, &quot;impact&quot;)
 }
 
 power2(4)
-&gt; [1] 16
+[1] 16
 power2(c(2, 3, 4,5))
-&gt; [1]  4  9 16 25</pre>
+[1]  4  9 16 25</pre>
 
 </article></slide><slide class=""><hgroup><h2>Function example</h2></hgroup><article  id="function-example">
 
@@ -3487,13 +3475,13 @@ power2(c(2, 3, 4,5))
   dice
 }
 w20_die(20)
-&gt; [1] &quot;Critical hit!!&quot;
+[1] &quot;Critical hit!!&quot;
 w20_die(3)
-&gt; [1] 3
+[1] 3
 w20_die(1)
-&gt; [1] &quot;Epic fail&quot;
+[1] &quot;Epic fail&quot;
 w20_die(0)
-&gt; [1] &quot;This is not a decent W20 die!&quot;</pre>
+[1] &quot;This is not a decent W20 die!&quot;</pre>
 
 </article></slide><slide class=""><hgroup><h2>Task Read the code</h2></hgroup><article  id="task-read-the-code-2">
 
@@ -3508,7 +3496,7 @@ w20_die(0)
 var &lt;- c(12, 16, 19, 20, 11)
 
 percentage(var &gt;= 18)
-&gt; [1] 40</pre>
+[1] 40</pre>
 
 </article></slide><slide class=""><hgroup><h2>Task</h2></hgroup><article  id="task" class="smaller">
 
@@ -3525,9 +3513,9 @@ percentage(var &gt;= 18)
 
 <pre class = 'prettyprint lang-r'>results &lt;- c(21, 2, 16, 20, 1, 0)
 w20_die(results)
-&gt; [1] &quot;This is not a decent W20 die!&quot; &quot;2&quot;                            
-&gt; [3] &quot;16&quot;                            &quot;Critical hit!!&quot;               
-&gt; [5] &quot;Epic fail&quot;                     &quot;This is not a decent W20 die!&quot;</pre>
+[1] &quot;This is not a decent W20 die!&quot; &quot;2&quot;                            
+[3] &quot;16&quot;                            &quot;Critical hit!!&quot;               
+[5] &quot;Epic fail&quot;                     &quot;This is not a decent W20 die!&quot;</pre>
 
 </article></slide><slide class=""><hgroup><h2>Solution 1: With a <strong><em>for</em></strong> loop:</h2></hgroup><article  id="solution-1-with-a-for-loop">
 
@@ -3542,9 +3530,9 @@ w20_die(results)
 }
 results &lt;- c(21, 2, 16, 20, 1, 0)
 w20_die(results)
-&gt; [1] &quot;This is not a decent W20 die!&quot; &quot;2&quot;                            
-&gt; [3] &quot;16&quot;                            &quot;Critical hit!!&quot;               
-&gt; [5] &quot;Epic fail&quot;                     &quot;This is not a decent W20 die!&quot;</pre>
+[1] &quot;This is not a decent W20 die!&quot; &quot;2&quot;                            
+[3] &quot;16&quot;                            &quot;Critical hit!!&quot;               
+[5] &quot;Epic fail&quot;                     &quot;This is not a decent W20 die!&quot;</pre>
 
 </article></slide><slide class=""><hgroup><h2>Solution 2: With subsetting:</h2></hgroup><article  id="solution-2-with-subsetting">
 
@@ -3557,9 +3545,9 @@ w20_die(results)
 }
 results &lt;- c(21, 2, 16, 20, 1, 0)
 w20_die(results)
-&gt; [1] &quot;This is not a decent W20 die!&quot; &quot;2&quot;                            
-&gt; [3] &quot;16&quot;                            &quot;Critical hit!!&quot;               
-&gt; [5] &quot;Epic fail&quot;                     &quot;This is not a decent W20 die!&quot;</pre>
+[1] &quot;This is not a decent W20 die!&quot; &quot;2&quot;                            
+[3] &quot;16&quot;                            &quot;Critical hit!!&quot;               
+[5] &quot;Epic fail&quot;                     &quot;This is not a decent W20 die!&quot;</pre>
 
 </article></slide><slide class=""><hgroup><h2>Solution 3: With <strong><em>ifelse</em></strong>:</h2></hgroup><article  id="solution-3-with-ifelse">
 
@@ -3570,9 +3558,9 @@ w20_die(results)
 }
 results &lt;- c(21, 2, 16, 20, 1, 0)
 w20_die(results)
-&gt; [1] &quot;This is not a decent W20 die!&quot; &quot;2&quot;                            
-&gt; [3] &quot;16&quot;                            &quot;Critical hit!!&quot;               
-&gt; [5] &quot;Epic fail&quot;                     &quot;This is not a decent W20 die!&quot;</pre></article></slide>
+[1] &quot;This is not a decent W20 die!&quot; &quot;2&quot;                            
+[3] &quot;16&quot;                            &quot;Critical hit!!&quot;               
+[5] &quot;Epic fail&quot;                     &quot;This is not a decent W20 die!&quot;</pre></article></slide>
 
 
   <slide class="backdrop"></slide>
