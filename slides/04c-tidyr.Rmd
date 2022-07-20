@@ -1,5 +1,5 @@
 ---
-  title: "Transform a data frame"
+title: "Transform a data frame"
 company: "`r if(exists('info')) info$company`"
 author: "`r if(exists('info')) info$author`"
 date: "`r if(exists('info')) info$date`"
@@ -16,7 +16,7 @@ powerpoint_presentation:
 slidy_presentation: default
 ---
   
-  ```{r setup, include=FALSE}
+```{r setup, include=FALSE}
 library(knitr)
 library(tidyverse)
 opts_chunk$set(echo = TRUE, warning = FALSE, message = FALSE)
