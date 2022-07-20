@@ -5,21 +5,15 @@ author: "`r if(exists('info')) info$author`"
 date: "`r if(exists('info')) info$date`"
 output:
   ioslides_presentation: 
-  css: styles.css
-logo: img/ZEIF.png
-widescreen: yes
-html_document: default
-pdf_document: default
-beamer_presentation: default
-powerpoint_presentation:
-  reference_doc: template.pptx
-slidy_presentation: default
+    css: styles.css
+    logo: img/ZEIF.png
+    widescreen: yes
 ---
   
 ```{r setup, include=FALSE}
 library(knitr)
 library(tidyverse)
-opts_chunk$set(echo = TRUE, warning = FALSE, message = FALSE)
+opts_chunk$set(echo = TRUE, warning = FALSE, message = FALSE, collapse = TRUE, comment = "")
 
 stop_video <- function() {
   #out <- '<div class="red2">**Please stop the video here! Continue after completing the task!**</div>'
@@ -55,18 +49,20 @@ df %>% pivot_longer(cols = 2:3, names_to = 'year', values_to = 'points')
 
 ## Task {.smaller}
 
-- Take the `billboard` dataset. It looks like this:
+Take the `billboard` dataset. It looks like this:
   
-  ```{r echo = FALSE}
-billboard %>% slice(1:5) %>% kable()
+```{r echo = FALSE}
+billboard %>% rmarkdown::paged_table()
 ```
 
-- Use the `pivot_longer()` function to create a dataset that looks like this:
+## {.smaller}
+
+Use the `pivot_longer()` function to create a dataset that looks like this:
   
-  ```{r echo = FALSE}
+```{r echo = FALSE}
 billboard %>%
-  pivot_longer(starts_with("wk"), names_to = "week", values_to = "position", values_drop_na = TRUE) %>%
-  slice(1:5) %>% kable()
+  pivot_longer(starts_with("wk"), names_to = "week", values_to = "position", values_drop_na = TRUE) %>% 
+  rmarkdown::paged_table()
 ```
 
 ##
@@ -81,8 +77,8 @@ billboard %>%
 ## Complex example {.smaller}
 
 We have such a dataframe:
-  
-  ```{r echo = FALSE}
+
+```{r echo = FALSE}
 kable(relig_income) %>% kableExtra::kable_classic_2()
 ```
 
