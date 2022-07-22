@@ -29,23 +29,36 @@ stop_video <- function() {
 - `names_to`: The name of the new variable containing the names of the aggregated columns.  
 - `values_to`: The name of the variable containing the values of the aggregated columns.
 
-## Example {.smaller}
+##
 
-```{r}
+<div class="left">
+
+**Wide format:**
+
+```{r echo=FALSE}
 df <- data.frame(player=c('A', 'B', 'C', 'D'),
                  year1=c(12, 15, 19, 19),
                  year2=c(22, 29, 18, 12))
 
 df
-
 ```
 
-##
+</div>
+
+<div class="right">
+
+**Long format:**
 
 ```{r}
-df %>% pivot_longer(cols = 2:3, names_to = 'year', values_to = 'points')
+pivot_longer(
+  df, 
+  cols = 2:3, 
+  names_to = 'year', 
+  values_to = 'points'
+)
 ```
 
+</div>
 
 ## Task {.smaller}
 
@@ -104,6 +117,7 @@ relig_income %>%
 
 ## Step 1: Turn the count values into percentages: {.smaller}
 
+<div class = "left">
 
 ```{r}
 # with dplyr:
@@ -113,27 +127,38 @@ new_df <- relig_income %>%
   ungroup() %>%
   mutate(across(2:11, ~ . / total * 100)) %>%
   filter(total >= 500)
+```
 
+</div>
+
+<div class = "right">
+
+```{r}
 # with base R
 new_df <- as.data.frame(relig_income)
 new_df$total <- apply(new_df[, 2:11], 1, sum)
 new_df <- new_df[new_df$total >= 500,]
 
-
 for(i in 1:nrow(new_df))  
-  new_df[i, 2:11] <- new_df[i, 2:11] / new_df[i, "total"] * 100
+  new_df[i, 2:11] <- new_df[i, 2:11] / new_df$total[i] * 100
 ```
+
+</div>
+
+<p></p>
 
 ```{r echo = FALSE}
 new_df
 ```
+
+
 
 ## Step 2: Turn data into long format: {.smaller}
 
 
 ```{r}
 # tidy R
-new_religion <- new_df %>%
+new_long <- new_df %>%
   pivot_longer(col = 2:11, names_to = "income", values_to = "count")
 
 
@@ -146,7 +171,7 @@ new_long <- data.frame(
 new_long$religion <- rep(new_df$religion, each = 10)
 
 for(i in 1:nrow(new_df))
-  new_long$count[((i-1)*10+1):((i-1)*10+10)] <- new_df[i, 2:11]
+  new_long$count[((i-1)*10+1):((i-1)*10+10)] <- as.numeric(new_df[i, 2:11])
 
 ```
 
@@ -157,7 +182,7 @@ kable(new_long) %>% kableExtra::kable_classic_2()
 ## Create the plot {.smaller}
 
 ```{r echo = FALSE}
-new_religion %>%
+new_long %>%
   mutate(income = factor(income, levels = names(relig_income)[2:11])) %>%
   ggplot(aes(x = income, y = count)) +
   geom_bar(stat = "identity", position = "dodge") +
