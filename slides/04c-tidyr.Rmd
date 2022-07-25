@@ -86,6 +86,82 @@ billboard %>%
                values_to = "position", values_drop_na = TRUE)
 ```
 
+## {.smaller}
+
+<div class="left1">
+
+**Wide format:**
+
+```{r echo=FALSE}
+n <- 30
+df <- data.frame(id=1:n,
+                 dia=sample(130:150, n, replace = TRUE),
+                 sys=sample(90:100, n, replace = TRUE),
+                 anxious = sample(1:5, n, replace = TRUE),
+                 happy = sample(1:5, n, replace = TRUE),
+                 sad = sample(1:5, n, replace = TRUE)
+                 )
+df$dia <- df$dia + df$anxious * 10 - df$happy *10
+df$sys <- df$sys + df$anxious * 7 - df$happy *7
+df
+```
+
+</div>
+
+<div class="right1">
+
+**ggplot graph:**
+
+
+```{r echo = FALSE}
+df %>%
+  pivot_longer(cols = 2:3, 
+               names_to = 'bp_type', 
+               values_to = 'pressure') %>%
+  pivot_longer(cols = c("anxious", "happy", "sad"), 
+               names_to = 'emotion', 
+               values_to = 'emotion value') %>%
+  ggplot(aes(x = emotion, y = pressure, color = bp_type, size = `emotion value`)) +
+    geom_jitter(width = 0.2)
+```
+
+
+
+</div>
+
+
+## {.smaller}
+
+<div class="left">
+
+**Step 1:**
+
+```{r}
+df_long <- df %>%
+  pivot_longer(cols = 2:3, 
+               names_to = 'bp_type', 
+               values_to = 'pressure') %>%
+  pivot_longer(cols = c("anxious", "happy", "sad"), 
+               names_to = 'emotion', 
+               values_to = 'emotion value')
+df_long
+```
+
+</div>
+
+<div class="right">
+
+**Step 2:**
+
+```{r fig.height=3, fig.width=6}
+ggplot(df_long, 
+  aes(x = emotion, y = pressure, 
+      color = bp_type, size = `emotion value`)) +
+  geom_jitter(width = 0.2)
+```
+
+
+</div>
 
 ## Complex example {.smaller}
 
