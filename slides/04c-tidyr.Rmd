@@ -62,7 +62,7 @@ pivot_longer(
 
 ## Task {.smaller}
 
-Take the `billboard` dataset. It looks like this:
+Take the `billboard` dataset (package tidyverse/tidyr). It looks like this:
   
 ```{r echo = FALSE}
 billboard %>% rmarkdown::paged_table()
@@ -88,11 +88,11 @@ billboard %>%
 
 ## {.smaller}
 
-<div class="left1">
+<div class="left">
 
 **Wide format:**
 
-```{r echo=FALSE}
+```{r echo=FALSE, collapse=FALSE}
 n <- 30
 df <- data.frame(id=1:n,
                  dia=sample(130:150, n, replace = TRUE),
@@ -108,10 +108,22 @@ df
 
 </div>
 
-<div class="right1">
+<div class="right">
 
-**ggplot graph:**
+```{r}
+df %>%
+  pivot_longer(cols = 2:3, 
+               names_to = 'bp_type', 
+               values_to = 'pressure') %>%
+  pivot_longer(cols = c("anxious", "happy", "sad"), 
+               names_to = 'emotion', 
+               values_to = 'emotion_value')
+```
 
+</div>
+
+
+## Task: Create this plot:
 
 ```{r echo = FALSE}
 df %>%
@@ -120,15 +132,24 @@ df %>%
                values_to = 'pressure') %>%
   pivot_longer(cols = c("anxious", "happy", "sad"), 
                names_to = 'emotion', 
-               values_to = 'emotion value') %>%
-  ggplot(aes(x = emotion, y = pressure, color = bp_type, size = `emotion value`)) +
+               values_to = 'emotion_value') %>%
+  ggplot(aes(x = emotion, y = pressure, color = bp_type, size = emotion_value)) +
     geom_jitter(width = 0.2)
 ```
 
+---
 
+- Load the dataset with:
 
-</div>
+```{r eval = FALSE}
+download.file("https://raw.githubusercontent.com/jazznbass/datasets/main/bp_example.csv", 
+    destfile = "example.csv", method = "curl")
+df <- read.csv("example.csv")
+```
 
+- Turn the df into a long format as described on the previous slide.
+- use ggplot: Aesthetics: x = emotion, y = pressure, color = bp_type, size = emotion_value.
+- Add a jitter geom with width 0.2.
 
 ## {.smaller}
 
@@ -143,7 +164,7 @@ df_long <- df %>%
                values_to = 'pressure') %>%
   pivot_longer(cols = c("anxious", "happy", "sad"), 
                names_to = 'emotion', 
-               values_to = 'emotion value')
+               values_to = 'emotion_value')
 df_long
 ```
 
@@ -156,7 +177,7 @@ df_long
 ```{r fig.height=3, fig.width=6}
 ggplot(df_long, 
   aes(x = emotion, y = pressure, 
-      color = bp_type, size = `emotion value`)) +
+      color = bp_type, size = emotion_value)) +
   geom_jitter(width = 0.2)
 ```
 
@@ -226,8 +247,6 @@ for(i in 1:nrow(new_df))
 ```{r echo = FALSE}
 new_df
 ```
-
-
 
 ## Step 2: Turn data into long format: {.smaller}
 
