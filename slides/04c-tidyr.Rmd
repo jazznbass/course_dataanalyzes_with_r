@@ -9,7 +9,7 @@ output:
     logo: img/ZEIF.png
     widescreen: yes
 ---
-  
+
 ```{r setup, include=FALSE}
 library(knitr)
 library(tidyverse)
@@ -23,16 +23,17 @@ stop_video <- function() {
 
 ```
 
+# From wide to long
+
 ## `pivot_longer()`
 
-- `cols`: The columns to be aggregated into a new variable.  
-- `names_to`: The name of the new variable containing the names of the aggregated columns.  
-- `values_to`: The name of the variable containing the values of the aggregated columns.
+-   `cols`: The columns to be aggregated into a new variable.\
+-   `names_to`: The name of the new variable containing the names of the aggregated columns.\
+-   `values_to`: The name of the variable containing the values of the aggregated columns.
 
-##
+## 
 
-<div class="left">
-
+::: left
 **Wide format:**
 
 ```{r echo=FALSE}
@@ -42,11 +43,9 @@ df <- data.frame(player=c('A', 'B', 'C', 'D'),
 
 df
 ```
+:::
 
-</div>
-
-<div class="right">
-
+::: right
 **Long format:**
 
 ```{r}
@@ -57,28 +56,27 @@ pivot_longer(
   values_to = 'points'
 )
 ```
-
-</div>
+:::
 
 ## Task {.smaller}
 
 Take the `billboard` dataset (package tidyverse/tidyr). It looks like this:
-  
+
 ```{r echo = FALSE}
 billboard %>% rmarkdown::paged_table()
 ```
 
-## {.smaller}
+##  {.smaller}
 
 Use the `pivot_longer()` function to create a dataset that looks like this:
-  
+
 ```{r echo = FALSE}
 billboard %>%
   pivot_longer(starts_with("wk"), names_to = "week", values_to = "position", values_drop_na = TRUE) %>% 
   rmarkdown::paged_table()
 ```
 
-##
+## 
 
 ```{r}
 billboard %>%
@@ -86,10 +84,9 @@ billboard %>%
                values_to = "position", values_drop_na = TRUE)
 ```
 
-## {.smaller}
+##  {.smaller}
 
-<div class="left">
-
+::: left
 **Wide format:**
 
 ```{r echo=FALSE, collapse=FALSE}
@@ -105,11 +102,9 @@ df$dia <- df$dia + df$anxious * 10 - df$happy *10
 df$sys <- df$sys + df$anxious * 7 - df$happy *7
 df
 ```
+:::
 
-</div>
-
-<div class="right">
-
+::: right
 ```{r}
 df %>%
   pivot_longer(cols = 2:3, 
@@ -119,9 +114,7 @@ df %>%
                names_to = 'emotion', 
                values_to = 'emotion_value')
 ```
-
-</div>
-
+:::
 
 ## Task: Create this plot:
 
@@ -137,9 +130,9 @@ df %>%
     geom_jitter(width = 0.2)
 ```
 
----
+------------------------------------------------------------------------
 
-- Load the dataset with:
+-   Load the dataset with:
 
 ```{r eval = FALSE}
 download.file("https://raw.githubusercontent.com/jazznbass/datasets/main/bp_example.csv", 
@@ -147,14 +140,13 @@ download.file("https://raw.githubusercontent.com/jazznbass/datasets/main/bp_exam
 df <- read.csv("example.csv")
 ```
 
-- Turn the df into a long format as described on the previous slide.
-- use ggplot: Aesthetics: x = emotion, y = pressure, color = bp_type, size = emotion_value.
-- Add a jitter geom with width 0.2.
+-   Turn the df into a long format as described on the previous slide.
+-   use ggplot: Aesthetics: x = emotion, y = pressure, color = bp_type, size = emotion_value.
+-   Add a jitter geom with width 0.2.
 
-## {.smaller}
+##  {.smaller}
 
-<div class="left">
-
+::: left
 **Step 1:**
 
 ```{r}
@@ -167,11 +159,9 @@ df_long <- df %>%
                values_to = 'emotion_value')
 df_long
 ```
+:::
 
-</div>
-
-<div class="right">
-
+::: right
 **Step 2:**
 
 ```{r fig.height=3, fig.width=6}
@@ -180,9 +170,7 @@ ggplot(df_long,
       color = bp_type, size = emotion_value)) +
   geom_jitter(width = 0.2)
 ```
-
-
-</div>
+:::
 
 ## Complex example {.smaller}
 
@@ -211,11 +199,9 @@ relig_income %>%
   ylab("%")
 ```
 
-
 ## Step 1: Turn the count values into percentages: {.smaller}
 
-<div class = "left">
-
+::: left
 ```{r}
 # with dplyr:
 new_df <- relig_income %>% 
@@ -225,11 +211,9 @@ new_df <- relig_income %>%
   mutate(across(2:11, ~ . / total * 100)) %>%
   filter(total >= 500)
 ```
+:::
 
-</div>
-
-<div class = "right">
-
+::: right
 ```{r}
 # with base R
 new_df <- as.data.frame(relig_income)
@@ -239,17 +223,13 @@ new_df <- new_df[new_df$total >= 500,]
 for(i in 1:nrow(new_df))  
   new_df[i, 2:11] <- new_df[i, 2:11] / new_df$total[i] * 100
 ```
-
-</div>
-
-<p></p>
+:::
 
 ```{r echo = FALSE}
-new_df
+kable(new_df) %>% kableExtra::kable_classic_2()
 ```
 
 ## Step 2: Turn data into long format: {.smaller}
-
 
 ```{r}
 # tidy R
@@ -274,19 +254,183 @@ for(i in 1:nrow(new_df))
 kable(new_long) %>% kableExtra::kable_classic_2()
 ```
 
-## Create the plot {.smaller}
+## Create the basic plot {.smaller}
 
-```{r echo = FALSE}
+```{r}
+new_long %>%
+  ggplot(aes(x = income, y = count)) +
+  geom_col() +
+  facet_wrap(~religion)
+```
+
+## Rotate the text and set a label {.smaller}
+
+```{r}
+new_long %>%
+  ggplot(aes(x = income, y = count)) +
+  geom_col() +
+  facet_wrap(~religion) + 
+  theme(axis.text.x = element_text(angle = 45, size = 7, hjust = 1)) +
+  ylab("%")
+```
+
+## Reorder income  {.smaller}
+
+```{r}
 new_long %>%
   mutate(income = factor(income, levels = names(relig_income)[2:11])) %>%
   ggplot(aes(x = income, y = count)) +
-  geom_bar(stat = "identity", position = "dodge") +
+  geom_col() +
+  facet_wrap(~religion) + 
+  theme(axis.text.x = element_text(angle = 45, size = 7, hjust = 1)) +
+  ylab("%")
+```
+
+## Set a nice theme {.smaller}
+
+```{r}
+new_long %>%
+  mutate(income = factor(income, levels = names(relig_income)[2:11])) %>%
+  ggplot(aes(x = income, y = count)) +
+  geom_col() +
   facet_wrap(~religion) + 
   theme_classic() + 
   theme(axis.text.x = element_text(angle = 45, size = 7, hjust = 1)) +
   ylab("%")
 ```
 
+# Join datasets
 
+## `full_join()`
 
+Joins to datasets:
 
+-   `x` and `y`: Two dataset objects.
+-   `by`: A columnname by which the datasets are joined.
+
+## Example {.smaller}
+
+::: left
+```{r echo=FALSE, collapse=FALSE}
+n <- 12
+df_student <- data.frame(
+  age = sample(5:10, n, replace = TRUE),
+  sex = sample(c("M", "F"), n, replace = TRUE),
+  T_score = sample(30:70, n, replace = TRUE),
+  class_id = rep(LETTERS[1:(n/3)], each = 3)
+)
+
+n <- n/3
+df_teacher <- data.frame(
+  class_id = LETTERS[1:n],
+  self_efficacy = sample(30:70, n, replace = TRUE)
+)
+
+df_student
+df_teacher
+
+```
+:::
+
+::: right
+```{r collapse = FALSE}
+full_join(df_student, df_teacher, by = "class_id")
+```
+:::
+
+## Example {.smaller}
+
+::: left
+```{r echo=FALSE, collapse=FALSE}
+n <- 12
+df_student <- data.frame(
+  age = sample(5:10, n, replace = TRUE),
+  sex = sample(c("M", "F"), n, replace = TRUE),
+  T_score = sample(30:70, n, replace = TRUE),
+  class_id = rep(LETTERS[1:(n/3)], each = 3)
+)
+
+n <- n/3
+df_teacher <- data.frame(
+  class_id = LETTERS[1:n],
+  self_efficacy = sample(30:70, n, replace = TRUE),
+  age = sample(25:65, n, replace = TRUE),
+  sex = sample(c("M", "F"), n, replace = TRUE)
+)
+
+df_student
+df_teacher
+
+```
+:::
+
+::: right
+```{r collapse = FALSE}
+full_join(df_student, df_teacher, by = "class_id")
+```
+:::
+
+## Example {.smaller}
+
+```{r eval = FALSE}
+full_join(df_student, df_teacher, by = "class_id", suffix = c("_student", "_teacher"))
+```
+
+```{r echo = FALSE}
+full_join(df_student, df_teacher, by = "class_id", suffix = c("_student", "_teacher")) %>%
+  kable(align = "l") %>% kableExtra::kable_classic()
+```
+
+## Task
+
+-   Load the df_student and df_teacher dataset:
+
+```{r}
+download.file("https://raw.githubusercontent.com/jazznbass/datasets/main/df_student.csv", 
+    destfile = "students.csv", method = "curl")
+download.file("https://raw.githubusercontent.com/jazznbass/datasets/main/df_teacher.csv", 
+    destfile = "teachers.csv", method = "curl")
+
+df_students <- read.csv("students.csv")
+df_teachers <- read.csv("teachers.csv")
+```
+
+-   join the two datasets by class id.
+-   add for each student the average age and the proportion of males of the students of his class.
+
+Hint: use group_by and summarise to calculate average age and proportions of males.
+
+## Solution
+
+```{r}
+df <- full_join(df_students, df_teachers, by = "class_id", suffix = c("_student", "_teacher"))
+```
+
+```{r echo = FALSE}
+kable(df, align = "l") %>% kableExtra::kable_classic()
+```
+
+------------------------------------------------------------------------
+
+```{r}
+df_add <- df %>% 
+  group_by(class_id) %>% 
+  summarise(
+    average_age = mean(age_student, na.rm = TRUE),
+    prop_male = mean(sex_student == "M") * 100
+  )
+```
+
+```{r echo = FALSE}
+kable(df_add, align = "l") %>% kableExtra::kable_classic()
+```
+
+##  {.smaller}
+
+```{r}
+df <- full_join(df, df_add, by = "class_id")
+```
+
+```{r echo=FALSE}
+df %>% rmarkdown::paged_table()
+```
