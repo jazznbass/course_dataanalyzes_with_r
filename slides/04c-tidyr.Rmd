@@ -8,18 +8,12 @@ output:
     css: styles.css
     logo: img/ZEIF.png
     widescreen: yes
-  html_document: default
-  pdf_document: default
-  beamer_presentation: default
-  powerpoint_presentation:
-    reference_doc: template.pptx
-  slidy_presentation: default
 ---
 
 ```{r setup, include=FALSE}
 library(knitr)
 library(tidyverse)
-opts_chunk$set(echo = TRUE, warning = FALSE, message = FALSE)
+opts_chunk$set(echo = TRUE, warning = FALSE, message = FALSE, collapse = TRUE, comment = "")
 
 stop_video <- function() {
   #out <- '<div class="red2">**Please stop the video here! Continue after completing the task!**</div>'
@@ -29,18 +23,156 @@ stop_video <- function() {
 
 ```
 
-## Functions we will address today {.build}
-
-- `pivot_longer()`: switch from a wide format (with many columns) to a long format (with fewer columns) 
-- `full_join()`, `left_join()`: Merge two dataframes into one with a key variable.
+# From wide to long
 
 ## `pivot_longer()`
 
-- `cols`: The columns to be aggregated into a new variable.  
-- `names_to`: The name of the new variable containing the names of the aggregated columns.  
-- `values_to`: The name of the variable containing the values of the aggregated columns.  
+-   `cols`: The columns to be aggregated into a new variable.\
+-   `names_to`: The name of the new variable containing the names of the aggregated columns.\
+-   `values_to`: The name of the variable containing the values of the aggregated columns.
 
-## Example
+## 
+
+::: left
+**Wide format:**
+
+```{r echo=FALSE}
+df <- data.frame(player=c('A', 'B', 'C', 'D'),
+                 year1=c(12, 15, 19, 19),
+                 year2=c(22, 29, 18, 12))
+
+df
+```
+:::
+
+::: right
+**Long format:**
+
+```{r}
+pivot_longer(
+  df, 
+  cols = 2:3, 
+  names_to = 'year', 
+  values_to = 'points'
+)
+```
+:::
+
+## Task {.smaller}
+
+Take the `billboard` dataset (package tidyverse/tidyr). It looks like this:
+
+```{r echo = FALSE}
+billboard %>% rmarkdown::paged_table()
+```
+
+##  {.smaller}
+
+Use the `pivot_longer()` function to create a dataset that looks like this:
+
+```{r echo = FALSE}
+billboard %>%
+  pivot_longer(starts_with("wk"), names_to = "week", values_to = "position", values_drop_na = TRUE) %>% 
+  rmarkdown::paged_table()
+```
+
+## 
+
+```{r}
+billboard %>%
+  pivot_longer(starts_with("wk"), names_to = "week", 
+               values_to = "position", values_drop_na = TRUE)
+```
+
+##  {.smaller}
+
+::: left
+**Wide format:**
+
+```{r echo=FALSE, collapse=FALSE}
+n <- 30
+df <- data.frame(id=1:n,
+                 dia=sample(130:150, n, replace = TRUE),
+                 sys=sample(90:100, n, replace = TRUE),
+                 anxious = sample(1:5, n, replace = TRUE),
+                 happy = sample(1:5, n, replace = TRUE),
+                 sad = sample(1:5, n, replace = TRUE)
+                 )
+df$dia <- df$dia + df$anxious * 10 - df$happy *10
+df$sys <- df$sys + df$anxious * 7 - df$happy *7
+df
+```
+:::
+
+::: right
+```{r}
+df %>%
+  pivot_longer(cols = 2:3, 
+               names_to = 'bp_type', 
+               values_to = 'pressure') %>%
+  pivot_longer(cols = c("anxious", "happy", "sad"), 
+               names_to = 'emotion', 
+               values_to = 'emotion_value')
+```
+:::
+
+## Task: Create this plot:
+
+```{r echo = FALSE}
+df %>%
+  pivot_longer(cols = 2:3, 
+               names_to = 'bp_type', 
+               values_to = 'pressure') %>%
+  pivot_longer(cols = c("anxious", "happy", "sad"), 
+               names_to = 'emotion', 
+               values_to = 'emotion_value') %>%
+  ggplot(aes(x = emotion, y = pressure, color = bp_type, size = emotion_value)) +
+    geom_jitter(width = 0.2)
+```
+
+------------------------------------------------------------------------
+
+-   Load the dataset with:
+
+```{r eval = FALSE}
+download.file("https://raw.githubusercontent.com/jazznbass/datasets/main/bp_example.csv", 
+    destfile = "example.csv", method = "curl")
+df <- read.csv("example.csv")
+```
+
+-   Turn the df into a long format as described on the previous slide.
+-   use ggplot: Aesthetics: x = emotion, y = pressure, color = bp_type, size = emotion_value.
+-   Add a jitter geom with width 0.2.
+
+##  {.smaller}
+
+::: left
+**Step 1:**
+
+```{r}
+df_long <- df %>%
+  pivot_longer(cols = 2:3, 
+               names_to = 'bp_type', 
+               values_to = 'pressure') %>%
+  pivot_longer(cols = c("anxious", "happy", "sad"), 
+               names_to = 'emotion', 
+               values_to = 'emotion_value')
+df_long
+```
+:::
+
+::: right
+**Step 2:**
+
+```{r fig.height=3, fig.width=6}
+ggplot(df_long, 
+  aes(x = emotion, y = pressure, 
+      color = bp_type, size = emotion_value)) +
+  geom_jitter(width = 0.2)
+```
+:::
+
+## Complex example {.smaller}
 
 We have such a dataframe:
 
@@ -48,7 +180,7 @@ We have such a dataframe:
 kable(relig_income) %>% kableExtra::kable_classic_2()
 ```
 
-## We want such a plot:
+## We want such a plot: {.smaller}
 
 ```{r echo = FALSE}
 relig_income %>% 
@@ -60,43 +192,48 @@ relig_income %>%
   pivot_longer(2:11, names_to = "income", values_to = "count") %>%
   mutate(income = factor(income, levels = names(relig_income)[2:11])) %>%
   ggplot(aes(x = income, y = count)) +
-    geom_bar(stat = "identity", position = "dodge") +
-    facet_wrap(~religion) + 
-    theme_classic() + 
-    theme(axis.text.x = element_text(angle = 45, size = 7, hjust = 1)) +
-    ylab("%")
+  geom_bar(stat = "identity", position = "dodge") +
+  facet_wrap(~religion) + 
+  theme_classic() + 
+  theme(axis.text.x = element_text(angle = 45, size = 7, hjust = 1)) +
+  ylab("%")
 ```
 
+## Step 1: Turn the count values into percentages: {.smaller}
 
-## Step 1: Turn the count values into percentages:
-
-
+::: left
 ```{r}
 # with dplyr:
 new_df <- relig_income %>% 
   rowwise() %>%
   mutate(total = sum(c_across(2:11))) %>%
   ungroup() %>%
-  mutate(across(2:11, ~ . / total * 100))
+  mutate(across(2:11, ~ . / total * 100)) %>%
+  filter(total >= 500)
+```
+:::
 
+::: right
+```{r}
 # with base R
 new_df <- as.data.frame(relig_income)
 new_df$total <- apply(new_df[, 2:11], 1, sum)
+new_df <- new_df[new_df$total >= 500,]
 
 for(i in 1:nrow(new_df))  
-  new_df[i, 2:11] <- new_df[i, 2:11] / new_df[i, "total"] * 100
+  new_df[i, 2:11] <- new_df[i, 2:11] / new_df$total[i] * 100
 ```
+:::
 
 ```{r echo = FALSE}
-new_df
+kable(new_df) %>% kableExtra::kable_classic_2()
 ```
 
-## Step 2: Turn data into long format:
-
+## Step 2: Turn data into long format: {.smaller}
 
 ```{r}
 # tidy R
-new_religion <- relig_income %>%
+new_long <- new_df %>%
   pivot_longer(col = 2:11, names_to = "income", values_to = "count")
 
 
@@ -109,7 +246,7 @@ new_long <- data.frame(
 new_long$religion <- rep(new_df$religion, each = 10)
 
 for(i in 1:nrow(new_df))
-  new_long$count[((i-1)*10+1):((i-1)*10+10)] <- new_df[i, 2:11]
+  new_long$count[((i-1)*10+1):((i-1)*10+10)] <- as.numeric(new_df[i, 2:11])
 
 ```
 
@@ -117,22 +254,183 @@ for(i in 1:nrow(new_df))
 kable(new_long) %>% kableExtra::kable_classic_2()
 ```
 
-## Create the plot
-
-```{r echo = FALSE}
-new_long %>%
-  
-ggplot(aes(x = income, y = count)) +
-    geom_bar(stat = "identity", position = "dodge") +
-    facet_wrap(~religion) + 
-    theme(axis.text.x = element_text(angle = 90))
-```
-
-##
+## Create the basic plot {.smaller}
 
 ```{r}
-billboard %>%
-  pivot_longer(starts_with("wk"), names_to = "week", values_to = "position", values_drop_na = TRUE)
+new_long %>%
+  ggplot(aes(x = income, y = count)) +
+  geom_col() +
+  facet_wrap(~religion)
 ```
 
+## Rotate the text and set a label {.smaller}
 
+```{r}
+new_long %>%
+  ggplot(aes(x = income, y = count)) +
+  geom_col() +
+  facet_wrap(~religion) + 
+  theme(axis.text.x = element_text(angle = 45, size = 7, hjust = 1)) +
+  ylab("%")
+```
+
+## Reorder income  {.smaller}
+
+```{r}
+new_long %>%
+  mutate(income = factor(income, levels = names(relig_income)[2:11])) %>%
+  ggplot(aes(x = income, y = count)) +
+  geom_col() +
+  facet_wrap(~religion) + 
+  theme(axis.text.x = element_text(angle = 45, size = 7, hjust = 1)) +
+  ylab("%")
+```
+
+## Set a nice theme {.smaller}
+
+```{r}
+new_long %>%
+  mutate(income = factor(income, levels = names(relig_income)[2:11])) %>%
+  ggplot(aes(x = income, y = count)) +
+  geom_col() +
+  facet_wrap(~religion) + 
+  theme_classic() + 
+  theme(axis.text.x = element_text(angle = 45, size = 7, hjust = 1)) +
+  ylab("%")
+```
+
+# Join datasets
+
+## `full_join()`
+
+Joins to datasets:
+
+-   `x` and `y`: Two dataset objects.
+-   `by`: A columnname by which the datasets are joined.
+
+## Example {.smaller}
+
+::: left
+```{r echo=FALSE, collapse=FALSE}
+n <- 12
+df_student <- data.frame(
+  age = sample(5:10, n, replace = TRUE),
+  sex = sample(c("M", "F"), n, replace = TRUE),
+  T_score = sample(30:70, n, replace = TRUE),
+  class_id = rep(LETTERS[1:(n/3)], each = 3)
+)
+
+n <- n/3
+df_teacher <- data.frame(
+  class_id = LETTERS[1:n],
+  self_efficacy = sample(30:70, n, replace = TRUE)
+)
+
+df_student
+df_teacher
+
+```
+:::
+
+::: right
+```{r collapse = FALSE}
+full_join(df_student, df_teacher, by = "class_id")
+```
+:::
+
+## Example {.smaller}
+
+::: left
+```{r echo=FALSE, collapse=FALSE}
+n <- 12
+df_student <- data.frame(
+  age = sample(5:10, n, replace = TRUE),
+  sex = sample(c("M", "F"), n, replace = TRUE),
+  T_score = sample(30:70, n, replace = TRUE),
+  class_id = rep(LETTERS[1:(n/3)], each = 3)
+)
+
+n <- n/3
+df_teacher <- data.frame(
+  class_id = LETTERS[1:n],
+  self_efficacy = sample(30:70, n, replace = TRUE),
+  age = sample(25:65, n, replace = TRUE),
+  sex = sample(c("M", "F"), n, replace = TRUE)
+)
+
+df_student
+df_teacher
+
+```
+:::
+
+::: right
+```{r collapse = FALSE}
+full_join(df_student, df_teacher, by = "class_id")
+```
+:::
+
+## Example {.smaller}
+
+```{r eval = FALSE}
+full_join(df_student, df_teacher, by = "class_id", suffix = c("_student", "_teacher"))
+```
+
+```{r echo = FALSE}
+full_join(df_student, df_teacher, by = "class_id", suffix = c("_student", "_teacher")) %>%
+  kable(align = "l") %>% kableExtra::kable_classic()
+```
+
+## Task
+
+-   Load the df_student and df_teacher dataset:
+
+```{r}
+download.file("https://raw.githubusercontent.com/jazznbass/datasets/main/df_student.csv", 
+    destfile = "students.csv", method = "curl")
+download.file("https://raw.githubusercontent.com/jazznbass/datasets/main/df_teacher.csv", 
+    destfile = "teachers.csv", method = "curl")
+
+df_students <- read.csv("students.csv")
+df_teachers <- read.csv("teachers.csv")
+```
+
+-   join the two datasets by class id.
+-   add for each student the average age and the proportion of males of the students of his class.
+
+Hint: use group_by and summarise to calculate average age and proportions of males.
+
+## Solution
+
+```{r}
+df <- full_join(df_students, df_teachers, by = "class_id", suffix = c("_student", "_teacher"))
+```
+
+```{r echo = FALSE}
+kable(df, align = "l") %>% kableExtra::kable_classic()
+```
+
+------------------------------------------------------------------------
+
+```{r}
+df_add <- df %>% 
+  group_by(class_id) %>% 
+  summarise(
+    average_age = mean(age_student, na.rm = TRUE),
+    prop_male = mean(sex_student == "M") * 100
+  )
+```
+
+```{r echo = FALSE}
+kable(df_add, align = "l") %>% kableExtra::kable_classic()
+```
+
+##  {.smaller}
+
+```{r}
+df <- full_join(df, df_add, by = "class_id")
+```
+
+```{r echo=FALSE}
+df %>% rmarkdown::paged_table()
+```

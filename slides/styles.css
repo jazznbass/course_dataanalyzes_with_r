@@ -11,3 +11,19 @@
   -webkit-column-break-after: always; break-after: column; 
 }
 
+.left {
+  float: left; width: 50%
+}
+
+.right {
+  float: left; width: 50%
+}
+
+.left1 {
+  float: left; width: 30%
+}
+
+.right1 {
+  float: left; width: 70%
+}
+
