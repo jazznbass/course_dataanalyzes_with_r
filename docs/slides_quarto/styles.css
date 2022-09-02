@@ -1,0 +1,34 @@
+
+
+.blue {
+  color: blue;
+}
+
+.emphasized {
+  color: black;
+  font-size: 1.2em;
+}
+
+.forceBreak { 
+  -webkit-column-break-after: always; break-after: column; 
+}
+
+.left {
+  float: left; width: 50%
+}
+
+.right {
+  float: left; width: 50%
+}
+
+.left1 {
+  float: left; width: 30%
+}
+
+.right1 {
+  float: left; width: 70%
+}
+
+#title-slide {
+  background-color: #c3d3db;
+}

@@ -1,0 +1,24 @@
+---
+title: "Analyzing single-case data"
+company: "`r if(exists('info')) info$company`"
+author: "`r if(exists('info')) info$author`"
+date: "`r if(exists('info')) info$date`"
+---
+
+```{r setup, include=FALSE}
+library(knitr)
+library(tidyverse)
+opts_chunk$set(echo = TRUE, warning = FALSE, message = FALSE, comment = "")
+```
+
+---
+
+background-image: url("DEFOCUSED.png")
+
+# Goals
+
+- An introduction to single-case analyses
+
+- An introduction to analyzing single case data with the package R
+
+---

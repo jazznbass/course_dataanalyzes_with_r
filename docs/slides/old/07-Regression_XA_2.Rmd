@@ -1,0 +1,436 @@
+---
+title: "Regression"
+subtitle: "Estimating models and predicting values with R"
+author: "`r if(exists('info')) info$author`"
+date: "`r if(exists('info')) info$date`"
+company: "`r if(exists('info')) info$company`"
+---
+
+```{r setup, include=FALSE}
+library(knitr)
+library(tidyverse)
+opts_chunk$set(echo = TRUE, warning = FALSE, message = FALSE, comment = "")
+```
+
+background-image: url("DEFOCUSED.png")
+
+# Prerequisite
+
+- You have basic knowledge on statistical regression
+
+# Goal
+
+- You know how to fit regression models in R
+
+---
+
+# Regression
+
+- In a statistical regression you explain a variable (criteria or dependent variable) by one or more other variables (predictors or independent variables).
+
+--
+
+- You *regress* the criteria variable on the predictor variables.
+
+--
+
+- E.g.: You want to explain the *life expecancy* by certain aspects of behavior (diet, physical activity), enviornmental aspects (polution, health care).
+
+--
+
+- Therefore, you try to set up a mathematical function which tries to estimate what *life expectancy* a person has given all the other variables.
+
+
+---
+
+# Regression formula
+
+.pull-left[
+
+$y_i = \beta_0 + \beta_1X_i + e_i$  
+
+$y$ = Criteria variable  
+$i$ = Subject number (measurement number)  
+$\beta_0$ = Intercept of $y$  
+$\beta_1$ = Weight of predictor $X$  
+$X$ = Predictor variable  
+$e$ = Error term
+]
+
+.pull-right[
+
+```{r echo = FALSE, fig.height=5, fig.width=5}
+plot(c(0,1), c(1,5), type = "l", xlab = "Predictor X", ylab = "Criteria Y", ylim = c(0,5))
+text(x = 0.6, y = 4, "Slope ß1")
+
+```
+
+]
+
+---
+
+# `lm()` function
+
+- The `lm()` function fits a regression model.
+
+- `lm(formula, data)`
+
+- ***Formulas*** are a basic data type that is applied in many R functions.
+
+- Basic structure:  ***dependent variable ~ explanatory variables***  
+(e.g. ***y ~ x1 + x2***)
+
+- `data` takes a dataframe
+
+`lm(dist ~ speed, data = cars)`
+
+---
+
+# Example
+
+
+```{r echo = FALSE}
+ggplot(cars, aes(x = speed, y = dist)) +
+  geom_point() +
+  ggtitle("Breaking distances at various speeds") + 
+  geom_text(x = 10, y = 100, label = paste0("Correlation r = ", round(cor(cars$speed, cars$dist), 2)))
+```
+
+---
+
+# Example
+
+
+```{r echo = FALSE}
+ggplot(cars, aes(x = speed, y = dist)) +
+  geom_point() +
+  geom_smooth(method = "lm") +
+  ggtitle("Breaking distances at various speeds") + 
+  geom_text(x = 10, y = 100, label = paste0("Correlation r = ", round(cor(cars$speed, cars$dist), 2)))
+```
+
+---
+
+# Example
+
+.pull-left[
+
+```{r echo = FALSE}
+ggplot(cars, aes(x = speed, y = dist)) +
+  geom_point() +
+  geom_smooth(method = "lm") +
+  ggtitle("Breaking distances at various speeds") + 
+  xlim(0,25) + 
+  geom_text(x = 10, y = 100, label = paste0("Correlation r = ", round(cor(cars$speed, cars$dist), 2)))
+```
+
+]
+
+.pull-right[
+
+```{r}
+fit <- lm(dist ~ speed, data = cars)
+fit
+```
+
+$dist_i = -17.579 + 3.932 * speed_i$
+
+]
+
+---
+
+```{r}
+summary(fit)
+```
+
+.
+
+Modelfit:  
+$F(1, 48) = 89.57; p < .001 ; R² = .65$
+
+---
+
+# Task
+
+- Take the `mtcars` dataset.
+
+- Calculate the correlation of mileage `mpg` and car weight `wt`.
+
+- Plot a scatterplot with ggplot (mileage on the x-axis and weight on the y-axis).
+
+- Add a regression line with (`geom_smooth(method = "lm")`).
+
+- Regress mileage `mpg` on car weight `wt` (that is, predict mileage by means of weight).
+
+---
+
+.pull-left[
+
+```{r fig.width=4, fig.height=4}
+cor(mtcars$mpg, mtcars$wt)
+fit <- lm(mpg ~ wt, data = mtcars)
+summary(fit)
+```
+]
+
+--
+
+.pull-right[
+```{r fig.width=4, fig.height=4}
+ggplot(mtcars, aes(x = mpg, y = wt)) + 
+  geom_point() + 
+  geom_smooth(method = "lm")
+```
+]
+ 
+---
+
+# Task
+
+- Take the `temp_carbon` dataset from the `dslabs` library.
+
+- Make yourself familiar with the dataset: `?temp_carbon`.
+
+- Plot a scatterplot with ggplot (year on the x-axis and temp_anomaly on the y-axis).
+
+- Add a regression line with (`geom_smooth(method = "lm")`).
+
+- Regress `temp_anomaly` on `year` (that is, predict temp_anomaly by means of year).
+
+---
+
+.pull-left[
+
+```{r fig.width=4, fig.height=4}
+library(dslabs)
+fit <- lm(temp_anomaly ~ year, 
+          data = temp_carbon)
+summary(fit)
+```
+]
+
+--
+
+.pull-right[
+```{r fig.width=4, fig.height=4}
+ggplot(temp_carbon, aes(x = year, 
+                        y = temp_anomaly)) + 
+  geom_point() + 
+  geom_smooth(method = "lm")
+```
+] 
+ 
+ 
+---
+
+# Multiple predictors
+
+- A `formula` can take multiple predictors:  
+`y ~ x1 + x2`
+
+- An Interaction describes a relation between two (or more) predictors where the influence of one predictor changes with the value of the other predictor (e.g. weight and smoking  influence blood pressure. And the influence of smoking is even higher for those who are overweight).
+
+- An interaction is modeled with a `:` sign:  
+y ~ x1 + x2 + x1:x2
+
+---
+
+### Example Predict mileage `'mpg'` by weight `'wt'` and number of cylinders `'cyl'` and its interaction
+
+```{r}
+fit <- lm(mpg ~ wt + cyl + wt:cyl, data = mtcars)
+summary(fit)
+```
+
+---
+
+# Task
+
+- Take the `gapminder` dataset from the `dslabs` library.
+
+- Predict infant mortality (`infant_mortality`) by year (`year`) and average number of children per woman (`fertility`).
+
+- Take the interaction into account.
+
+- How to interpret the estimates?
+
+---
+
+```{r gapminder}
+library(dslabs)
+fit <- lm(infant_mortality ~ year + fertility + fertility:year, data = gapminder)
+summary(fit)
+```
+
+---
+
+- Although the previous computation is correct (!). The estimates is misleading. The intercept, for example, depicts the average dependent variable when all predictors are zero (i.e. year is 0 and fertility is 0).
+
+- We can mend this by centering the predictor variables. 
+
+- Centering is achieved by subtracting the mean of a variable from each measurement of that variable. That is, the value 0 now depicts the average.
+
+```{r eval=FALSE}
+dat <- gapminder
+dat$year <- dat$year - mean(dat$year, na.rm = TRUE)
+# alternatively, use the scale function to center a variable:
+dat$fertility <- scale(dat$fertility, scale = FALSE)
+fit <- lm(infant_mortality ~ year + fertility + fertility:year, data = dat)
+summary(fit)
+```
+
+---
+
+```{r}
+dat <- gapminder
+dat$year <- scale(dat$year, scale = FALSE)
+dat$fertility <- scale(dat$fertility, scale = FALSE)
+fit <- lm(infant_mortality ~ year + fertility + fertility:year, data = dat)
+summary(fit)
+```
+
+---
+
+# Categorical predictors (comparing groups)
+
+- Predictors can be categorical variables.
+
+- Examples of categorical variables are: students with vs. without special educational needs; gender; Haircolor.
+
+- They have to be `factors` to recognize them as `categorical`.
+
+---
+
+# Example
+
+- We predict `mpg` by `wt` and the transmission type `am` and their interaction.
+
+- The transmission type is a categorical variable. By default `am` is not a factor. So we have to turn `am` into a factor first.
+
+---
+
+```{r}
+mtcars$wt_centered <- scale(mtcars$wt, scale = FALSE)
+mtcars$am_factor <- factor(mtcars$am, labels = c("Automatic", "Manual"))
+fit <- lm(mpg ~ wt_centered + am_factor + wt_centered:am_factor, data = mtcars)
+summary(fit)
+```
+
+---
+
+# Task
+
+```{r}
+heights$sex <- factor(heights$sex)
+fit <- lm(height ~ sex, data = heights)
+summary(fit)
+```
+
+---
+
+# Contrasts
+
+- In the previous example, we compared the effect of an automatic against a manual gearshift. This is called a **contrast**. In this case, our intercept represented the *mpg* for the automatic gearshift and the predictor represented the change in the *mpg* values for manual gearshifts. 
+
+- This type of contrast is called a "treatment" contrast. 
+
+- An alternative approach would be to calculate the average of 'mpg' across both types of gearshifts and the predictor represents how much the type of gearshift influences 'mpg'.
+
+- This type of contrast is called a Helmert contrast.
+
+***Example***
+
+Fitting `lm(mpg ~ am_factor, data = mtcars)` with a treatment contrast:
+
+```{r echo = FALSE}
+fit <- lm(mpg ~ am_factor, data = mtcars)
+coefficients(fit)
+```
+
+Fitting `lm(mpg ~ am_factor, data = mtcars)` with a Helmert contrast:
+
+```{r echo = FALSE}
+contrasts(mtcars$am_factor) <- contr.helmert(2)
+fit <- lm(mpg ~ am_factor, data = mtcars)
+coefficients(fit)
+```
+
+---
+
+    
+- The `constrasts()` function gets and sets contrasts for factors
+
+- Treatment contrasts for two factor levels:  
+    `contrasts(mtcars$am_factor) <- contr.treatment(2)`
+    
+- Helmert contrasts for two factor levels:  
+    `contrasts(mtcars$am_factor) <- contr.helmert(2)`
+
+---
+
+# Task
+    
+- Take the `mtcars` dataset
+
+- Predict `mpg` by `wt` and the transmission type `am` and their interaction
+
+- By default `am` is not a factor. Please create a factor `transmission` for `am` first
+
+- Set the contrasts of the factor to *Helmert* and calculate the model.
+
+- Set the contrasts of the factor to *Treatment* and calculate the model
+
+- Compare the results of the two models and discuss them with you seatmate
+
+---
+
+```{r}
+mtcars$transmission <- factor(mtcars$am, labels = c("Automatic", "Manual"))
+contrasts(mtcars$transmission) <- contr.helmert(2)
+fit1 <- lm(mpg ~ wt + transmission + wt:transmission, data = mtcars)
+summary(fit1)
+contrasts(mtcars$transmission) <- contr.treatment(2)
+fit2 <- lm(mpg ~ wt + transmission + wt:transmission, data = mtcars)
+summary(fit2)
+
+```
+
+# Design example
+
+
+```{r}
+library(sjPlot)
+tab_model(fit1, fit2,
+  show.ci = FALSE, show.se = TRUE,string.se = "se", string.est = "B",dv.labels = c("Model with helmert contrast", "Model with treatment contrast")
+)
+```
+
+
+---
+class: center, middle
+# Multilevel regressions
+***
+---
+
+# Multilevel regression formula
+
+$y_{ij} = \beta_{0j} + \beta_{1j} X_{ij} + e_{ij}$
+
+Level 2:  
+$\beta_{0j} = \gamma_{01}W_j + \upsilon_{0j}$  
+$\beta_{1j} = \gamma_{10} + \upsilon_{1j}$  
+
+$y$ = Criteria variable  
+$i$ = Subject number (measurement number)  
+$\beta_0$ = Intercept of $y$  
+$\beta_1$ = Weight of predictor $X$  
+$X$ = Predictor variable  
+$e$ = Error term  
+$j$ = Level 2 group number  
+$\gamma_{00}$ = Intercept  
+$W$ = Level 2 predictor (grouping variable)  
+$\gamma_{01}$ = Weight for $W$  
+$\upsilon_{0j}$ = Error term for intercept
+$\gamma_{10}$ = Weight of the predictor     
+$\upsilon_{0j}$ = Error term for slope  
+
