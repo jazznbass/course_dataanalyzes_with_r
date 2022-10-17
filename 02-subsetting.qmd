@@ -1,0 +1,760 @@
+---
+title: "R Basic Concepts: <br>Subsetting"
+format: revealjs
+---
+
+```{r}
+#| include: false
+#| label: setup
+library(knitr)
+library(tidyverse)
+```
+
+# Subsetting {background-image="img/bg-h1-3.jpg"}
+
+Selecting elements of a data structure.
+
+## Selecting elements with square brackets {.build}
+
+By providing a number within square brackets, the respective element is selected from a vector:
+
+```{r}
+names <- c("Sheldon", "Leonard", "Penny", "Amy")
+names[1]
+```
+
+When you provide a vector of numbers, multiple elements are selected
+
+```{r}
+names[c(1,4)]
+```
+
+##
+
+You can even change the order or repeat elements:
+
+```{r}
+names[c(4, 1, 1)]
+```
+
+With negative numbers, columns are dropped:
+
+```{r}
+names[-1]
+```
+
+
+```{r}
+names[c(-1, -3)]
+```
+
+
+## Task {background-image="img/bg-task.png"}
+
+Take the vector\
+`names <- c("Sheldon", "Leonard", "Penny", "Amy")`\
+and reorder it to get the following result:\
+`[1] "Sheldon" "Amy"     "Sheldon" "Amy"     "Leonard" "Penny"`
+
+{{< include _stop.qmd >}}
+
+## Task - solution {background-image="img/bg-task.png"}
+
+Take the vector\
+`names <- c("Sheldon", "Leonard", "Penny", "Amy")`\
+and reorder it to get the following result:\
+`[1] "Sheldon" "Amy"     "Sheldon" "Amy"     "Leonard" "Penny"`
+
+```{r}
+x <- c(1, 4, 1, 4, 2, 3)
+new_order <- names[x]
+new_order
+```
+
+## Subsetting data frames
+
+Firstly, we create an example data frame:
+
+```{r}
+study <- data.frame(
+  sen    = c(0, 1, 0, 1, 0, 1),
+  gender = c("M", "M", "F", "M", "F", "F"),
+  age    = c(12, 13, 11, 10, 11, 14),
+  IQ     = c(90, 85, 90, 87, 99, 89)
+)
+study
+```
+
+## 
+
+Square brackets select a column of a data frame either by a number the column name:
+
+::: left
+```{r}
+study[3]
+```
+:::
+
+::: right
+```{r}
+study["age"]
+```
+:::
+
+## 
+
+The subsetted object is a data frame with one column.  
+This is different from extracting a variable with `$` or `[[` signs:
+
+```{r}
+study[["age"]]
+study$age
+```
+
+which returns a vector (!)
+
+While this works:
+
+```{r}
+median(study[["age"]])
+```
+
+this throws an error:
+
+```{r}
+#| eval: false
+median(study["age"])
+```
+
+```
+Error in median.default(study["age"]) : need numeric data
+```
+
+##
+
+Providing a vector will select multiple columns:
+
+::: left
+```{r}
+study[c(1,3)]
+```
+:::
+
+::: right
+```{r}
+study[c("sen", "age")]
+```
+:::
+
+## Extraction and subsetting
+
+The extraction of a vector and the selection of elements can be combined:
+
+```{r}
+age <- study[["age"]]
+age[c(2,4)]
+```
+
+Or within one step:
+
+```{r}
+study$age[c(2,4)]
+study[["age"]][c(2,4)]
+```
+
+## Selecting rows and columns
+
+Specific cases are selected within square brackets: `object_name[rows, columns]`.
+
+```{r}
+study[5, ]  # filter a row
+study[c(2, 6), ] # filter two rows
+```
+
+------------------------------------------------------------------------
+
+```{r}
+study[c(2, 6), "IQ"]
+study[c(2, 6), c("sen", "IQ")]
+```
+
+------------------------------------------------------------------------
+
+You could also use numbers to address the columns:
+
+```{r}
+study[, 2]
+study[c(2, 6), c(1, 3)]
+```
+
+## Task {background-image="img/bg-task.png"}
+
+Please create a new data frame (`study2`) comprising the `gender` and `age` variables for the cases 1, 3, and 5 of the `study` data frame.
+
+{{< include _stop.qmd >}}
+
+## Task - solution {background-image="img/bg-task.png"}
+
+Please create a new data frame (`study2`) comprising the `gender` and `age` variables for the cases 1, 3, and 5 of the `study` data frame.
+
+```{r}
+study2 <- study[c(1, 3, 5), c("gender", "age")]
+study2
+```
+
+
+## Sophisticated subsetting {background-image="img/bg-h1-3.jpg"}
+
+Subsetting becomes most powerful when it is combined with conditional selections.
+
+For example:
+
+- Select all students with special educational needs.
+- Select all male students between the age of 6 and 10 
+
+To apply such selections, we have to know about *relational* and *logical* operators.
+
+
+## Relational operators
+
+Relational operators compare two values and return a logical value (`TRUE` or `FALSE`)
+
+|Operator|Relation|Example|
+|----|----------------|--------|
+|`==`|is identical|x == y|
+|`!=`|is not identical|x != y|
+|`>`|is greater|x > y|
+|`>=`|is greater or identical|x >= y|  
+|`<`|is less|x < y|
+|`<=`|is less or identical|x <=  y|  
+
+## Examples
+
+```{r}
+7 > 2
+7 <=  10
+5 == 4
+5 != 6
+```
+
+## Relational vectors and characters
+
+Only `==` and `!=` can be applied to non numerical objects:
+
+```{r}
+"Hamster" == "Mouse"
+"Hamster" != "Mouse"
+```
+
+## Relational operators and vectors
+
+```{r}
+age <- c(12, 4, 3, 8, 4, 2, 1)
+age < 5
+```
+
+This behavior is called *recycling* as is implemented in many (but not all!) R functions.
+
+***recycling:*** An operation is applied to each element of a vector and a vector is returned.
+
+```{r echo = FALSE}
+data.frame(age = age, 'age < 5' = age < 5, check.names = FALSE) %>%
+  html_table()
+```
+
+## Using logical vectors to select values
+
+When you put a logical vector within square brackets `[ ]` after an object, all elements of that object with a `TRUE` in the logical vector are selected:
+
+```{r}
+age <- c(12, 4, 3, 8)
+x <- age > 5
+x
+age[x]
+```
+
+## Using logical vectors to select values
+
+```{r eval=FALSE}
+age <- c(12, 4, 3, 8)
+x <- age > 5
+age[x]
+```
+
+```{r echo = FALSE}
+data.frame(age = age, "x <- age > 5" = x, 'Select?' = ifelse(x, "**select**", "drop"), "Result" = ifelse(x, age, ""), check.names = FALSE)
+```
+
+## Task {background-image="img/bg-task.png"}
+
+Create a new vector `friends <- c(4, 5, 6, 3, 7, 2, 3)`.  
+Show all values of that vector `>= 4`.
+
+
+{{< include _stop.qmd >}}
+
+
+## Task - solution {background-image="img/bg-task.png"}
+
+Create a new vector `friends <- c(4, 5, 6, 3, 7, 2, 3)`.  
+Show all values of that vector `>= 4`.
+
+```{r}
+friends <- c(4, 5, 6, 3, 7, 2, 3)
+friends[friends >= 4]
+```
+
+
+## which() {.build}
+
+The `which()` functions gives the **indices** of the elements that are `TRUE`.  
+It takes a *logical vector* as an *argument*.
+
+```{r}
+x <- c(TRUE, FALSE, FALSE, TRUE)
+which(x)
+```
+
+`which()` can handle missing values:
+
+```{r}
+x <- c(TRUE, FALSE, NA, FALSE, TRUE, NA)
+which(x)
+```
+
+---
+
+```{r}
+age <- c(12, 4, 3, 8)
+x <- age < 5
+x
+which(x)
+```
+
+---
+
+```{r eval = FALSE}
+age <- c(12, 4, 3, 8)
+x <- age < 5
+x
+which(x)
+age[which(x)]
+```
+
+```{r echo = FALSE}
+data.frame('Index' = 1:length(x), 
+           'age' = age, 
+           'x <- age < 5' = x, 
+           'which(x)' = ifelse(x, 1:length(x), ""), 
+           'age[which(x)]' = ifelse(x, age[1:length(x)], ""),
+           check.names = FALSE)
+```
+
+
+## Why use which?
+
+```{r}
+age = c(NA, 12, 4, 3, NA, 8, 7, 4, 3, 6, 4, 3)
+x <- age < 6
+x
+age[x]
+mean(age[x])
+mean(age[which(x)])
+```
+
+## Task {background-image="img/bg-task.png"}
+
+Create a vector `x <- c(1, 4, 5, 3, 4, 5)` and identify:  
+1. Which elements are larger or equal than three?     
+2. Create a new vector from `x` containing all elements that are **not** four. Note: Use the `which()` function for this task.
+
+{{< include _stop.qmd >}}
+
+## Task - solution {background-image="img/bg-task.png"}
+
+Create a vector `x <- c(1, 4, 5, 3, 4, 5)` and identify:  
+1. Which elements are larger or equal than three?     
+2. Create a new vector from `x` containing all elements that are **not** four. Note: Use the `which()` function for this task.
+
+
+```{r}
+x <- c(1, 4, 5, 3, 4, 5)
+which(x >= 3)
+y <- x[which(x != 4)]
+y
+```
+
+## Selecting cases with logical vectors {.build}
+
+Logical vectors can also be appplied to *data frames* for selecting cases.
+
+Let us take an example data frame:
+
+```{r}
+study <- data.frame(
+  sen    = c(0, 1, 0, 1, 0, 1),
+  gender = c("M", "M", "F", "M", "F", "F"),
+  age    = c(12, 13, 11, 10, 11, 14),
+  IQ     = c(90, 85, 90, 87, 99, 89)
+)
+```
+
+---
+
+Select with bracket subsetting or the `which()` function:
+
+```{r}
+study_no_sen <- study[study[["sen"]] == 0, ]
+study_no_sen
+
+# Or using the which() function
+filter <- which(study[["sen"]] == 0)
+study_no_sen <- study[filter, ]
+```
+
+## Task {background-image="img/bg-task.png"}
+
+Calculate the `mean` of `IQ` for students with and without sen.
+
+{{< include _stop.qmd >}}
+
+## Task - solution {background-image="img/bg-task.png"}
+
+Calculate the `mean` of `IQ` for students with and without sen.
+
+```{r}
+filter <- which(study[["sen"]] == 0)
+mean(study[["IQ"]][filter])
+
+filter <- which(study[["sen"]] == 1)
+mean(study[["IQ"]][filter])
+```
+
+## Logical Operations {.smaller}
+
+Logical operations are applied to logical values. 
+
+|Operator| Operation|Example|Results|
+|--------|----------|-------|-------|
+|`!`|Not|`! x`|`TRUE when x = FALSE and FALSE when x = TRUE`|
+|`&`|AND|`x & y`|`TRUE when x and y are TRUE else FALSE`|
+|`|`|OR|`x | y`|`TRUE when x or y is TRUE else FALSE`|
+
+::: em
+Note: To get the | sign:  
+On a german Mac keyboard press: option + 7  
+On a german Windows keyboard press: AltGr + <  
+:::
+
+## Example
+
+```{r}
+x <- TRUE
+y <- FALSE
+```
+
+<br>
+
+```{r}
+!x
+!y
+x & y
+x | y
+```
+
+## Logical Operator with vectors {.build}
+
+When applied to vectors, logical operations result in a new vector.  
+Operations are applied to each element one by one.
+
+```{r}
+x <- c(TRUE, FALSE, TRUE,  FALSE)
+y <- c(TRUE, FALSE, FALSE, TRUE)
+```
+
+```{r}
+!x
+x & y
+x | y
+```
+
+## Task {background-image="img/bg-task.png"}
+
+Create two vectors:
+
+``` .r
+glasses <- c(TRUE, TRUE, FALSE, TRUE, FALSE)  
+hyperintelligent <- c(TRUE, FALSE, FALSE, TRUE, FALSE)
+```
+
+Determine for each element whether `glasses` and `hyperintelligent` are TRUE at the same time.
+
+
+{{< include _stop.qmd >}}
+
+
+
+## Task - solutions {background-image="img/bg-task.png"}
+
+Create two vectors:
+
+``` .r
+glasses <- c(TRUE, TRUE, FALSE, TRUE, FALSE)  
+hyperintelligent <- c(TRUE, FALSE, FALSE, TRUE, FALSE)
+```
+Determine for each element whether `glasses` and `hyperintelligent` are TRUE at the same time.
+
+```{r}
+glasses <- c(TRUE, TRUE, FALSE, TRUE, FALSE)
+hyperintelligent <- c(TRUE, FALSE, FALSE, TRUE, FALSE)
+glasses & hyperintelligent
+```
+
+---
+
+```{r echo = FALSE}
+data.frame('glasses' = glasses, 'hyperintelligent' = hyperintelligent,  'glasses & hyperintelligent' = glasses & hyperintelligent, check.names = FALSE) %>% 
+  html_table()
+```
+
+## `sum()` and `mean()` with logical vectors:
+
+When a logical vector is applied to a numeric function (e.g. `mean()` or `sum()`), `TRUE` is counted as `1` and `FALSE` as `0`:
+
+`sum()` then gives the number of elements that are TRUE.  
+`mean()` gives the proportion of elements that are TRUE.
+
+
+```{r}
+# e.g.:
+sum(c(TRUE, FALSE, TRUE))
+mean(c(TRUE, FALSE, TRUE, FALSE))
+```
+
+## Task {background-image="img/bg-task.png"}
+
+Take the data from the last example and calculate the sum and proportion of cases that wear glasses and are hyperintelligent.
+
+``` .r
+glasses <- c(TRUE, TRUE, FALSE, TRUE, FALSE)
+hyperintelligent <- c(TRUE, FALSE, FALSE, TRUE, FALSE)
+```
+
+{{< include _stop.qmd >}}
+
+## Task - solutions {background-image="img/bg-task.png"}
+
+Take the data from the last example and calculate the sum and proportion of cases that wear glasses and are hyperintelligent.
+
+
+```{r}
+sum(glasses & hyperintelligent)
+mean(glasses & hyperintelligent)
+```
+
+## Combining logical and relational operators {.build}
+
+```{r}
+age <- c(12, 4, 3, 8, 4, 2, 1, 7, 4)
+gender <- c(0, 1, 0, 1, 0, 0, 0, 0, 1)
+age > 4
+gender == 0
+age > 4 & gender == 0
+```
+
+## Task {background-image="img/bg-task.png"}
+
+Create a vector  
+`income <- c(5000, 4000, 3000, 2000, 1000)` and a vector  
+`happiness <- c(20, 35, 30, 10, 50)`.  
+
+1. Use *relational* and *logical* operations to determine for each element whether the `income` is larger than `2500` and at the same time `happiness` is above `25`.
+
+2. Calculate the proportion.
+
+{{< include _stop.qmd >}}
+
+## Task - solution {background-image="img/bg-task.png"}
+
+1. Use *relational* and *logical* operations to determine for each element whether the `income` is larger than `2500` and at the same time `happiness` is above `25`.
+
+2. Calculate the proportion.
+
+
+```{r include = FALSE}
+income <- c(5000, 4000, 3000, 2000, 1000)
+happiness <- c(20, 35, 30, 10, 50)
+income > 2500 & happiness > 25
+```
+
+
+---
+
+```{r eval = FALSE}
+income <- c(5000, 4000, 3000, 2000, 1000)
+happiness <- c(20, 35, 30, 10, 50)
+income > 2500 & happiness > 25
+```
+
+```{r echo = FALSE}
+data.frame('income' = income, 'happiness' = happiness, 'income > 2500' = income > 2500, 'happiness > 25' = happiness > 25, 'income > 2500 &<br>happiness > 25' = income > 2500 & happiness > 25, check.names = FALSE) %>%
+  html_table()
+        
+
+```
+
+---
+
+... and the proportion
+
+```{r}
+mean(income > 2500 & happiness > 25)
+```
+
+## Subsetting data frames with logical and relational operators {.build}
+
+```{r}
+study
+```
+
+---
+
+```{r}
+filter <- study[["sen"]] == 1 & study[["gender"]] == "M"
+study[filter, ]
+```
+
+## Task {.smaller background-image="img/bg-task.png"}
+
+Use the `ChickWeight` data frame for the following task.  
+The data set is already included in R.
+
+1. Look into the data set with `?ChickWeight`.
+2. Get all variable names of the data frame with the `names()` function (`names(ChickWeight)`).
+3. Select cases from **ChickWeight** with `Diet == 1` and `Time < 16`.
+4. For these cases, calculate the correlation between `weight` and `Time`. Note: Use the `cor()` function (e.g., `cor(x, y)`)
+5. Repeat steps 3 and 4 for `Diet == 4`.
+6. What can you see?
+
+
+{{< include _stop.qmd >}}
+
+
+---
+
+```{r}
+filter <- ChickWeight[["Diet"]] ==  1 & ChickWeight[["Time"]] < 16
+diet1 <- ChickWeight[filter,]
+cor(diet1[["weight"]], diet1[["Time"]])
+```
+
+<br>
+
+```{r}
+filter <- ChickWeight[["Diet"]] ==  4 & ChickWeight[["Time"]] < 16
+diet4 <- ChickWeight[filter,]
+cor(diet4[["weight"]], diet4[["Time"]])
+```
+
+The correlation is larger for Diet 4. This suggests that Diet 4 has a stronger impact an the chicken's weight.
+
+## The `subset()` function {.smaller}
+
+R comes with a function to make subsetting a bit more straight forward.
+
+
+`subset()` has the main arguments:
+
+- `x` : A data.frame  
+- `subset` : A logical vector for filtering rows  
+- `select` : expression, indicating columns to select from a data frame
+
+
+and returns a data.frame.
+
+```{r}
+subset(study, gender == "F" & IQ > 89, c(sen, gender, IQ))
+```
+
+Variable names must be provided without quotes and without the name of the data.frame.
+
+## Task {background-image="img/bg-task.png"}
+
+Take the `mtcars` dataset and filter cases (here: car models) with 6 cylinders (variable `cyl`) and automatic transmission (value `1` in variable `am`).  
+Select the variables `mpg`, `am`, `gear`, `cyl`.  
+Use the `subset` function.
+
+
+
+{{< include _stop.qmd >}}
+
+
+## Task - solutions {background-image="img/bg-task.png"}
+
+Take the `mtcars` dataset and filter cases (here: car models) with 6 cylinders (variable `cyl`) and automatic transmission (value `1` in variable `am`).  
+Select the variables `mpg`, `am`, `gear`, `cyl`.  
+Use the `subset` function.
+
+
+
+```{r}
+subset(mtcars, cyl == 6 & am == 1, c(mpg, am, gear, cyl))
+
+```
+
+
+## So many ways of subsetting ... an overview
+
+Subset a data frame (and get a new data frame)
+
+```{r, eval = FALSE}
+
+mtcars[mtcars[["cyl"]] == 6 & mtcars[["am"]] == 1, 
+       c("mpg", "am", "gear", "cyl")]
+
+mtcars[mtcars$cyl == 6 & mtcars$am == 1, c("mpg", "am", "gear", "cyl")]
+
+subset(mtcars, cyl == 6 & am == 1, c(mpg, am, gear, cyl))
+
+with(mtcars, 
+  mtcars[cyl == 6 & am == 1, c("mpg", "am", "gear", "cyl")]
+)
+
+
+```
+
+## So many ways of subsetting ... an overview
+
+Extract a variable from a data frame (and get a numeric or character vector)
+
+```{r, eval = FALSE}
+
+mtcars[["mpg"]][mtcars[["cyl"]] == 6 & mtcars[["am"]] == 1]
+
+mtcars$mpg[mtcars$cyl == 6 & mtcars$am == 1]
+
+subset(mtcars, cyl == 6 & am == 1, mpg, drop = TRUE)
+
+with(mtcars, mpg[cyl == 6 & am == 1])
+
+
+```
+
+## Odd behaviour:
+
+For base R data frames this creates a vector:
+
+```{r}
+mtcars[mtcars[["cyl"]] == 6 & mtcars[["am"]] == 1, "mpg"]
+
+```
+
+This should have resulted in a data frame with one variable but is automatically reduced to a vector.  
+Add `drop = FALSE` to get standard behavior.
+
+```{r}
+mtcars[mtcars[["cyl"]] == 6 & mtcars[["am"]] == 1, "mpg", drop = FALSE]
+```
+
+Some modern implementations of data frames (like `tibbles`) changed this behavior.
+

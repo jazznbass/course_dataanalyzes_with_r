@@ -1,0 +1,14 @@
+{
+  "hash": "713699e3f7b41f7b4fb1fce017076ca3",
+  "result": {
+    "markdown": "---\n\n---\n\n\n# Chaper 1\n\n> If something is true, no amount of wishful thinking will change it *-Richard Dawkins*\n\nWe will discuss the following ideas:\n\n1.  The meaning of **life**\n2.  The end of **suffering**\n3.  The **noble eightfold path**\n\n| Sanskrit | Meaning                                                           |\n|------------------------------------|------------------------------------|\n| dukkha   | suffering is an innate characteristic of existence.               |\n| samudaya | together with *dukkha* arises *taṇhā* (craving).                  |\n| nirodha  | *dukkha* can be ended or contained by letting go of this *taṇhā.* |\n| magga    | The *noble eightfold path* leads to the confinement               |\n\n: Tabel 1: [The four noble truths](https://en.wikipedia.org/wiki/Four_Noble_Truths)\n",
+    "supporting": [],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {},
+    "engineDependencies": {},
+    "preserve": {},
+    "postProcess": true
+  }
+}

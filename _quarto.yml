@@ -1,0 +1,24 @@
+project:
+  title: "Introduction to R"
+  
+author: "Jürgen Wilbert"
+date: today
+institute: "University of Potsdam"
+  
+execute: 
+  echo: true
+  warning: false  
+  comment: ""
+  freeze: auto
+  
+df-print: kable
+embed-resources: true
+
+format: 
+  revealjs:
+    scrollable: true
+    theme: [style.scss]
+    footer: "Jürgen Wilbert - Introduction to R"
+    logo: img/ZEIF.png
+    title-slide-attributes:
+      data-background-image: img/bg-digital-data.jpg

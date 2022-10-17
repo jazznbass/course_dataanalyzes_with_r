@@ -1,0 +1,525 @@
+---
+title: "R Basic Concepts"
+company: "`r if(exists('info')) info$company`"
+author: "`r if(exists('info')) info$author`"
+date: "`r if(exists('info')) info$date`"
+output:
+  ioslides_presentation: 
+  css: styles.css
+  widescreen: yes
+  logo: img/ZEIF.png
+  df_print: kable
+---
+
+```{r setup, include=FALSE}
+library(knitr)
+library(tidyverse)
+opts_chunk$set(echo = TRUE, warning = FALSE, message = FALSE, comment = "")
+
+stop_video <- function() {
+  #out <- '<div class="red2">**Please stop the video here! Continue after completing the task!**</div>'
+  out <- '<div class="red2">**:-)**</div>'
+  cat(out)
+}
+
+
+
+```
+
+## Goals {.emphasized data-background=img/DEFOCUSED.png data-background-size=cover .flexbox .vcenter}
+
+- Basic concepts of R: library, function, argument 
+- Object types: numbers, logic values, characters
+- object structures: vectors, data frames
+- Sophisticated subsetting
+- Import and export data to Microsoft Excel, csv files, SPSS
+- Install and update packages (cran, source, and other repositories)
+- Organize your work in R Studio (Projects)
+
+## Goals {.emphasized data-background=img/DEFOCUSED.png data-background-size=cover .flexbox .vcenter}
+
+- <div class="red2">**Basic concepts of R: library, function, argument**</div> 
+- <div class="red2">**Object types: numbers, logic values, characters**</div>
+- <div class="red2">**object structures: vectors, data frames**</div>
+- Sophiticated subsetting
+- Import and export data to Microsoft Excel, csv files, SPSS
+- Install and update packages (cran, source, and other repositories)
+- Organize your work in R Studio (Projects)
+
+# Basic concepts
+
+## Functions {.build}
+
+- With a *function* you command the computer to do something.
+- *functions* have a function name (e.g., `mean`, `sqrt`).
+- *functions* take **arguments** to specify what to do.
+- *arguments* have argument names as well.
+- functions **always** consist of a function name followed by brackets.
+
+`function_name(argument_name_1 = value, argument_2 = value, ...)`
+
+## Examples {.build}
+
+```{r }
+# sqrt calculates the square root
+sqrt(x = 16)
+
+# You can omit the argument name if it is the first argument
+sqrt(16)
+
+# Even without arguments you still need the brackets
+date()
+```
+
+## Help files
+
+```{r eval=FALSE}
+# Function
+help("sqrt")
+
+# Short cut
+?sqrt
+```
+
+... or use the bottom-right help panel in R Studio
+
+## Task 
+
+Take a look at the `mean()` function (hint: use the `help()` function):  
+What *arguments* could be specified?
+
+```{r results = 'asis', echo = FALSE}
+stop_video()
+```
+
+---
+
+```{r eval=FALSE}
+help("mean")
+?mean
+```
+
+The mean function takes three arguments:
+
+* x : A vector with values
+* trim : A fraction (e.g. 0.3) of values that are trimmed from each each end of the vector x 
+* na.rm : If TRUE (na.rm = TRUE), missing values (NAs) are removed before calculating the mean
+
+## Operations {.build}
+
+Operations are a special kind of functions that have a shortcut.
+
+```{r results = "hide"}
+# function `assign` and the short cut
+assign(x = "y", value = 10)
+
+y <- 10
+```
+
+```{r results = "hide"}
+# function `+`
+"+"(e1 = 10, e2 = 10)
+
+10 + 10
+```
+```{r results = "hide"}
+# function `print`
+print(x = y)
+
+y
+```
+
+## Objects
+
+Objects have an object name and contain data.  
+The data are assigned to an object with the `<-` or `=` operator.
+
+```{r}
+x <- 10
+```
+
+You can see the value(s) of an object with the `print()` function, or by just typing the object name:
+
+```{r results = "hide"}
+print(x)
+x
+```
+---
+
+Objects can be used for operators and arguments in functions:
+
+```{r results = "hide"}
+x <- 16
+y <- 13
+
+x * y
+sqrt(x)
+```
+
+You can write the return values of a function into a new object:
+```{r results = "hide"}
+z <- sqrt(x)
+z
+```
+And you can combine these:
+
+```{r results = "hide"}
+exp(z) + sqrt(y)
+
+```
+
+## Task {.build}
+
+Assign the values `40 and 24` to the variables `a and b`.  
+Calculate the square root of the sum of `a and b`.
+
+```{r results = 'asis', echo = FALSE}
+stop_video()
+```
+
+## Task - solution
+
+Assign the values `40 and 24` to the variables `a and b`.  
+Calculate the square root of the sum of `a and b`.
+
+```{r}
+a <- 40
+b <- 24
+sqrt(a + b)
+```
+
+## Data types {.build}
+
+The data of objects can be numbers, text or TRUE/FALSE values. 
+These are called **data types**
+
+- **Numeric**: e.g. Integer or decimal numbers `1, 1.35` 
+- **Character**: Always between " " or ' ' signs: `"A", 'House'`
+- **Logical**:  `TRUE, FALSE`
+
+```{r}
+x <- 10
+y <- "Hello world!"
+z <- FALSE
+```
+
+## Data structures {.build}
+
+Data are organized in structures:
+
+>- **Atomic vectors**: A single value
+>- **Vectors**: A chain of values
+>- **Factors**: Values with assigned labels
+>- **List**: A series of elements, each containing an object
+>- **Data Frames**: A list with one vector for each element and all vectors of the same length
+>- **Matrix**: A two dimensional table with values of the same data type.
+>- **Array**: Like a matrix but with more dimensions.
+
+## Data structures
+
+Data are organized in structures:
+
+- **Atomic vectors**: A single value
+- <div class="red2">**Vectors**: A chain of values</div>
+- <div class="red2">**Factors**: Categorical values with assigned labels</div>
+- **List**: A series of elements, each containing an object
+- <div class="red2">**Data Frames**: A list with one vector for each element and all vectors of the same length</div>
+- **Matrix**: A two dimensional table with values of the same data type.
+- **Array**: Like a matrix but with more dimensions.
+
+## How to build a vector {.build}
+
+You create a vector with the `c()` function:
+
+```{r}
+c(2, 4, 6, 3, 7)
+y <- c(2, 4, 6, 3, 7)
+y
+```
+
+---
+
+The colon `:` operator creates a numerical sequence:
+
+```{r}
+1:10
+```
+
+This is a shortcut for `seq(1, 10)`
+
+---
+
+You can build a vector of any data type:
+
+```{r}
+firstname <- c("Dustin", "Mike", "Will")
+curly <- c(TRUE, FALSE, FALSE)
+age <- c(9, 11, 10)
+```
+
+But do not mix data types in a vector. You will get an error or they are internally changed to fit one data type:
+
+```{r}
+age <- c("quite young", 10, 12, "very old")
+age
+```
+
+Here `10` and `12` are changed to a character data type `"10"` and `"12"`.
+
+## Task {.build}
+
+Create a vector (named `friends` comprising four names of your friends.
+
+```{r results = 'asis', echo = FALSE}
+stop_video()
+```
+
+## Task - solution
+
+Create a vector (named `friends` comprising four names of your friends.
+
+```{r}
+friends <- c("Matthias", "Markus", "Thomas", "Christian")
+```
+
+## Combining vectors to new vectors {.build}
+
+When an object is a vector it can be reused within the `c()` function to build a new vector:
+
+```{r}
+x <- c(3, 5, 7)
+c(x, 5, 8, 9)
+
+```
+
+## Combining vectors to new vectors {.build}
+
+Be careful not to confuse an object name with a character:
+
+```{r error = TRUE}
+x <- c("A", "B", "C")
+c("x", "D", "E", "F")
+c(x, "D", "E", "F")
+c(A, B, C)
+
+```
+
+## Task {.build}
+
+Create two vectors  
+`x <- c("I", "am", "a")` and  
+`y <- "person!"`
+
+Now create a new vector by reusing `x` and `y` that looks like this when printed:
+
+`[1] "I"      "Am"     "a"      "cool"   "person!"`
+
+
+```{r results = 'asis', echo = FALSE}
+stop_video()
+```
+
+## Task - solution
+
+```{r}
+x <- c("I", "am", "a")
+y <- "person!"
+c(x, "cool", y)
+```
+
+
+## Missing values
+
+A missing value is represented with `NA` (**N**ot **A**vailable).
+
+```{r}
+age <- c(9, NA, 11)
+name <- c("Tick", "Trick", NA)
+age
+name
+
+```
+
+## Task {.build}
+
+Create a vector with the values `2, 5, 7, 4, 7, 2, 6`. Calculate the `mean` of these values. (Note: Use the `mean()` function to calculate the mean).
+
+```{r results = 'asis', echo = FALSE}
+stop_video()
+```
+
+## Task - solution
+
+Create a vector with the values `2, 5, 7, 4, 7, 2, 6`. Calculate the `mean` of these values. (Note: Use the `mean()` function to calculate the mean).
+
+
+```{r}
+x <- c(2, 5, 7, 4, 7, 2, 6)
+mean(x)
+```
+
+## Task {.build}
+
+Create a vector with the values `2, NA, 7, 4, NA, 2, 6`. Calculate the `mean` of these values.  
+(Note: Read through `?mean` if you encounter problems.)
+
+
+```{r results = 'asis', echo = FALSE}
+stop_video()
+```
+
+
+## Task - solution
+
+Create a vector with the values `2, NA, 7, 4, NA, 2, 6`. Calculate the `mean` of these values.  
+(Note: Read through `?mean` if you encounter problems.)
+
+```{r}
+x <- c(2, NA, 7, 4, NA, 2, 6)
+mean(x, na.rm = TRUE)
+```
+
+
+## Selecting elements with square brackets {.build}
+
+```{r}
+names <- c("Sheldon", "Leonard", "Penny", "Amy")
+names[1]
+
+# Pass a vector to extract multiple elements:
+names[c(1,4)]
+
+```
+
+## Task {.build}
+
+Take the vector  
+`names <- c("Sheldon", "Leonard", "Penny", "Amy")`  
+and reorder it to get the following result:  
+`[1] "Sheldon" "Amy"     "Sheldon" "Amy"     "Leonard" "Penny"`
+
+```{r results = 'asis', echo = FALSE}
+stop_video()
+```
+
+
+## Task - solution 
+
+Take the vector  
+`names <- c("Sheldon", "Leonard", "Penny", "Amy")`  
+and reorder it to get the following result:  
+`[1] "Sheldon" "Amy"     "Sheldon" "Amy"     "Leonard" "Penny"`
+
+```{r}
+x <- c(1, 4, 1, 4, 2, 3)
+new_order <- names[x]
+new_order
+```
+
+## A factor {.build}
+
+A factor is a vector with labels for vector levels.  
+E.g., a vector contains the values 0 and 1 where 0 stands for "with behavioral problems" and 1 stands for "without behavioral problems".
+
+A factor is created with the `factor()` function.
+
+```{r}
+sen <- factor(
+  c(1, 0, 1, 0, 0, 0), 
+  levels =  c(0, 1), 
+  labels = c("Without_SEN", "With_SEN")
+)
+sen
+```
+
+## Task {.build}
+
+Build a factor for `gender` with the labels `male, female, non-binary`. Include a vector for six fictitious gender values.
+
+```{r results = 'asis', echo = FALSE}
+stop_video()
+```
+
+
+## Task - solution
+
+Build a factor for `gender` with the labels `male, female, non-binary`. Include a vector for six fictitious gender values.
+
+```{r}
+gender <- factor(
+  c(1, 3, 2, 1, 2, 1), 
+  levels = 1:3, 
+  labels = c("male", "female", "non-binary")
+)
+gender
+```
+
+## How to build a data frame {.build .smaller}
+
+Data frames are the standard object for storing research data. They contain variables (columns) and cases (rows). A data frame is created with the `data.frame()` function.
+
+```{r}
+# For better convenience I have inserted additional linebreaks and spaces
+study <- data.frame(
+  sen    = c(0, 1, 0, 1, 0, 1),
+  gender = c("M", "M", "F", "M", "F", "F"),
+  age    = c(12, 13, 11, 10, 11, 14),
+  IQ     = c(90, 85, 90, 87, 99, 89)
+)
+study
+```
+
+## Extracting a variable from a data frame
+
+Variables within a data frame are extracted with double square brackets.
+
+```{r}
+study[["sen"]]
+study[["IQ"]]
+```
+
+*Note: an alternative approach is to use the `$` sign: `study$sen`. But we will not use this approach for now.*
+
+## Subsetting a data frame
+
+Specific cases are selected within square brackets: 
+`object_name[rows, columns]`.
+
+```{r}
+study[5, ]  # filter a row
+study[c(2, 6), ] # filter two rows
+```
+
+---
+
+```{r}
+study[c(2, 6), "IQ"]
+study[c(2, 6), c("sen", "IQ")]
+```
+
+---
+
+You could also use numbers to address the columns:
+
+```{r}
+study[, 2]
+study[c(2, 6), c(1, 3)]
+```
+
+## Task {.build}
+
+Please create a new data frame (`study2`) comprising the `gender` and `age` variables for the cases 1, 3, and 5 of the `study` data frame.
+
+```{r results = 'asis', echo = FALSE}
+stop_video()
+```
+
+
+## Task - solution
+
+Please create a new data frame (`study2`) comprising the `gender` and `age` variables for the cases 1, 3, and 5 of the `study` data frame.
+
+```{r}
+study2 <- study[c(1, 3, 5), c("gender", "age")]
+study2
+```

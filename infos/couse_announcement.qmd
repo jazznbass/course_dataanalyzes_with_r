@@ -1,0 +1,54 @@
+---
+title: "Course announcement"
+author: "Jürgen Wilbert"
+date: "`r format(Sys.time(), '%d %B %Y')`"
+---
+
+```{r}
+#| include: false
+course_time <- "Thursday 18.00 - 19.30"
+course_place <- "Room 0.18 Building 31"
+course_title <- "Data analysis with R"
+course_moodle <- "R_course_W22  
+<https://moodle2.uni-potsdam.de/course/view.php?id=35215>"
+```
+
+This semester I will be teaching a course on "`r course_title`"
+
+**Topic**: Introduction to reproducible research and data analyses with the software R\
+**Level**: We start at the very beginning\
+**Mode**: Weekly in person meeting and online materials (see moodle course)\
+**Time**: `r course_time`  
+**Start**: 20. October  
+**End**: 12 January\
+**Place**: `r course_place`\
+**Language**: English and German
+
+### Requirements:
+
+-   You need a computer, obviously :-)
+-   The computer has to run current versions of R and R-Studio (except for the first session).
+
+### Who can participate?
+
+Anybody interested: students, PhD students, profs. ...
+
+### Moodle course
+
+For updates on the course and to participate, please enroll to the moodle course:
+
+`r course_moodle`
+
+### Start
+
+The first session will be on Thursday, 20 October (18.00 s.t.).
+
+Topic:
+
+-   Installation of R and R-Studio
+-   The R-Studio environment
+-   Introduction to the main idea of this course: reproducible research
+
+All the best,
+
+Jürgen

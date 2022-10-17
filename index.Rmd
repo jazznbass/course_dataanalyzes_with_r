@@ -1,9 +1,0 @@
----
-title: "Home"
----
-
-# Welcome!
-
-Here you find slides, videos, material, and further information on my introductory R course.
-
-

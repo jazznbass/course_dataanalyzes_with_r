@@ -1,0 +1,221 @@
+---
+title: "Rmarkdown"
+subtitle: 'An authoring framework for data science'
+format: revealjs
+---
+
+```{r setup, include=FALSE}
+```
+
+## Goals {.emphasized .flexbox .vcenter data-background="img/DEFOCUSED.png" data-background-size="cover"}
+
+-   You know what mardown is.
+-   You know what you can do with Rmarkdown.
+-   You can create your own Rmarkdown files.
+
+# Markdown and Rmarkdown {background-image="img/bg-h1-3.jpg"}
+
+## What is **markdown**?
+
+::: incremental
+-   It is a very simple document *markup language*. That is, it is a way to format a text.
+-   Similar but much simpler than **html**, or **rtf**.
+-   E.g. putting an asterisk around the text will make it italic and two asterisks bold:\
+    \*example\* becomes *example*\
+    \*\*another example\*\* becomes **another example**
+-   **markdown** was developed in 2004 by John Gruber as an easy way to create texts on websites.
+:::
+
+## 
+
+::: incremental
+-   Texts in **mardown** are rendered (translated) to other markup languages before they are turned to webpages or documents.
+-   The idea is: You type a text with basic format tags and later let the computer render it to a more complex format.
+-   Due to its simplicity, **markdown** can be converted to *html*, *latex*, *docx*, *rtf*, ect. files.
+-   Markdown is widely applied on various sites (e.g., ***GitHub, Reddit, Diaspora, OpenStreetMap, sourceForge***).
+:::
+
+##  {.smaller}
+
+A text like this:
+
+    # Chaper 1
+
+    > If something is true, no amount of wishful thinking will change it *-Richard Dawkins*
+
+    We will discuss the following ideas:
+
+    1. The meaning of **life**
+    2. The end of **suffering**
+    3. The **noble eightfold path**
+
+    | Sanskrit| Meaning |
+    |---------|---------|
+    | dukkha  | suffering is an innate characteristic of existence. |
+    | samudaya| together with *dukkha* arises *taṇhā* (craving). |
+    | nirodha | *dukkha* can be ended or contained by letting go of this *taṇhā.* |
+    | magga   | The *noble eightfold path* leads to the confinement. |
+
+    Tabel 1: [The four noble truths](https://en.wikipedia.org/wiki/Four_Noble_Truths)
+
+## Three outputs:
+
+::: panel-tabset
+## Word
+
+![](images/paste-3DDCF0F1.png)
+
+## html
+
+![](images/paste-EEF87302.png)
+
+## pdf
+
+![](images/paste-73452D3D.png)
+:::
+
+## Rmarkdown
+
+::: incremental
+-   Rmarkdown is an extension to markdown.
+-   Specifically developed to combine data analyses (scripts and output) within a document.
+-   Think of it as an integration of a text-processing program and R code.
+-   You can write a text and implement tables, plots, figures etc. analysed with R.
+:::
+
+## Why use Rmarkdown?
+
+-   Rmarkdown helps to make your research:
+    -   Transparent
+    -   Reproducible
+    -   Organized
+    -   Communicatable
+
+## Why use Rmarkdown?
+
+-   You can create individualized reports
+    -   E.g. results with a standard text for each participant in a study comprising her own data
+    -   E.g. individual analyses for each single school or classroom but with a common text.
+    -   You can even adapt text blocks depending on parameters and specific results (e.g. skip certain passages for special schools but not for primary schools)
+
+## Task
+
+Before we go on, you have to start your first Rmarkdown document:
+
+-   Create a new source file in R. Choose ***"Text File"*** as the format.\
+    File ![](img/right_arrow.jpg){width="30"} New File ![](img/right_arrow.jpg){width="30"} Text File
+-   Save it under the name "first_mardown.Rmd"\
+    (you can name it as you like as long as it ends with ".Rmd").
+-   Now, at the lower right corner of your source panel you should find ![](img/Rmarkdown_dropdown.png){hight="30"} as an indicator of the file type.
+-   Also, at the top of the source file you should find ![](img/knit_symbol.png){hight="30"}
+
+# Basic markdown formating {background-image="img/bg-h1-3.jpg"}
+
+## Basic markdown: header
+
+-   Normally written text appears as unformatted text.
+-   You can format text into a header with the `#` symbol:
+
+``` r
+# A level one header
+## A level two header
+### A level three header
+#### A level four header
+```
+
+## Basic markdown: Emphasise
+
+-   Italic text is put between `*` symbols (or `_`).
+-   Bold text between `**` symbols.
+-   Italic and bold text between `***` symbols.
+
+`This is *italic* this is **bold**, and ***this is both!!!***.`
+
+This is *italic* this is **bold**, and ***this is both!!!***.
+
+## Basic markdown: Lists {.smaller}
+
+``` r
+An unordered list:
+
+- Helmut
+- Gerhard
+- Angela
+
+An ordered list:
+
+1. Bush
+2. Obama
+3. Trump
+
+Combined:
+  
+1. Sour
+  - Lime
+  - Envy
+2. Sweet
+  - Honey
+  - love
+```
+
+# Rmarkdown {background-image="img/bg-h1-3.jpg"}
+
+## Chunks
+
+-   `Chunks` are portions of R code within a markdown file.
+-   A chunk for R has the following structure:
+
+\`\`\`{r}\
+\# Here comes the R code\
+\`\`\`
+
+-   An empty chunk can be inserted directly through the `Insert` button.
+
+## Chunk Options {.smaller}
+
+-   Chunk options specify the "behaviour" of a chunk.
+-   They are put behind the leading "r" and are separated by ",".
+
+e.g.:
+
+\`\`\`{r echo = FALSE}\
+\# Here comes the R code\
+\`\`\`
+
+-   `echo = FALSE` suppresses the inclusion of the original R code and only output is reported.
+-   `include = FALSE` executes the R code but does not report anything
+-   `message = FALSE` excludes additional messages given by a function.
+-   `warning = FALSE` exclude warnings created by a function.
+
+## YAML (YAML is not a markup language) {.smaller}
+
+-   Through YAML you can set several document parameters.
+-   YAML is like a document header at the beginning of an Rmarkdown file. It is put between leading and ending "---".
+
+``` r
+---
+  
+---
+```
+
+Some possible parameters:
+
+-   title: "My first document"
+-   author: "Jürgen Wilbert"
+-   date: 12.12.2019
+-   abstract: This is an interesting paper
+
+## Additional ressources for Rmarkdown
+
+-   Cheatsheet:\
+    <https://rstudio.com/wp-content/uploads/2015/02/rmarkdown-cheatsheet.pdf>
+-   R Markdown: The Definitive Guide\
+    <https://bookdown.org/yihui/rmarkdown/>
+
+## Task
+
+-   Download the ***Rmarkdown silly example*** from the R moodle course.
+-   Save it to your project folder.
+-   Open it in RStudio.
+-   Knit an html and Word Docx file from it.
+-   Read through the code and make sure you understand all of it :-)

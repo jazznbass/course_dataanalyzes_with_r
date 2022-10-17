@@ -1,0 +1,444 @@
+---
+title: "ggplot2"
+subtitle: 'Creating figures and graphs with R'
+company: "`r if(exists('info')) info$company`"
+author: "`r if(exists('info')) info$author`"
+date: "`r if(exists('info')) info$date`"
+output:
+  ioslides_presentation: 
+    css: styles.css
+    logo: img/ZEIF.png
+    widescreen: yes
+    df_print: kable
+  html_document: default
+  pdf_document: default
+  beamer_presentation: default
+  powerpoint_presentation:
+    reference_doc: template.pptx
+  slidy_presentation: default
+---
+
+```{r setup, include=FALSE}
+library(knitr)
+library(tidyverse)
+opts_chunk$set(echo = TRUE, warning = FALSE, message = FALSE)
+
+stop_video <- function() {
+  #out <- '<div class="red2">**Please stop the video here! Continue after completing the task!**</div>'
+   out <- '<div class="red2">**:-)**</div>'
+  cat(out)
+}
+
+
+```
+
+## Goals {.emphasized data-background=img/DEFOCUSED.png data-background-size=cover .flexbox .vcenter}
+
+- An introduction to the ***Grammar of Graphics***
+- An introduction to ***ggplot***
+
+## ggplot2
+
+- ggplot2 is an R package for visualizing data.
+- It is part of the [tidyverse](https://ggplot2.tidyverse.org/)
+- It is based on a concept called [The Grammar of Graphics](https://link.springer.com/content/pdf/10.1007%2F978-3-642-21551-3_13.pdf) by Leland Wilkinson
+- It has been programmed and implemented as an R package by [Hadley Wickham](http://hadley.nz/).
+- There is a [book available on ggplot2](https://link.springer.com/book/10.1007/978-3-319-24277-4)
+- Which you find [at https://ggplot2-book.org/](https://ggplot2-book.org/) as an online book.
+
+## ggplot components
+
+```{r, out.width = "800px", echo = FALSE}
+knitr::include_graphics("img/ggplot_layers.png")
+```
+
+## Basic concepts of ggplot2
+
+A ggplot graphic has at least three key components:
+
+1. ***data***
+2. A set of ***aesthetic mappings*** between variables in the data and visual properties (x and y axis, colour, dotsize etc.)
+3. At least one ***geometries layer*** which describes how to render each observation (lines, point, bars etc.). Layers are usually created with a **geom** function
+
+```{r, out.width = "800px", echo = FALSE}
+knitr::include_graphics("img/ggplot_layer_1_3.png")
+```
+
+## Task
+
+- Copy and execute these lines:
+- `displ` displacement by `hwy` highway miles per gallon
+
+```{r eval=FALSE}
+library(tidyverse)
+ggplot(data = mpg, mapping = aes(x = displ, y = hwy)) + 
+  geom_point()
+```
+
+```{r results = 'asis', echo = FALSE}
+stop_video()
+```
+
+##
+
+```{r}
+library(tidyverse)
+ggplot(mpg, aes(x = displ, y = hwy)) + 
+  geom_point()
+```
+
+## Task
+
+- Copy and execute these lines:
+- Axis: `displ` displacement and `hwy` highway miles per gallon
+- Colour: `drv` f = front-wheel drive, r = rear wheel drive, 4 = 4wd
+- Size: `cyl` number of cylinders
+
+```{r eval = FALSE}
+ggplot(mpg, aes(x = displ, y = hwy, color = drv, size = cyl)) + 
+  geom_point()
+```
+
+```{r results = 'asis', echo = FALSE}
+stop_video()
+```
+
+***
+
+```{r}
+ggplot(mpg, aes(x = displ, y = hwy, color = drv, size = cyl)) + 
+  geom_point()
+```
+
+## The `ggplot()` function
+
+The main function is `ggplot()`. It takes two arguments:
+
+1. `data` : A *data frame*
+2. `mapping` : **Aesthetic mappings** provided with the `aes()` function.
+
+Additional layers are added with a `+` sign.
+
+```{r eval=FALSE}
+ggplot(mpg, aes(x = displ, y = hwy, color = drv, size = cyl)) + 
+  geom_point()
+```
+
+## Task
+
+- Take the `mpg` data frame.
+- Plot a graph with ...
+    - `cty` and `hwy` displayed on the axis and 
+    - the colour is mapped on the variable `class` and
+    - the shape (`shape = drv`) is mapped on the variable `drv`.
+- Use the `geom_point()` layer.
+
+```{r results = 'asis', echo = FALSE}
+stop_video()
+```
+
+***
+
+```{r}
+ggplot(mpg, aes(cty, hwy, colour = class, shape = drv))  + 
+  geom_point()
+```
+
+## Fixed aestetics
+
+- *Aestetics* can also be provided in the `geom` function. 
+- Here they are not mapped to variables but fixed.
+
+```{r, fig.width=5, fig.height=3}
+ggplot(diamonds, aes(carat, price)) + 
+  geom_point(colour ="red", shape = "+", size = 1)
+```
+
+## Some geoms
+
+- `geom_point()` : Dots for each data point.
+- `geom_line()` : Lines connecting each x-axis data point 
+- `geom_bar()` : Bars
+- `geom_text()` : Text at x and y positions
+- `geom_smooth()` : Smoothed conditional means
+
+##
+
+```{r echo = FALSE, fig.width=2, fig.height=4}
+df <- data.frame(
+  x = c(3, 1, 5), 
+  y = c(2, 4, 6), 
+  label = c("a","b","c")
+)
+p <- ggplot(df, aes(x, y, label = label)) + 
+  labs(x = NULL, y = NULL) + # Hide axis label
+  theme(plot.title = element_text(size = 12)) # Shrink plot title
+p + geom_point() + ggtitle("geom_point")
+p + geom_text() + ggtitle("geom_text")
+p + geom_bar(stat = "identity") + ggtitle("geom_bar")
+p + geom_line() + ggtitle("geom_line")
+```
+
+
+## Task
+
+- Take the `economics` data frame
+- Create a lineplot for `date` and `unemployment`. (`geom_line()`)
+- Add a second layer for red dots of size = 1 (`geom_point()`)
+
+```{r results = 'asis', echo = FALSE}
+stop_video()
+```
+
+***
+
+```{r}
+ggplot(economics, aes(date, unemploy)) + 
+  geom_line() + 
+  geom_point(color = "red", size = 1)
+```
+
+
+## `geom_bar()`
+
+- `geom_bar()` draws bars
+- By default, it counts the numbers of entities of categories provided as the `x` variable
+
+```{r fig.height= 2}
+# Number of cars in each class:
+ggplot(mpg, aes(class)) +
+  geom_bar()
+```
+
+## Task
+
+- Take the `mpg` data frame.
+- Create a barplot with the counts of categories for the `drv` variable.
+- Colour the bars `red` with the `fill` argument.
+- Set the argument `width = 0.8` to resize the bar width.
+
+```{r results = 'asis', echo = FALSE}
+stop_video()
+```
+
+***
+
+```{r}
+ggplot(mpg, aes(drv)) +
+  geom_bar(fill = "red", width = 0.8)
+```
+
+## `geom_col()`
+
+- With the `geom_col()` function, bar heights and bar categories are taken from the x and y variables:
+
+## Example
+
+```{r, fig.width=5, fig.height=3}
+df <- data.frame(
+  type = c("A", "B", "C"), 
+  mean = c(2.5, 4.4, 6.3)
+)
+ggplot(df, aes(x = type, y = mean)) +
+  geom_col()
+
+```
+
+## Task
+
+- Take the `starwars` database.
+- Calculate the bmi. (`mutate(bmi = mass / (height / 100)^2)`)
+- Filter all `bmi < 100`.
+- Summarise the median of the bmi grouped by species. 
+- Create a fitting barplot.
+- Add the following layer. Otherwise the x-labels will overlap:  
+`theme(axis.text.x = element_text(angle = 40, hjust=1))`  
+
+Hint: (`summarise(mean_bmi = median(bmi, na.rm = TRUE)`)  
+
+```{r results = 'asis', echo = FALSE}
+stop_video()
+```
+
+***
+
+```{r message=FALSE, warning=FALSE, fig.height=4}
+starwars %>% 
+  mutate(bmi = mass / (height / 100)^2) %>% 
+  filter(bmi < 100) %>%
+  group_by(species) %>% 
+  summarise(
+    mean_bmi = median(bmi, na.rm = TRUE)
+  ) %>%
+  ggplot(aes(species, mean_bmi)) +
+    geom_col() +
+    theme(axis.text.x = element_text(angle = 40, hjust=1))
+           
+```
+
+## `geom_smooth()` {.smaller}
+
+geom_smooth() is used to add smoothed conditional means in scatterplots.
+
+```{r}
+ggplot(mpg,aes(displ, hwy)) + 
+  geom_point() +
+  geom_smooth()
+```
+
+## Task
+
+- Take the `economics` data frame.
+- Create a scatterplot with number of unemployed `unemploy` by population `pop`.
+- Add a `geom_smooth` layer.
+
+```{r results = 'asis', echo = FALSE}
+stop_video()
+```
+
+***
+
+```{r}
+economics %>%
+  ggplot(aes(pop, unemploy)) + 
+    geom_point() + 
+    geom_smooth()
+```
+
+## Task 
+
+- Install and activate the library `dslabs`.
+- Take the dataframe `gapminder`.
+- Group the data by `year` and `continent`.
+- Use the `summarize()` function to calculate the mean of `infant_mortality`.
+- Create a line and dot plot with `year` on x-axis,  mean of `infant_mortality` on y-axis, and `continent` as line/dot colours.
+- Add a `smooth` layer. 
+
+Hint: `group_by(year, continent)`  
+
+```{r results = 'asis', echo = FALSE}
+stop_video()
+```
+
+## {.smaller}
+
+```{r message=FALSE, warning=FALSE}
+library(dslabs)
+gapminder %>% group_by(year, continent) %>%
+  summarize(m_infant_mortality = mean(infant_mortality, na.rm = TRUE)) %>%
+  ggplot(aes(x = year, y = m_infant_mortality, color = continent)) +
+    geom_line() + 
+    geom_point() + 
+    geom_smooth()
+
+```
+
+## Distributions of multiple datapoints in categories
+
+When you have multiple values ordered in a categorical variable. Simple plots become messy:
+
+```{r fig.height=3}
+ggplot(mpg,aes(drv, hwy)) +
+  geom_point()
+# Note: hwy is highway miles per gallon
+# drv is the type of drive train, where f = front-wheel drive, r = rear wheel drive, 4 = 4wd
+
+```
+
+## Distributions of multiple datapoints in categories (2)
+
+Solutions
+
+- `geom_jitter()` : Adds a litle random jitter to each datapoint
+- `geom_boxplot()` : Draws a boxplot
+- `geom_violin()` : Draws a violine plot
+
+## Task
+
+- Take the `mgp` dataset
+- Create the following plots for the variables x = drv and y = hwy
+    - geom_jitter()
+    - geom_boxplot()
+    - geom_violin()
+
+```{r results = 'asis', echo = FALSE}
+stop_video()
+```
+
+***
+
+```{r eval = FALSE}
+ggplot(mpg,aes(drv, hwy)) +geom_jitter(width = 0.2)
+ggplot(mpg,aes(drv, hwy)) +geom_boxplot()
+ggplot(mpg,aes(drv, hwy)) +geom_violin()
+```
+
+```{r fig.width=3, fig.height=4, echo = FALSE}
+ggplot(mpg,aes(drv, hwy)) +geom_jitter(width = 0.2)
+ggplot(mpg,aes(drv, hwy)) +geom_boxplot()
+ggplot(mpg,aes(drv, hwy)) +geom_violin()
+```
+
+## Further layers
+
+- Add a title: ggtitle() ( e.g. ggtitle("My first plot") )
+- Change axis labels: labs(x = NULL, y = NULL) (e.g. labs(x = "Categories", y = "Mean"))
+- Change axis scales: ylim(min = 0, max = 10) ; xlim(min = 0, max = 10)
+
+## Task
+
+## Facets {.smaller}
+
+Facets are another basic aesthetics. A plot is organizes multiple times by a categorical variable:
+
+
+```{r}
+ggplot(mpg, aes(cty, hwy)) + 
+  geom_point() +
+  facet_wrap(vars(class)) # or facet_wrap(~class)
+```
+
+## Task
+
+- Take the economics dataset  
+- Create a new Variable `year` by extracting the yeat from the `date` variable.
+- Turn the saving rate variable `psavert` in to a categorical variable `saving_rate` with three levels
+- Plot year by unemployment rate with facets for `saving_rate`.
+
+Hint1: `year = format(date, format = "%Y")`  
+Hint2: `saving_rate = cut(psavert, breaks = 3, labels = c("Low","Medium","High"))`  
+Hint3: unemployment rate: `unemploy / pop * 100`
+
+```{r results = 'asis', echo = FALSE}
+stop_video()
+```
+
+## {.smaller}
+
+```{r}
+economics %>%
+  mutate(
+    year = format(date, format = "%Y"),
+    saving_rate = cut(psavert, breaks = 3, labels = c("Low","Medium","High"))
+  ) %>%
+  ggplot(aes(year, unemploy/pop*100)) + 
+    geom_point(size = 0.5) +
+    facet_wrap(~saving_rate) +
+    theme(axis.text.x = element_text(angle = 90, hjust=1, size = 5))
+```
+
+## {.smaller}
+
+```{r}
+class <- mpg %>%
+  group_by(class) %>%
+  summarise(n=n(), hwy = mean(hwy))
+
+ggplot(mpg, aes(class, hwy)) +
+  geom_jitter(width = 0.2) +
+  geom_point(data = class, mapping = aes(class, hwy), colour = "red", size = 6) +
+  geom_text(data = class, aes(class, 10, label = paste0("n=", n))) + 
+  ylim(10, 45)
+
+```
+

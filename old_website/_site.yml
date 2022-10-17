@@ -1,0 +1,27 @@
+name: "Course Dataanalyzes with R"
+output_dir: "docs"  
+navbar:
+  title: 'Dataanalyzes R'
+  type: inverse
+  left:
+    - text: "Slides"
+      href: course_R_intro.html
+    - text: "Homepage"
+      href: https://jazznbass.github.io/homepage/
+      
+  right:
+    - icon: fab fa-twitter
+      href: https://twitter.com/juergen_wilbert
+    - icon: fab fa-github
+      href: https://github.com/jazznbass
+    - icon: fab fa-researchgate
+      href: https://www.researchgate.net/profile/Juergen_Wilbert2
+      
+output:
+  html_document:
+    theme: yeti
+    highlight: tango
+    css: style_add.css
+    include:
+      after_body: footer.html
+      in_header: header.html

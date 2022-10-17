@@ -1,0 +1,15 @@
+---
+title: "Analyzing single-case data"
+format: revealjs
+---
+
+```{r setup, include=FALSE}
+library(knitr)
+library(tidyverse)
+```
+
+## Goals
+
+- An introduction to single-case analyses
+- An introduction to analyzing single case data with the package R
+

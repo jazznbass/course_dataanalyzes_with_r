@@ -1,0 +1,14 @@
+{
+  "hash": "2780405b41babee4275c3512ff8872b7",
+  "result": {
+    "markdown": "---\ntitle: \"Course announcement\"\nauthor: \"Jürgen Wilbert\"\ndate: \"12 October 2022\"\n---\n\n\n\n\nThis semester I will be teaching a course on \"Data analysis with R\"\n\n**Topic**: Introduction to reproducible research and data analyses with the software R\\\n**Level**: We start at the very beginning\\\n**Mode**: Weekly in person meeting and online materials (see moodle course)\\\n**Time**: Thursday 18.00 - 19.30  \n**Start**: 20. October  \n**End**: 12 January\\\n**Place**: Room 0.18 Building 31\\\n**Language**: English and German\n\n### Requirements:\n\n-   You need a computer, obviously :-)\n-   The computer has to run current versions of R and R-Studio (except for the first session).\n\n### Who can participate?\n\nAnybody interested: students, PhD students, profs. ...\n\n### Moodle course\n\nFor updates on the course and to participate, please enroll to the moodle course:\n\nR_course_W22  \n<https://moodle2.uni-potsdam.de/course/view.php?id=35215>\n\n### Start\n\nThe first session will be on Thursday, 20 October (18.00 s.t.).\n\nTopic:\n\n-   Installation of R and R-Studio\n-   The R-Studio environment\n-   Introduction to the main idea of this course: reproducible research\n\nAll the best,\n\nJürgen\n",
+    "supporting": [],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {},
+    "engineDependencies": {},
+    "preserve": {},
+    "postProcess": true
+  }
+}

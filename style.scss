@@ -1,0 +1,33 @@
+/*-- scss:defaults --*/
+
+/*-- scss:rules --*/
+
+
+.blue {
+  color: blue;
+}
+
+.em {
+  color: #3e73b0;
+  font-weight: bold;
+}
+
+.forceBreak { 
+  -webkit-column-break-after: always; break-after: column; 
+}
+
+.left {
+  float: left; width: 50%
+}
+
+.right {
+  float: left; width: 50%
+}
+
+.left37 {
+  float: left; width: 30%
+}
+
+.right37 {
+  float: left; width: 70%
+}
