@@ -23,7 +23,7 @@ format: revealjs
 -   An idea and a community that shares common ideas about science
 :::
 
-# Statements {background-image="img/bg-h1-3.jpg"}
+## Statements {background-image="img/bg-h1-3.jpg"}
 
 ::: incremental
 -   Science should be truthful
@@ -35,7 +35,7 @@ format: revealjs
 -   Science should be open
 :::
 
-# R (and R studio) {background-image="img/bg-h1-3.jpg"}
+## R (and R studio) {background-image="img/bg-h1-3.jpg"}
 
 -   Science should be truthful
 -   Science should be diligent
@@ -88,6 +88,22 @@ schedule
 Download ***RStudio-Desktop*** for free
 
 ![](img/rstudio-homepage.png){width="642"}
+
+## Installing R tools (windows only)
+
+-   Windows user have to install additional programs that allow for compiling R packages.
+-   This is necessary when you want to install certain extensions to R (`packages`).
+-   You can install it from here: <https://cran.r-project.org/bin/windows/Rtools/>
+-   Choose the version that corresponds to the version of R that you installed previously.
+-   Linux or MacOs users have this software already installed.
+
+## Install Quarto
+
+-   Quarto is a program that allows for publishing documents that contain Output (tabels, plots etc.) created with R.
+
+-   You can install it from here: <https://quarto.org/>
+
+    ![](images/paste-BE281E24.png)
 
 # R for Data science
 
