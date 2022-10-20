@@ -1,5 +1,6 @@
 project:
   title: "Introduction to R"
+  output-dir: html
   
 author: "Jürgen Wilbert"
 date: today
