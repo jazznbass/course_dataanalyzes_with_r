@@ -44,9 +44,11 @@ study
 ## Drop a variable
 
 ```{r}
-study <- subset(study, select = -age2)
-# or: study[, -10]
+study$age2 <- NULL
 study
+# or: study <- subset(study, select = -age2)
+# or: study <- study[, -10]
+
 ```
 
 ## Task
