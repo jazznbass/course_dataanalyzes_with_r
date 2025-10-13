@@ -1,0 +1,19 @@
+{
+  "hash": "52bd5c6a540f19e1130b9569c49d8177",
+  "result": {
+    "engine": "knitr",
+    "markdown": "---\ntitle: \"Courses: Introduction to data analysis with R\"\n---\n\n\n\n# Courses: Introduction to data analysis with R\n\n# Session 1: Introduction\n\n<iframe src=\"https://www.youtube.com/embed/iy83IemM1a8\" width=\"640\" height=\"360\">\n</iframe>\n\nSlides: [Introduction](https://cm.jazznbass.de/R_intro/01-Introduction.html)\n\n# Session 1b: RStudio\n\n<iframe src=\"https://www.youtube.com/embed/why3CoIAqmw\" width=\"640\" height=\"360\">\n</iframe>\n\n# Session 2: Basics: Datatypes\n\n<iframe src=\"https://www.youtube.com/embed/pxDu-POlewY\" width=\"640\" height=\"360\">\n</iframe>\n\nSlides: [Basics](https://cm.jazznbass.de/R_intro/02-Basics_1.html)\n\n\n# Session 3: Sophisticated subsetting\n\n<iframe src=\"https://www.youtube.com/embed/tNbkof8i3WU\" width=\"640\" height=\"360\">\n</iframe>\n\nSlides: [Sophisticated subsetting](https://cm.jazznbass.de/R_intro/02-Basics_soph_sub.html)\n\n\n# Session 4: Libraries, projects, and importing data\n\n<iframe src=\"https://www.youtube.com/embed/CdlQRgkmj-c\" width=\"640\" height=\"360\">\n</iframe>\n\nSlides: [Libraries, projects, and importing data](https://cm.jazznbass.de/R_intro/02b-Basics_misc.html)\n\nExample file: [cars.xlsx](material/cars.xlsx)\n\n# Session 5: Rmarkdown\n\n<iframe src=\"https://www.youtube.com/embed/6yOSmk-HNFs\" width=\"640\" height=\"360\">\n</iframe>\n\nSlides: [Rmarkdown](https://cm.jazznbass.de/R_intro/03-Rmarkdown.html)\n\n# Session 6: tidyverse\n\n<iframe src=\"https://www.youtube.com/embed/h4cV7uKP6FQ\" width=\"640\" height=\"360\">\n</iframe>\n\nSlides: [Rmarkdown](https://cm.jazznbass.de/R_intro/04-Tidyverse.html)\n\n\n# Session 7: Data preparation with dplyr\n\n<iframe src=\"https://www.youtube.com/embed/Z2s4eGXR82s\" width=\"640\" height=\"360\">\n</iframe>\n\nSlides: [dplyr](https://cm.jazznbass.de/R_intro/04b-dplyr.html)\n\n\n# Session 8: Graphics with gpplot2\n\n<iframe src=\"https://www.youtube.com/embed/LMA-kvP2Ar8\" width=\"640\" height=\"360\">\n</iframe>\n\nSlides: [ggplot2](https://cm.jazznbass.de/R_intro/06-ggplot2.html)\n\n",
+    "supporting": [],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {
+      "include-after-body": [
+        "\n<script>\n  // htmlwidgets need to know to resize themselves when slides are shown/hidden.\n  // Fire the \"slideenter\" event (handled by htmlwidgets.js) when the current\n  // slide changes (different for each slide format).\n  (function () {\n    // dispatch for htmlwidgets\n    function fireSlideEnter() {\n      const event = window.document.createEvent(\"Event\");\n      event.initEvent(\"slideenter\", true, true);\n      window.document.dispatchEvent(event);\n    }\n\n    function fireSlideChanged(previousSlide, currentSlide) {\n      fireSlideEnter();\n\n      // dispatch for shiny\n      if (window.jQuery) {\n        if (previousSlide) {\n          window.jQuery(previousSlide).trigger(\"hidden\");\n        }\n        if (currentSlide) {\n          window.jQuery(currentSlide).trigger(\"shown\");\n        }\n      }\n    }\n\n    // hookup for slidy\n    if (window.w3c_slidy) {\n      window.w3c_slidy.add_observer(function (slide_num) {\n        // slide_num starts at position 1\n        fireSlideChanged(null, w3c_slidy.slides[slide_num - 1]);\n      });\n    }\n\n  })();\n</script>\n\n"
+      ]
+    },
+    "engineDependencies": {},
+    "preserve": {},
+    "postProcess": true
+  }
+}

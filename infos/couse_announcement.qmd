@@ -2,27 +2,28 @@
 title: "Course announcement"
 author: "Jürgen Wilbert"
 date: "`r format(Sys.time(), '%d %B %Y')`"
+format: html
 ---
 
 ```{r}
 #| include: false
-course_time <- "Thursday 18.00 - 19.30"
-course_place <- "Room 0.18 Building 31"
-course_title <- "Data analysis with R"
-course_moodle <- "R_course_W22  
-<https://moodle2.uni-potsdam.de/course/view.php?id=35215>"
+course_time <- "Thursday 16:15 - 17:45"
+course_place <- "Orléans-Ring 12 - SRZ 104"
+course_period <- c("23 October", "5 February")
+course_title <- "Introduction to R"
+course_moodle <- "<https://sso.uni-muenster.de/LearnWeb/learnweb2/course/view.php?id=89298>"
 ```
 
 This semester I will be teaching a course on "`r course_title`"
 
-**Topic**: Introduction to reproducible research and data analyses with the software R\
-**Level**: We start at the very beginning\
-**Mode**: Weekly in person meeting and online materials (see moodle course)\
+**Topic**: Introduction to reproducible research and data analysis with the R software  
+**Level**: We start at the very beginning.  
+**Mode**: Biweekly in-person meetings and online materials (see learnweb course)  
 **Time**: `r course_time`  
-**Start**: 20. October  
-**End**: 12 January\
+**Start**: `r course_period[1]`  
+**End**: `r course_period[2]`\
 **Place**: `r course_place`\
-**Language**: English and German
+**Language**: English and German (depending on participants' German language skills)
 
 ### Requirements:
 
@@ -33,7 +34,7 @@ This semester I will be teaching a course on "`r course_title`"
 
 Anybody interested: students, PhD students, profs. ...
 
-### Moodle course
+### Course materials
 
 For updates on the course and to participate, please enroll to the moodle course:
 
@@ -41,7 +42,7 @@ For updates on the course and to participate, please enroll to the moodle course
 
 ### Start
 
-The first session will be on Thursday, 20 October (18.00 s.t.).
+The first session will be on `r course_time`, `r course_period[1]`.
 
 Topic:
 
@@ -51,4 +52,4 @@ Topic:
 
 All the best,
 
-Jürgen
+Jürgen Wilbert

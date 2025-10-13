@@ -1,0 +1,335 @@
+---
+title: "Basic statistics"
+subtitle: 'Getting serious with R'
+company: "`r if(exists('info')) info$company`"
+author: "`r if(exists('info')) info$author`"
+date: "`r if(exists('info')) info$date`"
+output:
+  ioslides_presentation: 
+    css: styles.css
+    logo: images/ZEIF.png
+    widescreen: yes
+    df_print: paged
+  html_document: default
+  pdf_document: default
+  beamer_presentation: default
+  powerpoint_presentation:
+    reference_doc: template.pptx
+  slidy_presentation: default
+---
+
+```{r setup, include=FALSE}
+library(knitr)
+library(tidyverse)
+opts_chunk$set(echo = TRUE, warning = FALSE, message = FALSE)
+
+stop_video <- function() {
+  out <- '<div class="red2">**Please stop the video here! Continue after completing the task!**</div>'
+  cat(out)
+}
+
+```
+
+## Goals {.emphasized data-background=images/DEFOCUSED.png data-background-size=cover .flexbox .vcenter}
+
+- You know some functions for basic statistical analyses.
+- You can create contingency tables.
+- You learn to integrate filtering, selecting, grouping, and subsetting of data frames with functions for statistical analyses.
+
+# Descriptive statistics
+
+## Some basic statistical functions
+
+- `min()`, `max()`: Minimum and maximum
+- `mean()`, `median()`: Mean and median
+- `sd()`, `var()`: Standard deviation and variance
+- `mad()`: Median absolute deviation
+- `quantile()`: Percentile / quantile
+
+## Task
+
+- Take the `mtcars` dataset
+- Create a new variable `lpk` (liters per 100km) from `mpg`\
+(Formula: `lpk = 282.5 / mpg`)
+- Calculate grouped by cylinders (`cyl`): mean, sd, median, mad, min, max of `lpk`
+- Round all values by one decimal
+- Hint: Use the `tidyverse` or `dplyr` library
+
+```{r results = 'asis', echo = FALSE}
+stop_video()
+```
+
+## {.smaller}
+
+```{r}
+mtcars %>% 
+  mutate(lpk = 282.5 / mpg) %>% 
+  group_by(cyl) %>% 
+  summarise(
+    mean = mean(lpk),
+    sd = sd(lpk),
+    median = median(lpk),
+    mad = mad(lpk),
+    min = min(lpk),
+    max = max(lpk)
+  ) %>%
+  round(1) # Better: mutate_if(is.numeric, round, 1)
+
+```
+
+# Tables
+
+## Tables in base R 
+
+- `table()`: Shows frequencies of nominal scaled variables.
+- `prop.table()`: Calculates proportions from frequency tables.
+- `addmargins()`: Adds margins to tables.
+
+## Example one dimensional {.smaller}
+
+```{r}
+tab <- table(mtcars$cyl) # frequencies
+tab
+prop.table(tab) # proportions
+prop.table(tab) * 100 # percentages 
+```
+
+## Example two dimensional {.smaller}
+
+```{r}
+tab <- table(mtcars$cyl, mtcars$am)
+tab
+prop.table(tab) * 100
+```
+
+## Example two dimensional with percentages by rows and columns {.smaller}
+
+```{r}
+tab <- table(mtcars$cyl, mtcars$am)
+prop.table(tab, margin = 1) * 100  # sum of each row is 100%
+prop.table(tab, margin = 2) * 100 # sum of each column is 100%
+```
+
+## Example with added margins {.smaller}
+
+```{r}
+tab <- table(mtcars$cyl, mtcars$am)
+tab <- prop.table(tab, margin = 2) * 100
+addmargins(tab)
+```
+
+
+## Tables with dplyr
+
+```{r}
+mtcars %>% group_by(cyl, am) %>% summarise(n = n())
+
+```
+
+## Tables with dplyr: `pivot_wider()` {.smaller}
+
+`pivot_wider()`:  
+creates separate variables from the levels of a factor variable and the values of a second variable
+
+
+## {.smaller} 
+
+```{r}
+mtcars %>% group_by(cyl, am) %>% summarise(n = n())
+```
+
+
+```{r}
+mtcars %>% group_by(cyl, am) %>% summarise(n = n()) %>%
+  pivot_wider(names_from = "am", values_from = "n")
+
+```
+
+
+## Tables with dplyr: A bit nicer!
+
+```{r}
+mtcars %>% 
+  mutate(am = factor(am, labels = c("Manual", "Automatic"))) %>%
+  group_by(cyl, am) %>% 
+  summarise(n = n()) %>%
+  pivot_wider(names_from = "am", values_from = "n") %>%
+  rename("Cylinders" = "cyl")
+
+```
+
+
+## Tables with dplyr: For values of a third variable
+
+```{r}
+mtcars %>% 
+  mutate(am = factor(am, labels = c("Manual", "Automatic"))) %>%
+  group_by(cyl, am) %>% 
+  summarise(
+    n = n(), M = mean(mpg), SD = sd(mpg)
+  ) %>%
+  pivot_wider(names_from = "am", values_from = c("n","M","SD")) %>%
+  rename("Cylinders" = "cyl") %>%
+  round(1) # better: mutate_if(is.numeric, round, 1)
+
+```
+
+# Inferential statistics
+
+## Some statistical functions:
+
+- `t.test()`: Calculating a t-test.
+- `wilcox.test()`: Calculating Wilcox test / U-Test.
+- `chisq.test()`: Calculating a Pearson $X^2$-test.
+- Some more we will not address today:
+    - `lm()`: Regression analyses
+    - `cor.test()`: Calculating a correlation test.
+    - `binom.test()`: Binomial test.
+    - `fisher.test()`: Fisher exact test for count data.
+    - `ks.test()`: One and two sample Kolmogorov-Smirnov Tests.
+    - `shapiro.test()`: Shapiro-Wilk Normality Test.
+    - `aov()`: Analysis of variance
+
+## `chisq.test()`
+
+- *Pearson's* $X^2$ test is a very versatile test to calculate whether a distribution of observed frequencies equates expected frequencies.  
+- A very common application is to test whether frequencies of observations in two variables are related.  (E.g. number of patients that improved in a treatment vs. control group).
+- The `chisq.test()` functions takes a two dimensional frequency table and calculates a $X^2$ test.
+
+## Example with data from an intervention study {.smaller}
+
+```{r}
+# get an external data example
+dat <- read.csv("https://goo.gl/j6lRXD")
+# Create a two distribution table
+tab <- table(dat$treatment, dat$improvement)
+tab
+# Test for non random distribution:
+chisq.test(tab) # Alternatively: chisq.test(dat$treatment, dat$improvement)
+```
+
+Significantly more patients improved in the treatment condition ($X^2(1)=4.7, p < .05$)
+
+## Task
+
+- Take the `starwars` dataset from the `tidyverse` package.
+- Use `table()` to get the distribution `eye_color` by `hair_color`
+- Apply the `chisq.test()` to calculate a X² test to test for an even distribution.
+
+```{r results = 'asis', echo = FALSE}
+stop_video()
+```
+
+##
+
+```{r warning=FALSE}
+tab <- table(starwars$eye_color, starwars$hair_color)
+chisq.test(tab)
+```
+
+## `t.test()` {.smaller}
+
+- *Student's t-test* analysis whether two samples originate from the same normal distribution.  
+- It is used to test for mean differences in two groups.  
+- ***Arguments*** of the `t.test()` function:
+    - `x` and `y`: Each variable provides data from a samples. (Only provide `x` for a one sample t-test.)
+    - `formula`: If you have one vector with all data (e.g. `vaues`) and a second vector with grouping information (e.g. `group`) use: `values ~ group`. 
+    - `data`: If you work with `formula`: The name of a data frame.
+    - `var.equal`: if set `TRUE`, equal variance in both samples is assumed.
+    - `alternative`: "two.sided", "less", "greater"
+    - `paired`: If set `TRUE`, the test assumes repeated measures of one sample instead of two independent samples.
+    - `conf.level`: The size of the confidence interval (e.g. `conf.level = 0.95`)
+
+## Example {.smaller}
+
+```{r eval = FALSE}
+# Applying a T-test by providing x and y
+x <- sleep$extra[sleep$group == 1]
+y <- sleep$extra[sleep$group == 2]
+t.test(x, y)
+
+# Applying a T-test with a formula
+t.test(extra ~ group, data = sleep)
+```
+
+```{r echo = FALSE}
+t.test(extra ~ group, data = sleep)
+```
+
+Group 2 shows an increase in sleep length of $\Delta M=1.58$ ($t(17.8)=1.86, p = .08$)
+
+## `wilcox.test()`
+
+- Calculates a Wilcoxon rank sum test. Also known as Mann Whitney U-Test
+- This test is applied as an alternative to a t-Test when data are assumed to be non-normal distributed.
+- It takes the same arguments as `t.test()`
+
+## Task
+
+- Take the `sleep` dataset from the previous example.
+- Calculate the `median` and `mad` (Median absolute deviation) for `extra` for each group.
+- Calculate a Wilcoxon test with the `sleep` dataset on the effectiveness of the intervention.
+
+```{r results = 'asis', echo = FALSE}
+stop_video()
+```
+
+## {.smaller}
+
+```{r warning=FALSE}
+library(dplyr)
+sleep %>% group_by(group) %>%
+  summarise(
+    median = median(extra), 
+    mad = mad(extra)
+  )
+wilcox.test(extra~group, data = sleep)
+```
+
+## Task
+
+- Install the "dslabs" package
+- Take the `gapminder` dataset. This dataset includes health and income outcomes for 184 countries from 1960 to 2016.
+- It includes `infant_mortality`, `region` and `continent`.
+- Calculate the mean and median `infant_mortality` for each continent
+- Calculate a t-test comparing `infant_mortality` between the regions Southern- and Eastern Europe.
+
+```{r results = 'asis', echo = FALSE}
+stop_video()
+```
+
+## 
+
+```{r eval = FALSE}
+install.packages("dslabs")
+```
+
+```{r}
+library(dslabs)
+gapminder %>% group_by(continent) %>% 
+  summarise(
+    mean = mean(infant_mortality, na.rm = TRUE),
+    median = median(infant_mortality, na.rm = TRUE)
+  )
+```
+
+## 
+
+```{r eval = FALSE}
+x <- gapminder %>% filter(region == "Southern Europe") %>% select(infant_mortality)
+y <- gapminder %>% filter(region == "Eastern Europe") %>% select(infant_mortality)
+t.test(x, y)
+
+# or with pipes
+gapminder %>% 
+  filter(region %in% c("Southern Europe", "Eastern Europe")) %>%
+  t.test(infant_mortality ~ region, data = .)
+```
+
+```{r echo = FALSE}
+gapminder %>% 
+  filter(region %in% c("Southern Europe", "Eastern Europe")) %>%
+  t.test(infant_mortality ~ region, data = .)
+```
+
+

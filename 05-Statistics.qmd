@@ -8,13 +8,13 @@ library(knitr)
 library(tidyverse)
 ```
 
-## Goals  {background-image="img/bg-goal.jpg" background-opacity=0.3}
+## Goals  {background-image="images/bg-goal.jpg" background-opacity=0.3}
 
 -   You know some functions for basic statistical analyses.
 -   You can create contingency tables.
 -   You learn to integrate filtering, selecting, grouping, and subsetting of data frames with functions for statistical analyses.
 
-# Descriptive statistics {background-image="img/bg-h1-3.jpg"}
+# Descriptive statistics {background-image="images/bg-h1-3.jpg"}
 
 ## Some basic statistical functions
 
@@ -143,7 +143,7 @@ mtcars %>%
 
 ```
 
-# Tables {background-image="img/bg-h1-3.jpg"}
+# Tables {background-image="images/bg-h1-3.jpg"}
 
 ## Tables in base R
 
@@ -375,7 +375,7 @@ kable(tab, caption =  "Table 1.<br>Miles per gallon by cylinders and gearshift",
   add_header_above(c(" " = 1, "Automatic" = 3, "Manual" = 3))
 ```
 
-# Inferential statistics {background-image="img/bg-h1-3.jpg"}
+# Inferential statistics {background-image="images/bg-h1-3.jpg"}
 
 ## Some statistical functions:
 

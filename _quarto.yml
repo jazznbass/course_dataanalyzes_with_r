@@ -1,10 +1,10 @@
 project:
   title: "Introduction to R"
-  output-dir: html
+  output-dir: docs
   
 author: "Jürgen Wilbert"
 date: today
-institute: "University of Potsdam"
+institute: "University of Münster"
   
 execute: 
   echo: true
@@ -20,6 +20,6 @@ format:
     scrollable: true
     theme: [style.scss]
     footer: "Jürgen Wilbert - Introduction to R"
-    logo: img/ZEIF.png
+    logo: images/logo-tree-transparent.png
     title-slide-attributes:
-      data-background-image: img/bg-digital-data.jpg
+      data-background-image: images/bg-digital-data.jpg

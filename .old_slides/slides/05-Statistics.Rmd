@@ -1,0 +1,575 @@
+---
+title: "Basic statistics"
+subtitle: 'Getting serious with R'
+company: "`r if(exists('info')) info$company`"
+author: "`r if(exists('info')) info$author`"
+date: "`r if(exists('info')) info$date`"
+output:
+  ioslides_presentation: 
+    css: styles.css
+    logo: images/ZEIF.png
+    widescreen: yes
+    df_print: paged
+  html_document: default
+  pdf_document: default
+  beamer_presentation: default
+  powerpoint_presentation:
+    reference_doc: template.pptx
+  slidy_presentation: default
+---
+
+```{r setup, include=FALSE}
+library(knitr)
+library(tidyverse)
+opts_chunk$set(echo = TRUE, warning = FALSE, message = FALSE)
+
+stop_video <- function() {
+  #out <- '<div class="red2">**Please stop the video here! Continue after completing the task!**</div>'
+   out <- '<div class="red2">**:-)**</div>'
+  cat(out)
+}
+
+```
+
+## Goals {.emphasized .flexbox .vcenter data-background="images/DEFOCUSED.png" data-background-size="cover"}
+
+-   You know some functions for basic statistical analyses.
+-   You can create contingency tables.
+-   You learn to integrate filtering, selecting, grouping, and subsetting of data frames with functions for statistical analyses.
+
+# Descriptive statistics
+
+## Some basic statistical functions
+
+-   `min()`, `max()`: Minimum and maximum
+-   `mean()`, `median()`: Mean and median
+-   `sd()`, `var()`: Standard deviation and variance
+-   `mad()`: Median absolute deviation
+-   `quantile()`: Percentile / quantile
+
+## Task
+
+-   Take the `mtcars` dataset
+-   Create a new variable `lpk` (liters per 100km) from `mpg`\
+    (Formula: `lpk = 282.5 / mpg`)
+-   Calculate grouped by cylinders (`cyl`): mean, sd, median, mad, min, max of `lpk`
+-   Round all values by one decimal
+-   Hint: Use the `tidyverse` or `dplyr` library
+
+```{r results = 'asis', echo = FALSE}
+stop_video()
+```
+
+##  {.smaller}
+
+```{r}
+mtcars %>% 
+  mutate(lpk = 282.5 / mpg) %>% 
+  group_by(cyl) %>% 
+  summarise(
+    mean = mean(lpk),
+    sd = sd(lpk),
+    median = median(lpk),
+    mad = mad(lpk),
+    min = min(lpk),
+    max = max(lpk)
+  ) %>%
+  round(1) 
+
+```
+
+## 
+
+What is happening here?
+
+```{r}
+mtcars <- mutate(mtcars, 
+  transmission = factor(am, labels = c("Manual", "Automatic"))
+)
+```
+
+## 
+
+Now, lets calculate the stats for the transmission type:
+
+```{r}
+
+mtcars %>% 
+  mutate(lpk = 282.5 / mpg) %>% 
+  group_by(transmission) %>% 
+  summarise(
+    mean = mean(lpk),
+    sd = sd(lpk),
+    median = median(lpk),
+    mad = mad(lpk),
+    min = min(lpk),
+    max = max(lpk)
+  ) 
+
+```
+
+## 
+
+... and round the results
+
+```{r eval = FALSE}
+
+mtcars %>% 
+  mutate(lpk = 282.5 / mpg) %>% 
+  group_by(transmission) %>% 
+  summarise(
+    mean = mean(lpk),
+    sd = sd(lpk),
+    median = median(lpk),
+    mad = mad(lpk),
+    min = min(lpk),
+    max = max(lpk)
+  ) %>%
+  round(1)
+
+```
+
+```{r echo = FALSE}
+cat("Error in Math.data.frame(list(transmission = 1:2, mean = c(17.3586131968484, : 
+non-numeric-alike variable(s) in data frame: transmission")
+```
+
+ups :-( ... what went wrong?
+
+## 
+
+Solution: only `round` variables that are numeric:
+
+-   `is.numeric()` returns a TRUE or FALSE for a vector (`is.numeric(1:5)`; `is.numeric(c("A", "B"))`)\
+-   `across()` specifies for `mutate()`which variable to select.
+
+`mutate(across(.cols, .fns, ... ))`:
+
+-   .cols := columns so select\
+-   .fns := a function to apply\
+-   ... := arguments to that function
+
+## 
+
+```{r}
+
+mtcars %>% 
+  mutate(lpk = 282.5 / mpg) %>% 
+  group_by(transmission) %>% 
+  summarise(
+    mean = mean(lpk),
+    sd = sd(lpk),
+    median = median(lpk),
+    mad = mad(lpk),
+    min = min(lpk),
+    max = max(lpk)
+  ) %>%
+  mutate(across(where(is.numeric), round, 1))
+
+```
+
+# Tables
+
+## Tables in base R
+
+-   `table()`: Shows frequencies of nominal scaled variables.
+-   `prop.table()`: Calculates proportions from frequency tables.
+-   `addmargins()`: Adds margins to tables.
+
+## Example one dimensional {.smaller}
+
+```{r}
+tab <- table(mtcars$cyl) # frequencies
+tab
+prop.table(tab) # proportions
+prop.table(tab) * 100 # percentages 
+```
+
+## Example two dimensional {.smaller}
+
+```{r}
+tab <- table(mtcars$cyl, mtcars$am)
+tab
+prop.table(tab) * 100
+```
+
+## Example two dimensional with percentages by rows and columns {.smaller}
+
+```{r}
+tab <- table(mtcars$cyl, mtcars$am)
+prop.table(tab, margin = 1) * 100  # sum of each row is 100%
+prop.table(tab, margin = 2) * 100 # sum of each column is 100%
+```
+
+## Example with added margins {.smaller}
+
+```{r}
+tab <- table(mtcars$cyl, mtcars$am)
+tab <- prop.table(tab, margin = 2) * 100
+addmargins(tab)
+```
+
+## Task
+
+-   Take the `heights` dataset from the `dslabs` library.\
+-   Create a cross table depicting: The percentage of females and males that are above and below a height of 170 cm.
+
+## 
+
+```{r}
+library(dslabs)
+
+heights$category[heights$height * 2.54 <= 170] <- "% <= 170 cm"
+heights$category[heights$height * 2.54 > 170] <- "% > 170 cm"
+
+tab <- table(heights$sex, heights$category)
+tab <- prop.table(tab, margin = 1) * 100
+tab <- round(tab, 1)
+tab
+```
+
+## Tables with dplyr
+
+```{r}
+mtcars %>% 
+  group_by(cyl, am) %>% 
+  summarise(n = n())
+
+```
+
+## Shortcut for simple count tables
+
+```{r}
+# Because it is shorter, I don't use pipes here (but I could!)
+count(mtcars, cyl) 
+count(mtcars, cyl, am) 
+```
+
+## Tables with dplyr: `pivot_wider()` {.smaller}
+
+`pivot_wider()`:\
+creates separate variables from the levels of a factor variable and the values of a second variable
+
+##  {.smaller}
+
+```{r}
+mtcars %>% count(cyl, am)
+```
+
+```{r}
+mtcars %>% count(cyl, am) %>%
+  pivot_wider(names_from = "am", values_from = "n")
+
+```
+
+## Tables with dplyr: A bit nicer!
+
+```{r}
+mtcars %>% 
+  mutate(am = factor(am, labels = c("Manual", "Automatic"))) %>%
+  count(cyl, am) %>% 
+  pivot_wider(names_from = "am", values_from = "n") %>%
+  rename("Cylinders" = "cyl")
+
+```
+
+## Task
+
+Recreate the previous task. This time using dplyr:
+
+-   Take the `heights` dataset from the `dslabs` library.\
+-   Create a cross table depicting: The percentage of females and males that are above and below a height of 170 cm.
+
+This is a hard task ...
+
+Hint 1: `ifelse(height * 2.54 <= 170, "size_a", "size_b")`\
+Hint 2:\
+`size_a / (size_a + size_b) * 100`\
+`size_b / (size_a + size_b) * 100`\
+are the row proportions.
+
+## 
+
+```{r}
+library(dslabs)
+
+heights %>%
+  mutate(category = ifelse(height * 2.54 <= 170, "size_a", "size_b")) %>% 
+  count(sex, category) %>%
+  pivot_wider(names_from = "category", values_from = "n") %>%
+  mutate(
+    "% <= 170" = size_a / (size_a + size_b) * 100,
+    "% > 170" = size_b / (size_a + size_b) * 100,
+    across(where(is.numeric), round, 1)
+  ) %>%
+  select(1, 4, 5)
+
+```
+
+## Tables with dplyr: For values of a third variable
+
+```{r}
+mtcars %>% 
+  mutate(am = factor(am, labels = c("Manual", "Automatic"))) %>%
+  group_by(cyl, am) %>% 
+  summarise(
+    n = n(), 
+    M = mean(mpg), 
+    SD = sd(mpg)
+  ) 
+```
+
+## 
+
+`pivot_wider()` can take values from several variables:
+
+```{r}
+mtcars %>% 
+  mutate(am = factor(am, labels = c("Manual", "Automatic"))) %>%
+  group_by(cyl, am) %>% 
+  summarise(n = n(), M = mean(mpg), SD = sd(mpg)) %>%
+  pivot_wider(names_from = "am", values_from = c("n", "M", "SD")) %>%
+  round(1)
+
+```
+
+## 
+
+Set argument `names_vary = "slowest"` for a different ordering of variables:
+
+```{r}
+mtcars %>% 
+  mutate(am = factor(am, labels = c("Manual", "Automatic"))) %>%
+  group_by(cyl, am) %>% 
+  summarise(n = n(), M = mean(mpg), SD = sd(mpg)) %>%
+  pivot_wider(names_from = "am", values_from = c("n", "M", "SD"), names_vary = "slowest") %>%
+  round(1)
+
+```
+
+## Task
+
+-   Take the `storms` dataset and calculate n and mean of the wind speed (`wind`) by month (`month`) and storm classification (`status`) in a crosstable.
+
+## 
+
+```{r}
+storms %>% 
+  group_by(month, status) %>%
+  summarise(
+    n = n(),
+    M = mean(wind, na.rm = TRUE)
+  ) %>%
+  pivot_wider(names_from = "status", values_from = c("n", "M")) %>%
+  round()
+  
+```
+
+## Design example:
+
+Replicate and try to understand the following table example:
+
+```{r eval = FALSE}
+library(kableExtra)
+tab <- mtcars %>% 
+  group_by(cyl, am) %>% 
+  summarise(n = n(), M = mean(mpg), SD = sd(mpg)) %>%
+  pivot_wider(names_from = "am", values_from = c("n", "M", "SD"), names_vary = "slowest") 
+
+names(tab) <- c("Cylinders", "n", "M", "SD", "n", "M", "SD")
+
+kable(tab, 
+  caption =  "Table 1.<br>Miles per gallon by cylinders and gearshift", 
+  digits = 1, 
+  full_width = FALSE
+) %>% 
+  kable_classic() %>%
+  add_header_above(c(" " = 1, "Automatic" = 3, "Manual" = 3))
+```
+
+## 
+
+```{r echo = FALSE}
+library(kableExtra)
+tab <- mtcars %>% 
+  group_by(cyl, am) %>% 
+  summarise(n = n(), M = mean(mpg), SD = sd(mpg)) %>%
+  pivot_wider(names_from = "am", values_from = c("n", "M", "SD"), names_vary = "slowest") 
+names(tab) <- c("Cylinders", "n", "M", "SD", "n", "M", "SD")
+kable(tab, caption =  "Table 1.<br>Miles per gallon by cylinders and gearshift", digits = 1) %>% kable_classic() %>%
+  add_header_above(c(" " = 1, "Automatic" = 3, "Manual" = 3))
+```
+
+# Inferential statistics
+
+## Some statistical functions:
+
+-   `t.test()`: Calculating a t-test.
+
+-   `wilcox.test()`: Calculating Wilcox test / U-Test.
+
+-   `chisq.test()`: Calculating a Pearson $X^2$-test.
+
+-   Some more we will not address today:
+
+    -   `lm()`: Regression analyses
+    -   `cor.test()`: Calculating a correlation test.
+    -   `binom.test()`: Binomial test.
+    -   `fisher.test()`: Fisher exact test for count data.
+    -   `ks.test()`: One and two sample Kolmogorov-Smirnov Tests.
+    -   `shapiro.test()`: Shapiro-Wilk Normality Test.
+    -   `aov()`: Analysis of variance
+
+## `chisq.test()`
+
+-   *Pearson's* $X^2$ test is a very versatile test to calculate whether a distribution of observed frequencies equates expected frequencies.\
+-   A very common application is to test whether frequencies of observations in two variables are related. (E.g. number of patients that improved in a treatment vs. control group).
+-   The `chisq.test()` functions takes a two dimensional frequency table and calculates a $X^2$ test.
+
+## Example with data from an intervention study {.smaller}
+
+```{r}
+# get an external data example
+dat <- read.csv("https://goo.gl/j6lRXD")
+# Create a two distribution table
+tab <- table(dat$treatment, dat$improvement)
+tab
+# Test for non random distribution:
+chisq.test(tab) # Alternatively: chisq.test(dat$treatment, dat$improvement)
+```
+
+Significantly more patients improved in the treatment condition ($X^2(1)=4.7, p < .05$)
+
+## Task
+
+-   Take the `starwars` dataset from the `tidyverse` package.
+-   Use `table()` to get the distribution `eye_color` by `hair_color`
+-   Apply the `chisq.test()` to calculate a X² test to test for an even distribution.
+
+```{r results = 'asis', echo = FALSE}
+stop_video()
+```
+
+## 
+
+```{r warning=FALSE}
+tab <- table(starwars$eye_color, starwars$hair_color)
+chisq.test(tab)
+```
+
+## `t.test()`
+
+-   *Student's t-test* analysis whether two samples originate from the same normal distribution.\
+
+-   It is used to test for mean differences in two groups.\
+
+-   ***Arguments*** of the `t.test()` function:
+
+    -   `x` and `y`: Each variable provides data from a samples.
+    -   `formula`: If you have one vector with all data (e.g. `values`) and a second vector with grouping information (e.g. `group`) use: `values ~ group`.
+    -   `data`: If you work with `formula`: The name of a data frame.
+    -   `paired`: If set `TRUE`, the test assumes repeated measures of one sample instead of two independent samples.
+
+## Example
+
+Does one of two drugs increase hours of sleep better?
+
+`extra`: change in sleep duration, `group` : drug given
+
+```{r}
+sleep
+```
+
+## Example
+
+```{r eval = FALSE}
+# Applying a T-test by providing x and y
+x <- sleep$extra[sleep$group == 1]
+y <- sleep$extra[sleep$group == 2]
+t.test(x, y)
+
+# Applying a T-test with a formula
+t.test(extra ~ group, data = sleep)
+```
+
+## Example
+
+```{r echo = FALSE}
+t.test(extra ~ group, data = sleep)
+```
+
+Group 2 shows an increase in sleep length of $\Delta M=1.58$ ($t(17.8)=1.86, p = .08$)
+
+## `wilcox.test()`
+
+-   Calculates a Wilcoxon rank sum test. Also known as Mann Whitney U-Test
+-   This test is applied as an alternative to a t-Test when data are assumed to be non-normal distributed.
+-   It takes the same arguments as `t.test()`
+
+## Task
+
+-   Take the `sleep` dataset from the previous example.
+-   Calculate the `median` and `mad` (Median absolute deviation) for `extra` for each group.
+-   Calculate a Wilcoxon test with the `sleep` dataset on the effectiveness of the intervention.
+
+```{r results = 'asis', echo = FALSE}
+stop_video()
+```
+
+##  {.smaller}
+
+```{r warning=FALSE}
+library(dplyr)
+sleep %>% group_by(group) %>%
+  summarise(
+    median = median(extra), 
+    mad = mad(extra)
+  )
+wilcox.test(extra~group, data = sleep)
+```
+
+## Task
+
+-   Install the "dslabs" package
+-   Take the `gapminder` dataset. This dataset includes health and income outcomes for 184 countries from 1960 to 2016.
+-   It includes `infant_mortality`, `region` and `continent`.
+-   Calculate the mean and median `infant_mortality` for each continent
+-   Calculate a t-test comparing `infant_mortality` between the regions Southern- and Eastern Europe.
+
+```{r results = 'asis', echo = FALSE}
+stop_video()
+```
+
+## 
+
+```{r eval = FALSE}
+install.packages("dslabs")
+```
+
+```{r}
+library(dslabs)
+gapminder %>% group_by(continent) %>% 
+  summarise(
+    mean = mean(infant_mortality, na.rm = TRUE),
+    median = median(infant_mortality, na.rm = TRUE)
+  )
+```
+
+## 
+
+```{r eval = FALSE}
+x <- gapminder %>% filter(region == "Southern Europe") %>% select(infant_mortality)
+y <- gapminder %>% filter(region == "Eastern Europe") %>% select(infant_mortality)
+t.test(x, y)
+
+# or with pipes
+gapminder %>% 
+  filter(region %in% c("Southern Europe", "Eastern Europe")) %>%
+  t.test(infant_mortality ~ region, data = .)
+```
+
+```{r echo = FALSE}
+gapminder %>% 
+  filter(region %in% c("Southern Europe", "Eastern Europe")) %>%
+  t.test(infant_mortality ~ region, data = .)
+```

@@ -1,0 +1,6 @@
+ioslides_presentation: 
+  css: styles.css
+  widescreen: yes
+  logo: images/ZEIF.png
+  df_print: kable
+    

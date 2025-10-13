@@ -1,5 +1,5 @@
 ---
-title: "Analyzing single-case data"
+title: "Analyse von Single-Case Studien"
 format: revealjs
 ---
 
@@ -8,8 +8,176 @@ library(knitr)
 library(tidyverse)
 ```
 
-## Goals
+# Ziele
 
-- An introduction to single-case analyses
-- An introduction to analyzing single case data with the package R
+- Eine Einführung in Single-Case Datenstrukturen.
+- Die häufigsten Analysezugänge.
+- Visualisierung von Single-Case Daten mit dem Package `scplot`.
+- Analysen mit dem Package `scan`.
+
+
+# Teaser
+
+## Activating the packages
+
+```r
+install.packages("scplot")
+```
+
+```{r}
+library(scan)
+library(scplot)
+```
+
+
+## Creating cases {.smaller}
+
+```{r}
+case1 <- scdf(
+  c(A = 3, 2, 4, 6, 4, 3, 
+    B = 6, 5, 4, 6, 7, 5, 6, 8, 6, 7, 8, 9, 7, 8, 
+    C = 6, 6, 8, 5, 7), 
+  name = "Dustin"
+)
+case2 <- scdf(
+  c(A = 0, 1, 3, 1, 4, 2, 1, 
+    B = 2, 1, 4, 3, 5, 5, 7, 6, 3, 8, 6, 4, 7, 
+    C = 6, 5, 6, 8, 6), 
+  name = "Mike"
+)
+case3 <- scdf(
+  c(A = 7, 5, 6, 4, 4, 7, 5, 7, 4,
+    B = 8, 9, 11, 13, 12, 15, 16, 13, 17, 16, 18,
+    C = 17, 20, 22, 18, 20), 
+  name = "Will"
+)
+strange_study <- c(case1, case2, case3)
+```
+
+## Visualize the results {.smaller}
+
+```{r}
+scplot(strange_study)
+```
+
+## Describe the results {.smaller}
+
+```{r}
+describe(strange_study)
+```
+
+## Analyses: Overlap indices {.smaller}
+
+```{r}
+overlap(strange_study)
+```
+
+## Complex regression analyses {.smaller}
+
+```{r}
+plm(strange_study$Dustin)
+plm(strange_study$Mike)
+plm(strange_study$Will)
+```
+
+# Create, display, and store single-case data
+
+## One case
+
+```{r}
+case1 <- scdf(values = c(A = 2, 2, 4, 5, B = 8, 7, 6, 9, 8, 7))
+
+case1
+```
+
+## Multiple cases
+
+```{r}
+case1 <- scdf(values = c(A = 2, 2, 4, 5, B = 8, 7, 6, 9, 8, 7))
+case2 <- scdf(values = c(A = 3, 1, 3, 2, B = 6, 3, 4, 6, 7, 5))
+study <- c(case1, case2)
+study
+```
+
+
+## One case with multiple variables
+
+```{r}
+case1 <- scdf(
+  values = c(A = 2,2,3,5, B = 8,7,6,9,7,7), 
+  teacher = c(0,0,1,1,0,1,1,1,0,1), 
+  hour = c(2,3,4,3,3,1,6,5,2,2)
+)
+
+case1
+```
+
+## A publication table
+
+
+```{r}
+options(scan.export.engine = "gt")
+export(study, filename = "my_table.docx")
+```
+
+## Drwaw plot
+
+
+```{r}
+scplot(case1)
+```
+
+## Task
+
+Create a dataset in `scan` for the following data frame:
+
+```{r}
+#| echo: false
+
+ex_case <- scdf(
+  values = c(
+    A = 5, 7, 8, 5, 7,
+    B = 12, 16, 18, 15, 14, 19
+  )
+)
+ex_case |> export()
+```
+
+## Results
+
+```r
+case1 <- scdf(values = c(A = 5, 7, 8, 5, 7, B = 12, 16, 18, 15, 14, 19))
+```
+
+## Task
+
+Create a new case and combine this case and the previous case into a single scdf:
+
+```{r}
+#| echo: false
+case2 <- scdf(
+  values = c(
+    A = 2, 5, 2, 2, 3, 4,
+    B = 10, 12, 8, 12, 11
+  )
+)
+export(case2)
+```
+
+## Results
+
+```r
+case1 <- scdf(values = c(A = 5, 7, 8, 5, 7, B = 12, 16, 18, 15, 14, 19))
+case2 <- scdf(values = c(A = 2, 5, 2, 2, 3, 4, B = 10, 12, 8, 12, 11))
+study <- c(case1, case2)
+```
+
+```{r}
+#| echo: false
+case2 <- scdf(values = c(A = 2, 5, 2, 2, 3, 4, B = 10, 12, 8, 12, 11))
+study <- c(case1, case2)
+study
+```
+
+
 

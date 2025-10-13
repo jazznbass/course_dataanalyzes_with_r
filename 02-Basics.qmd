@@ -9,9 +9,9 @@ format: revealjs
 -   Object types: numbers, logic values, characters
 -   object structures: vectors, factors, data frames, lists
 
-# Basic concepts {background-image="img/bg-h1-3.jpg"}
+# Basic concepts {background-image="images/bg-h1-3.jpg"}
 
-## Functions
+## Functions {.smaller}
 
 ::: incremental
 -   With a *function* you command the computer to do something.
@@ -51,8 +51,8 @@ date()
 
 ## Comments
 
-It is a good practice to add comments and notes to your code.\
-Everything that is written behind a `#` will not executed as code.\
+It is good practice to add comments and notes to your code.\
+Everything that is written behind a `#` will not be executed as code.\
 If you want a comment to span across several line, you have to begin each line with a `#` symbol.
 
 ```{r}
@@ -60,7 +60,7 @@ If you want a comment to span across several line, you have to begin each line w
 # across multiple lines
 ```
 
-Within RStudio, you can use comments to create headers to navigate through your code by ending a comment line with four `-` signs:
+Within RStudio, you can use comments to create headers by ending a comment line with four `-` signs:
 
 ```{r}
 # section 2 ----
@@ -84,12 +84,12 @@ help("sqrt")
 
 ... or use the bottom-right help panel in R Studio
 
-## Task {background-image="img/bg-task.png"}
+## Task {background-image="images/bg-task.png"}
 
+:::task
 Take a look at the `mean()` function (hint: use the `help()` function):\
 What *arguments* could be specified?
-
-{{< include _stop.qmd >}}
+:::
 
 ------------------------------------------------------------------------
 
@@ -170,17 +170,19 @@ And you can combine these:
 exp(z) + sqrt(y)
 ```
 
-## Task {background-image="img/bg-task.png"}
+## Task {background-image="images/bg-task.png"}
 
+:::task
 Assign the values `40 and 24` to the variables `a and b`.\
 Calculate the square root of the sum of `a and b`.
+:::
 
-{{< include _stop.qmd >}}
+## Task - solution {background-image="images/bg-task.png"}
 
-## Task - solution {background-image="img/bg-task.png"}
-
+:::task
 Assign the values `40 and 24` to the variables `a and b`.\
 Calculate the square root of the sum of `a and b`.
+:::
 
 ```{r}
 a <- 40
@@ -188,14 +190,14 @@ b <- 24
 sqrt(a + b)
 ```
 
-# Data classes {background-image="img/bg-h1-3.jpg"}
+# Data classes {background-image="images/bg-h1-3.jpg"}
 
 ## Data types
 
 The data of objects can be numbers, text or TRUE/FALSE values. These are called **data types**
 
 -   **Numeric**: e.g. Integer or decimal numbers `1, 1.35`
--   **Character**: Always between " " or ' ' signs: `"A", 'House'`
+-   **Character**: Always between " " or ' ' signs: `"Doctor", 'House'`
 -   **Logical**: `TRUE, FALSE`
 
 ```{r}
@@ -226,7 +228,7 @@ Data are organized in structures:
 -   **Matrix**: A two dimensional table with values of the same data type.
 -   **Array**: Like a matrix but with more dimensions.
 
-# Vectors {background-image="img/bg-h1-3.jpg"}
+# Vectors {background-image="images/bg-h1-3.jpg"}
 
 ## How to build a vector
 
@@ -267,15 +269,18 @@ age
 
 Here `10` and `12` are changed to a character data type `"10"` and `"12"`.
 
-## Task {.build background-image="img/bg-task.png"}
+## Task {.build background-image="images/bg-task.png"}
 
+::: task
 Create a vector (named `friends` comprising four names of your friends.
+:::
 
-{{< include _stop.qmd >}}
 
-## Task - solution {background-image="img/bg-task.png"}
+## Task - solution {background-image="images/bg-task.png"}
 
+::: task
 Create a vector (named `friends` comprising four names of your friends.
+:::
 
 ```{r}
 friends <- c("Matthias", "Markus", "Thomas", "Christian")
@@ -303,19 +308,14 @@ c(A, B, C)
 
 ```
 
-## Task {background-image="img/bg-task.png"}
+## Task {background-image="images/bg-task.png"}
 
-Create two vectors\
-`x <- c("I", "am", "a")` and\
-`y <- "person!"`
+::: task
+- Create two vectors:<br>`x <- c("I", "am", "a")` and `y <- "person!"`
+- Now create a new vector by reusing `x` and `y` that looks like this when printed:<br>`[1] "I"      "Am"     "a"      "cool"   "person!"`
+:::
 
-Now create a new vector by reusing `x` and `y` that looks like this when printed:
-
-`[1] "I"      "Am"     "a"      "cool"   "person!"`
-
-{{< include _stop.qmd >}}
-
-## Task - solution {background-image="img/bg-task.png"}
+## Task - solution {background-image="images/bg-task.png"}
 
 ```{r}
 x <- c("I", "am", "a")
@@ -343,20 +343,19 @@ name
 
 ```
 
-## Task {background-image="img/bg-task.png"}
+## Task {background-image="images/bg-task.png"}
 
+::: task
 1. Create a vector with the values  
    `2, 5, 7, 4, 7, 2, 6`. 
 2. Create a vector with the values  
    `2, NA, 7, 4, NA, 2, 6`. 
+3. Calculate the `mean` of these two vectors.  
+4. Note: Use the `mean()` function to calculate the mean.  
+   Note: Read through `?mean` if you encounter problems.
+:::
 
-Calculate the `mean` of these two vectors.  
-Note: Use the `mean()` function to calculate the mean.  
-Note: Read through `?mean` if you encounter problems.
-
-{{< include _stop.qmd >}}
-
-## Task - solution {background-image="img/bg-task.png"}
+## Task - solution {background-image="images/bg-task.png"}
 
 ```{r}
 x1 <- c(2, 5, 7, 4, 7, 2, 6)
@@ -406,7 +405,7 @@ as.numeric(c("1", "2", "3.1", "3,2"))
 as.logical(c(1,0,1,0,1,3))
 ```
 
-# Factors {background-image="img/bg-h1-3.jpg"}
+# Factors {background-image="images/bg-h1-3.jpg"}
 
 ## A factor
 
@@ -426,15 +425,18 @@ sen <- factor(
 sen
 ```
 
-## Task {background-image="img/bg-task.png"}
+## Task {background-image="images/bg-task.png"}
 
+:::task
 Build a factor for `gender` with the labels `male, female, non-binary`. Include a vector for six fictitious gender values.
+:::
 
-{{< include _stop.qmd >}}
 
-## Task - solution {background-image="img/bg-task.png"}
+## Task - solution {background-image="images/bg-task.png"}
 
+:::task
 Build a factor for `gender` with the labels `male, female, non-binary`. Include a vector for six fictitious gender values.
+:::
 
 ```{r}
 gender <- factor(
@@ -445,7 +447,7 @@ gender <- factor(
 gender
 ```
 
-# Data frames {background-image="img/bg-h1-3.jpg"}
+# Data frames {background-image="images/bg-h1-3.jpg"}
 
 ## How to build a data frame {.build .smaller}
 
@@ -477,7 +479,7 @@ An alternative approach is to use the `$` sign:
 study$sen
 ```
 
-# Lists {background-image="img/bg-h1-3.jpg"}
+# Lists {background-image="images/bg-h1-3.jpg"}
 
 ## How to construct a list
 

@@ -7,7 +7,7 @@ format: revealjs
 library(tidyverse)
 ```
 
-# From wide to long {background-image="img/bg-h1-3.jpg"}
+# From wide to long {background-image="images/bg-h1-3.jpg"}
 
 ## `pivot_longer()`
 
@@ -287,7 +287,7 @@ new_long %>%
   ylab("%")
 ```
 
-# Join datasets {background-image="img/bg-h1-3.jpg"}
+# Join datasets {background-image="images/bg-h1-3.jpg"}
 
 ## `full_join()`
 

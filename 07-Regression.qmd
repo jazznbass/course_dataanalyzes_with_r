@@ -9,11 +9,11 @@ library(knitr)
 library(tidyverse)
 ```
 
-## Prerequisite {background-image="img/bg-h1-3.jpg"}
+## Prerequisite {background-image="images/bg-h1-3.jpg"}
 
 You have basic knowledge on statistical regression
 
-## Goal {background-image="img/bg-h1-3.jpg"}
+## Goal {background-image="images/bg-h1-3.jpg"}
 
 You know how to fit regression models in R
 
@@ -357,7 +357,7 @@ tab_model(fit1, fit2,
 )
 ```
 
-# Multilevel regressions {background-image="img/bg-h1-3.jpg"}
+# Multilevel regressions {background-image="images/bg-h1-3.jpg"}
 
 ## Multilevel regression formula
 

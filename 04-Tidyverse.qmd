@@ -13,11 +13,11 @@ library(tidyverse)
 - You know what **tidyverse** is.
 - Basic knowledge on the pipe `%>%` operator.
 
-# Tidyverse {background-image="img/bg-h1-3.jpg"}
+# Tidyverse {background-image="images/bg-h1-3.jpg"}
 
 ## Tidyverse is a collection of R packages developed for data science
 
-<img src="img/tidyverse_components.png"/>
+<img src="images/tidyverse_components.png"/>
 
 ---
 
@@ -32,7 +32,7 @@ library(tidyverse)
 - Tidyverse can be installed through R (install.packages("tidyverse")).
 :::
 
-# Pipes: `%>%`  {background-image="img/bg-h1-3.jpg"}
+# Pipes: `%>%`  {background-image="images/bg-h1-3.jpg"}
 
 ## An Example:
 

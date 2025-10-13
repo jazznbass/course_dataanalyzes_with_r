@@ -31,3 +31,60 @@
 .right37 {
   float: left; width: 70%
 }
+
+img.icon {
+  vertical-align: middle;
+  height: 1em;
+  height: 38px;
+  display: inline;
+}
+
+.tip {
+  position: relative;
+  padding-left: 1.6em;
+  padding-right: 0.5em;
+  padding-top: 0.0em;
+  padding-bottom: 0.0em;
+  background-color: #f9f9f9;
+  border-left: 4px solid #ffcc00;
+  border-radius: 0.3em;
+  color: #333;
+}
+
+.tip::before {
+  content: "💡";
+  position: absolute;
+  left: 0.3em;
+  top: 0.2em;
+  font-size: 1.0em;
+  line-height: 1;
+}
+
+
+ .practice-box {
+    background-color: #ffffff;
+    border: 1px dashed #007acc;
+    padding: 1em;
+    border-radius: 8px;
+    margin-top: 1em;
+  }
+  
+.task {
+display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #f9f9f9;
+  border-right: 4px solid #22aa22;
+  border-radius: 0.3em;
+  color: #333;
+  padding: 0.6em 0.5em;
+  gap: 0.6em;
+  font-style: italic;
+}
+
+.task::after {
+  content: "🤔";
+  font-style: normal;
+  font-size: 2.0em;
+  line-height: 1;
+}

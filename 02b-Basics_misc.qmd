@@ -3,7 +3,7 @@ title: "R Basic Concepts"
 format: revealjs
 ---
 
-# Extending R {background-image="img/bg-h1-3.jpg"}
+# Extending R {background-image="images/bg-h1-3.jpg"}
 
 ```{r setup, include=FALSE}
 ```
@@ -18,13 +18,13 @@ format: revealjs
 -   You can add additional packages to extend you R installation.
 -   Additional packages are provided in **repositories** or in seperate files.
 -   Repositories are online data storages.
--   The most important repository for *R* is CRAN <img src="img/R_logo.png" width="30"/> (The Comprehensive R Archive Network)
+-   The most important repository for *R* is CRAN <img src="images/R_logo.png" width="30"/> (The Comprehensive R Archive Network)
 :::
 
 ## Installing and activating new packages {.smaller}
 
 ::: incremental
--   You find a list of all CRAN packages on <https://cran.r-project.org/> ![](img/right_arrow.jpg){width="30"} Packages
+-   You find a list of all CRAN packages on <https://cran.r-project.org/> ![](images/right_arrow.jpg){width="30"} Packages
 -   You get an overview of all functions within a package with the `help()` or short `?` function.
 -   You can directly install a package from CRAN with the `install.packages()` function.
 :::
@@ -45,7 +45,7 @@ library(psych)
 install.packages(c("psych", "tidyverse"))
 ```
 
-# R Studio projects {background-image="img/bg-h1-3.jpg"}
+# R Studio projects {background-image="images/bg-h1-3.jpg"}
 
 ## R-Studio projects
 
@@ -62,7 +62,7 @@ As soon as you have more than one source file and/or external data, it makes sen
 
 You can start a `project` from R studio through:
 
-1.  File ![](img/right_arrow.jpg){width="30"} New Project ...
+1.  File ![](images/right_arrow.jpg){width="30"} New Project ...
 2.  Now choose whether you already have a folder you like to start a project in or you create a new empty folder for an R project.
 3.  Choose New R Project as the project type.
 4.  Choose a directory name and start the project.
@@ -73,16 +73,16 @@ You can start a `project` from R studio through:
 -   Copy all your R scripts related to this R course into that new project folder.
 -   Close and reopen R Studio
 -   Open the project through:
-    -   File ![](img/right_arrow.jpg){width="30"} Recent projects
+    -   File ![](images/right_arrow.jpg){width="30"} Recent projects
     -   Or the project menue in the upper right corner of R Studio
 
-# External data {background-image="img/bg-h1-3.jpg"}
+# External data {background-image="images/bg-h1-3.jpg"}
 
 ## Importing a data set from Excel
 
 -   The `read_excel()` function from the `readxl` package (included in `tidyverse`) is used to import files created by Microsoft Excel.
 -   Alternatively: R Studio provided an easy way to import data:\
-    File ![](img/right_arrow.jpg){width="30"} Import Dataset ![](img/right_arrow.jpg){width="30"} From Excel
+    File ![](images/right_arrow.jpg){width="30"} Import Dataset ![](images/right_arrow.jpg){width="30"} From Excel
 -   But if you want to have a full script that runs by itself, I recommend to use the R functions.
 -   Store your data within your R project folder.
 -   If you do not install it there, you need to know the folder location to load it into R.

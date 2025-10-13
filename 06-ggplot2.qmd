@@ -8,7 +8,7 @@ library(knitr)
 library(tidyverse)
 ```
 
-## Goals {background-image="img/bg-h1-3.jpg"}
+## Goals {background-image="images/bg-h1-3.jpg"}
 
 -   An introduction to the ***Grammar of Graphics***
 -   An introduction to ***ggplot***
@@ -24,7 +24,7 @@ library(tidyverse)
 
 ## ggplot components
 
-![](img/ggplot_layers.png){width="800"}
+![](images/ggplot_layers.png){width="800"}
 
 ## Basic concepts of ggplot2
 
@@ -37,7 +37,7 @@ A ggplot graphic has at least three key components:
 :::
 
 ::: right
-![](img/ggplot_layer_1_3.png){width="800"}
+![](images/ggplot_layer_1_3.png){width="800"}
 :::
 
 ## Task

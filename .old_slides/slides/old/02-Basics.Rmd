@@ -1,0 +1,899 @@
+---
+title: "R Basic Concepts"
+author: "Jürgen Wilbert"
+company: "University of Potsdam"
+date: "`r paste0('Version: ', format(Sys.time(), '%d %B %Y'), '<br><br>- arrow keys: move through slides <br>- f: toggle full-screen')`"
+output:
+  ioslides_presentation: 
+    css: styles.css
+    logo: images/ZEIF.png
+    widescreen: yes
+    df_print: kable
+  html_document: default
+  pdf_document: default
+  beamer_presentation: default
+  powerpoint_presentation:
+    reference_doc: template.pptx
+  slidy_presentation: default
+---
+
+```{r setup, include=FALSE}
+library(knitr)
+library(tidyverse)
+opts_chunk$set(echo = TRUE, warning = FALSE, message = FALSE)
+```
+
+## Goals {.emphasized data-background=images/DEFOCUSED.png data-background-size=cover .flexbox .vcenter}
+
+- Basic concepts of R: library, function, argument 
+- Object types: numbers, logic values, characters
+- object structures: vectors, data frames
+- Sophisticated subsetting
+- Import and export data to Microsoft Excel, csv files, SPSS
+- Install and update packages (cran, source, and other repositories)
+- Organize your work in R Studio (Projects)
+
+## Goals {.emphasized data-background=images/DEFOCUSED.png data-background-size=cover .flexbox .vcenter}
+
+- <div class="red2">**Basic concepts of R: library, function, argument**</div> 
+- <div class="red2">**Object types: numbers, logic values, characters**</div>
+- <div class="red2">**object structures: vectors, data frames**</div>
+- Sophiticated subsetting
+- Import and export data to Microsoft Excel, csv files, SPSS
+- Install and update packages (cran, source, and other repositories)
+- Organize your work in R Studio (Projects)
+
+# Basic concepts
+
+## Functions {.build}
+
+- With a *function* you command the computer to do something.
+- *functions* have a function name (e.g., `mean`, `sqrt`).
+- *functions* take **arguments** to specify what to do.
+- *arguments* have argument names as well.
+- functions **always** consist of a function name followed by brackets.
+
+`function_name(argument_name = value, argumentname = value, ...)`
+
+## Examples {.build}
+
+```{r }
+# sqrt calculates the square root
+sqrt(x = 16)
+
+# You can omit the argument name if it is the first argument
+sqrt(16)
+
+# Even without arguments you still need the brackets
+date()
+```
+
+## Help files
+
+```{r eval=FALSE}
+# Function
+help("sqrt")
+
+# Short cut
+?sqrt
+```
+
+... or use the bottom-right help panel in R Studio
+
+## Task 
+
+Take a look at the `mean()` function:  
+What *arguments* could be specified?
+
+
+<div class="red2">**Please stop the video here! Continue after completing the task!**</div> 
+
+---
+
+```{r eval=FALSE}
+help("mean")
+?mean
+```
+
+The mean function takes three arguments:
+
+* x : A vector with values
+* trim : A fraction (e.g. 0.3) of values that are trimmed from each each end of the vector x 
+* na.rm : If TRUE (na.rm = TRUE), missing values (NAs) are removed before calculating the mean
+
+## Operations {.build}
+
+Operations are a special kind of functions that have a shortcut.
+
+```{r results = "hide"}
+# function `assign` and the short cut
+assign(x = "y", value = 10)
+
+y <- 10
+```
+
+```{r results = "hide"}
+# function `+`
+"+"(e1 = 10, e2 = 10)
+
+10 + 10
+```
+```{r results = "hide"}
+# function `print`
+print(x = y)
+
+y
+```
+
+## Objects
+
+Objects (also called variables) have an object name and contain data.  
+The data are assigned to an object with the `<-` or `=` operator.
+
+```{r}
+x <- 10
+```
+
+You can see the value(s) of an object with the `print()` function, or by just typing the object name:
+
+```{r results = "hide"}
+print(x)
+x
+```
+---
+
+Objects can be used for operators and arguments in functions:
+
+```{r results = "hide"}
+x <- 16
+y <- 13
+
+x * y
+sqrt(x)
+```
+
+You can write the return values of a function into a new object:
+```{r results = "hide"}
+z <- sqrt(x)
+z
+```
+And you can combine these:
+
+```{r results = "hide"}
+exp(z) + sqrt(y)
+
+```
+
+## Task {.build}
+
+Assign the values `40 and 24` to the variables `a and b`. Calculate the square root of the sum of `a and b`.
+
+<div class="red2">**Please stop the video here! Continue after completing the task!**</div> 
+
+## Task - solution
+
+Assign the values `40 and 24` to the variables `a and b`. Calculate the square root of the sum of `a and b`.
+
+```{r}
+a <- 40
+b <- 24
+sqrt(a + b)
+```
+
+## Data types {.build}
+
+The data of objects can be numbers, text or TRUE/FALSE values.
+These are called **data types**
+
+- **Numeric**: e.g. Integer or decimal numbers `1, 1.35` 
+- **Character**: Always between " " or ' ' signs: `"A", 'House'`
+- **Logical**:  `TRUE, FALSE`
+
+```{r}
+x <- 10
+y <- "Hello world!"
+z <- FALSE
+```
+
+## Data structures {.build}
+
+Data are organized in structures:
+
+>- **Atomic vectors**: A single value
+>- **Vectors**: A chain of values
+>- **Factors**: Values with assigned labels
+>- **List**: A series elements, each one containing one or more (atomic)  vectors
+>- **Data Frames**: A list with one vector for each element and all vectors of the same length
+>- **Matrix**: A two dimensional table with values of the same data type.
+>- **Array**: Like a matrix but with more dimensions.
+
+## Data structures
+
+Data are organized in structures:
+
+- **Atomic vectors**: A single value
+- <div class="red2">**Vectors**: A chain of values</div>
+- <div class="red2">**Factors**: Values with assigned labels</div>
+- **List**: A series elements, each one containing one or more (atomic)  vectors
+- <div class="red2">**Data Frames**: A list with one vector for each element and all vectors of the same length</div>
+- **Matrix**: A two dimensional table with values of the same data type.
+- **Array**: Like a matrix but with more dimensions.
+
+## How to build a vector {.build}
+
+You create a vector with the `c()` function:
+
+```{r}
+c(2, 4, 6, 3, 7)
+y <- c(2, 4, 6, 3, 7)
+y
+```
+
+The colon `:` operator creates a numerical sequence:
+
+```{r results = "hide"}
+1:10
+```
+
+---
+
+You can build a vector of any data type:
+
+```{r}
+firstname <- c("Dustin", "Mike", "Will")
+curly <- c(TRUE, FALSE, FALSE)
+age <- c(9, 11, 10)
+```
+
+But do not mix data types in a vector. You will get an error or they are internally changed:
+
+```{r}
+age <- c("quite young", 10, 12, "very old")
+age
+```
+
+## Task {.build}
+
+Create a vector (named `friends` comprising four names of your friends.
+
+<div class="red2">**Please stop the video here! Continue after completing the task!**</div> 
+
+## Task - solution
+
+Create a vector (named `friends` comprising four names of your friends.
+
+```{r}
+friends <- c("Matthias", "Markus", "Thomas", "Christian")
+```
+
+## Combining vectors to new vectors {.build}
+
+When an object is a vector it can be reused within the `c()` function to build a new vector:
+
+```{r}
+x <- c(3, 5, 7)
+c(x, 5, 8, 9)
+
+```
+
+## Combining vectors to new vectors {.build}
+
+Be careful not to confuse an object name with a character:
+
+```{r error = TRUE}
+x <- c("A", "B", "C")
+c("x", "D", "E", "F")
+c(x, "D", "E", "F")
+c(A, B, C)
+
+```
+
+## Missing values
+
+A missing value is represented with `NA` (**N**ot **A**vailable).
+
+```{r}
+age <- c(9, NA, 11)
+name <- c("Tick", "Trick", NA)
+age
+name
+
+```
+
+## Task {.build}
+
+Create a vector with the values `2, 5, 7, 4, 7, 2, 6`. Calculate the `mean` of these values. (Note: Use the `mean()` function to calculate the mean).
+
+<div class="red2">**Please stop the video here! Continue after completing the task!**</div> 
+
+## Task - solution
+
+Create a vector with the values `2, 5, 7, 4, 7, 2, 6`. Calculate the `mean` of these values. (Note: Use the `mean()` function to calculate the mean).
+
+
+```{r}
+x <- c(2, 5, 7, 4, 7, 2, 6)
+mean(x)
+```
+
+## Task {.build}
+
+Create a vector with the values `2, NA, 7, 4, NA, 2, 6`. Calculate the `mean` of these values.  
+(Note: Read through `?mean` if you encounter problems.)
+
+<div class="red2">**Please stop the video here! Continue after completing the task!**</div> 
+
+## Task - solution
+
+Create a vector with the values `2, NA, 7, 4, NA, 2, 6`. Calculate the `mean` of these values.  
+(Note: Read through `?mean` if you encounter problems.)
+
+```{r}
+x <- c(2, NA, 7, 4, NA, 2, 6)
+mean(x, na.rm = TRUE)
+```
+
+
+## Selecting elements with square brackets {.build}
+
+```{r}
+names <- c("Sheldon", "Leonard", "Penny", "Amy")
+names[1]
+
+# Pass a vector to extract multiple elements:
+names[c(1,4)]
+
+```
+
+## Task {.build}
+
+Take the vector  
+`names <- c("Sheldon", "Leonard", "Penny", "Amy")`  
+and reorder it to get the following result:  
+`[1] "Sheldon" "Amy"     "Sheldon" "Amy"     "Leonard" "Penny"`
+
+<div class="red2">**Please stop the video here! Continue after completing the task!**</div> 
+
+## Task - solution 
+
+Take the vector  
+`names <- c("Sheldon", "Leonard", "Penny", "Amy")`  
+and reorder it to get the following result:  
+`[1] "Sheldon" "Amy"     "Sheldon" "Amy"     "Leonard" "Penny"`
+
+```{r}
+x <- c(1, 4, 1, 4, 2, 3)
+new_order <- names[x]
+new_order
+```
+
+## A factor {.build .smaller}
+
+A factor is a vector with labels for vector levels. E.g., a vector contains the values 0 and 1 where 0 stands for "with behavioral problems" and 1 stands for ""without behavioral problems".
+
+A factor is created with the `factor()` function.
+
+```{r}
+sen <- factor(c(1, 0, 1, 0, 0, 0), levels =  c(0, 1), labels = c("No SEN", "With SEN"))
+sen
+```
+## Task {.build}
+
+Build a factor for `gender` with the labels `male, female, non-binary`. Include a vector for six fictitious gender values.
+
+<div class="red2">**Please stop the video here! Continue after completing the task!**</div> 
+
+## Task - solution
+
+Build a factor for `gender` with the labels `male, female, non-binary`. Include a vector for six fictitious gender values.
+
+```{r}
+gender <- factor(
+  c(1, 3, 2, 1, 2, 1), 
+  levels = 1:3, 
+  labels = c("male", "female", "non-binary")
+)
+gender
+```
+
+## How to build a data frame {.build .smaller}
+
+Data frames are the standard object for storing research data. They contain variables (columns) and cases (rows). A data frame is created with the `data.frame()` function.
+
+```{r}
+# For better convenience I have inserted additional linebreaks and spaces
+study <- data.frame(
+  sen    = c(0, 1, 0, 1, 0, 1),
+  gender = c("M", "M", "F", "M", "F", "F"),
+  age    = c(12, 13, 11, 10, 11, 14),
+  IQ     = c(90, 85, 90, 87, 99, 89)
+)
+study
+```
+
+## Extracting a variable from a data frame
+
+Variables within a data frame are extracted with double square brackets.
+
+```{r}
+study[["sen"]]
+study[["IQ"]]
+```
+
+*Note: an alternative approach is to use the `$` sign: `study$sen`. But we will not use this approach for now.*
+
+## Subsetting a data frame
+
+Specific cases are selected within square brackets: 
+`object_name[rows, columns]`.
+
+```{r}
+study[5, ]
+study[c(2, 6), ]
+```
+
+---
+
+```{r}
+study[c(2, 6), "IQ"]
+study[c(2, 6), c("sen", "IQ")]
+```
+
+---
+
+You could also use numbers to address the columns:
+
+```{r}
+study[, 2]
+study[c(2, 6), c(1, 3)]
+```
+
+## Task {.build}
+
+Please create a new data frame (`study2`) comprising the `gender` and `age` variables for the cases 1, 3, and 5 of the `study` data frame.
+
+<div class="red2">**Please stop the video here! Continue after completing the task!**</div> 
+
+## Task - solution
+
+Please create a new data frame (`study2`) comprising the `gender` and `age` variables for the cases 1, 3, and 5 of the `study` data frame.
+
+```{r}
+study2 <- study[c(1, 3, 5), c("gender", "age")]
+study2
+```
+
+# Sophisticated selections
+
+## Relational operators {.build}
+
+Relational operators compare two values and return a logical value (`TRUE` or `FALSE`)
+
+|Operator|Relation|Example|
+|----|----------------|--------|
+|`==`|is identical|x == y|
+|`!=`|is not identical|x != y|
+|`>`|is greater|x > y|
+|`>=`|is greater or identical|x >= y|  
+|`<`|is less|x < y|
+|`<=`|is less or identical|x <=  y|  
+
+## Examples {.build}
+
+```{r}
+7 > 2
+7 <=  10
+5 == 4
+5 != 6
+```
+
+## Relational vectors and characters
+
+Only `==` and `!=` can be applied to non numerical objects:
+
+```{r}
+"Hamster" == "Mouse"
+"Hamster" != "Mouse"
+```
+
+## Relational operators and vectors {.smaller}
+
+```{r}
+age <- c(12, 4, 3, 8, 4, 2, 1)
+age < 5
+```
+
+```{r echo = FALSE}
+data.frame(age = age, 'age < 5' = age < 5, check.names = FALSE)
+```
+
+## Using logical vectors to select values
+
+When you put a logical vector within square brackets `[ ]` after an object, all elements of that object with a `TRUE` in the logical vector are selected:
+
+```{r}
+age <- c(12, 4, 3, 8)
+x <- age > 5
+x
+age[x]
+```
+
+## Using logical vectors to select values
+
+```{r eval=FALSE}
+age <- c(12, 4, 3, 8)
+x <- age > 5
+age[x]
+```
+
+```{r echo = FALSE}
+data.frame(age = age, x = x, 'Select?' = ifelse(x, "**select**", "drop"), "Result" = ifelse(x, age, ""), check.names = FALSE)
+```
+
+## Task {.build}
+
+Create a new vector `friends <- c(4, 5, 6, 3, 7, 2, 3)`. Show all values of that vector `>= 4`.
+
+<div class="red2">**Please stop the video here! Continue after completing the task!**</div> 
+
+## Task - solution 
+
+Create a new vector `friends <- c(4, 5, 6, 3, 7, 2, 3)`. Show all values of that vector `>= 4`.
+
+```{r}
+friends <- c(4, 5, 6, 3, 7, 2, 3)
+friends[friends >= 4]
+```
+
+
+## which() {.build .smaller}
+
+The `which()` functions gives the **indices** of the elements that are `TRUE`.  
+It takes a *logical vector* as an *argument*.
+
+```{r}
+x <- c(TRUE, FALSE, FALSE, TRUE)
+which(x)
+
+age <- c(12, 4, 3, 8)
+x <- age < 5
+x
+which(x)
+```
+
+---
+
+```{r eval = FALSE}
+age <- c(12, 4, 3, 8)
+x <- age < 5
+x
+which(x)
+```
+
+```{r echo = FALSE}
+data.frame('Index' = 1:length(x), '`age`' = age, '`x <- age < 5`' = x, '`which(x)`' = ifelse(x, 1:length(x), ""), check.names = FALSE)
+```
+
+## Task {.build}
+
+Create a vector `x <- c(1, 4, 5, 3, 4, 5)` and identify:  
+Which elements are larger or equal than three?     
+Create a new vector from `x` containing all elements that are **not** four. Note: Use the `which()` function for this task.
+
+<div class="red2">**Please stop the video here! Continue after completing the task!**</div> 
+
+## Task - solution
+
+Create a vector `x <- c(1, 4, 5, 3, 4, 5)` and identify:  
+Which elements are larger or equal than three?     
+Create a new vector from `x` containing all elements that are **not** four. Note: Use the `which()` function for this task.
+
+
+```{r}
+x <- c(1, 4, 5, 3, 4, 5)
+which(x >= 3)
+y <- x[which(x != 4)]
+y
+```
+
+## Selecting cases with logical vectors {.build}
+
+Logical vectors can also be appplied to *data frame* for selecting cases:
+
+```{r}
+# Either directly:
+study_no_sen <- study[study[["sen"]] == 0, ]
+study_no_sen
+
+# Or using the which() function
+filter <- which(study[["sen"]] == 0)
+study_no_sen <- study[filter, ]
+```
+
+## Task {.build}
+
+Calculate the `mean` of `IQ` for students with and without sen.
+
+<div class="red2">**Please stop the video here! Continue after completing the task!**</div> 
+
+## Task - solution
+
+Calculate the `mean` of `IQ` for students with and without sen.
+
+```{r}
+filter <- which(study[["sen"]] == 0)
+mean(study$IQ[filter])
+
+filter <- which(study[["sen"]] == 1)
+mean(study[["sen"]][filter])
+```
+
+## Logical Operations
+
+Logical operations are applied to logical values. 
+
+|Operator| Operation|Example|Results|
+|--------|----------|-------|-------|
+|`!`|Not|`! x`|`TRUE when x = FALSE and FALSE when x = TRUE`|
+|`&`|AND|`x & y`|`TRUE when x and y are TRUE else FALSE`|
+|`|`|OR|`x | y`|`TRUE when x or y is TRUE else FALSE`|
+
+## Example {.build .smaller}
+
+```{r}
+x <- TRUE
+y <- FALSE
+```
+
+```{r}
+!x
+!y
+x & y
+x | y
+```
+
+## Logical Operator with vectors {.build .smaller}
+
+When applied to **two** vectors, logical operations result in a new vector.  
+Operations are applied to each element one by one.
+
+```{r}
+x <- c(TRUE, FALSE, TRUE,  FALSE)
+y <- c(TRUE, FALSE, FALSE, TRUE)
+```
+
+```{r}
+!x
+x & y
+x | y
+```
+
+## Task {.build}
+
+Create two vectors:
+
+`glasses <- c(TRUE, TRUE, FALSE, TRUE, FALSE)` 
+`hyperintelligent <- c(TRUE, FALSE, FALSE, TRUE, FALSE)`
+
+Determine for each element whether 'glasses' and 'hyperintelligent' are TRUE at the same time.
+
+<div class="red2">**Please stop the video here! Continue after completing the task!**</div> 
+
+```{r}
+glasses <- c(TRUE, TRUE, FALSE, TRUE, FALSE)
+hyperintelligent <- c(TRUE, FALSE, FALSE, TRUE, FALSE)
+glasses & hyperintelligent
+```
+
+## Task - solutions
+
+Create two vectors:
+
+`glasses <- c(TRUE, TRUE, FALSE, TRUE, FALSE)` 
+`hyperintelligent <- c(TRUE, FALSE, FALSE, TRUE, FALSE)`
+
+Determine for each element whether 'glasses' and 'hyperintelligent' are TRUE at the same time.
+
+```{r}
+glasses <- c(TRUE, TRUE, FALSE, TRUE, FALSE)
+hyperintelligent <- c(TRUE, FALSE, FALSE, TRUE, FALSE)
+glasses & hyperintelligent
+```
+
+---
+
+```{r echo = FALSE}
+data.frame('glasses' = glasses, 'hyperintelligent' = hyperintelligent,  'glasses & hyperintelligent' = glasses & hyperintelligent, check.names = FALSE)
+```
+
+## Combining logical and relational operators {.build}
+
+```{r}
+age <- c(12, 4, 3, 8, 4, 2, 1, 7, 4)
+gender <- c(0, 1, 0, 1, 0, 0, 0, 0, 1)
+age > 4
+gender == 0
+age > 4 & gender == 0
+```
+
+## Task {.build .smaller}
+
+Create a vector  
+`income <- c(5000, 4000, 3000, 2000, 1000)` and a vector  
+`happiness <- c(20, 35, 30, 10, 50)`.  
+Use *relational* and *logical* operations to determine for each element whether the `income` is larger than `2500` and at the same time `happiness` is above `25`.
+
+<div class="red2">**Please stop the video here! Continue after completing the task!**</div> 
+
+```{r}
+income <- c(5000, 4000, 3000, 2000, 1000)
+happiness <- c(20, 35, 30, 10, 50)
+income > 2500 & happiness > 25
+```
+
+## Task - solution {.smaller}
+
+Create a vector  
+`income <- c(5000, 4000, 3000, 2000, 1000)` and a vector  
+`happiness <- c(20, 35, 30, 10, 50)`.  
+Use *relational* and *logical* operations to determine for each element whether the `income` is larger than `2500` and at the same time `happiness` is above `25`.
+
+```{r}
+income <- c(5000, 4000, 3000, 2000, 1000)
+happiness <- c(20, 35, 30, 10, 50)
+income > 2500 & happiness > 25
+```
+
+---
+
+```{r eval = FALSE}
+income <- c(5000, 4000, 3000, 2000, 1000)
+happiness <- c(20, 35, 30, 10, 50)
+income > 2500 & happiness > 25
+```
+
+```{r echo = FALSE}
+kable(data.frame('income' = income, 'happiness' = happiness, 'income > 2500' = income > 2500, 'happiness > 25' = happiness > 25, 'income > 2500 &<br>happiness > 25' = income > 2500 & happiness > 25, check.names = FALSE))
+
+```
+
+## Subsetting data frames with logical and relational operators {.build .smaller}
+
+```{r}
+study
+filter <- which(study[["sen"]] == 1 & study[["gender"]] == "M")
+study[filter, ]
+```
+
+## Task
+
+Use the `ChickWeight` data frame for the following task.  
+The data set is already included in R.
+
+1. Look into the data set with `?ChickWeight`.
+2. Get all variable names of the data frame with the `names()` function (`names(ChickWeight)`).
+3. Select cases from **ChickWeight** with `Diet == 1` and `Time < 16`.
+4. For these cases, calculate the correlation between `weight` and `Time`. Note: Use the `cor()` function (e.g., `cor(x, y)`)
+5. Repeat steps 3 and 4 for `Diet == 4`.
+6. What can you see?
+
+<div class="red2">**Please stop the video here! Continue after completing the task!**</div> 
+
+---
+
+```{r}
+filter <- ChickWeight[["Diet"]] ==  1 & ChickWeight[["Time"]] < 16
+diet1 <- ChickWeight[filter,]
+cor(diet1[["weight"]], diet1[["Time"]])
+filter <- ChickWeight[["Diet"]] ==  4 & ChickWeight[["Time"]] < 16
+diet4 <- ChickWeight[filter,]
+cor(diet4[["weight"]], diet4[["Time"]])
+```
+
+# Extending R
+
+## libraries, packages, and repositories
+
+>- A "fresh" **R** installation already contains hundreds of *functions*.  
+>- Functions are organized in **libraries**.
+>- Libraries address a certain topic or area (e.g., graphics, a specific statstical method)
+>- A **package** is a 'container' for distributing and sharing *libraries*.
+>- You can add additional packages to extend you R installation.
+>- Additional packages are provided in **repositories** or in seperate files. 
+>- Repositories are online data storages.
+>- The most important repository for *R* is CRAN <img src="images/R_logo.png" width="30" /> (The Comprehensive R Archive Network)
+
+## Installing and activating new packages {.build}
+
+>- You find a list of all CRAN packages on  
+https://cran.r-project.org/ <img src="images/right_arrow.jpg" width="30" /> Packages
+>- You get an overview of all functions within a package with the `help()` or short `?` function.
+>- You can directly install a package from CRAN with the `install.packages()` function.
+
+After successful installation, add on packages have to be activated and loaded into memory in each *R* sesssion with the `library()` function.  
+Note: You only install once, but you use `library()` each time you restart **R** or **R Studio**.
+
+## Task
+
+Install the packages `psych` and `tidyverse`.  
+Activate both packages with  
+`library(tidyverse)`  
+`library(psych)`  
+
+```{r eval=FALSE}
+install.packages(c("psych", "tidyverse"))
+```
+
+# R Studio projects
+
+## R-Studio projects {.build}
+
+As soon as you have more tham one source file and/or external data, it makes sense to start a `project` instead of just using single `source` files.
+
+- A project is a feature of R Studio, not of R. 
+- A project always hosted in a folder on your storage.
+- All scripts, data, and other files are stored in that folder.
+- When later opening a project, the *working directory* is directly set to the folder location.
+
+<div class="blue2">***Working directory***:</div> The place on your harddrive R will save and load data from by default (i.e. when not other place is explicitly set). Use the `getwd()` and `setwd()` functions to get and set the working directory.
+
+## Starting an R-Studio project {.build}
+
+You can start a `project` from R studio through:
+
+1. File <img src="images/right_arrow.jpg" width="30" /> New Project ...
+2. Now choose whether you already have a folder you like to start a project in or you create a new empty folder for an R project.
+3. Choose New R Project as the project type.
+4. Choose a directory name and start the project.
+
+## Task {.build}
+
+- Create a new R project with a name of your choice (e.g. 'R_course'). 
+- Copy all your R scripts related to this R course into that new project folder.
+- Close and reopen R Studio
+- Open the project through:
+  - File <img src="images/right_arrow.jpg" width="30" /> Recent projects
+  - Or the project menue in the uper right corner of R Studio
+
+# External data
+
+## Importing a data set from Excel
+
+- The `read_excel()` function from the `readxl` package (included in `tidyverse`) is used to import files created by Microsoft Excel.
+- Alternatively: R Studio provided an easy way to import data:  
+File <img src="images/right_arrow.jpg" width="30" /> Import Dataset <img src="images/right_arrow.jpg" width="30" /> From Excel
+- But if you want to have a full script that runs by itself, I recommend to use the R functions.
+- Store your data within your R project folder.
+- If you do not install it there, you need to know the folder location to load it into R.
+
+## Example
+
+```{r message=FALSE, warning=FALSE}
+library(readxl)
+dat <- read_xlsx("cars.xlsx")
+names(dat) # this function shows the variable names of a data frame 
+```
+
+```{r echo = FALSE}
+head(dat, 3)
+```
+
+
+## Task
+
+- Download the Excel file "cars.xlsx" from the moodle course.  
+- Save it in your project directory.  
+- Import the data set and assign it to an object `dat`.  
+- Apply the `View()` function to see the dataset.
+
+Note: `View()` opens a new tab in RStudio with the content of a data frame (e.g. `View(dat)`).
+
+## Task {.build}
+
+- Calculate the *mean* of `mpg` (miles per gallon) for cars with 4, 6, and 8 cylinders (variable `cly`). Note: Use `$` to select variables from the dataset.
+
+```{r}
+mean(dat$mpg[dat$cyl == 4])
+mean(dat$mpg[dat$cyl == 6])
+mean(dat$mpg[dat$cyl == 8])
+```

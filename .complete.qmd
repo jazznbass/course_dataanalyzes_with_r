@@ -1,0 +1,3878 @@
+---
+title: "R Course"
+format: revealjs
+---
+
+```{r setup, include=FALSE}
+library(knitr)
+library(tidyverse)
+
+```
+
+# Todays goals {background-image="images/bg-h1-3.jpg"}
+  
+- Introduction to the idea of Data Science
+
+- Getting an overview of the content of this seminar
+
+- Installing R on your computer
+
+- Installing R-Studio on your computer
+
+- Overview of R-Studio
+
+# What is R? {background-image="images/bg-h1-3.jpg"}
+
+::: incremental
+- A tool for statistical computation (like SPSS, Mplus, STATA ...)
+- A programming language
+- An idea and a community that shares common ideas about science
+:::
+  
+## Statements {background-image="images/bg-h1-3.jpg"}
+  
+::: incremental
+- Science should be truthful
+- Science should be diligent
+- Science should be transparent
+- Science should be reproducible
+- Science should be communicated
+- Science should be accessible
+- Science should be open
+:::
+  
+## R (and R studio) {background-image="images/bg-h1-3.jpg"}
+  
+- Science should be truthful
+- Science should be diligent
+- [Science should be transparent]{.em}
+- [Science should be reproducible]{.em}
+- [Science should be communicated]{.em}
+- [Science should be accessible]{.em}
+- Science should be open
+
+# What R can do {background-image="images/bg-h1-3.jpg"}
+
+## Statistical analyses
+
+- Descriptive stats
+- Modeling
+- Inferential stats
+- Manage and organize data
+- Large data (large scale / big data / EEG / fMRT)
+- Small data (experimental data / questionnaire data / single-case data)
+
+## Present data
+
+- Visualize data and results
+- Keep a notebook of your research and analyses
+- Write reports, including stats
+- Write presentations
+- Write books
+- Build interactive websites
+- Connect with various other software and internet tools
+
+## Schedule
+
+```{r echo = FALSE}
+schedule <- readxl::read_xlsx(file.path("res", "schedule.xlsx"))
+schedule
+```
+
+# Installation of R and R-Studio {background-image="images/bg-h1-3.jpg"}
+
+## Installing R
+
+[**R homepage:** *https://www.r-project.org/*](https://www.r-project.org/)
+
+![](images/R-homepage.png)
+
+## Installing R-Studio
+
+<https://www.rstudio.com/products/rstudio/download/>
+  
+Download ***RStudio-Desktop*** for free
+
+![](images/rstudio-homepage.png){width="642"}
+
+## Installing R tools (windows only)
+
+- Windows user have to install additional programs that allow for compiling R packages.
+- This is necessary when you want to install certain extensions to R (`packages`).
+- You can install it from here: <https://cran.r-project.org/bin/windows/Rtools/>
+  - Choose the version that corresponds to the version of R that you installed previously.
+- Linux or MacOs users have this software already installed.
+
+## Install Quarto
+
+- Quarto is a program that allows for publishing documents that contain Output (tabels, plots etc.) created with R.
+
+- You can install it from here: <https://quarto.org/>
+  
+![](images/paste-BE281E24.png)
+
+# R for Data science
+
+::: left
+[R for Data Science](https://r4ds.had.co.nz/) is a terrific book and completely free!
+:::
+  
+::: right
+<img src="images/cover_r4ds.png" style="width: 60%"/>
+:::
+
+## Goals
+
+-   Basic concepts of the R language
+-   Object types: numbers, logic values, characters
+-   object structures: vectors, factors, data frames, lists
+
+# Basic concepts {background-image="images/bg-h1-3.jpg"}
+
+## Functions
+
+::: incremental
+-   With a *function* you command the computer to do something.
+-   *functions* have a function name (e.g., `mean`, `sqrt`).
+-   *functions* take **arguments** to specify what to do.
+-   *arguments* have argument names as well.
+-   functions **always** consist of a function name followed by brackets.
+:::
+
+. . .
+
+`function_name(argument_name_1 = value, argument_2 = value, ...)`
+
+## Examples
+
+`sqrt()` calculates the square root
+
+```{r}
+sqrt(x = 16)
+```
+
+. . .
+
+You can omit the argument name if it is the first argument
+
+```{r}
+sqrt(16)
+```
+
+. . .
+
+Even without arguments you still need the brackets
+
+```{r }
+date()
+```
+
+## Comments
+
+It is a good practice to add comments and notes to your code.\
+Everything that is written behind a `#` will not executed as code.\
+If you want a comment to span across several line, you have to begin each line with a `#` symbol.
+
+```{r}
+# This is a comment
+# across multiple lines
+```
+
+Within RStudio, you can use comments to create headers to navigate through your code by ending a comment line with four `-` signs:
+
+```{r}
+# section 2 ----
+```
+
+## 
+
+You can jump through your code by the list a the bottom of your source panel or, after activating the outline panel, at the right of your source panel:
+
+![](images/paste-0F60DB72.png)
+
+## Help files
+
+```{r eval=FALSE}
+# Function
+help("sqrt")
+
+# Short cut
+?sqrt
+```
+
+... or use the bottom-right help panel in R Studio
+
+## Task {background-image="images/bg-task.png"}
+
+Take a look at the `mean()` function (hint: use the `help()` function):\
+What *arguments* could be specified?
+
+{{< include _stop.qmd >}}
+
+------------------------------------------------------------------------
+
+```{r eval=FALSE}
+help("mean")
+?mean
+```
+
+![](images/paste-397F56B8.png)
+
+## Operations
+
+Operations are a special kind of functions that have a shortcut.
+
+```{r results = "hide"}
+# function `assign` and the short cut
+assign(x = "y", value = 10)
+
+y <- 10
+```
+
+.
+
+```{r results = "hide"}
+# function `+`
+"+"(e1 = 10, e2 = 10)
+
+10 + 10
+```
+
+.
+
+```{r results = "hide"}
+# function `print`
+print(x = y)
+
+y
+```
+
+## Objects
+
+Objects have an object name and contain data.\
+The data are assigned to an object with the `<-` or `=` operator.
+
+```{r}
+x <- 10
+```
+
+You can see the value(s) of an object with the `print()` function, or by just typing the object name:
+
+```{r results = "hide"}
+print(x)
+x
+```
+
+------------------------------------------------------------------------
+
+Objects can be used for operators and arguments in functions:
+
+```{r results = "hide"}
+x <- 16
+y <- 13
+
+x * y
+sqrt(x)
+```
+
+You can write the return values of a function into a new object:
+
+```{r results = "hide"}
+z <- sqrt(x)
+z
+```
+
+And you can combine these:
+
+```{r results = "hide"}
+exp(z) + sqrt(y)
+```
+
+## Task {background-image="images/bg-task.png"}
+
+Assign the values `40 and 24` to the variables `a and b`.\
+Calculate the square root of the sum of `a and b`.
+
+{{< include _stop.qmd >}}
+
+## Task - solution {background-image="images/bg-task.png"}
+
+Assign the values `40 and 24` to the variables `a and b`.\
+Calculate the square root of the sum of `a and b`.
+
+```{r}
+a <- 40
+b <- 24
+sqrt(a + b)
+```
+
+# Data classes {background-image="images/bg-h1-3.jpg"}
+
+## Data types
+
+The data of objects can be numbers, text or TRUE/FALSE values. These are called **data types**
+
+-   **Numeric**: e.g. Integer or decimal numbers `1, 1.35`
+-   **Character**: Always between " " or ' ' signs: `"A", 'House'`
+-   **Logical**: `TRUE, FALSE`
+
+```{r}
+x <- 10
+y <- "Hello world!"
+z <- FALSE
+```
+
+## Data structures
+
+Data are organized in structures:
+
+::: incremental
+-   **Vectors**: A series of elements of the same data type.
+-   **List**: A series of elements, each element can be of any data type or data structure.
+-   **Data Frames**: A list with one vector for each element and all vectors of the same length
+-   **Matrix**: A two dimensional table with values of the same data type.
+-   **Array**: Like a matrix but with more dimensions.
+:::
+
+## Data structures
+
+Data are organized in structures:
+
+-   [**Vectors**: A series of elements of the same data type.]{.em}
+-   [**List**: A series of elements, each element can be of any data type or data structure.]{.em}
+-   [**Data Frames**: A list with one vector for each element and all vectors of the same length.]{.em}
+-   **Matrix**: A two dimensional table with values of the same data type.
+-   **Array**: Like a matrix but with more dimensions.
+
+# Vectors {background-image="images/bg-h1-3.jpg"}
+
+## How to build a vector
+
+You create a vector with the `c()` function:
+
+```{r}
+c(2, 4, 6, 3, 7)
+y <- c(2, 4, 6, 3, 7)
+y
+```
+
+------------------------------------------------------------------------
+
+The colon `:` operator creates a numerical sequence:
+
+```{r}
+1:10
+```
+
+This is a shortcut for `seq(1, 10)`
+
+------------------------------------------------------------------------
+
+You can build a vector of any data type:
+
+```{r}
+firstname <- c("Dustin", "Mike", "Will")
+curly <- c(TRUE, FALSE, FALSE)
+age <- c(9, 11, 10)
+```
+
+But do not mix data types in a vector. You will get an error or they are internally changed to fit one data type:
+
+```{r}
+age <- c("quite young", 10, 12, "very old")
+age
+```
+
+Here `10` and `12` are changed to a character data type `"10"` and `"12"`.
+
+## Task {.build background-image="images/bg-task.png"}
+
+Create a vector (named `friends` comprising four names of your friends.
+
+{{< include _stop.qmd >}}
+
+## Task - solution {background-image="images/bg-task.png"}
+
+Create a vector (named `friends` comprising four names of your friends.
+
+```{r}
+friends <- c("Matthias", "Markus", "Thomas", "Christian")
+```
+
+## Combining vectors to new vectors {.build}
+
+When an object is a vector it can be reused within the `c()` function to build a new vector:
+
+```{r}
+x <- c(3, 5, 7)
+c(x, 5, 8, 9)
+
+```
+
+## Combining vectors to new vectors {.build}
+
+Be careful not to confuse an object name with a character:
+
+```{r error = TRUE}
+x <- c("A", "B", "C")
+c("x", "D", "E", "F")
+c(x, "D", "E", "F")
+c(A, B, C)
+
+```
+
+## Task {background-image="images/bg-task.png"}
+
+Create two vectors\
+`x <- c("I", "am", "a")` and\
+`y <- "person!"`
+
+Now create a new vector by reusing `x` and `y` that looks like this when printed:
+
+`[1] "I"      "Am"     "a"      "cool"   "person!"`
+
+{{< include _stop.qmd >}}
+
+## Task - solution {background-image="images/bg-task.png"}
+
+```{r}
+x <- c("I", "am", "a")
+y <- "person!"
+c(x, "cool", y)
+```
+
+Use the `paste()` function to create a single string.  
+The argument `collapse` defines a character string to set between elements:
+
+```{r}
+paste(c(x, "cool", y), collapse = " ")
+```
+
+
+## Missing values
+
+A missing value is represented with `NA` (**N**ot **A**vailable).
+
+```{r}
+age <- c(9, NA, 11)
+name <- c("Tick", "Trick", NA)
+age
+name
+
+```
+
+## Task {background-image="images/bg-task.png"}
+
+1. Create a vector with the values  
+   `2, 5, 7, 4, 7, 2, 6`. 
+2. Create a vector with the values  
+   `2, NA, 7, 4, NA, 2, 6`. 
+
+Calculate the `mean` of these two vectors.  
+Note: Use the `mean()` function to calculate the mean.  
+Note: Read through `?mean` if you encounter problems.
+
+{{< include _stop.qmd >}}
+
+## Task - solution {background-image="images/bg-task.png"}
+
+```{r}
+x1 <- c(2, 5, 7, 4, 7, 2, 6)
+x2 <- c(2, NA, 7, 4, NA, 2, 6)
+
+mean(x1)
+mean(x2)
+mean(x2, na.rm = TRUE)
+```
+
+## Named vectors
+
+A named vector is a vector with a name for each element:
+
+```{r}
+age <- c(James = 34, Hella = 30, Armin = 43)
+age
+glasses <- c(James = TRUE, Hella = FALSE, Armin = TRUE)
+glasses
+```
+
+You get and set the names of a named object with the `names()` argument:
+
+```{r}
+names(age)
+names(age) <- c("Judith", "Jerom", "Klaus")
+age
+```
+
+## Converting vectors
+
+the `as` functions convert vectors between data types:
+
+```{r}
+as.character(1:5)
+as.numeric(c(FALSE, TRUE, FALSE))
+as.logical(c(0,1,0,1,1))
+as.numeric(c("4711", "0814", "007"))
+```
+
+. . .
+
+But unexpected results may occure:
+
+```{r}
+as.numeric(c("1", "2", "3.1", "3,2"))
+as.logical(c(1,0,1,0,1,3))
+```
+
+# Factors {background-image="images/bg-h1-3.jpg"}
+
+## A factor
+
+A factor is a vector with labels for vector levels.\
+A factor is created with the `factor()` function.  
+The `levels` argument defines the possible factor levels.  
+The `labels` argument defines the corresponding labels.
+
+Example:
+
+```{r}
+sen <- factor(
+  c(1, 0, 1, 0, 0, 0), 
+  levels =  c(0, 1, 2), 
+  labels = c("Without_SEN", "With_SEN", "unclear")
+)
+sen
+```
+
+## Task {background-image="images/bg-task.png"}
+
+Build a factor for `gender` with the labels `male, female, non-binary`. Include a vector for six fictitious gender values.
+
+{{< include _stop.qmd >}}
+
+## Task - solution {background-image="images/bg-task.png"}
+
+Build a factor for `gender` with the labels `male, female, non-binary`. Include a vector for six fictitious gender values.
+
+```{r}
+gender <- factor(
+  c(1, 3, 2, 1, 2, 1), 
+  levels = 1:3, 
+  labels = c("male", "female", "non-binary")
+)
+gender
+```
+
+# Data frames {background-image="images/bg-h1-3.jpg"}
+
+## How to build a data frame {.build .smaller}
+
+Data frames are the standard object for storing research data. They contain variables (columns) and cases (rows). A data frame is created with the `data.frame()` function.
+
+```{r}
+# For better convenience I have inserted additional linebreaks and spaces
+study <- data.frame(
+  sen    = c(0, 1, 0, 1, 0, 1),
+  gender = c("M", "M", "F", "M", "F", "F"),
+  age    = c(12, 13, 11, 10, 11, 14),
+  IQ     = c(90, 85, 90, 87, 99, 89)
+)
+study
+```
+
+## Extracting a variable from a data frame
+
+Variables within a data frame are extracted with double square brackets.
+
+```{r}
+study[["sen"]]
+study[["IQ"]]
+```
+
+An alternative approach is to use the `$` sign: 
+
+```{r}
+study$sen
+```
+
+# Lists {background-image="images/bg-h1-3.jpg"}
+
+## How to construct a list
+
+Lists are the most versatile data structures in R and are very important for understanding R.
+
+A list is a series of elements with arbitrary data types and structures. A list is constructed with the `list()` function
+
+```{r}
+list(1:3, "Hallo!", TRUE)
+```
+
+##
+
+It is best to name list elements:
+
+```{r}
+my_list <- list(
+  numbers = 1:3,  
+  string = "Hallo!", 
+  logical = TRUE
+)
+my_list
+```
+
+## Extracting list elements
+
+You can extract a list element with `[[` or `$` signs:
+
+```{r}
+my_list[["numbers"]]
+my_list[[1]]
+my_list$numbers
+```
+
+##
+
+lists can be very complex with lists nested in lists:
+
+
+```{r}
+complex_list <- list(
+  list = list(A = 1, B = 1:3),
+  list_in_list = list(C = list(D = 4), E = 5)
+)
+complex_list
+```
+
+## 
+
+The `str()` function returns the structure of an R object
+
+```{r}
+str(complex_list)
+```
+
+
+# Subsetting {background-image="images/bg-h1-3.jpg"}
+
+Selecting elements of a data structure.
+
+## Selecting elements with square brackets {.build}
+
+By providing a number within square brackets, the respective element is selected from a vector:
+
+```{r}
+names <- c("Sheldon", "Leonard", "Penny", "Amy")
+names[1]
+```
+
+When you provide a vector of numbers, multiple elements are selected
+
+```{r}
+names[c(1,4)]
+```
+
+## 
+
+You can even change the order or repeat elements:
+
+```{r}
+names[c(4, 1, 1)]
+```
+
+With negative numbers, columns are dropped:
+
+```{r}
+names[-1]
+```
+
+```{r}
+names[c(-1, -3)]
+```
+
+## Task {background-image="images/bg-task.png"}
+
+Take the vector\
+`names <- c("Sheldon", "Leonard", "Penny", "Amy")`\
+and reorder it to get the following result:\
+`[1] "Sheldon" "Amy"     "Sheldon" "Amy"     "Leonard" "Penny"`
+
+{{< include _stop.qmd >}}
+
+## Task - solution {background-image="images/bg-task.png"}
+
+Take the vector\
+`names <- c("Sheldon", "Leonard", "Penny", "Amy")`\
+and reorder it to get the following result:\
+`[1] "Sheldon" "Amy"     "Sheldon" "Amy"     "Leonard" "Penny"`
+
+```{r}
+x <- c(1, 4, 1, 4, 2, 3)
+new_order <- names[x]
+new_order
+```
+
+## Subsetting data frames
+
+Firstly, we create an example data frame:
+
+```{r}
+study <- data.frame(
+  sen    = c(0, 1, 0, 1, 0, 1),
+  gender = c("M", "M", "F", "M", "F", "F"),
+  age    = c(12, 13, 11, 10, 11, 14),
+  IQ     = c(90, 85, 90, 87, 99, 89)
+)
+study
+```
+
+## 
+
+Square brackets select a column of a data frame either by a number the column name:
+
+::: left
+```{r}
+study[3]
+```
+:::
+
+::: right
+```{r}
+study["age"]
+```
+:::
+
+## 
+
+The subsetted object is a data frame with one column.\
+This is different from extracting a variable with `$` or `[[` signs:
+
+```{r}
+study[["age"]]
+study$age
+```
+
+which returns a vector (!)
+
+While this works:
+
+```{r}
+median(study[["age"]])
+```
+
+this throws an error:
+
+```{r}
+#| eval: false
+median(study["age"])
+```
+
+```         
+Error in median.default(study["age"]) : need numeric data
+```
+
+## 
+
+Providing a vector will select multiple columns:
+
+::: left
+```{r}
+study[c(1,3)]
+```
+:::
+
+::: right
+```{r}
+study[c("sen", "age")]
+```
+:::
+
+## Extraction and subsetting
+
+The extraction of a vector and the selection of elements can be combined:
+
+```{r}
+age <- study[["age"]]
+age[c(2,4)]
+```
+
+Or within one step:
+
+```{r}
+study$age[c(2,4)]
+study[["age"]][c(2,4)]
+```
+
+## Selecting rows and columns
+
+Specific cases are selected within square brackets: `object_name[rows, columns]`.
+
+```{r}
+study[5, ]  # filter a row
+study[c(2, 6), ] # filter two rows
+```
+
+------------------------------------------------------------------------
+
+```{r}
+study[c(2, 6), "IQ"]
+study[c(2, 6), c("sen", "IQ")]
+```
+
+------------------------------------------------------------------------
+
+You could also use numbers to address the columns:
+
+```{r}
+study[, 2]
+study[c(2, 6), c(1, 3)]
+```
+
+## Task {background-image="images/bg-task.png"}
+
+Please create a new data frame (`study2`) comprising the `gender` and `age` variables for the cases 1, 3, and 5 of the `study` data frame.
+
+{{< include _stop.qmd >}}
+
+## Task - solution {background-image="images/bg-task.png"}
+
+Please create a new data frame (`study2`) comprising the `gender` and `age` variables for the cases 1, 3, and 5 of the `study` data frame.
+
+```{r}
+study2 <- study[c(1, 3, 5), c("gender", "age")]
+study2
+```
+
+## Sophisticated subsetting {background-image="images/bg-h1-3.jpg"}
+
+Subsetting becomes most powerful when it is combined with conditional selections.
+
+For example:
+
+-   Select all students with special educational needs.
+-   Select all male students between the age of 6 and 10
+
+To apply such selections, we have to know about *relational* and *logical* operators.
+
+## Relational operators
+
+Relational operators compare two values and return a logical value (`TRUE` or `FALSE`)
+
+| Operator | Relation                | Example |
+|----------|-------------------------|---------|
+| `==`     | is identical            | x == y  |
+| `!=`     | is not identical        | x != y  |
+| `>`      | is greater              | x \> y  |
+| `>=`     | is greater or identical | x \>= y |
+| `<`      | is less                 | x \< y  |
+| `<=`     | is less or identical    | x \<= y |
+
+## Examples
+
+```{r}
+7 > 2
+7 <=  10
+5 == 4
+5 != 6
+```
+
+## Relational vectors and characters
+
+Only `==` and `!=` can be applied to non numerical objects:
+
+```{r}
+"Hamster" == "Mouse"
+"Hamster" != "Mouse"
+```
+
+## Relational operators and vectors
+
+```{r}
+age <- c(12, 4, 3, 8, 4, 2, 1)
+age < 5
+```
+
+This behavior is called *recycling* as is implemented in many (but not all!) R functions.
+
+***recycling:*** An operation is applied to each element of a vector and a vector is returned.
+
+```{r echo = FALSE}
+data.frame(age = age, 'age < 5' = age < 5, check.names = FALSE) %>%
+  html_table()
+```
+
+## Using logical vectors to select values
+
+When you put a logical vector within square brackets `[ ]` after an object, all elements of that object with a `TRUE` in the logical vector are selected:
+
+```{r}
+age <- c(12, 4, 3, 8)
+x <- age > 5
+x
+age[x]
+```
+
+## Using logical vectors to select values
+
+```{r eval=FALSE}
+age <- c(12, 4, 3, 8)
+x <- age > 5
+age[x]
+```
+
+```{r echo = FALSE}
+data.frame(age = age, "x <- age > 5" = x, 'Select?' = ifelse(x, "**select**", "drop"), "Result" = ifelse(x, age, ""), check.names = FALSE)
+```
+
+## Task {background-image="images/bg-task.png"}
+
+Create a new vector `friends <- c(4, 5, 6, 3, 7, 2, 3)`.\
+Show all values of that vector `>= 4`.
+
+{{< include _stop.qmd >}}
+
+## Task - solution {background-image="images/bg-task.png"}
+
+Create a new vector `friends <- c(4, 5, 6, 3, 7, 2, 3)`.\
+Show all values of that vector `>= 4`.
+
+```{r}
+friends <- c(4, 5, 6, 3, 7, 2, 3)
+friends[friends >= 4]
+```
+
+## which() {.build}
+
+The `which()` functions gives the **indices** of the elements that are `TRUE`.\
+It takes a *logical vector* as an *argument*.
+
+```{r}
+x <- c(TRUE, FALSE, FALSE, TRUE)
+which(x)
+```
+
+`which()` can handle missing values:
+
+```{r}
+x <- c(TRUE, FALSE, NA, FALSE, TRUE, NA)
+which(x)
+```
+
+------------------------------------------------------------------------
+
+```{r}
+age <- c(12, 4, 3, 8)
+x <- age < 5
+x
+which(x)
+```
+
+------------------------------------------------------------------------
+
+```{r eval = FALSE}
+age <- c(12, 4, 3, 8)
+x <- age < 5
+x
+which(x)
+age[which(x)]
+```
+
+```{r echo = FALSE}
+data.frame('Index' = 1:length(x), 
+           'age' = age, 
+           'x <- age < 5' = x, 
+           'which(x)' = ifelse(x, 1:length(x), ""), 
+           'age[which(x)]' = ifelse(x, age[1:length(x)], ""),
+           check.names = FALSE)
+```
+
+## Why use which?
+
+```{r}
+age = c(NA, 12, 4, 3, NA, 8, 7, 4, 3, 6, 4, 3)
+x <- age < 6
+x
+age[x]
+mean(age[x])
+mean(age[which(x)])
+```
+
+## Task {background-image="images/bg-task.png"}
+
+Create a vector `x <- c(1, 4, 5, 3, 4, 5)` and identify:\
+1. Which elements are larger or equal than three?\
+2. Create a new vector from `x` containing all elements that are **not** four. Note: Use the `which()` function for this task.
+
+{{< include _stop.qmd >}}
+
+## Task - solution {background-image="images/bg-task.png"}
+
+Create a vector `x <- c(1, 4, 5, 3, 4, 5)` and identify:\
+1. Which elements are larger or equal than three?\
+2. Create a new vector from `x` containing all elements that are **not** four. Note: Use the `which()` function for this task.
+
+```{r}
+x <- c(1, 4, 5, 3, 4, 5)
+which(x >= 3)
+y <- x[which(x != 4)]
+y
+```
+
+## Selecting cases with logical vectors {.build}
+
+Logical vectors can also be appplied to *data frames* for selecting cases.
+
+Let us take an example data frame:
+
+```{r}
+study <- data.frame(
+  sen    = c(0, 1, 0, 1, 0, 1),
+  gender = c("M", "M", "F", "M", "F", "F"),
+  age    = c(12, 13, 11, 10, 11, 14),
+  IQ     = c(90, 85, 90, 87, 99, 89)
+)
+```
+
+------------------------------------------------------------------------
+
+Select with bracket subsetting or the `which()` function:
+
+```{r}
+study_no_sen <- study[study[["sen"]] == 0, ]
+study_no_sen
+
+# Or using the which() function
+filter <- which(study[["sen"]] == 0)
+study_no_sen <- study[filter, ]
+```
+
+## Task {background-image="images/bg-task.png"}
+
+Calculate the `mean` of `IQ` for students with and without sen.
+
+{{< include _stop.qmd >}}
+
+## Task - solution {background-image="images/bg-task.png"}
+
+Calculate the `mean` of `IQ` for students with and without sen.
+
+```{r}
+filter <- which(study[["sen"]] == 0)
+mean(study[["IQ"]][filter])
+
+filter <- which(study[["sen"]] == 1)
+mean(study[["IQ"]][filter])
+```
+
+## Logical Operations {.smaller}
+
+Logical operations are applied to logical values.
+
+| Operator | Operation | Example | Results                                       |
+|----------|-----------|---------|-----------------------------------------------|
+| `!`      | Not       | `! x`   | `TRUE when x = FALSE and FALSE when x = TRUE` |
+| `&`      | AND       | `x & y` | `TRUE when x and y are TRUE else FALSE`       |
+| `|`      | OR        | `x | y` | `TRUE when x or y is TRUE else FALSE`         |
+
+::: em
+Note: To get the \| sign:\
+On a german Mac keyboard press: option + 7\
+On a german Windows keyboard press: AltGr + \<
+:::
+
+## Example
+
+```{r}
+x <- TRUE
+y <- FALSE
+```
+
+<br>
+
+```{r}
+!x
+!y
+x & y
+x | y
+```
+
+## Logical Operator with vectors {.build}
+
+When applied to vectors, logical operations result in a new vector.\
+Operations are applied to each element one by one.
+
+```{r}
+x <- c(TRUE, FALSE, TRUE,  FALSE)
+y <- c(TRUE, FALSE, FALSE, TRUE)
+```
+
+```{r}
+!x
+x & y
+x | y
+```
+
+## Task {background-image="images/bg-task.png"}
+
+Create two vectors:
+
+``` r
+glasses <- c(TRUE, TRUE, FALSE, TRUE, FALSE)  
+hyperintelligent <- c(TRUE, FALSE, FALSE, TRUE, FALSE)
+```
+
+Determine for each element whether `glasses` and `hyperintelligent` are TRUE at the same time.
+
+{{< include _stop.qmd >}}
+
+## Task - solutions {background-image="images/bg-task.png"}
+
+Create two vectors:
+
+``` r
+glasses <- c(TRUE, TRUE, FALSE, TRUE, FALSE)  
+hyperintelligent <- c(TRUE, FALSE, FALSE, TRUE, FALSE)
+```
+
+Determine for each element whether `glasses` and `hyperintelligent` are TRUE at the same time.
+
+```{r}
+glasses <- c(TRUE, TRUE, FALSE, TRUE, FALSE)
+hyperintelligent <- c(TRUE, FALSE, FALSE, TRUE, FALSE)
+glasses & hyperintelligent
+```
+
+------------------------------------------------------------------------
+
+```{r echo = FALSE}
+data.frame('glasses' = glasses, 'hyperintelligent' = hyperintelligent,  'glasses & hyperintelligent' = glasses & hyperintelligent, check.names = FALSE) %>% 
+  html_table()
+```
+
+## `sum()` and `mean()` with logical vectors:
+
+When a logical vector is applied to a numeric function (e.g. `mean()` or `sum()`), `TRUE` is counted as `1` and `FALSE` as `0`:
+
+`sum()` then gives the number of elements that are TRUE.\
+`mean()` gives the proportion of elements that are TRUE.
+
+```{r}
+# e.g.:
+sum(c(TRUE, FALSE, TRUE))
+mean(c(TRUE, FALSE, TRUE, FALSE))
+```
+
+## Task {background-image="images/bg-task.png"}
+
+Take the data from the last example and calculate the sum and proportion of cases that wear glasses and are hyperintelligent.
+
+``` r
+glasses <- c(TRUE, TRUE, FALSE, TRUE, FALSE)
+hyperintelligent <- c(TRUE, FALSE, FALSE, TRUE, FALSE)
+```
+
+{{< include _stop.qmd >}}
+
+## Task - solutions {background-image="images/bg-task.png"}
+
+Take the data from the last example and calculate the sum and proportion of cases that wear glasses and are hyperintelligent.
+
+```{r}
+sum(glasses & hyperintelligent)
+mean(glasses & hyperintelligent)
+```
+
+## Combining logical and relational operators {.build}
+
+```{r}
+age <- c(12, 4, 3, 8, 4, 2, 1, 7, 4)
+gender <- c(0, 1, 0, 1, 0, 0, 0, 0, 1)
+age > 4
+gender == 0
+age > 4 & gender == 0
+```
+
+## Task {background-image="images/bg-task.png"}
+
+Create a vector\
+`income <- c(5000, 4000, 3000, 2000, 1000)` and a vector\
+`happiness <- c(20, 35, 30, 10, 50)`.
+
+1.  Use *relational* and *logical* operations to determine for each element whether the `income` is larger than `2500` and at the same time `happiness` is above `25`.
+
+2.  Calculate the proportion.
+
+{{< include _stop.qmd >}}
+
+## Task - solution {background-image="images/bg-task.png"}
+
+1.  Use *relational* and *logical* operations to determine for each element whether the `income` is larger than `2500` and at the same time `happiness` is above `25`.
+
+2.  Calculate the proportion.
+
+```{r include = FALSE}
+income <- c(5000, 4000, 3000, 2000, 1000)
+happiness <- c(20, 35, 30, 10, 50)
+income > 2500 & happiness > 25
+```
+
+------------------------------------------------------------------------
+
+```{r eval = FALSE}
+income <- c(5000, 4000, 3000, 2000, 1000)
+happiness <- c(20, 35, 30, 10, 50)
+income > 2500 & happiness > 25
+```
+
+```{r echo = FALSE}
+data.frame('income' = income, 'happiness' = happiness, 'income > 2500' = income > 2500, 'happiness > 25' = happiness > 25, 'income > 2500 &<br>happiness > 25' = income > 2500 & happiness > 25, check.names = FALSE) %>%
+  html_table()
+        
+
+```
+
+------------------------------------------------------------------------
+
+... and the proportion
+
+```{r}
+mean(income > 2500 & happiness > 25)
+```
+
+## Subsetting data frames with logical and relational operators {.build}
+
+```{r}
+study
+```
+
+------------------------------------------------------------------------
+
+```{r}
+filter <- study[["sen"]] == 1 & study[["gender"]] == "M"
+study[filter, ]
+```
+
+## Task {.smaller background-image="images/bg-task.png"}
+
+Use the `ChickWeight` data frame for the following task.\
+The data set is already included in R.
+
+1.  Look into the data set with `?ChickWeight`.
+2.  Get all variable names of the data frame with the `names()` function (`names(ChickWeight)`).
+3.  Select cases from **ChickWeight** with `Diet == 1` and `Time < 16`.
+4.  For these cases, calculate the correlation between `weight` and `Time`. Note: Use the `cor()` function (e.g., `cor(x, y)`)
+5.  Repeat steps 3 and 4 for `Diet == 4`.
+6.  What can you see?
+
+{{< include _stop.qmd >}}
+
+------------------------------------------------------------------------
+
+```{r}
+filter <- ChickWeight[["Diet"]] ==  1 & ChickWeight[["Time"]] < 16
+diet1 <- ChickWeight[filter,]
+cor(diet1[["weight"]], diet1[["Time"]])
+```
+
+<br>
+
+```{r}
+filter <- ChickWeight[["Diet"]] ==  4 & ChickWeight[["Time"]] < 16
+diet4 <- ChickWeight[filter,]
+cor(diet4[["weight"]], diet4[["Time"]])
+```
+
+The correlation is larger for Diet 4. This suggests that Diet 4 has a stronger impact an the chicken's weight.
+
+## The `subset()` function {.smaller}
+
+R comes with a function to make subsetting a bit more straight forward.
+
+`subset()` has the main arguments:
+
+-   `x` : A data.frame\
+-   `subset` : A logical vector for filtering rows\
+-   `select` : expression, indicating columns to select from a data frame
+
+and returns a data.frame.
+
+```{r}
+subset(study, gender == "F" & IQ > 89, c(sen, gender, IQ))
+```
+
+Variable names must be provided without quotes and without the name of the data.frame.
+
+## Task {background-image="images/bg-task.png"}
+
+Take the `mtcars` dataset and filter cases (here: car models) with 6 cylinders (variable `cyl`) and automatic transmission (value `1` in variable `am`).\
+Select the variables `mpg`, `am`, `gear`, `cyl`.\
+Use the `subset` function.
+
+{{< include _stop.qmd >}}
+
+## Task - solutions {background-image="images/bg-task.png"}
+
+Take the `mtcars` dataset and filter cases (here: car models) with 6 cylinders (variable `cyl`) and automatic transmission (value `1` in variable `am`).\
+Select the variables `mpg`, `am`, `gear`, `cyl`.\
+Use the `subset` function.
+
+```{r}
+subset(mtcars, cyl == 6 & am == 1, c(mpg, am, gear, cyl))
+
+```
+
+## So many ways of subsetting ... an overview
+
+Subset a data frame (and get a new data frame)
+
+```{r, eval = FALSE}
+
+mtcars[mtcars[["cyl"]] == 6 & mtcars[["am"]] == 1, 
+       c("mpg", "am", "gear", "cyl")]
+
+mtcars[mtcars$cyl == 6 & mtcars$am == 1, c("mpg", "am", "gear", "cyl")]
+
+subset(mtcars, cyl == 6 & am == 1, c(mpg, am, gear, cyl))
+
+with(mtcars, 
+  mtcars[cyl == 6 & am == 1, c("mpg", "am", "gear", "cyl")]
+)
+
+
+```
+
+## So many ways of subsetting ... an overview
+
+Extract a variable from a data frame (and get a numeric or character vector)
+
+```{r, eval = FALSE}
+
+mtcars[["mpg"]][mtcars[["cyl"]] == 6 & mtcars[["am"]] == 1]
+
+mtcars$mpg[mtcars$cyl == 6 & mtcars$am == 1]
+
+subset(mtcars, cyl == 6 & am == 1, mpg, drop = TRUE)
+
+with(mtcars, mpg[cyl == 6 & am == 1])
+
+
+```
+
+## Odd behaviour:
+
+For base R data frames this creates a vector:
+
+```{r}
+mtcars[mtcars[["cyl"]] == 6 & mtcars[["am"]] == 1, "mpg"]
+
+```
+
+This should have resulted in a data frame with one variable but is automatically reduced to a vector.\
+Add `drop = FALSE` to get standard behavior.
+
+```{r}
+mtcars[mtcars[["cyl"]] == 6 & mtcars[["am"]] == 1, "mpg", drop = FALSE]
+```
+
+Some modern implementations of data frames (like `tibbles`) changed this behavior.
+
+# Extending R {background-image="images/bg-h1-3.jpg"}
+
+## libraries, packages, and repositories {.smaller}
+
+::: incremental
+-   A "fresh" **R** installation already contains hundreds of *functions*.\
+-   Functions are organized in **libraries**.
+-   Libraries address a certain topic or area (e.g., graphics, a specific statstical method)
+-   A **package** is a 'container' for distributing and sharing *libraries*.
+-   You can add additional packages to extend you R installation.
+-   Additional packages are provided in **repositories** or in seperate files.
+-   Repositories are online data storages.
+-   The most important repository for *R* is CRAN <img src="images/R_logo.png" width="30"/> (The Comprehensive R Archive Network)
+:::
+
+## Installing and activating new packages {.smaller}
+
+::: incremental
+-   You find a list of all CRAN packages on <https://cran.r-project.org/> ![](images/right_arrow.jpg){width="30"} Packages
+-   You get an overview of all functions within a package with the `help()` or short `?` function.
+-   You can directly install a package from CRAN with the `install.packages()` function.
+:::
+
+. . .
+
+After successful installation, add on packages have to be activated and loaded into memory in each *R* sesssion with the `library()` function.\
+Note: You only install once, but you use `library()` each time you restart **R** or **R Studio**.
+
+## Task
+
+Install the packages `psych` and `tidyverse`.\
+Then activate both packages:
+
+``` r
+library(tidyverse)  
+library(psych)
+install.packages(c("psych", "tidyverse"))
+```
+
+# R Studio projects {background-image="images/bg-h1-3.jpg"}
+
+## R-Studio projects
+
+As soon as you have more than one source file and/or external data, it makes sense to start a `project` instead of just using single `source` files.
+
+-   A project is a feature of R Studio, not of R.
+-   A project always hosted in a folder on your harddrive.
+-   All scripts, data, and other files are stored in that folder.
+-   When later opening a project, the *working directory* is directly set to the folder location.
+
+[***Working directory***:]{.em} The place on your harddrive R will save and load data from by default (i.e. when no other place is explicitly set). Use the `getwd()` and `setwd()` functions to get and set the working directory.
+
+## Starting an R-Studio project
+
+You can start a `project` from R studio through:
+
+1.  File ![](images/right_arrow.jpg){width="30"} New Project ...
+2.  Now choose whether you already have a folder you like to start a project in or you create a new empty folder for an R project.
+3.  Choose New R Project as the project type.
+4.  Choose a directory name and start the project.
+
+## Task
+
+-   Create a new R project with a name of your choice (e.g. 'R_course').
+-   Copy all your R scripts related to this R course into that new project folder.
+-   Close and reopen R Studio
+-   Open the project through:
+    -   File ![](images/right_arrow.jpg){width="30"} Recent projects
+    -   Or the project menue in the upper right corner of R Studio
+
+# External data {background-image="images/bg-h1-3.jpg"}
+
+## Importing a data set from Excel
+
+-   The `read_excel()` function from the `readxl` package (included in `tidyverse`) is used to import files created by Microsoft Excel.
+-   Alternatively: R Studio provided an easy way to import data:\
+    File ![](images/right_arrow.jpg){width="30"} Import Dataset ![](images/right_arrow.jpg){width="30"} From Excel
+-   But if you want to have a full script that runs by itself, I recommend to use the R functions.
+-   Store your data within your R project folder.
+-   If you do not install it there, you need to know the folder location to load it into R.
+
+## Example
+
+```{r message=FALSE, warning=FALSE}
+library(readxl)
+dat <- read_xlsx("cars.xlsx")
+names(dat) # this function shows the variable names of a data frame 
+```
+
+```{r echo = FALSE}
+dat
+```
+
+## Task
+
+-   Download the Excel file "cars.xlsx" from the moodle course.\
+-   Save it in your project directory.\
+-   Import the data set and assign it to an object `dat`.\
+-   Apply the `View()` function to see the dataset.
+
+Note: `View()` opens a new tab in RStudio with the content of a data frame (e.g. `View(dat)`).
+
+## Task
+
+-   Calculate the *mean* of `mpg` (miles per gallon) for cars with 4, 6, and 8 cylinders (variable `cly`).
+
+{{< include _stop.qmd >}}
+
+## Task - solution
+
+-   Calculate the *mean* of `mpg` (miles per gallon) for cars with 4, 6, and 8 cylinders (variable `cly`).
+
+```{r eval=FALSE}
+mean(dat$mpg[dat$cyl == 4])
+mean(dat$mpg[dat$cyl == 6])
+mean(dat$mpg[dat$cyl == 8])
+```
+
+```{r echo = FALSE}
+mean(dat$mpg[dat$cyl == 4])
+mean(dat$mpg[dat$cyl == 6])
+mean(dat$mpg[dat$cyl == 8])
+```
+
+## Create a new variable in a dataset with missing values
+
+Please copy this syntax into R-Studio and execute:
+
+```{r}
+study <- data.frame(
+  sen    = factor(c(0, 1, 0, 1, 0, 1), labels = c("no sen", "sen"), levels = 0:1),
+  gender = factor(c(1,2,2,1,2,1), labels = c("Male", "Female"), levels = 1:2),
+  age  = c(150, 156, 138, 126, 136, 162),
+  IQ     = c(90, 85, 90, 87, 99, 89),
+  Q1     = c(1, 5, 3, 4, 2, 3),
+  Q2     = c(2, 5, 3, 4, 5, 2),
+  Q3     = c(1, 5, 3, 5, 2, 1)
+)
+```
+
+## Create a new variable in a dataset {.smaller}
+
+With missing values:
+
+```{r}
+study$Q4 <- NA
+```
+
+With specific values:
+
+```{r}
+study$Q5 <- c(5, 1, 4, 2, 1, 3)
+study
+```
+
+## Create new variables from existing ones
+
+```{r}
+study$age2 <- study$age / 12
+study
+```
+
+## Drop a variable
+
+```{r}
+study$age2 <- NULL
+study
+# or: study <- subset(study, select = -age2)
+# or: study <- study[, -10]
+
+```
+
+## Task
+
+Create a new variable `Q_sum_1_3` as the sum of `Q1` to `Q3`.
+
+{{< include _stop.qmd >}}
+
+---
+
+```{r}
+study$Q_sum_1_3 <- with(study, Q1 + Q2 + Q3)
+
+# or:
+
+study$Q_sum_1_3 <- study$Q1 + study$Q2 + study$Q3
+study
+```
+
+## Task
+
+Create the variables `age_year` and `age_month` where both variables do not have decimals 
+
+(tip: `trunc` function or the `%%` modulo operator and the integer division `%/%` operator. Use the help function if needed)
+
+{{< include _stop.qmd >}}
+
+---
+
+```{r}
+study$age_year <- trunc(study$age /12)
+study$age_month <- study$age - (study$age_year * 12)
+
+# or
+
+study$age_year <- study$age %/% 12
+study$age_month <- study$age %% 12
+
+study
+```
+
+## The apply function {.smaller}
+
+The `apply` function applies a function to every row or column of a data frame.
+
+1. The first argument is the data frame object.
+
+2. The second argument is the margin (1 for rows and 2 for columns).
+
+3. The third argument is a function name (e.g. mean).
+
+4. Further arguments are arguments to the function provided in 3.
+
+```{r}
+# An example:
+study$Q_sum_1_2 <- apply(study[, c("Q1", "Q2")], 1, sum)
+study
+```
+
+## Task
+
+Create a new variable `Q_sum` with the sum of Q1 to Q5 (sums should be build when NAs are in the data)
+
+---
+
+```{r}
+study$Q_sum <- apply(subset(study, select = Q1:Q5), 1, sum, na.rm = TRUE)
+
+```
+
+## Goals {.emphasized .flexbox .vcenter data-background="images/DEFOCUSED.png" data-background-size="cover"}
+
+-   You know what mardown is.
+-   You know what you can do with Rmarkdown.
+-   You can create your own Rmarkdown files.
+
+# Markdown and Rmarkdown {background-image="images/bg-h1-3.jpg"}
+
+## What is **markdown**?
+
+::: incremental
+-   It is a very simple document *markup language*. That is, it is a way to format a text.
+-   Similar but much simpler than **html**, or **rtf**.
+-   E.g. putting an asterisk around the text will make it italic and two asterisks bold:\
+    \*example\* becomes *example*\
+    \*\*another example\*\* becomes **another example**
+-   **markdown** was developed in 2004 by John Gruber as an easy way to create texts on websites.
+:::
+
+## 
+
+::: incremental
+-   Texts in **mardown** are rendered (translated) to other markup languages before they are turned to webpages or documents.
+-   The idea is: You type a text with basic format tags and later let the computer render it to a more complex format.
+-   Due to its simplicity, **markdown** can be converted to *html*, *latex*, *docx*, *rtf*, ect. files.
+-   Markdown is widely applied on various sites (e.g., ***GitHub, Reddit, Diaspora, OpenStreetMap, sourceForge***).
+:::
+
+##  {.smaller}
+
+A text like this:
+
+    # Chaper 1
+
+    > If something is true, no amount of wishful thinking will change it *-Richard Dawkins*
+
+    We will discuss the following ideas:
+
+    1. The meaning of **life**
+    2. The end of **suffering**
+    3. The **noble eightfold path**
+
+    | Sanskrit| Meaning |
+    |---------|---------|
+    | dukkha  | suffering is an innate characteristic of existence. |
+    | samudaya| together with *dukkha* arises *taṇhā* (craving). |
+    | nirodha | *dukkha* can be ended or contained by letting go of this *taṇhā.* |
+    | magga   | The *noble eightfold path* leads to the confinement. |
+
+    Tabel 1: [The four noble truths](https://en.wikipedia.org/wiki/Four_Noble_Truths)
+
+## Three outputs:
+
+::: panel-tabset
+
+## Word
+
+![](images/paste-3DDCF0F1.png)
+
+## html
+
+![](images/paste-EEF87302.png)
+
+## pdf
+
+![](images/paste-73452D3D.png)
+:::
+
+## Rmarkdown
+
+::: incremental
+-   Rmarkdown is an extension to markdown.
+-   Specifically developed to combine data analyses (scripts and output) within a document.
+-   Think of it as an integration of a text-processing program and R code.
+-   You can write a text and implement tables, plots, figures etc. analysed with R.
+:::
+
+## Why use Rmarkdown?
+
+-   Rmarkdown helps to make your research:
+    -   Transparent
+    -   Reproducible
+    -   Organized
+    -   Communicatable
+
+## Why use Rmarkdown?
+
+-   You can create individualized reports
+    -   E.g. results with a standard text for each participant in a study comprising her own data
+    -   E.g. individual analyses for each single school or classroom but with a common text.
+    -   You can even adapt text blocks depending on parameters and specific results (e.g. skip certain passages for special schools but not for primary schools)
+
+## Task
+
+Before we go on, you have to start your first Rmarkdown document:
+
+-   Create a new source file in R. Choose ***"Text File"*** as the format.\
+    File ![](images/right_arrow.jpg){width="30"} New File ![](images/right_arrow.jpg){width="30"} Text File
+-   Save it under the name "first_mardown.Rmd"\
+    (you can name it as you like as long as it ends with ".Rmd").
+-   Now, at the lower right corner of your source panel you should find ![](images/Rmarkdown_dropdown.png){hight="30"} as an indicator of the file type.
+-   Also, at the top of the source file you should find ![](images/knit_symbol.png){hight="30"}
+
+# Basic markdown formating {background-image="images/bg-h1-3.jpg"}
+
+## Basic markdown: header
+
+-   Normally written text appears as unformatted text.
+-   You can format text into a header with the `#` symbol:
+
+``` r
+# A level one header
+## A level two header
+### A level three header
+#### A level four header
+```
+
+## Basic markdown: Emphasise
+
+-   Italic text is put between `*` symbols (or `_`).
+-   Bold text between `**` symbols.
+-   Italic and bold text between `***` symbols.
+
+`This is *italic* this is **bold**, and ***this is both!!!***.`
+
+This is *italic* this is **bold**, and ***this is both!!!***.
+
+## Basic markdown: Lists {.smaller}
+
+``` r
+An unordered list:
+
+- Helmut
+- Gerhard
+- Angela
+
+An ordered list:
+
+1. Bush
+2. Obama
+3. Trump
+
+Combined:
+  
+1. Sour
+  - Lime
+  - Envy
+2. Sweet
+  - Honey
+  - love
+```
+
+# Rmarkdown {background-image="images/bg-h1-3.jpg"}
+
+## Chunks
+
+-   `Chunks` are portions of R code within a markdown file.
+-   A chunk for R has the following structure:
+
+\`\`\`{r}\
+\# Here comes the R code\
+\`\`\`
+
+-   An empty chunk can be inserted directly through the `Insert` button.
+
+## Chunk Options {.smaller}
+
+-   Chunk options specify the "behaviour" of a chunk.
+-   They are put behind the leading "r" and are separated by ",".
+
+e.g.:
+
+\`\`\`{r echo = FALSE}\
+\# Here comes the R code\
+\`\`\`
+
+-   `echo = FALSE` suppresses the inclusion of the original R code and only output is reported.
+-   `include = FALSE` executes the R code but does not report anything
+-   `message = FALSE` excludes additional messages given by a function.
+-   `warning = FALSE` exclude warnings created by a function.
+
+## YAML (YAML is not a markup language) {.smaller}
+
+-   Through YAML you can set several document parameters.
+-   YAML is like a document header at the beginning of an Rmarkdown file. It is put between leading and ending "---".
+
+``` r
+---
+  
+---
+```
+
+Some possible parameters:
+
+-   title: "My first document"
+-   author: "Jürgen Wilbert"
+-   date: 12.12.2019
+-   abstract: This is an interesting paper
+
+## Additional ressources for Rmarkdown
+
+-   Cheatsheet:\
+    <https://rstudio.com/wp-content/uploads/2015/02/rmarkdown-cheatsheet.pdf>
+-   R Markdown: The Definitive Guide\
+    <https://bookdown.org/yihui/rmarkdown/>
+
+## Task
+
+-   Download the ***Rmarkdown silly example*** from the R moodle course.
+-   Save it to your project folder.
+-   Open it in RStudio.
+-   Knit an html and Word Docx file from it.
+-   Read through the code and make sure you understand all of it :-)
+
+## Goals
+
+- You know what **tidyverse** is.
+- Basic knowledge on the pipe `%>%` operator.
+
+# Tidyverse {background-image="images/bg-h1-3.jpg"}
+
+## Tidyverse is a collection of R packages developed for data science
+
+<img src="images/tidyverse_components.png"/>
+
+---
+
+- [**tidyverse**](https://www.tidyverse.org/) was initiated (and is to a large part programmed) by [Hadley Wickham](http://hadley.nz/).
+
+::: incremental
+
+- It is continuously developed and heavily promoted by RStudio.
+- The core idea is to implement (more) [*functional programming*](https://en.wikipedia.org/wiki/Functional_programming) into R.
+- All packages share an underlying design philosophy, grammar, and data structure.
+- Although **tidyverse** is *loved* by many, there are also critics to it [worth reading](https://github.com/matloff/TidyverseSkeptic/blob/master/README.md).
+- Tidyverse can be installed through R (install.packages("tidyverse")).
+:::
+
+# Pipes: `%>%`  {background-image="images/bg-h1-3.jpg"}
+
+## An Example:
+
+%>% takes the return of a function and **pipes** it to the next function.
+
+```{r eval = FALSE}
+# Without pipes (nested option):
+kable(round(describe(select(dat, "iq", "age")), 2))
+
+# or a second, better, alternative:
+newdat <- select(dat, "iq", "age")
+newdat <- describe(newdat)
+newdat <- round(newdat, 2)
+kable(newdat)
+```
+<br>
+```{r eval = FALSE}
+# And with pipes it looks like:
+dat %>%
+  select("iq", "age") %>%
+  describe() %>%
+  round(2) %>%
+  kable()
+```
+
+## Task
+
+- Take the `mtcars` data set (included in base R).
+- Apply the `describe()` function from the `psych` library (make sure you have installed `psych`).
+- Round the values to the first decimal (Note: `round()` is your friend here).
+- Use pipes `%>%` to do this all.
+- ... and don't forget to activate the `tidyverse` library :-)
+
+{{< include _stop.qmd >}}
+
+##
+
+```{r eval = FALSE}
+library(psych)
+library(tidyverse)
+
+mtcars %>%
+  describe() %>%
+  round(1)
+```
+
+```{r echo = FALSE, message=FALSE, warning=FALSE}
+library(psych)
+
+mtcars %>%
+  describe() %>%
+  round(1) %>%
+  html_table()
+```
+
+## dyplyr
+
+::: incremental
+- [dplyr](https://dplyr.tidyverse.org/) is a package tailed towards data manipulation.
+- `filter()` picks cases based on their values.
+- `select()` picks variables based on their names.
+- `mutate()` adds and creates new variables
+- `summarise()` reduces multiple values down to a single summary.
+- `group_by()` allows to perform any operation by grouping variables.
+- `arrange()` changes the ordering of the rows.
+:::
+
+## `filter()` picks cases based on their values
+
+::: r-fit-text
+
+`filter(.data, ...)` 
+
+```{r eval = FALSE}
+# Without %>%:
+filter(mtcars, disp > 350 & mpg < 11)
+
+# with %>%
+mtcars %>%
+  filter(disp > 350 & mpg < 11)
+```
+
+Note: You don't have to provide the name of a data object within the dplyr function!
+
+***not***: `filter(mtcars, mtcars$disp > 350 & mtcars$mpg < 11)`
+
+***but***: `filter(mtcars, disp > 350 & mpg < 11)`
+
+:::
+
+## Task
+
+- Take the `starwars` database.
+- Filter all cases with `brown` hair color and `female` gender (Hint: variables `hair_color` and `sex`)
+
+{{< include _stop.qmd >}}
+
+---
+
+```{r}
+library(tidyverse)
+starwars %>%
+  filter(hair_color == "brown" & sex == "female")
+```
+
+## `select()` picks variables based on their names
+
+`select(.data, ...)` 
+
+```{r eval = FALSE}
+# Either column numbers or column names
+mtcars %>% select(1, 3, carb)
+
+# Use the `:` symbol for ranges
+mtcars %>% select(1:3, am:carb)
+
+# use `-` to drop variables and keep the others
+mtcars %>% select(-am, -(disp:drat))
+
+# use `!` to select all variables not the ones defined
+mtcars %>% select(!(1:3))
+
+```
+
+## Task
+
+- Take the `starwars` database.
+- Filter for `Human` and select the variables `name, height, and mass` (Hint: variable `species`)
+
+{{< include _stop.qmd >}}
+
+***
+
+```{r}
+starwars %>% 
+  filter(species == "Human") %>% 
+  select(name:mass)
+```
+
+## Help functions to select variables
+
+- `contains()`: selects all variables which names contain a certain string.  
+- `starts_with()`: selects all variables which start with a certain string.  
+- `ends_with()`: selects all variables which end with a certain string.  
+- `num_range()`: selects variables with a certain prefix within a certain range 
+
+```{r eval = FALSE}
+mtcars %>% select(starts_with("d")) %>% slice(1:2)
+mtcars %>% select(!ends_with("b")) %>% slice(1:2)
+mtcars %>% select(contains("ra")) %>% slice(1:2)
+billboard %>% select(num_range("wk", 10:15))
+```
+
+## relocate() to rearrange columns
+
+The `relocate()` function helps to rearrange the columns of a data frame 
+
+```{r}
+starwars %>% 
+  relocate(name, birth_year, sex)
+```
+
+## `mutate()` adds new variables that are functions of existing variables
+
+`mutate(.data, ...)`
+
+```{r eval = TRUE}
+mtcars %>%
+  mutate(
+    efficiency = mpg / disp,
+    effect = round(hp / mpg * 100)
+  )
+```
+
+## Task
+
+- Take the `starwars` database.
+- Create a new variable with the body mass index `bmi`. Hint: bmi = kg / m²
+- Filter all humans with an bmi >= 26.
+- Select `name, bmi, height, and mass`
+
+{{< include _stop.qmd >}}
+
+***
+
+```{r}
+starwars %>%
+  mutate(bmi = mass/ (height/100)^2) %>%
+  filter(bmi >= 26 & species == "Human") %>%
+  select(name, bmi, height, mass)
+```
+
+## `summarise()` reduces multiple values down to a single summary.
+
+```{r}
+mtcars %>%
+  summarise(
+    mean_mpg = mean(mpg),
+    sd_mpg = sd(mpg),
+    n = n()
+  )
+```
+
+## Task {.build}
+
+- Take the `starwars` database.
+- Filter `Humans`
+- Calculate the mean and the median for height and mass (Note: don't forget to remove NA values: `na.rm = TRUE`)
+
+{{< include _stop.qmd >}}
+
+*** 
+
+```{r}
+starwars %>%
+  filter(species == "Human") %>%
+  summarise(
+    mean_height = mean(height, na.rm = TRUE),
+    median_height = median(height, na.rm = TRUE),
+    mean_mass = mean(mass, na.rm = TRUE),
+    median_mass = median(mass, na.rm = TRUE)
+  )
+```
+
+## `group_by()` allows to perform any operation by grouping variables.
+
+```{r}
+mtcars %>% group_by(cyl) %>%
+  summarise(
+    mean_mpg = mean(mpg),
+    sd_mpg = sd(mpg),
+    n = n()
+  )
+```
+
+*** 
+
+```{r}
+mtcars %>% group_by(cyl, am) %>%
+  summarise(
+    mean_mpg = mean(mpg),
+    sd_mpg = sd(mpg),
+    n = n()
+  )
+```
+
+## Task {.build}
+
+- Take the `starwars` database.
+- Group by sex
+- Calculate the median for height and mass
+- And the number of cases per group (Hint: `n()`)
+
+{{< include _stop.qmd >}}
+
+***
+
+```{r}
+starwars %>%
+  group_by(sex) %>%
+  summarise(
+    median_height = median(height, na.rm = TRUE),
+    median_mass = median(mass, na.rm = TRUE),
+    n = n()
+  )
+```
+
+## `arrange()` changes the ordering of the rows
+
+`arrange(.data, ...)`
+
+```{r}
+dat <- data.frame(age = c(5,5,6,7,6), sen = c(0, 1, 1, 0, 0), points = c(34, 55, 22, 11, 9))
+dat %>%
+  arrange(sen, age) 
+```
+
+## `desc()` specifies a variable to be arranged descending
+
+```{r}
+dat %>%
+  arrange(sen, desc(points))
+```
+
+## Task
+
+- Take the `starwars` database.
+- Calculate the bmi.
+- Summarize the median of the bmi grouped by species.
+- round the bmi to one decimal.
+- Also calculate the `n` for each group.
+- Only show cases with `n > 2`.
+- Arrange the resulting table. Sort by `n` in descending order.
+
+{{< include _stop.qmd >}}
+
+---
+
+
+
+```{r}
+starwars %>% 
+  mutate(bmi = mass / (height / 100)^2) %>% 
+  group_by(species) %>% 
+  summarise(
+    mean_bmi = median(bmi, na.rm = TRUE) %>% round(1), 
+    n = n()
+  ) %>%
+  filter(n >2) %>%
+  arrange(desc(n))
+           
+```
+
+
+# From wide to long {background-image="images/bg-h1-3.jpg"}
+
+## `pivot_longer()`
+
+-   `cols`: The columns to be aggregated into a new variable].\
+-   `names_to`: The name of the new variable containing the names of the aggregated columns.\
+-   `values_to`: The name of the variable containing the values of the aggregated columns.
+
+## 
+
+::: left
+**Wide format:**
+
+```{r echo=FALSE}
+df <- data.frame(player=c('A', 'B', 'C', 'D'),
+                 year1=c(12, 15, 19, 19),
+                 year2=c(22, 29, 18, 12))
+df
+```
+:::
+
+::: right
+**Long format:**
+
+```{r}
+pivot_longer(
+  df, 
+  cols = 2:3, 
+  names_to = 'year', 
+  values_to = 'points'
+)
+```
+:::
+
+## Task {.smaller}
+
+Take the `billboard` dataset (package tidyverse/tidyr). It looks like this:
+
+```{r echo = FALSE}
+billboard %>% head(10)
+```
+
+##  {.smaller}
+
+Use the `pivot_longer()` function to create a dataset that looks like this:
+
+```{r echo = FALSE}
+billboard %>%
+  pivot_longer(starts_with("wk"), names_to = "week", values_to = "position", values_drop_na = TRUE) %>% head(20)
+```
+
+## 
+
+```{r}
+billboard %>%
+  pivot_longer(starts_with("wk"), names_to = "week", 
+               values_to = "position", values_drop_na = TRUE)
+```
+
+##  {.smaller}
+
+::: left
+**Wide format:**
+
+```{r echo=FALSE, collapse=FALSE}
+n <- 30
+df <- data.frame(id=1:n,
+                 dia=sample(130:150, n, replace = TRUE),
+                 sys=sample(90:100, n, replace = TRUE),
+                 anxious = sample(1:5, n, replace = TRUE),
+                 happy = sample(1:5, n, replace = TRUE),
+                 sad = sample(1:5, n, replace = TRUE)
+                 )
+df$dia <- df$dia + df$anxious * 10 - df$happy *10
+df$sys <- df$sys + df$anxious * 7 - df$happy *7
+df
+```
+:::
+
+::: right
+```{r}
+df %>%
+  pivot_longer(cols = 2:3, 
+               names_to = 'bp_type', 
+               values_to = 'pressure') %>%
+  pivot_longer(cols = c("anxious", "happy", "sad"), 
+               names_to = 'emotion', 
+               values_to = 'emotion_value')
+```
+:::
+
+## Task: Create this plot:
+
+```{r echo = FALSE}
+df %>%
+  pivot_longer(cols = 2:3, 
+               names_to = 'bp_type', 
+               values_to = 'pressure') %>%
+  pivot_longer(cols = c("anxious", "happy", "sad"), 
+               names_to = 'emotion', 
+               values_to = 'emotion_value') %>%
+  ggplot(aes(x = emotion, y = pressure, color = bp_type, size = emotion_value)) +
+    geom_jitter(width = 0.2)
+```
+
+------------------------------------------------------------------------
+
+-   Load the dataset with:
+
+``` r
+download.file(
+  "https://raw.githubusercontent.com/jazznbass/datasets/main/bp_example.csv", 
+  destfile = "example.csv", method = "curl"
+)
+df <- read.csv("example.csv")
+```
+
+-   Turn the data frame into a long format as described on the previous slide.
+-   use ggplot with aesthetics: `x = emotion, y = pressure, color = bp_type, size = emotion_value`.
+-   Add a jitter geom with width 0.2.
+
+##  {.smaller}
+
+::: left
+
+**Step 1:**
+
+```{r}
+df_long <- df %>%
+  pivot_longer(cols = 2:3, 
+               names_to = 'bp_type', 
+               values_to = 'pressure') %>%
+  pivot_longer(cols = c("anxious", "happy", "sad"), 
+               names_to = 'emotion', 
+               values_to = 'emotion_value')
+df_long
+```
+:::
+
+. . .
+
+::: right
+
+**Step 2:**
+
+```{r fig.height=3, fig.width=6}
+ggplot(df_long, 
+  aes(x = emotion, y = pressure, 
+      color = bp_type, size = emotion_value)) +
+  geom_jitter(width = 0.2)
+```
+:::
+
+## Complex example {.smaller}
+
+We have such a dataframe:
+
+```{r echo = FALSE}
+relig_income
+```
+
+## We want such a plot: {.smaller}
+
+```{r echo = FALSE}
+relig_income %>% 
+  rowwise() %>%
+  mutate(total = sum(c_across(2:11))) %>%
+  ungroup() %>%
+  filter(total >= 500) %>%
+  mutate(across(2:11, ~ . / total * 100)) %>%
+  pivot_longer(2:11, names_to = "income", values_to = "count") %>%
+  mutate(income = factor(income, levels = names(relig_income)[2:11])) %>%
+  ggplot(aes(x = income, y = count)) +
+  geom_bar(stat = "identity", position = "dodge") +
+  facet_wrap(~religion) + 
+  theme_classic() + 
+  theme(axis.text.x = element_text(angle = 45, size = 7, hjust = 1)) +
+  ylab("%")
+```
+
+## Step 1: Turn the count values into percentages: {.smaller}
+
+::: left
+```{r}
+# with dplyr:
+new_df <- relig_income %>% 
+  rowwise() %>%
+  mutate(total = sum(c_across(2:11))) %>%
+  ungroup() %>%
+  mutate(across(2:11, ~ . / total * 100)) %>%
+  filter(total >= 500)
+```
+:::
+
+::: right
+```{r}
+# with base R
+new_df <- as.data.frame(relig_income)
+new_df$total <- apply(new_df[, 2:11], 1, sum)
+new_df <- new_df[new_df$total >= 500,]
+
+for(i in 1:nrow(new_df))  
+  new_df[i, 2:11] <- new_df[i, 2:11] / new_df$total[i] * 100
+```
+:::
+
+```{r echo = FALSE}
+new_df
+```
+
+## Step 2: Turn data into long format: {.smaller}
+
+```{r}
+# tidy R
+new_long <- new_df %>%
+  pivot_longer(col = 2:11, names_to = "income", values_to = "count")
+
+
+#  base R:
+new_long <- data.frame(
+  religion = rep(NA, nrow(new_df) * 10), 
+  income = rep(names(new_df)[2:11], nrow(new_df)), 
+  count = rep(NA, nrow(new_df) * 10))
+
+new_long$religion <- rep(new_df$religion, each = 10)
+
+for(i in 1:nrow(new_df))
+  new_long$count[((i-1)*10+1):((i-1)*10+10)] <- as.numeric(new_df[i, 2:11])
+
+```
+
+```{r echo = FALSE}
+new_long
+```
+
+## Create the basic plot {.smaller}
+
+```{r}
+new_long %>%
+  ggplot(aes(x = income, y = count)) +
+  geom_col() +
+  facet_wrap(~religion)
+```
+
+## Rotate the text and set a label {.smaller}
+
+```{r}
+new_long %>%
+  ggplot(aes(x = income, y = count)) +
+  geom_col() +
+  facet_wrap(~religion) + 
+  theme(axis.text.x = element_text(angle = 45, size = 7, hjust = 1)) +
+  ylab("%")
+```
+
+## Reorder income {.smaller}
+
+```{r}
+new_long %>%
+  mutate(income = factor(income, levels = names(relig_income)[2:11])) %>%
+  ggplot(aes(x = income, y = count)) +
+  geom_col() +
+  facet_wrap(~religion) + 
+  theme(axis.text.x = element_text(angle = 45, size = 7, hjust = 1)) +
+  ylab("%")
+```
+
+## Set a nice theme {.smaller}
+
+```{r}
+new_long %>%
+  mutate(income = factor(income, levels = names(relig_income)[2:11])) %>%
+  ggplot(aes(x = income, y = count)) +
+  geom_col() +
+  facet_wrap(~religion) + 
+  theme_classic() + 
+  theme(axis.text.x = element_text(angle = 45, size = 7, hjust = 1)) +
+  ylab("%")
+```
+
+# Join datasets {background-image="images/bg-h1-3.jpg"}
+
+## `full_join()`
+
+Joins to datasets:
+
+-   `x` and `y`: Two dataset objects.
+-   `by`: A columnname by which the datasets are joined.
+
+## Example {.smaller}
+
+::: left37
+df_student:
+
+```{r echo=FALSE}
+n <- 12
+df_student <- data.frame(
+  age = sample(5:10, n, replace = TRUE),
+  sex = sample(c("M", "F"), n, replace = TRUE),
+  T_score = sample(30:70, n, replace = TRUE),
+  class_id = rep(LETTERS[1:(n/3)], each = 3)
+)
+df_student
+```
+
+df_teacher:
+
+```{r echo=FALSE}
+n <- n/3
+df_teacher <- data.frame(
+  class_id = LETTERS[1:n],
+  self_efficacy = sample(30:70, n, replace = TRUE)
+)
+df_teacher
+```
+:::
+
+::: right37
+```{r collapse = FALSE}
+full_join(df_student, df_teacher, by = "class_id")
+```
+:::
+
+## Example with duplicated names {.smaller}
+
+::: left37
+df_student:
+
+```{r echo=FALSE}
+df_student
+```
+
+df_teacher:
+
+```{r echo=FALSE}
+df_teacher <- data.frame(
+  class_id = LETTERS[1:n],
+  self_efficacy = sample(30:70, n, replace = TRUE),
+  age = sample(25:65, n, replace = TRUE),
+  sex = sample(c("M", "F"), n, replace = TRUE)
+)
+df_teacher
+```
+:::
+
+::: right37
+```{r collapse = FALSE}
+full_join(df_student, df_teacher, by = "class_id")
+```
+:::
+
+## Example {.smaller}
+
+``` r
+full_join(df_student, df_teacher, by = "class_id", suffix = c("_student", "_teacher"))
+```
+
+```{r echo = FALSE}
+full_join(df_student, df_teacher, by = "class_id", suffix = c("_student", "_teacher")) 
+```
+
+## Task
+
+-   Load the df_student and df_teacher dataset:
+
+```{r}
+download.file("https://raw.githubusercontent.com/jazznbass/datasets/main/df_student.csv", 
+    destfile = "students.csv", method = "curl")
+download.file("https://raw.githubusercontent.com/jazznbass/datasets/main/df_teacher.csv", 
+    destfile = "teachers.csv", method = "curl")
+
+df_students <- read.csv("students.csv")
+df_teachers <- read.csv("teachers.csv")
+```
+
+-   join the two datasets by class id.
+-   add for each student the average age and the proportion of males of the students of his class.
+
+Hint: use group_by and summarise to calculate average age and proportions of males.
+
+## Solution
+
+```{r}
+df <- full_join(df_students, df_teachers, by = "class_id", suffix = c("_student", "_teacher"))
+```
+
+```{r echo = FALSE}
+df
+```
+
+------------------------------------------------------------------------
+
+```{r}
+df_add <- df %>% 
+  group_by(class_id) %>% 
+  summarise(
+    average_age = mean(age_student, na.rm = TRUE),
+    prop_male = mean(sex_student == "M") * 100
+  )
+```
+
+```{r echo = FALSE}
+df_add
+```
+
+##  {.smaller}
+
+```{r}
+df <- full_join(df, df_add, by = "class_id")
+```
+
+```{r echo=FALSE}
+df
+```
+
+
+## Goals  {background-image="images/bg-goal.jpg" background-opacity=0.3}
+
+-   You know some functions for basic statistical analyses.
+-   You can create contingency tables.
+-   You learn to integrate filtering, selecting, grouping, and subsetting of data frames with functions for statistical analyses.
+
+# Descriptive statistics {background-image="images/bg-h1-3.jpg"}
+
+## Some basic statistical functions
+
+-   `min()`, `max()`: Minimum and maximum
+-   `mean()`, `median()`: Mean and median
+-   `sd()`, `var()`: Standard deviation and variance
+-   `mad()`: Median absolute deviation
+-   `quantile()`: Percentile / quantile
+
+## Task
+
+-   Take the `mtcars` dataset
+-   Create a new variable `lpk` (liters per 100km) from `mpg`\
+    (Formula: `lpk = 282.5 / mpg`)
+-   Calculate grouped by cylinders (`cyl`): mean, sd, median, mad, min, max of `lpk`
+-   Round all values by one decimal
+-   Hint: Use the `tidyverse` or `dplyr` library
+
+{{< include _stop.qmd >}}
+
+##  {.smaller}
+
+```{r}
+mtcars %>% 
+  mutate(lpk = 282.5 / mpg) %>% 
+  group_by(cyl) %>% 
+  summarise(
+    mean = mean(lpk),
+    sd = sd(lpk),
+    median = median(lpk),
+    mad = mad(lpk),
+    min = min(lpk),
+    max = max(lpk)
+  ) %>%
+  round(1) 
+
+```
+
+## 
+
+What is happening here?
+
+```{r}
+mtcars <- mutate(mtcars, 
+  transmission = factor(am, labels = c("Manual", "Automatic"))
+)
+```
+
+## 
+
+Now, lets calculate the stats for the transmission type:
+
+```{r}
+
+mtcars %>% 
+  mutate(lpk = 282.5 / mpg) %>% 
+  group_by(transmission) %>% 
+  summarise(
+    mean = mean(lpk),
+    sd = sd(lpk),
+    median = median(lpk),
+    mad = mad(lpk),
+    min = min(lpk),
+    max = max(lpk)
+  ) 
+
+```
+
+## 
+
+... and round the results
+
+```{r eval = FALSE}
+
+mtcars %>% 
+  mutate(lpk = 282.5 / mpg) %>% 
+  group_by(transmission) %>% 
+  summarise(
+    mean = mean(lpk),
+    sd = sd(lpk),
+    median = median(lpk),
+    mad = mad(lpk),
+    min = min(lpk),
+    max = max(lpk)
+  ) %>%
+  round(1)
+
+```
+
+```{r echo = FALSE}
+cat("Error in Math.data.frame(list(transmission = 1:2, mean = c(17.3586131968484, : 
+non-numeric-alike variable(s) in data frame: transmission")
+```
+
+ups :-( ... what went wrong?
+
+## 
+
+Solution: only `round` variables that are numeric:
+
+-   `is.numeric()` returns a TRUE or FALSE for a vector (`is.numeric(1:5)`; `is.numeric(c("A", "B"))`)\
+-   `across()` specifies for `mutate()`which variable to select.
+
+`mutate(across(.cols, .fns, ... ))`:
+
+-   .cols := columns so select\
+-   .fns := a function to apply\
+-   ... := arguments to that function
+
+## 
+
+```{r}
+
+mtcars %>% 
+  mutate(lpk = 282.5 / mpg) %>% 
+  group_by(transmission) %>% 
+  summarise(
+    mean = mean(lpk),
+    sd = sd(lpk),
+    median = median(lpk),
+    mad = mad(lpk),
+    min = min(lpk),
+    max = max(lpk)
+  ) %>%
+  mutate(across(where(is.numeric), round, 1))
+
+```
+
+# Tables {background-image="images/bg-h1-3.jpg"}
+
+## Tables in base R
+
+-   `table()`: Shows frequencies of nominal scaled variables.
+-   `prop.table()`: Calculates proportions from frequency tables.
+-   `addmargins()`: Adds margins to tables.
+
+## Example one dimensional {.smaller}
+
+```{r}
+tab <- table(mtcars$cyl) # frequencies
+tab
+prop.table(tab) # proportions
+prop.table(tab) * 100 # percentages 
+```
+
+## Example two dimensional {.smaller}
+
+```{r}
+tab <- table(mtcars$cyl, mtcars$am)
+tab
+prop.table(tab) * 100
+```
+
+## Example two dimensional with percentages by rows and columns {.smaller}
+
+```{r}
+tab <- table(mtcars$cyl, mtcars$am)
+prop.table(tab, margin = 1) * 100  # sum of each row is 100%
+prop.table(tab, margin = 2) * 100 # sum of each column is 100%
+```
+
+## Example with added margins {.smaller}
+
+```{r}
+tab <- table(mtcars$cyl, mtcars$am)
+tab <- prop.table(tab, margin = 2) * 100
+addmargins(tab)
+```
+
+## Task
+
+-   Take the `heights` dataset from the `dslabs` library.\
+-   Create a cross table depicting: The percentage of females and males that are above and below a height of 170 cm.
+
+## 
+
+```{r}
+library(dslabs)
+
+heights$category[heights$height * 2.54 <= 170] <- "% <= 170 cm"
+heights$category[heights$height * 2.54 > 170] <- "% > 170 cm"
+
+tab <- table(heights$sex, heights$category)
+tab <- prop.table(tab, margin = 1) * 100
+tab <- round(tab, 1)
+tab
+```
+
+## Tables with dplyr
+
+```{r}
+mtcars %>% 
+  group_by(cyl, am) %>% 
+  summarise(n = n())
+
+```
+
+## Shortcut for simple count tables
+
+```{r}
+# Because it is shorter, I don't use pipes here (but I could!)
+count(mtcars, cyl) 
+count(mtcars, cyl, am) 
+```
+
+## Tables with dplyr: `pivot_wider()` {.smaller}
+
+`pivot_wider()`:\
+creates separate variables from the levels of a factor variable and the values of a second variable
+
+##  {.smaller}
+
+```{r}
+mtcars %>% count(cyl, am)
+```
+
+```{r}
+mtcars %>% count(cyl, am) %>%
+  pivot_wider(names_from = "am", values_from = "n")
+
+```
+
+## Tables with dplyr: A bit nicer!
+
+```{r}
+mtcars %>% 
+  mutate(am = factor(am, labels = c("Manual", "Automatic"))) %>%
+  count(cyl, am) %>% 
+  pivot_wider(names_from = "am", values_from = "n") %>%
+  rename("Cylinders" = "cyl")
+
+```
+
+## Task
+
+Recreate the previous task. This time using dplyr:
+
+-   Take the `heights` dataset from the `dslabs` library.\
+-   Create a cross table depicting: The percentage of females and males that are above and below a height of 170 cm.
+
+This is a hard task ...
+
+Hint 1: `ifelse(height * 2.54 <= 170, "size_a", "size_b")`\
+Hint 2:\
+`size_a / (size_a + size_b) * 100`\
+`size_b / (size_a + size_b) * 100`\
+are the row proportions.
+
+## 
+
+```{r}
+library(dslabs)
+
+heights %>%
+  mutate(category = ifelse(height * 2.54 <= 170, "size_a", "size_b")) %>% 
+  count(sex, category) %>%
+  pivot_wider(names_from = "category", values_from = "n") %>%
+  mutate(
+    "% <= 170" = size_a / (size_a + size_b) * 100,
+    "% > 170" = size_b / (size_a + size_b) * 100,
+    across(where(is.numeric), round, 1)
+  ) %>%
+  select(1, 4, 5)
+
+```
+
+## Tables with dplyr: For values of a third variable
+
+```{r}
+mtcars %>% 
+  mutate(am = factor(am, labels = c("Manual", "Automatic"))) %>%
+  group_by(cyl, am) %>% 
+  summarise(
+    n = n(), 
+    M = mean(mpg), 
+    SD = sd(mpg)
+  ) 
+```
+
+## 
+
+`pivot_wider()` can take values from several variables:
+
+```{r}
+mtcars %>% 
+  mutate(am = factor(am, labels = c("Manual", "Automatic"))) %>%
+  group_by(cyl, am) %>% 
+  summarise(n = n(), M = mean(mpg), SD = sd(mpg)) %>%
+  pivot_wider(names_from = "am", values_from = c("n", "M", "SD")) %>%
+  round(1)
+
+```
+
+## 
+
+Set argument `names_vary = "slowest"` for a different ordering of variables:
+
+```{r}
+mtcars %>% 
+  mutate(am = factor(am, labels = c("Manual", "Automatic"))) %>%
+  group_by(cyl, am) %>% 
+  summarise(n = n(), M = mean(mpg), SD = sd(mpg)) %>%
+  pivot_wider(names_from = "am", values_from = c("n", "M", "SD"), names_vary = "slowest") %>%
+  round(1)
+
+```
+
+## Task
+
+-   Take the `storms` dataset and calculate n and mean of the wind speed (`wind`) by month (`month`) and storm classification (`status`) in a crosstable.
+
+## 
+
+```{r}
+storms %>% 
+  group_by(month, status) %>%
+  summarise(
+    n = n(),
+    M = mean(wind, na.rm = TRUE)
+  ) %>%
+  pivot_wider(names_from = "status", values_from = c("n", "M")) %>%
+  round()
+  
+```
+
+## Design example:
+
+Replicate and try to understand the following table example:
+
+```{r eval = FALSE}
+library(kableExtra)
+tab <- mtcars %>% 
+  group_by(cyl, am) %>% 
+  summarise(n = n(), M = mean(mpg), SD = sd(mpg)) %>%
+  pivot_wider(names_from = "am", values_from = c("n", "M", "SD"), names_vary = "slowest") 
+
+names(tab) <- c("Cylinders", "n", "M", "SD", "n", "M", "SD")
+
+kable(tab, 
+  caption =  "Table 1.<br>Miles per gallon by cylinders and gearshift", 
+  digits = 1, 
+  full_width = FALSE
+) %>% 
+  kable_classic() %>%
+  add_header_above(c(" " = 1, "Automatic" = 3, "Manual" = 3))
+```
+
+## 
+
+```{r echo = FALSE}
+library(kableExtra)
+tab <- mtcars %>% 
+  group_by(cyl, am) %>% 
+  summarise(n = n(), M = mean(mpg), SD = sd(mpg)) %>%
+  pivot_wider(names_from = "am", values_from = c("n", "M", "SD"), names_vary = "slowest") 
+names(tab) <- c("Cylinders", "n", "M", "SD", "n", "M", "SD")
+kable(tab, caption =  "Table 1.<br>Miles per gallon by cylinders and gearshift", digits = 1) %>% kable_classic() %>%
+  add_header_above(c(" " = 1, "Automatic" = 3, "Manual" = 3))
+```
+
+# Inferential statistics {background-image="images/bg-h1-3.jpg"}
+
+## Some statistical functions:
+
+-   `t.test()`: Calculating a t-test.
+
+-   `wilcox.test()`: Calculating Wilcox test / U-Test.
+
+-   `chisq.test()`: Calculating a Pearson $X^2$-test.
+
+-   Some more we will not address today:
+
+    -   `lm()`: Regression analyses
+    -   `cor.test()`: Calculating a correlation test.
+    -   `binom.test()`: Binomial test.
+    -   `fisher.test()`: Fisher exact test for count data.
+    -   `ks.test()`: One and two sample Kolmogorov-Smirnov Tests.
+    -   `shapiro.test()`: Shapiro-Wilk Normality Test.
+    -   `aov()`: Analysis of variance
+
+## `chisq.test()`
+
+-   *Pearson's* $X^2$ test is a very versatile test to calculate whether a distribution of observed frequencies equates expected frequencies.\
+-   A very common application is to test whether frequencies of observations in two variables are related. (E.g. number of patients that improved in a treatment vs. control group).
+-   The `chisq.test()` functions takes a two dimensional frequency table and calculates a $X^2$ test.
+
+## Example with data from an intervention study {.smaller}
+
+```{r}
+# get an external data example
+dat <- read.csv("https://goo.gl/j6lRXD")
+# Create a two distribution table
+tab <- table(dat$treatment, dat$improvement)
+tab
+# Test for non random distribution:
+chisq.test(tab) # Alternatively: chisq.test(dat$treatment, dat$improvement)
+```
+
+Significantly more patients improved in the treatment condition ($X^2(1)=4.7, p < .05$)
+
+## Task
+
+-   Take the `starwars` dataset from the `tidyverse` package.
+-   Use `table()` to get the distribution `eye_color` by `hair_color`
+-   Apply the `chisq.test()` to calculate a X² test to test for an even distribution.
+
+{{< include _stop.qmd >}}
+
+## 
+
+```{r warning=FALSE}
+tab <- table(starwars$eye_color, starwars$hair_color)
+chisq.test(tab)
+```
+
+## `t.test()`
+
+-   *Student's t-test* analysis whether two samples originate from the same normal distribution.\
+
+-   It is used to test for mean differences in two groups.\
+
+-   ***Arguments*** of the `t.test()` function:
+
+    -   `x` and `y`: Each variable provides data from a samples.
+    -   `formula`: If you have one vector with all data (e.g. `values`) and a second vector with grouping information (e.g. `group`) use: `values ~ group`.
+    -   `data`: If you work with `formula`: The name of a data frame.
+    -   `paired`: If set `TRUE`, the test assumes repeated measures of one sample instead of two independent samples.
+
+## Example
+
+Does one of two drugs increase hours of sleep better?
+
+`extra`: change in sleep duration, `group` : drug given
+
+```{r}
+sleep
+```
+
+## Example
+
+```{r eval = FALSE}
+# Applying a T-test by providing x and y
+x <- sleep$extra[sleep$group == 1]
+y <- sleep$extra[sleep$group == 2]
+t.test(x, y)
+
+# Applying a T-test with a formula
+t.test(extra ~ group, data = sleep)
+```
+
+## Example
+
+```{r echo = FALSE}
+t.test(extra ~ group, data = sleep)
+```
+
+Group 2 shows an increase in sleep length of $\Delta M=1.58$ ($t(17.8)=1.86, p = .08$)
+
+## `wilcox.test()`
+
+-   Calculates a Wilcoxon rank sum test. Also known as Mann Whitney U-Test
+-   This test is applied as an alternative to a t-Test when data are assumed to be non-normal distributed.
+-   It takes the same arguments as `t.test()`
+
+## Task
+
+-   Take the `sleep` dataset from the previous example.
+-   Calculate the `median` and `mad` (Median absolute deviation) for `extra` for each group.
+-   Calculate a Wilcoxon test with the `sleep` dataset on the effectiveness of the intervention.
+
+{{< include _stop.qmd >}}
+
+##  {.smaller}
+
+```{r warning=FALSE}
+library(dplyr)
+sleep %>% group_by(group) %>%
+  summarise(
+    median = median(extra), 
+    mad = mad(extra)
+  )
+wilcox.test(extra~group, data = sleep)
+```
+
+## Task
+
+-   Install the "dslabs" package
+-   Take the `gapminder` dataset. This dataset includes health and income outcomes for 184 countries from 1960 to 2016.
+-   It includes `infant_mortality`, `region` and `continent`.
+-   Calculate the mean and median `infant_mortality` for each continent
+-   Calculate a t-test comparing `infant_mortality` between the regions Southern- and Eastern Europe.
+
+{{< include _stop.qmd >}}
+
+## 
+
+```{r eval = FALSE}
+install.packages("dslabs")
+```
+
+```{r}
+library(dslabs)
+gapminder %>% group_by(continent) %>% 
+  summarise(
+    mean = mean(infant_mortality, na.rm = TRUE),
+    median = median(infant_mortality, na.rm = TRUE)
+  )
+```
+
+## 
+
+```{r eval = FALSE}
+x <- gapminder %>% filter(region == "Southern Europe") %>% select(infant_mortality)
+y <- gapminder %>% filter(region == "Eastern Europe") %>% select(infant_mortality)
+t.test(x, y)
+
+# or with pipes
+gapminder %>% 
+  filter(region %in% c("Southern Europe", "Eastern Europe")) %>%
+  t.test(infant_mortality ~ region, data = .)
+```
+
+```{r echo = FALSE}
+gapminder %>% 
+  filter(region %in% c("Southern Europe", "Eastern Europe")) %>%
+  t.test(infant_mortality ~ region, data = .)
+```
+
+
+## Goals {background-image="images/bg-h1-3.jpg"}
+
+-   An introduction to the ***Grammar of Graphics***
+-   An introduction to ***ggplot***
+
+## ggplot2
+
+-   ggplot2 is an R package for visualizing data.
+-   It is part of the [tidyverse](https://ggplot2.tidyverse.org/)
+-   It is based on a concept called [The Grammar of Graphics](https://link.springer.com/content/pdf/10.1007%2F978-3-642-21551-3_13.pdf) by Leland Wilkinson
+-   It has been programmed and implemented as an R package by [Hadley Wickham](http://hadley.nz/).
+-   There is a [book available on ggplot2](https://link.springer.com/book/10.1007/978-3-319-24277-4)
+-   Which you find [at https://ggplot2-book.org/](https://ggplot2-book.org/) as an online book.
+
+## ggplot components
+
+![](images/ggplot_layers.png){width="800"}
+
+
+## Prerequisite {background-image="images/bg-h1-3.jpg"}
+
+You have basic knowledge on statistical regression
+
+## Goal {background-image="images/bg-h1-3.jpg"}
+
+You know how to fit regression models in R
+
+## Regression
+
+::: incremental
+-   In a statistical regression you explain a variable (criteria or dependent variable) by one or more other variables (predictors or independent variables).
+-   You *regress* the criteria variable on the predictor variables.
+-   E.g.: You want to explain the *life expectancy* by certain aspects of behavior (diet, physical activity), environmental aspects (pollution, health care).
+-   Therefore, you try to set up a mathematical function which tries to estimate what *life expectancy* a person has given all the other variables.
+:::
+
+## Regression formula
+
+::: left
+$y_i = \beta_0 + \beta_1X_i + e_i$
+
+$y$ = Criteria variable\
+$i$ = Subject number (measurement number)\
+$\beta_0$ = Intercept of $y$\
+$\beta_1$ = Weight of predictor $X$\
+$X$ = Predictor variable\
+$e$ = Error term
+:::
+
+::: right
+```{r echo = FALSE, fig.height=5, fig.width=5}
+plot(c(0,1), c(1,5), type = "l", xlab = "Predictor X", ylab = "Criteria Y", ylim = c(0,5))
+text(x = 0.6, y = 4, "Slope ß1")
+```
+:::
+
+## `lm()` function
+
+-   The `lm()` function fits a regression model.
+-   `lm(formula, data)`
+-   ***Formulas*** are a basic data type that is applied in many R functions.
+-   Basic structur: ***dependent variable \~ explanatory variables***\
+    (e.g. ***y \~ x1 + x2***)
+-   `data` takes a dataframe
+
+`lm(dist ~ speed, data = cars)`
+
+## Example
+
+```{r echo = FALSE}
+ggplot(cars, aes(x = speed, y = dist)) +
+  geom_point() +
+  ggtitle("Breaking distances at various speeds") + 
+  geom_text(x = 10, y = 100, label = paste0("Correlation r = ", round(cor(cars$speed, cars$dist), 2)))
+```
+
+## Example
+
+```{r echo = FALSE}
+ggplot(cars, aes(x = speed, y = dist)) +
+  geom_point() +
+  geom_smooth(method = "lm") +
+  ggtitle("Breaking distances at various speeds") + 
+  geom_text(x = 10, y = 100, label = paste0("Correlation r = ", round(cor(cars$speed, cars$dist), 2)))
+```
+
+## Example
+
+::: left
+```{r echo = FALSE}
+ggplot(cars, aes(x = speed, y = dist)) +
+  geom_point() +
+  geom_smooth(method = "lm") +
+  ggtitle("Breaking distances at various speeds") + 
+  xlim(0,25) + 
+  geom_text(x = 10, y = 100, label = paste0("Correlation r = ", round(cor(cars$speed, cars$dist), 2)))
+```
+:::
+
+::: right
+```{r}
+fit <- lm(dist ~ speed, data = cars)
+fit
+```
+:::
+
+$dist_i = -17.579 + 3.932 * speed_i$
+
+## Use `summary()` to get detailed analyses
+
+```{r}
+summary(fit)
+```
+
+Modelfit:\
+$F(1, 48) = 89.57; p < .001 ; R² = .65$
+
+## Task
+
+-   Take the `mtcars` dataset.
+-   Calculate the correlation of mileage `mpg` and car weight `wt`.
+-   Plot a scatterplot with ggplot (mileage on the x-axis and weight on the y-axis).
+-   Add a regression line with (`geom_smooth(method = "lm")`).
+-   Regress mileage `mpg` on car weight `wt` (that is, predict mileage by means of weight).
+
+## 
+
+```{r}
+cor(mtcars$mpg, mtcars$wt)
+fit <- lm(mpg ~ wt, data = mtcars)
+summary(fit)
+```
+
+## 
+
+```{r fig.width=4, fig.height=4}
+ggplot(mtcars, aes(x = mpg, y = wt)) + 
+  geom_point() + 
+  geom_smooth(method = "lm")
+```
+
+## Task
+
+-   Take the `temp_carbon` dataset from the `dslabs` library.
+-   Make yourself familiar with the dataset: `?temp_carbon`.
+-   Plot a scatterplot with ggplot (year on the x-axis and temp_anomaly on the y-axis).
+-   Add a regression line with (`geom_smooth(method = "lm")`).
+-   Regress `temp_anomaly` on `year` (that is, predict temp_anomaly by means of year).
+
+## 
+
+```{r}
+library(dslabs)
+fit <- lm(temp_anomaly ~ year, 
+          data = temp_carbon)
+summary(fit)
+```
+
+## 
+
+```{r fig.width=4, fig.height=4}
+ggplot(temp_carbon, aes(x = year, 
+                        y = temp_anomaly)) + 
+  geom_point() + 
+  geom_smooth(method = "lm")
+```
+
+## Multiple predictors
+
+-   A `formula` can take multiple predictors:\
+    `y ~ x1 + x2`
+-   An Interaction describes a relation between two (or more) predictors where the influence of one predictor changes with the value of the other predictor (e.g. weight and smoking influence blood pressure. And the influence of smoking is even higher for those who are overweight).
+-   An interaction is modeled with a `:` sign:\
+    y \~ x1 + x2 + x1:x2
+
+## Example
+
+Predict mileage `'mpg'` by weight `'wt'` and number of cylinders `'cyl'` and its interaction
+
+```{r}
+fit <- lm(mpg ~ wt + cyl + wt:cyl, data = mtcars)
+summary(fit)
+```
+
+## Task
+
+-   Take the `gapminder` dataset from the `dslabs` library.
+-   Predict infant mortality (`infant_mortality`) by year (`year`) and average number of children per woman (`fertility`).
+-   Take the interaction into account.
+-   How to interpret the estimates?
+
+------------------------------------------------------------------------
+
+```{r gapminder}
+library(dslabs)
+fit <- lm(infant_mortality ~ year + fertility + fertility:year, data = gapminder)
+summary(fit)
+```
+
+------------------------------------------------------------------------
+
+-   Although the previous computation is correct (!). The estimates is misleading. The intercept, for example, depicts the average dependent variable when all predictors are zero (i.e. year is 0 and fertility is 0).
+-   We can mend this by centering the predictor variables.
+-   Centering is achieved by subtracting the mean of a variable from each measurement of that variable. That is, the value 0 now depicts the average.
+
+```{r eval=TRUE}
+dat <- gapminder
+dat$year <- dat$year - mean(dat$year, na.rm = TRUE)
+# alternatively, use the scale function to center a variable:
+dat$fertility <- scale(dat$fertility, scale = FALSE)
+```
+
+------------------------------------------------------------------------
+
+::: left
+```{r}
+#| echo: false
+
+ggplot(gapminder, aes(x = year, y = infant_mortality)) +
+  geom_point() + 
+  geom_smooth(method = "lm") + 
+  annotate("label", x = 0,y = 3011, label = "Intercept y = 3011", vjust = 1, hjust = 0) +
+  annotate("point", x = 0, y = 3011, 
+  colour = "red", size = 1.5)
+```
+:::
+
+::: right
+```{r}
+#| echo: false
+
+ggplot(dat, aes(x = year, y = infant_mortality)) +
+  geom_point() + 
+  geom_smooth(method = "lm") +
+  annotate("label", x = 0,y = 57, label = "Intercept  y = 57", vjust = 0) +
+  annotate("point", x = 0, y = 57, 
+  colour = "red", size = 1.5)
+```
+:::
+
+```{r}
+dat <- gapminder
+dat$year <- scale(dat$year, scale = FALSE)
+dat$fertility <- scale(dat$fertility, scale = FALSE)
+fit <- lm(infant_mortality ~ year + fertility + fertility:year, data = dat)
+summary(fit)
+```
+
+## Categorical predictors: comparing groups
+
+-   Predictors can be categorical variables.
+-   Examples of categorical variables are: students with vs. without special educational needs; gender; Haircolor.
+-   They have to be `factors` to recognize them as `categorical`.
+
+## Example
+
+-   We predict `mpg` by `wt` and the transmission type `am` and their interaction.
+-   The transmission type is a categorical variable. By default `am` is not a factor. So we have to turn `am` into a factor first.
+
+------------------------------------------------------------------------
+
+```{r}
+mtcars$wt_centered <- scale(mtcars$wt, scale = FALSE)
+mtcars$am_factor <- factor(mtcars$am, labels = c("Automatic", "Manual"))
+fit <- lm(mpg ~ wt_centered + am_factor + wt_centered:am_factor, data = mtcars)
+summary(fit)
+```
+
+## Task
+
+```{r}
+heights$sex <- factor(heights$sex)
+fit <- lm(height ~ sex, data = heights)
+summary(fit)
+```
+
+## Contrasts
+
+-   In the previous example, we compared the effect of an automatic against a manual gearshift. This is called a **contrast**. In this case, our intercept represented the *mpg* for the automatic gearshift and the predictor represented the change in the *mpg* values for manual gearshifts.
+
+-   This type of contrast is called a "treatment" contrast.
+
+-   An alternative approach would be to calculate the average of 'mpg' across both types of gearshifts and the predictor represents how much the type of gearshift influences 'mpg'.
+
+-   This type of contrast is called a Helmert contrast.
+
+## Example
+
+Fitting `lm(mpg ~ am_factor, data = mtcars)` with a treatment contrast:
+
+```{r echo = FALSE}
+fit <- lm(mpg ~ am_factor, data = mtcars)
+coefficients(fit)
+```
+
+Fitting `lm(mpg ~ am_factor, data = mtcars)` with a Helmert contrast:
+
+```{r echo = FALSE}
+contrasts(mtcars$am_factor) <- contr.helmert(2)
+fit <- lm(mpg ~ am_factor, data = mtcars)
+coefficients(fit)
+```
+
+------------------------------------------------------------------------
+
+-   The `constrasts()` function gets and sets contrasts for factors
+-   Treatment contrasts for two factor levels:\
+
+``` r
+contrasts(mtcars$am_factor) <- contr.treatment(2)
+```
+
+-   Helmert contrasts for two factor levels:\
+
+``` r
+contrasts(mtcars$am_factor) <- contr.helmert(2)
+```
+
+## Task {.smaller}
+
+-   Take the `mtcars` dataset
+-   Predict `mpg` by `wt` and the transmission type `am` and their interaction
+-   By default `am` is not a factor. Please create a factor `transmission` for `am` first
+-   Set the contrasts of the factor to *Helmert* and calculate the model.
+-   Set the contrasts of the factor to *Treatment* and calculate the model
+-   Compare the results of the two models and discuss them with you seatmate
+
+------------------------------------------------------------------------
+
+```{r}
+mtcars$transmission <- factor(mtcars$am, labels = c("Automatic", "Manual"))
+mtcars$wt_centered <- scale(mtcars$wt, scale = FALSE)
+contrasts(mtcars$transmission) <- contr.helmert(2)
+fit1 <- lm(mpg ~ wt_centered + transmission + wt_centered:transmission, data = mtcars)
+summary(fit1)
+```
+
+------------------------------------------------------------------------
+
+```{r}
+contrasts(mtcars$transmission) <- contr.treatment(2)
+fit2 <- lm(mpg ~ wt_centered + transmission + wt_centered:transmission, data = mtcars)
+summary(fit2)
+```
+
+## Design example {.smaller}
+
+```{r}
+library(sjPlot)
+tab_model(fit1)
+```
+
+##  {.smaller}
+
+```{r}
+tab_model(fit1, fit2)
+```
+
+##  {.smaller}
+
+```{r}
+tab_model(fit1, fit2,
+  show.ci = FALSE, show.se = TRUE,string.se = "se", string.est = "B",
+  dv.labels = c("Model with helmert contrast", "Model with treatment contrast")
+)
+```
+
+# Multilevel regressions {background-image="images/bg-h1-3.jpg"}
+
+## Multilevel regression formula
+
+$y_{ij} = \beta_{0j} + \beta_{1j} X_{ij} + e_{ij}$
+
+Level 2:\
+$\beta_{0j} = \gamma_{01}W_j + \upsilon_{0j}$\
+$\beta_{1j} = \gamma_{10} + \upsilon_{1j}$
+
+$y$ = Criteria variable\
+$i$ = Subject number (measurement number)\
+$\beta_0$ = Intercept of $y$\
+$\beta_1$ = Weight of predictor $X$\
+$X$ = Predictor variable\
+$e$ = Error term\
+$j$ = Level 2 group number\
+$\gamma_{00}$ = Intercept\
+$W$ = Level 2 predictor (grouping variable)\
+$\gamma_{01}$ = Weight for $W$\
+$\gamma_{10}$ = Weight of the predictor\
+$\upsilon_{0j}$ = Error term for intercept 
+$\upsilon_{0j}$ = Error term for slope
+
+
+# Control-Functions {background-image="images/bg-h1-3.jpg"} 
+
+## if control structures
+
+if-else control structures are very helpful for solving complex conditional operations:
+
+`if (condition) expression`
+
+example:
+
+``` r
+if (age >= 18) adult <- TRUE
+```
+
+The expression can take multiple lines which are enclosed with braces:
+
+``` r
+if (age >= 18 && gender == "male") { 
+  adult <- TRUE
+  n_males <- n_males + 1
+}
+```
+
+## if-else control structures
+
+Sometimes, the `if` structure is extended with `else`:
+
+`if (condition) expression1 else expression2`
+
+example:
+
+``` r
+if (age >= 18) out <- "full-aged" else out <- "underage"
+```
+
+## More complex example
+
+``` r
+if (age >= 18 && gender == "male") {  
+  adult <- TRUE  
+  n_males <- n_males + 1  
+} else if (age >= 18 && gender == "female") { 
+  adult <- TRUE  
+  n_females <- n_females + 1  
+} else if (age < 18) {    
+  adult <- FALSE  
+}
+```
+
+## 
+
+The `if` structure is not vectorized.\
+That is, the condition must return a single logical TRUE or FALSE value. This code will throw an error or warning message:
+
+``` r
+age <- c(18, 15)
+if (age >= 18) cat("Adult!") else cat("Underage!")
+```
+
+## ifelse
+
+`ifelse` is a vectorized version of `if()` `else` which returns a vector:
+
+`ifelse(condition, expression_true, expression_false)`
+
+Example:
+
+```{r}
+age <- c(15, 18, 14, 12)
+ifelse(age >= 18, "adult", "underage")
+```
+
+## Task: Read the code
+
+What is the object `results` after executing the code?
+
+``` r
+age <- c(15, 19, 21, 18, 17, 23)
+cut_full_aged <- 18
+language <- "german"
+if (language == "english") {
+  label_adult <- "adult"
+  label_underage <- "underage"
+} else if (language == "german") {
+  label_adult <- "Volljährig"
+  label_underage <- "Minderjährig"
+} else {
+  stop("Unknown language!")
+}
+
+results <- ifelse(age < cut_full_aged, label_underage, label_adult)
+```
+
+## 
+
+```{r}
+age <- c(15, 19, 21, 18, 17, 23)
+cut_full_aged <- 18
+language <- "german"
+if (language == "english") {
+  label_adult <- "adult"
+  label_underage <- "underage"
+} else if (language == "german") {
+  label_adult <- "Volljährig"
+  label_underage <- "Minderjährig"
+} else {
+  stop("Unknown language!")
+}
+
+results <- ifelse(age < cut_full_aged, label_underage, label_adult)
+
+results
+```
+
+## Task: Read the code
+
+What is contained in `res` after executing the code?
+
+``` r
+by <- 1900 + 1:5 * 20
+res <- ifelse(by > 1996, "Generation Z", 
+                  ifelse(by > 1980, "Millenial", 
+                         ifelse(by > 1964, "Generation X", 
+                                ifelse(by >1945, "Babyboomer", 
+                                       ifelse(by > 1927, "Silent generation", "Unknown")))))
+```
+
+## 
+
+```{r}
+by <- 1900 + 1:5 * 20
+res <- ifelse(by > 1996, "Generation Z", 
+                  ifelse(by > 1980, "Millenial", 
+                         ifelse(by > 1964, "Generation X", 
+                                ifelse(by >1945, "Babyboomer", 
+                                       ifelse(by > 1927, "Silent generation", "Unknown")))))
+                       
+res
+```
+
+## For loops
+
+With a `for` loop you can iterate the values of a vector:
+
+**for** (*variable* **in** *vector*) *expression*
+
+example:
+
+```{r}
+for (i in 1:10) print(i)
+```
+
+## 
+
+An expression can have multiple lines enclosed in braces:
+
+```{r}
+#| collapse: true
+#| comment: ""
+
+adult <- 0
+minor <- 0
+for(i in c(20, 12, 15, 16, 18)) {
+  if (i >= 18) adult = adult + 1
+  if (i < 18) minor = minor + 1
+}
+cat("Adults:", adult)
+cat("Minors:", minor)
+```
+
+## 
+
+Oftentimes `for` loops are used to iterate multiple vectors.
+
+Can you read this code and predict the object `comparison` ?
+
+``` r
+age1 <- c(20, 12, 15, 16, 18)
+age2 <- c(17, 13, 17, 16, 20)
+comparison <- c()
+for(i in 1:length(age1)) {
+  if (age1[i] < age2[i]) tmp <- "younger"
+  if (age1[i] > age2[i]) tmp <- "older"
+  if (age1[i] == age2[i]) tmp <- "equal"
+  comparison <- c(comparison, tmp)
+}
+
+comparison
+```
+
+## 
+
+You can use `for` loops to iterate through a dataframe:
+
+``` r
+mtcars$impact <- "average"
+
+for(i in 1:nrow(mtcars)) {
+  if (mtcars$mpg[i] < 18 && mtcars$cyl[i] == 8 && mtcars$wt[i] > 4) {
+    mtcars$impact[i] <- "Big waster!"
+  }
+  if (mtcars$mpg[i] > 22 && mtcars$cyl[i] == 4 && mtcars$wt[i] < 2.59) {
+    mtcars$impact[i] <- "Light eco!"
+  }
+}
+
+mtcars[, c("mpg", "cyl", "wt", "impact")]
+```
+
+## 
+
+``` r
+mtcars$impact <- "average"
+
+for(i in 1:nrow(mtcars)) {
+  if (mtcars$mpg[i] < 18 && mtcars$cyl[i] == 8 && mtcars$wt[i] > 4) 
+    mtcars$impact[i] <- "Big waster!"
+  if (mtcars$mpg[i] > 22 && mtcars$cyl[i] == 4 && mtcars$wt[i] < 2.59) 
+    mtcars$impact[i] <- "Light eco!"
+}
+
+mtcars[1:10 , c("mpg", "cyl", "wt", "impact")]
+```
+
+## Functions
+
+Repeated operations can be put into functions.
+
+*functionname* \<- **function**(*argument*, *argument*, *argument*, ...) {*expression*}
+
+```{r}
+#| collapse: true
+#| comment: ""
+
+power2 <- function(x) {
+  out <- x * x
+  out
+}
+
+power2(4)
+power2(c(2, 3, 4,5))
+```
+
+## Function example
+
+```{r}
+w20_die <- function(dice) {
+  if (dice < 1 || dice > 20) return("This is not a decent W20 die!")
+  if (dice == 20) return("Critical hit!!")
+  if (dice == 1) return("Epic fail")
+  dice
+}
+```
+
+`return()` stops the function and returns an object. If no return is defined, the function will return the last object that is printed.
+
+## 
+
+```{r}
+#| collapse: true
+#| comment: ""
+
+w20_die <- function(dice) {
+  if (dice < 1 || dice > 20) return("This is not a decent W20 die!")
+  if (dice == 20) return("Critical hit!!")
+  if (dice == 1) return("Epic fail")
+  dice
+}
+w20_die(20)
+w20_die(3)
+w20_die(1)
+w20_die(0)
+```
+
+## Task Read the code
+
+What happens here?
+
+```{r}
+percentage <- function(x, na.rm = TRUE) {
+  if (!is.logical(x)) stop("Please provide a logical vector.")
+  if (na.rm) x <- x[!is.na(x)]
+  sum(x) / length(x) * 100
+}
+
+var <- c(12, 16, 19, 20, 11)
+
+percentage(var >= 18)
+```
+
+## Task {.smaller}
+
+``` r
+w20_die <- function(dice) {
+  if (dice < 1 || dice > 20) return("This is not a decent W20 die!")
+  if (dice == 20) return("Critical hit!!")
+  if (dice == 1) return("Epic fail")
+  dice
+}
+```
+
+-   Vectorize the `w20_die` function so it will return a vector with results when you provide a vector with numbers as an argument:
+
+```{r echo = FALSE}
+w20_die <- function(dice) {
+  out <- dice
+  for(i in 1:length(dice)) {
+    if (dice[i] < 1 || dice[i] > 20) out[i] <- "This is not a decent W20 die!"
+    if (dice[i] == 20) out[i] <- "Critical hit!!"
+    if (dice[i] == 1) out[i] <- "Epic fail"
+  }
+  out
+}
+```
+
+```{r}
+results <- c(21, 2, 16, 20, 1, 0)
+w20_die(results)
+```
+
+## Solution 1: With a ***for*** loop:
+
+```{r}
+w20_die <- function(dice) {
+  out <- dice
+  for(i in 1:length(dice)) {
+    if (dice[i] < 1 || dice[i] > 20) out[i] <- "This is not a decent W20 die!"
+    if (dice[i] == 20) out[i] <- "Critical hit!!"
+    if (dice[i] == 1) out[i] <- "Epic fail"
+  }
+  out
+}
+results <- c(21, 2, 16, 20, 1, 0)
+w20_die(results)
+```
+
+## Solution 2: With subsetting:
+
+```{r}
+w20_die <- function(dice) {
+  out <- dice
+  out[dice < 1 | dice > 20] <- "This is not a decent W20 die!"
+  out[dice == 20] <- "Critical hit!!"
+  out[dice == 1] <- "Epic fail"
+  out
+}
+results <- c(21, 2, 16, 20, 1, 0)
+w20_die(results)
+```
+
+## Solution 3: With ***ifelse***:
+
+```{r}
+w20_die <- function(dice) {
+  ifelse(dice < 1 | dice > 20, "This is not a decent W20 die!",
+         ifelse(dice == 20, "Critical hit!!",
+                ifelse(dice == 1, "Epic fail", dice)))
+}
+results <- c(21, 2, 16, 20, 1, 0)
+w20_die(results)
+```
+
+
+

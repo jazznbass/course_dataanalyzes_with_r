@@ -1,0 +1,131 @@
+---
+title: R Course
+subtitle: Introduction
+institute: "`r if(exists('info')) info$company`"
+author: "`r if(exists('info')) info$author`"
+date: "`r if(exists('info')) info$date`"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+# Todays goals
+
+- Introduction to the idea of Data Science
+
+- Getting an overview of the content of this seminar
+
+- Installing R on your computer
+
+- Installing R-Studio on your computer
+
+- Overview of R-Studio
+
+---
+
+# What is R? 
+
+- A tool for statistical computation (like SPSS, Mplus, STATA ...)
+
+--
+
+- A programming language
+
+--
+
+- An idea and a community that shares common ideas about science
+
+--
+
+---
+
+# Statements
+
+- Science should be truthful
+- Science should be diligent
+- Science should be transparent
+- Science should be reproducible
+- Science should be communicated
+- Science should be accessible
+- Science should be open
+
+---
+
+# R (and R studio)
+
+- Science should be truthful
+- Science should be diligent
+- .red2[Science should be transparent]
+- .red2[Science should be reproducible]
+- .red2[Science should be communicated]
+- .red2[Science should be accessible]
+- Science should be open
+
+---
+class: center, middle
+# What R can do
+***
+---
+
+# Any kind of statistical analyses:
+
+- Descriptive stats
+- Modeling
+- Inferential stats
+- Manage and organize data
+- Large data (large scale / big data / EEG / fMRT)
+- Small data (experimental data / questionnaire data / single-case data)
+
+---
+
+# Present data
+
+- Visualize data and results
+- Keep a notebook of your research and analyses
+- Write reports, including stats
+- Write presentations
+- Write books
+- Build interactive websites
+- Connect with various other software and internet tools
+
+---
+class: center
+# Schedule
+
+```{r}
+schedule <- readxl::read_xlsx("schedule.xlsx")
+knitr::kable(schedule)
+```
+
+---
+class: center, middle
+# Installation of R and R-Studio
+***
+---
+
+# Installing R
+
+[__R homepage:__ *https://www.r-project.org/*](https://www.r-project.org/)
+
+![](images/R_homepage.png)
+
+---
+
+# Installing R-Studio
+
+[__R-Studio homepage:__ *https://rstudio.com/*](https://rstudio.com/)
+
+![](images/R_studio_homepage.png)
+
+---
+
+# R for Data science
+
+.pull-left[
+[R for Data Science](https://r4ds.had.co.nz/) is a terrific book and completely free!
+]
+
+.pull-right[
+<img src="images/cover_r4ds.png" style="width: 60%" />
+]
