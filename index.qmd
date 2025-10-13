@@ -1,5 +1,5 @@
 ---
-title: "Slides Overview"
+title: "Introduction to R - Slides"
 format: html
 execute:
   echo: false
@@ -38,11 +38,26 @@ get_title <- function(path) {
   titles <- vapply(files, get_title, character(1))
   #o <- order(tolower(titles))
   #files <- files[o]; titles <- titles[o]
-  
+  cat("# Slides\n\n")
   cat("| Title | Open | Download |\n|---|---|---|\n")
 for (i in seq_along(files)) {
   rel <- basename(files[i]); ttl <- titles[i]
   cat(sprintf("| %s | [Open](%s) | <a href=\"%s\" download>Download</a> |\n",
               ttl, rel, rel))
 }
+  
+  
+res_dir <- "docs/files"
+if (dir.exists(res_dir)) {
+  res_files <- list.files(res_dir, recursive = TRUE, full.names = TRUE)
+  if (length(res_files)) {
+    cat("# Downloads\n\n")
+    rel <- gsub("^docs/", "", res_files)
+    for (r in rel) {
+      fname <- basename(r)
+          cat(sprintf("- <a href=\"%s\" download>%s</a>\n", r, fname))
+    }
+  }
+}  
+  
 ```
