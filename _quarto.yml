@@ -2,6 +2,12 @@ project:
   title: "Introduction to R"
   output-dir: docs
   
+render:
+ - "*.qmd"
+  
+resources: 
+  - "res/"
+  
 author: "Jürgen Wilbert"
 date: today
 institute: "University of Münster"
