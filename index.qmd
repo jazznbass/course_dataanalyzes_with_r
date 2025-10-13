@@ -1,0 +1,48 @@
+---
+title: "Slides Overview"
+format: html
+execute:
+  echo: false
+warning: false
+message: false
+---
+
+```{r}
+#| results: asis
+
+files <- list.files("docs", pattern = "\\.html$", full.names = TRUE)
+files <- files[basename(files) != "index.html"]
+
+# Extract a title from the <title> tag; fall back to filename
+get_title <- function(path) {
+  lines <- tryCatch(readLines(path, warn = FALSE, encoding = "UTF-8"), error = function(e) "")
+  txt <- paste(lines, collapse = "\n")
+
+  # 1) <h1 class="title">…</h1> (beliebige zusätzliche Attribute/Whitespace erlaubt)
+  re_h1 <- '(?is)<h1[^>]*class\\s*=\\s*["\']title["\'][^>]*>(.*?)</h1>'
+  m1 <- regexec(re_h1, txt, perl = TRUE)
+  g1 <- regmatches(txt, m1)[[1]]
+  if (length(g1) >= 2 && nzchar(g1[2])) return(trimws(g1[2]))
+
+  # 2) Fallback: <title>…</title>
+  re_title <- '(?is)<title[^>]*>(.*?)</title>'
+  m2 <- regexec(re_title, txt, perl = TRUE)
+  g2 <- regmatches(txt, m2)[[1]]
+  if (length(g2) >= 2 && nzchar(g2[2])) return(trimws(g2[2]))
+
+  # 3) Fallback: Dateiname
+  tools::file_path_sans_ext(basename(path))
+}
+
+  # Sort by title for a stable list
+  titles <- vapply(files, get_title, character(1))
+  #o <- order(tolower(titles))
+  #files <- files[o]; titles <- titles[o]
+  
+  cat("| Title | Open | Download |\n|---|---|---|\n")
+for (i in seq_along(files)) {
+  rel <- basename(files[i]); ttl <- titles[i]
+  cat(sprintf("| %s | [Open](%s) | <a href=\"%s\" download>Download</a> |\n",
+              ttl, rel, rel))
+}
+```
