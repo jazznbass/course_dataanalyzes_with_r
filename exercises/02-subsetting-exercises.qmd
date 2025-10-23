@@ -1,0 +1,96 @@
+---
+title: "Exercises – 02 Subsetting (Introduction to R)"
+format:
+  html:
+    toc: true
+execute:
+  echo: true
+---
+
+> **Instructions.** These exercises are ungraded. We will discuss solutions in class.
+
+---
+
+
+## 1. Vector subsetting with `[]`
+
+**Tasks.**
+1. Create a numeric vector `x <- c(10, 20, 30, 40, 50)` and a named version `x_named` with names `c("a","b","c","d","e")`.
+  2. Select the 2nd and 4th elements using **numeric** indexing
+  3. **Reorder** the vector `x <- c(10, 20, 30, 40, 50)` with `c(5,1,5,3)`.
+  3. Select elements `"b"` and `"e"` from `x_named` using **character** indexing.
+  4. Select all elements of `x` **greater than 25** using a **logical** condition (`x > 25`). How many elements were selected? Use `length()` to verify.
+  5. Use **negative indices** to drop the first and last element of `x`.
+
+
+---
+
+
+## 2. Subsetting data frames: columns
+
+**Goals.** Select single or multiple columns by position/name; understand the returned object type.
+
+**Tasks.**
+1. Create a data frame `dat <- data.frame(id = 1:5, group = factor(c("A","A","B","B","B")), score = c(12,18,22,19,25))`.
+2. Select column `score` using **numeric** index (3) and then by **name** (`"score"`) with square brackets. Confirm the result is a **data frame** (not a vector) and explain why.
+3. Provide a vector of indices to select **two columns** (`id` and `score`) in one operation.
+4. Rename columns to `c("ID","Group","Score")` using `names()` and re-run your selection to ensure it still works (with the new names).
+
+
+---
+
+
+## 3. Subsetting data frames: rows & conditions
+
+**Goals.** Subset rows using logical conditions and helper functions.
+
+**Tasks.**
+1. Select all rows where `Score >= 20` using a logical condition inside `[]`.
+2. Use `which()` to obtain the **row indices** for `Group == "B"` and subset `dat` with these indices.
+3. Use `with(dat, ...)` to express a condition without repeatedly writing `dat$`, e.g., `with(dat, Score > mean(Score))`.
+4. Create a new column `pass` using `ifelse(Score >= 20, TRUE, FALSE)` and cross-tabulate counts with `sum(pass)`.
+
+
+---
+
+
+## 4. Using `subset()`
+
+**Goals.** Apply `subset()` for readable row/column selection.
+
+**Tasks.**
+1. Recreate Task 3.1 using `subset(dat, Score >= 20)`.
+2. Recreate Task 2.3 by selecting only columns `ID` and `Score` *via* the `select=` argument of `subset()`.
+3. Briefly state (in one sentence) a possible pitfall of `subset()` in programming contexts (hint: scoping/non-standard evaluation).
+
+
+---
+
+
+## 5. (Optional) Tidyverse equivalents
+
+**Goals.** Mirror basic subsetting operations with `dplyr` functions if the tidyverse was introduced in the slides.
+
+**Tasks.**
+1. Use `dplyr::filter()` to keep rows with `Score >= 20`.
+2. Use `dplyr::select()` to keep columns `ID` and `Score` (try both name and position).
+3. Chain operations (pipe) to select `Group == "B"`, compute the **group median** of `Score` with `median(Score)`, and keep rows above that median.
+
+
+---
+
+
+## 6. Mini challenge
+
+**Goals.** Combine indexing techniques succinctly.
+
+**Task.**
+Create a one-line expression that returns the **IDs** of the **top two scores** in `dat` (ties allowed). *Hint:* You may combine ordering via indices with column selection, e.g., `dat[ order(...), "ID" ]`.
+
+
+---
+
+
+# Portfolio placeholder
+
+*(Copy your final solutions for this session here before submission.)*

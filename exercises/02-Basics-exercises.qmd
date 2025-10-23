@@ -1,0 +1,29 @@
+---
+title: "Exercises – 02 Basics (Introduction to R)"
+format:
+  html:
+    toc: true
+execute:
+  echo: true
+---
+
+
+> **Instructions.** These exercises are ungraded. We will discuss solutions in class.
+
+---
+
+## Basic concepts
+
+**Tasks.**
+
+1. Create a numeric vector `x` with five values and compute its mean and standard deviation using base R.
+2. Create a character vector `id` and a logical vector `passed` each of four elements. Combine them into a `data.frame` and inspect with `str()`.
+2. Use `names()` to assign column names to a data frame you created and verify with `names(dat)`.
+3. Create a  `q_1`, `q_2`, `q_3` up to `q_25` two times with `paste()` and  with `paste0()`.
+1. Compute the square root of 2, the exponential of 1, and the natural logarithm of 10.
+2. Create a `list` with three heterogeneous elements (numeric, character, logical). Access elements by name and by position.
+3. Use `factor()` to create a factor with levels `A` and `B`. Show the internal integer representation with `as.numeric()`.
+1. Add comment lines to three of the previous tasks. Use `#` for each line.
+1. Add three section headers to your R script using `# ----` separators that help to organise your text.
+1. Open the help page for `rank` with `?rank` and summarize what it does.
+

@@ -1,5 +1,6 @@
 ---
 title: "Introduction to R - Slides"
+abstract: Here you find the presentation slides and further files for my introductory course in R
 format: html
 execute:
   echo: false
