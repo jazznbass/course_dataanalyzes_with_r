@@ -1,5 +1,5 @@
 ---
-title: "R Course"
+title: "Course Introduction"
 format: revealjs
 ---
 
