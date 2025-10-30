@@ -1,5 +1,5 @@
 ---
-title: "Extending R and R Studio"
+title: "Libraries, packages, and projects"
 format: revealjs
 ---
 
