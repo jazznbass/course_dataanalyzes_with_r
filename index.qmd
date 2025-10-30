@@ -43,7 +43,7 @@ get_title <- function(path) {
   cat("| Title | Open | Download |\n|---|---|---|\n")
 for (i in seq_along(files)) {
   rel <- basename(files[i]); ttl <- titles[i]
-  cat(sprintf("| %s | [Open](%s) | <a href=\"%s\" download>Download</a> |\n",
+  cat(sprintf("| %s | <a href=\"%s\" target=\"_blank\" rel=\"noopener\">Open</a> | <a href=\"%s\" download>Download</a> |\n",
               ttl, rel, rel))
 }
   
