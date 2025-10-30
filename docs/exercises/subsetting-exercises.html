@@ -9,7 +9,7 @@
 <meta name="author" content="Jürgen Wilbert">
 <meta name="dcterms.date" content="2025-10-30">
 
-<title>Exercises – 02 Subsetting (Introduction to R)</title>
+<title>Exercises – Subsetting (Introduction to R)</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -2149,9 +2149,6 @@ vertical-align: -.125em;
   <li><a href="#subsetting-data-frames-columns" id="toc-subsetting-data-frames-columns" class="nav-link" data-scroll-target="#subsetting-data-frames-columns">2. Subsetting data frames: columns</a></li>
   <li><a href="#subsetting-data-frames-rows-conditions" id="toc-subsetting-data-frames-rows-conditions" class="nav-link" data-scroll-target="#subsetting-data-frames-rows-conditions">3. Subsetting data frames: rows &amp; conditions</a></li>
   <li><a href="#using-subset" id="toc-using-subset" class="nav-link" data-scroll-target="#using-subset">4. Using <code>subset()</code></a></li>
-  <li><a href="#optional-tidyverse-equivalents" id="toc-optional-tidyverse-equivalents" class="nav-link" data-scroll-target="#optional-tidyverse-equivalents">5. (Optional) Tidyverse equivalents</a></li>
-  <li><a href="#mini-challenge" id="toc-mini-challenge" class="nav-link" data-scroll-target="#mini-challenge">6. Mini challenge</a></li>
-  <li><a href="#portfolio-placeholder" id="toc-portfolio-placeholder" class="nav-link" data-scroll-target="#portfolio-placeholder">Portfolio placeholder</a></li>
   </ul>
 </nav>
 </div>
@@ -2159,7 +2156,7 @@ vertical-align: -.125em;
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Exercises – 02 Subsetting (Introduction to R)</h1>
+<h1 class="title">Exercises – Subsetting (Introduction to R)</h1>
 </div>
 
 
@@ -2195,48 +2192,42 @@ vertical-align: -.125em;
 </header>
 
 
-<blockquote class="blockquote">
-<p><strong>Instructions.</strong> These exercises are ungraded. We will discuss solutions in class.</p>
-</blockquote>
-<hr>
 <section id="vector-subsetting-with" class="level2">
 <h2 class="anchored" data-anchor-id="vector-subsetting-with">1. Vector subsetting with <code>[]</code></h2>
-<p><strong>Tasks.</strong> 1. Create a numeric vector <code>x &lt;- c(10, 20, 30, 40, 50)</code> and a named version <code>x_named</code> with names <code>c(&quot;a&quot;,&quot;b&quot;,&quot;c&quot;,&quot;d&quot;,&quot;e&quot;)</code>. 2. Select the 2nd and 4th elements using <strong>numeric</strong> indexing 3. <strong>Reorder</strong> the vector <code>x &lt;- c(10, 20, 30, 40, 50)</code> with <code>c(5,1,5,3)</code>. 3. Select elements <code>&quot;b&quot;</code> and <code>&quot;e&quot;</code> from <code>x_named</code> using <strong>character</strong> indexing. 4. Select all elements of <code>x</code> <strong>greater than 25</strong> using a <strong>logical</strong> condition (<code>x &gt; 25</code>). How many elements were selected? Use <code>length()</code> to verify. 5. Use <strong>negative indices</strong> to drop the first and last element of <code>x</code>.</p>
-<hr>
+<ol type="1">
+<li>Create a numeric vector <code>x &lt;- c(10, 20, 30, 40, 50)</code> and a named version <code>x_named</code> with names <code>c(&quot;a&quot;,&quot;b&quot;,&quot;c&quot;,&quot;d&quot;,&quot;e&quot;)</code>.</li>
+<li>Select the 2nd and 4th elements using <strong>numeric</strong> indexing</li>
+<li><strong>Reorder</strong> the vector <code>x &lt;- c(10, 20, 30, 40, 50)</code> with <code>c(5,1,5,3)</code>.</li>
+<li>Select elements <code>&quot;b&quot;</code> and <code>&quot;e&quot;</code> from <code>x_named</code> using <strong>character</strong> indexing.</li>
+<li>Select all elements of <code>x</code> <strong>greater than 25</strong> using a <strong>logical</strong> condition. How many elements were selected? Use a function to verify.</li>
+<li>Use <strong>negative indices</strong> to drop the first and last element of <code>x</code>.</li>
+</ol>
 </section>
 <section id="subsetting-data-frames-columns" class="level2">
 <h2 class="anchored" data-anchor-id="subsetting-data-frames-columns">2. Subsetting data frames: columns</h2>
-<p><strong>Goals.</strong> Select single or multiple columns by position/name; understand the returned object type.</p>
-<p><strong>Tasks.</strong> 1. Create a data frame <code>dat &lt;- data.frame(id = 1:5, group = factor(c(&quot;A&quot;,&quot;A&quot;,&quot;B&quot;,&quot;B&quot;,&quot;B&quot;)), score = c(12,18,22,19,25))</code>. 2. Select column <code>score</code> using <strong>numeric</strong> index (3) and then by <strong>name</strong> (<code>&quot;score&quot;</code>) with square brackets. Confirm the result is a <strong>data frame</strong> (not a vector) and explain why. 3. Provide a vector of indices to select <strong>two columns</strong> (<code>id</code> and <code>score</code>) in one operation. 4. Rename columns to <code>c(&quot;ID&quot;,&quot;Group&quot;,&quot;Score&quot;)</code> using <code>names()</code> and re-run your selection to ensure it still works (with the new names).</p>
-<hr>
+<ol type="1">
+<li>Create a data frame <code>dat &lt;- data.frame(id = 1:5, group = factor(c(&quot;A&quot;,&quot;A&quot;,&quot;B&quot;,&quot;B&quot;,&quot;B&quot;)), score = c(12,18,22,19,25))</code>.</li>
+<li>Select column <code>score</code> using a <strong>numeric</strong> index and then by <strong>name</strong> with (single) square brackets. Confirm the result is a <strong>data frame</strong> (not a vector) and explain why.</li>
+<li>Provide a vector of indices to select <strong>two columns</strong> (<code>id</code> and <code>score</code>) in one operation.</li>
+<li>Rename columns to <code>c(&quot;ID&quot;,&quot;Group&quot;,&quot;Score&quot;)</code> using <code>names()</code> and show the names of the renamed data.frame.</li>
+</ol>
 </section>
 <section id="subsetting-data-frames-rows-conditions" class="level2">
 <h2 class="anchored" data-anchor-id="subsetting-data-frames-rows-conditions">3. Subsetting data frames: rows &amp; conditions</h2>
-<p><strong>Goals.</strong> Subset rows using logical conditions and helper functions.</p>
-<p><strong>Tasks.</strong> 1. Select all rows where <code>Score &gt;= 20</code> using a logical condition inside <code>[]</code>. 2. Use <code>which()</code> to obtain the <strong>row indices</strong> for <code>Group == &quot;B&quot;</code> and subset <code>dat</code> with these indices. 3. Use <code>with(dat, ...)</code> to express a condition without repeatedly writing <code>dat$</code>, e.g., <code>with(dat, Score &gt; mean(Score))</code>. 4. Create a new column <code>pass</code> using <code>ifelse(Score &gt;= 20, TRUE, FALSE)</code> and cross-tabulate counts with <code>sum(pass)</code>.</p>
-<hr>
+<ol type="1">
+<li>Select all rows where Score is greater or equal 20 using a logical condition inside <code>[]</code>.</li>
+<li>Use <code>which()</code> to obtain the <strong>row indices</strong> for <code>Group == &quot;B&quot;</code> and subset <code>dat</code> with these indices.</li>
+<li>Use <code>with(dat, ...)</code> to express a condition of your choice without repeatedly writing <code>dat$</code>.</li>
+<li>Create a new column <code>pass</code> with <code>ifelse()</code> that has logical values for Score &gt;= 20.</li>
+</ol>
 </section>
 <section id="using-subset" class="level2">
 <h2 class="anchored" data-anchor-id="using-subset">4. Using <code>subset()</code></h2>
-<p><strong>Goals.</strong> Apply <code>subset()</code> for readable row/column selection.</p>
-<p><strong>Tasks.</strong> 1. Recreate Task 3.1 using <code>subset(dat, Score &gt;= 20)</code>. 2. Recreate Task 2.3 by selecting only columns <code>ID</code> and <code>Score</code> <em>via</em> the <code>select=</code> argument of <code>subset()</code>. 3. Briefly state (in one sentence) a possible pitfall of <code>subset()</code> in programming contexts (hint: scoping/non-standard evaluation).</p>
-<hr>
-</section>
-<section id="optional-tidyverse-equivalents" class="level2">
-<h2 class="anchored" data-anchor-id="optional-tidyverse-equivalents">5. (Optional) Tidyverse equivalents</h2>
-<p><strong>Goals.</strong> Mirror basic subsetting operations with <code>dplyr</code> functions if the tidyverse was introduced in the slides.</p>
-<p><strong>Tasks.</strong> 1. Use <code>dplyr::filter()</code> to keep rows with <code>Score &gt;= 20</code>. 2. Use <code>dplyr::select()</code> to keep columns <code>ID</code> and <code>Score</code> (try both name and position). 3. Chain operations (pipe) to select <code>Group == &quot;B&quot;</code>, compute the <strong>group median</strong> of <code>Score</code> with <code>median(Score)</code>, and keep rows above that median.</p>
-<hr>
-</section>
-<section id="mini-challenge" class="level2">
-<h2 class="anchored" data-anchor-id="mini-challenge">6. Mini challenge</h2>
-<p><strong>Goals.</strong> Combine indexing techniques succinctly.</p>
-<p><strong>Task.</strong> Create a one-line expression that returns the <strong>IDs</strong> of the <strong>top two scores</strong> in <code>dat</code> (ties allowed). <em>Hint:</em> You may combine ordering via indices with column selection, e.g., <code>dat[ order(...), &quot;ID&quot; ]</code>.</p>
-<hr>
-</section>
-<section id="portfolio-placeholder" class="level1">
-<h1>Portfolio placeholder</h1>
-<p><em>(Copy your final solutions for this session here before submission.)</em></p>
+<ol type="1">
+<li>Recreate Task 3.1 using <code>subset()</code>.</li>
+<li>Recreate Task 2.3 by selecting only columns <code>ID</code> and <code>Score</code> <em>via</em> <code>subset()</code>.</li>
+<li>Create a one-line expression that returns the <strong>IDs</strong> of the <strong>top two scores</strong> in <code>dat</code> (ties allowed). Hint: <code>order()</code> can help.</li>
+</ol>
 </section>
 
 </main>

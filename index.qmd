@@ -35,12 +35,13 @@ get_title <- function(path) {
   tools::file_path_sans_ext(basename(path))
 }
 
-  # Sort by title for a stable list
-  titles <- vapply(files, get_title, character(1))
-  #o <- order(tolower(titles))
-  #files <- files[o]; titles <- titles[o]
-  cat("# Slides\n\n")
-  cat("| Title | Open | Download |\n|---|---|---|\n")
+# Sort by title for a stable list
+titles <- vapply(files, get_title, character(1))
+#o <- order(tolower(titles))
+#files <- files[o]; titles <- titles[o]
+cat("# Slides\n\n")
+cat("| Title | Open | Download |\n|---|---|---|\n")
+
 for (i in seq_along(files)) {
   rel <- basename(files[i]); ttl <- titles[i]
   cat(sprintf("| %s | <a href=\"%s\" target=\"_blank\" rel=\"noopener\">Open</a> | <a href=\"%s\" download>Download</a> |\n",
@@ -56,9 +57,23 @@ if (dir.exists(res_dir)) {
     rel <- gsub("^docs/", "", res_files)
     for (r in rel) {
       fname <- basename(r)
-          cat(sprintf("- <a href=\"%s\" download>%s</a>\n", r, fname))
+      cat(sprintf("- <a href=\"%s\" download>%s</a>\n", r, fname))
     }
   }
 }  
-  
+ 
+res_dir <- "docs/exercises"
+if (dir.exists(res_dir)) {
+  res_files <- list.files(res_dir, pattern = "\\.html$", recursive = TRUE, full.names = TRUE)
+  if (length(res_files)) {
+    cat("\n\n# Exercises\n\n")
+    rel <- gsub("^docs/", "", res_files)
+    for (r in rel) {
+      fname <- basename(r)
+      cat(sprintf("- <a href=\"%s\">%s</a>\n", r, fname))
+    }
+  }
+} 
+
+ 
 ```

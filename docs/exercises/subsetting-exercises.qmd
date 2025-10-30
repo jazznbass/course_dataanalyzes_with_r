@@ -1,0 +1,37 @@
+---
+title: "Exercises – Subsetting (Introduction to R)"
+format:
+  html:
+    toc: true
+execute:
+  echo: true
+---
+
+## 1. Vector subsetting with `[]`
+
+1. Create a numeric vector `x <- c(10, 20, 30, 40, 50)` and a named version `x_named` with names `c("a","b","c","d","e")`.
+2. Select the 2nd and 4th elements using **numeric** indexing
+3. **Reorder** the vector `x <- c(10, 20, 30, 40, 50)` with `c(5,1,5,3)`.
+3. Select elements `"b"` and `"e"` from `x_named` using **character** indexing.
+4. Select all elements of `x` **greater than 25** using a **logical** condition. How many elements were selected? Use a function to verify.
+5. Use **negative indices** to drop the first and last element of `x`.
+
+## 2. Subsetting data frames: columns
+
+1. Create a data frame `dat <- data.frame(id = 1:5, group = factor(c("A","A","B","B","B")), score = c(12,18,22,19,25))`.
+2. Select column `score` using a **numeric** index and then by **name** with (single) square brackets. Confirm the result is a **data frame** (not a vector) and explain why.
+3. Provide a vector of indices to select **two columns** (`id` and `score`) in one operation.
+4. Rename columns to `c("ID","Group","Score")` using `names()` and show the names of the renamed data.frame.
+
+## 3. Subsetting data frames: rows & conditions
+
+1. Select all rows where Score is greater or equal 20 using a logical condition inside `[]`.
+2. Use `which()` to obtain the **row indices** for `Group == "B"` and subset `dat` with these indices.
+3. Use `with(dat, ...)` to express a condition of your choice without repeatedly writing `dat$`.
+4. Create a new column `pass` with `ifelse()` that has logical values for Score >= 20.
+
+## 4. Using `subset()`
+
+1. Recreate Task 3.1 using `subset()`.
+2. Recreate Task 2.3 by selecting only columns `ID` and `Score` *via* `subset()`.
+3. Create a one-line expression that returns the **IDs** of the **top two scores** in `dat` (ties allowed). Hint: `order()` can help.

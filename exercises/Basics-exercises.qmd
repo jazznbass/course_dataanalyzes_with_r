@@ -1,5 +1,5 @@
 ---
-title: "Exercises – 02 Basics (Introduction to R)"
+title: "Exercises – Basics (Introduction to R)"
 format:
   html:
     toc: true
@@ -7,14 +7,7 @@ execute:
   echo: true
 ---
 
-
-> **Instructions.** These exercises are ungraded. We will discuss solutions in class.
-
----
-
 ## Basic concepts
-
-**Tasks.**
 
 1. Create a numeric vector `x` with five values and compute its mean and standard deviation using base R.
 2. Create a character vector `id` and a logical vector `passed` each of four elements. Combine them into a `data.frame` and inspect with `str()`.
