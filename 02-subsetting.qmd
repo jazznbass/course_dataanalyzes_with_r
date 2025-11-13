@@ -37,7 +37,7 @@ You can even change the order or repeat elements:
 names[c(4, 1, 1)]
 ```
 
-With negative numbers, columns are dropped:
+With negative numbers, elements are dropped:
 
 ```{r}
 names[-1]
@@ -58,7 +58,7 @@ and reorder it to get the following result:\
 `[1] "Sheldon" "Amy"     "Sheldon" "Amy"     "Leonard" "Penny"`
 :::
 
-## Task - solution {background-image="images/bg-task.png"}
+## Task - solution {.smaller background-image="images/bg-task.png"}
 
 :::task
 Take the vector\
@@ -89,7 +89,7 @@ study
 
 ## 
 
-Square brackets select a column of a data frame either by a number the column name:
+Square brackets select a column of a data frame either by a number or the column name:
 
 ::: left
 ```{r}
@@ -206,6 +206,14 @@ study2 <- study[c(1, 3, 5), c("gender", "age")]
 study2
 ```
 
+## Code interpretation
+
+:::task
+What does this command do?
+
+`mtcars[1:3*-1]`
+:::
+
 
 ## Sophisticated subsetting {background-image="images/bg-h1-3.jpg"}
 
@@ -272,6 +280,14 @@ When you put a logical vector within square brackets `[ ]` after an object, all 
 
 ```{r}
 age <- c(12, 4, 3, 8)
+x <- c(FALSE, TRUE, TRUE, FALSE)
+age[x]
+```
+
+------------------------------------------------------------------------
+
+```{r}
+age <- c(12, 4, 3, 8)
 x <- age > 5
 x
 age[x]
@@ -312,7 +328,7 @@ friends[friends >= 4]
 ## which() {.build}
 
 The `which()` functions gives the **indices** of the elements that are `TRUE`.  
-It takes a *logical vector* as an *argument*.
+It takes a *logical vector* as an *argument* and returns a *numerical vector*.
 
 ```{r}
 x <- c(TRUE, FALSE, FALSE, TRUE)
@@ -491,10 +507,11 @@ x | y
 
 :::task
 - Create two vectors:
-- ``` .r
+- 
+  ``` .r
 glasses <- c(TRUE, TRUE, FALSE, TRUE, FALSE)  
 hyperintelligent <- c(TRUE, FALSE, FALSE, TRUE, FALSE)
-```
+  ```
 - Determine for each element whether `glasses` and `hyperintelligent` are TRUE at the same time.
 :::
 
@@ -502,10 +519,11 @@ hyperintelligent <- c(TRUE, FALSE, FALSE, TRUE, FALSE)
 
 :::task
 - Create two vectors:
-- ``` .r
+- 
+  ``` .r
 glasses <- c(TRUE, TRUE, FALSE, TRUE, FALSE)  
 hyperintelligent <- c(TRUE, FALSE, FALSE, TRUE, FALSE)
-```
+  ```
 - Determine for each element whether `glasses` and `hyperintelligent` are TRUE at the same time.
 :::
 
@@ -540,10 +558,11 @@ mean(c(TRUE, FALSE, TRUE, FALSE))
 
 :::task
 - Take the data from the last example and calculate the sum and proportion of cases that wear glasses and are hyperintelligent.
-- ``` .r
+- 
+  ``` .r
 glasses <- c(TRUE, TRUE, FALSE, TRUE, FALSE)
 hyperintelligent <- c(TRUE, FALSE, FALSE, TRUE, FALSE)
-```
+  ```
 :::
 
 ## Task - solutions {background-image="images/bg-task.png"}
@@ -578,11 +597,6 @@ age > 4 & gender == 0
 :::
 
 ## Task - solution {background-image="images/bg-task.png"}
-
-:::task
-1. Use *relational* and *logical* operations to determine for each element whether the `income` is larger than `2500` and at the same time `happiness` is above `25`.
-2. Calculate the proportion.
-:::
 
 ```{r include = FALSE}
 income <- c(5000, 4000, 3000, 2000, 1000)
