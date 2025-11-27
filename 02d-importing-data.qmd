@@ -28,7 +28,7 @@ dat
 
 ## Task
 
--   Download the Excel file "cars.xlsx" from the moodle course.\
+-   Download the Excel file "cars.xlsx" from the course repository.\
 -   Save it in your project directory.\
 -   Import the data set and assign it to an object `dat`.\
 -   Apply the `View()` function to see the dataset.
