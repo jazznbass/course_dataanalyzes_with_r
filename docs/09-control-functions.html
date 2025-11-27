@@ -442,7 +442,7 @@
   <meta name="generator" content="quarto-1.7.31">
 
   <meta name="author" content="Jürgen Wilbert">
-  <meta name="dcterms.date" content="2025-11-13">
+  <meta name="dcterms.date" content="2025-11-27">
   <title>Control functions</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
@@ -1067,7 +1067,7 @@ Jürgen Wilbert
     </div>
 </div>
 
-  <p class="date">2025-11-13</p>
+  <p class="date">2025-11-27</p>
 </section>
 <section id="if-control-structures" class="slide level2">
 <h2>if control structures</h2>
@@ -2599,12 +2599,15 @@ window.QuartoSupport = function () {
       // Fire the "slideenter" event (handled by htmlwidgets.js) when the current
       // slide changes (different for each slide format).
       (function () {
-        function fireSlideChanged(previousSlide, currentSlide) {
-
-          // dispatch for htmlwidgets
+        // dispatch for htmlwidgets
+        function fireSlideEnter() {
           const event = window.document.createEvent("Event");
           event.initEvent("slideenter", true, true);
           window.document.dispatchEvent(event);
+        }
+
+        function fireSlideChanged(previousSlide, currentSlide) {
+          fireSlideEnter();
 
           // dispatch for shiny
           if (window.jQuery) {
@@ -2615,13 +2618,6 @@ window.QuartoSupport = function () {
               window.jQuery(currentSlide).trigger("shown");
             }
           }
-        }
-
-        // hookup for reveal
-        if (window.Reveal) {
-          window.Reveal.addEventListener("slidechanged", function(event) {
-            fireSlideChanged(event.previousSlide, event.currentSlide);
-          });
         }
 
         // hookup for slidy

@@ -1,5 +1,5 @@
 ---
-title: "Rmarkdown"
+title: "Quarto and Rmarkdown"
 subtitle: 'An authoring framework for data science'
 format: revealjs
 ---
@@ -9,9 +9,9 @@ format: revealjs
 
 ## Goals {.emphasized .flexbox .vcenter data-background="images/DEFOCUSED.png" data-background-size="cover"}
 
--   You know what mardown is.
--   You know what you can do with Rmarkdown.
--   You can create your own Rmarkdown files.
+-   You know what markdown is.
+-   You know what you can do with Quarto and Rmarkdown.
+-   You can create your own Quarto and Rmarkdown files.
 
 # Markdown and Rmarkdown {background-image="images/bg-h1-3.jpg"}
 
@@ -29,34 +29,36 @@ format: revealjs
 ## 
 
 ::: incremental
--   Texts in **mardown** are rendered (translated) to other markup languages before they are turned to webpages or documents.
+-   Texts in **markdown** are rendered (translated) to other markup languages before they are turned to webpages or documents.
 -   The idea is: You type a text with basic format tags and later let the computer render it to a more complex format.
 -   Due to its simplicity, **markdown** can be converted to *html*, *latex*, *docx*, *rtf*, ect. files.
 -   Markdown is widely applied on various sites (e.g., ***GitHub, Reddit, Diaspora, OpenStreetMap, sourceForge***).
 :::
 
-##  {.smaller}
+## Markdown {.smaller}
 
 A text like this:
 
-    # Chaper 1
+```         
+# Chaper 1
 
-    > If something is true, no amount of wishful thinking will change it *-Richard Dawkins*
+> If something is true, no amount of wishful thinking will change it *-Richard Dawkins*
 
-    We will discuss the following ideas:
+We will discuss the following ideas:
 
-    1. The meaning of **life**
-    2. The end of **suffering**
-    3. The **noble eightfold path**
+1. The meaning of **life**
+2. The end of **suffering**
+3. The **noble eightfold path**
 
-    | Sanskrit| Meaning |
-    |---------|---------|
-    | dukkha  | suffering is an innate characteristic of existence. |
-    | samudaya| together with *dukkha* arises *taṇhā* (craving). |
-    | nirodha | *dukkha* can be ended or contained by letting go of this *taṇhā.* |
-    | magga   | The *noble eightfold path* leads to the confinement. |
+| Sanskrit| Meaning                                                           |
+|---------|-------------------------------------------------------------------|
+| dukkha  | suffering is an innate characteristic of existence.               |
+| samudaya| together with *dukkha* arises *taṇhā* (craving).                  |
+| nirodha | *dukkha* can be ended or contained by letting go of this *taṇhā.* |
+| magga   | The *noble eightfold path* leads to the confinement.              |
 
-    Tabel 1: [The four noble truths](https://en.wikipedia.org/wiki/Four_Noble_Truths)
+Tabel 1: [The four noble truths](https://en.wikipedia.org/wiki/Four_Noble_Truths)
+```
 
 ## Three outputs:
 
@@ -71,7 +73,7 @@ A text like this:
 
 ## pdf
 
-![](images/paste-73452D3D.png)
+![](images/clipboard-317119753.png)
 :::
 
 ## Rmarkdown
@@ -89,25 +91,25 @@ A text like this:
     -   Transparent
     -   Reproducible
     -   Organized
-    -   Communicatable
+    -   Communicable
 
 ## Why use Rmarkdown?
 
 -   You can create individualized reports
-    -   E.g. results with a standard text for each participant in a study comprising her own data
+    -   E.g. results with a standard text for each participant in a study comprising their own data
     -   E.g. individual analyses for each single school or classroom but with a common text.
     -   You can even adapt text blocks depending on parameters and specific results (e.g. skip certain passages for special schools but not for primary schools)
 
-## Task
+## Task  {.smaller}
 
 Before we go on, you have to start your first Rmarkdown document:
 
 -   Create a new source file in R. Choose ***"Text File"*** as the format.\
     File ![](images/right_arrow.jpg){width="30"} New File ![](images/right_arrow.jpg){width="30"} Text File
--   Save it under the name "first_mardown.Rmd"\
-    (you can name it as you like as long as it ends with ".Rmd").
--   Now, at the lower right corner of your source panel you should find ![](images/Rmarkdown_dropdown.png){hight="30"} as an indicator of the file type.
--   Also, at the top of the source file you should find ![](images/knit_symbol.png){hight="30"}
+-   Save it under the name "first_mardown.qmd"\
+    (you can name it as you like as long as it ends with ".qmd" --\> Quarto Markdown).
+-   Now, at the lower right corner of your source panel you should find "Quarto" as an indicator of the file type.
+-   Also, at the top of the source file you should find ![](images/clipboard-1819079286.png){width="70" height="24"}
 
 # Basic markdown formating {background-image="images/bg-h1-3.jpg"}
 
@@ -165,32 +167,38 @@ Combined:
 -   `Chunks` are portions of R code within a markdown file.
 -   A chunk for R has the following structure:
 
-\`\`\`{r}\
-\# Here comes the R code\
-\`\`\`
+``` r
+# Here comes the R code
+```
 
--   An empty chunk can be inserted directly through the `Insert` button.
+-   An empty chunk can be inserted directly through the ![](images/clipboard-1193950122.png){width="27"} button .
 
 ## Chunk Options {.smaller}
 
 -   Chunk options specify the "behaviour" of a chunk.
--   They are put behind the leading "r" and are separated by ",".
+-   They start with `#|` and each option in set in a separate line.
 
 e.g.:
 
-\`\`\`{r echo = FALSE}\
+\`\`\`{r}
+
+#\| echo: false
+
+#\| include: false
+
 \# Here comes the R code\
 \`\`\`
 
--   `echo = FALSE` suppresses the inclusion of the original R code and only output is reported.
--   `include = FALSE` executes the R code but does not report anything
--   `message = FALSE` excludes additional messages given by a function.
--   `warning = FALSE` exclude warnings created by a function.
+-   `echo: false` suppresses the inclusion of the original R code and only output is reported.
+-   `include: false` executes the R code but does not report anything
+-   `message: false` excludes additional messages given by a function.
+-   `warning: false` exclude warnings created by a function.
 
-## YAML (YAML is not a markup language) {.smaller}
+## Header {.smaller}
 
--   Through YAML you can set several document parameters.
--   YAML is like a document header at the beginning of an Rmarkdown file. It is put between leading and ending "---".
+-   Quarto documents start with a header that contains important document options. YAML you can set several document parameters.
+-   This header is put between leading and ending "---".
+-   Information here are provided in a format called YAML (YAML is not a markup language)
 
 ``` r
 ---
@@ -201,21 +209,35 @@ e.g.:
 Some possible parameters:
 
 -   title: "My first document"
--   author: "Jürgen Wilbert"
--   date: 12.12.2019
+-   author: "My Name"
+-   date: 27.11.2025
 -   abstract: This is an interesting paper
-
-## Additional ressources for Rmarkdown
-
--   Cheatsheet:\
-    <https://rstudio.com/wp-content/uploads/2015/02/rmarkdown-cheatsheet.pdf>
--   R Markdown: The Definitive Guide\
-    <https://bookdown.org/yihui/rmarkdown/>
 
 ## Task
 
--   Download the ***Rmarkdown silly example*** from the R moodle course.
--   Save it to your project folder.
--   Open it in RStudio.
--   Knit an html and Word Docx file from it.
--   Read through the code and make sure you understand all of it :-)
+-   Create a Quarto document with a "meaningful" header:
+
+    ``` r
+    ---
+    title: "My first document"
+    author: "Your name"
+    date: today
+    abstract: This is an interesting paper
+    format: html
+    ---
+    ```
+
+-   Add the example markdown code from above: [Markdown]
+
+-   Render the document
+
+## Additional resources for Rmarkdown
+
+-   Quarto webpage\
+    <https://quarto.org/>
+
+## Task
+
+-   Take your notes of this course - the .R file - and turn it into a Quarto document.
+-   Enrich the file with header, remarks, etc.
+-   Render the file as an html and a word docx file.
