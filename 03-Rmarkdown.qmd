@@ -100,7 +100,7 @@ Tabel 1: [The four noble truths](https://en.wikipedia.org/wiki/Four_Noble_Truths
     -   E.g. individual analyses for each single school or classroom but with a common text.
     -   You can even adapt text blocks depending on parameters and specific results (e.g. skip certain passages for special schools but not for primary schools)
 
-## Task  {.smaller}
+## Task {.smaller}
 
 Before we go on, you have to start your first Rmarkdown document:
 
