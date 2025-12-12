@@ -60,13 +60,13 @@ dat %>%
 
 ## Task
 
+:::task
 - Take the `mtcars` data set (included in base R).
 - Apply the `describe()` function from the `psych` library (make sure you have installed `psych`).
 - Round the values to the first decimal (Note: `round()` is your friend here).
 - Use pipes `%>%` to do this all.
 - ... and don't forget to activate the `tidyverse` library :-)
-
-{{< include _stop.qmd >}}
+:::
 
 ##
 

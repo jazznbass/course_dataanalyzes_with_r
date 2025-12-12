@@ -442,7 +442,7 @@
   <meta name="generator" content="quarto-1.7.31">
 
   <meta name="author" content="Jürgen Wilbert">
-  <meta name="dcterms.date" content="2025-11-13">
+  <meta name="dcterms.date" content="2025-12-12">
   <title>dplyr</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
@@ -1068,7 +1068,7 @@ Jürgen Wilbert
     </div>
 </div>
 
-  <p class="date">2025-11-13</p>
+  <p class="date">2025-12-12</p>
 </section>
 <section id="dyplyr" class="slide level2">
 <h2>dyplyr</h2>
@@ -1101,154 +1101,522 @@ Jürgen Wilbert
 </section>
 <section id="task" class="slide level2">
 <h2>Task</h2>
+<div class="task">
 <ul>
 <li>Take the <code>starwars</code> database.</li>
 <li>Filter all cases with <code>brown</code> hair color and <code>female</code> gender (Hint: variables <code>hair_color</code> and <code>sex</code>)</li>
 </ul>
-<p><span style="color: red;"><strong>:-)</strong></span></p>
+</div>
 </section>
-<section class="slide level2">
-
+<section id="section" class="slide level2 smaller">
+<h2></h2>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href></a><span class="fu">library</span>(tidyverse)</span>
 <span id="cb2-2"><a href></a>starwars <span class="sc">%&gt;%</span></span>
 <span id="cb2-3"><a href></a>  <span class="fu">filter</span>(hair_color <span class="sc">==</span> <span class="st">&quot;brown&quot;</span> <span class="sc">&amp;</span> sex <span class="sc">==</span> <span class="st">&quot;female&quot;</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
 <div class="cell-output-display">
-<div class="kable-table">
-<table class="caption-top">
-<colgroup>
-<col style="width: 6%">
-<col style="width: 2%">
-<col style="width: 1%">
-<col style="width: 3%">
-<col style="width: 3%">
-<col style="width: 3%">
-<col style="width: 3%">
-<col style="width: 2%">
-<col style="width: 2%">
-<col style="width: 3%">
-<col style="width: 2%">
-<col style="width: 38%">
-<col style="width: 7%">
-<col style="width: 18%">
-</colgroup>
+<div id="phheunqgln" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#phheunqgln table {
+font-family: times, system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+-webkit-font-smoothing: antialiased;
+-moz-osx-font-smoothing: grayscale;
+}
+#phheunqgln thead, #phheunqgln tbody, #phheunqgln tfoot, #phheunqgln tr, #phheunqgln td, #phheunqgln th {
+border-style: none;
+}
+#phheunqgln p {
+margin: 0;
+padding: 0;
+}
+#phheunqgln .gt_table {
+display: table;
+border-collapse: collapse;
+line-height: normal;
+margin-left: auto;
+margin-right: auto;
+color: #333333;
+font-size: 16px;
+font-weight: normal;
+font-style: normal;
+background-color: #FFFFFF;
+width: auto;
+border-top-style: solid;
+border-top-width: 2px;
+border-top-color: #FFFFFF;
+border-right-style: none;
+border-right-width: 2px;
+border-right-color: #D3D3D3;
+border-bottom-style: solid;
+border-bottom-width: 2px;
+border-bottom-color: #FFFFFF;
+border-left-style: none;
+border-left-width: 2px;
+border-left-color: #D3D3D3;
+}
+#phheunqgln .gt_caption {
+padding-top: 4px;
+padding-bottom: 4px;
+}
+#phheunqgln .gt_title {
+color: #333333;
+font-size: 100%;
+font-weight: initial;
+padding-top: 4px;
+padding-bottom: 4px;
+padding-left: 5px;
+padding-right: 5px;
+border-bottom-color: #FFFFFF;
+border-bottom-width: 0;
+}
+#phheunqgln .gt_subtitle {
+color: #333333;
+font-size: 85%;
+font-weight: initial;
+padding-top: 3px;
+padding-bottom: 5px;
+padding-left: 5px;
+padding-right: 5px;
+border-top-color: #FFFFFF;
+border-top-width: 0;
+}
+#phheunqgln .gt_heading {
+background-color: #FFFFFF;
+text-align: left;
+border-bottom-color: #FFFFFF;
+border-left-style: none;
+border-left-width: 1px;
+border-left-color: #D3D3D3;
+border-right-style: none;
+border-right-width: 1px;
+border-right-color: #D3D3D3;
+}
+#phheunqgln .gt_bottom_border {
+border-bottom-style: solid;
+border-bottom-width: 3px;
+border-bottom-color: #000000;
+}
+#phheunqgln .gt_col_headings {
+border-top-style: solid;
+border-top-width: 3px;
+border-top-color: #000000;
+border-bottom-style: solid;
+border-bottom-width: 2px;
+border-bottom-color: #000000;
+border-left-style: none;
+border-left-width: 1px;
+border-left-color: #D3D3D3;
+border-right-style: none;
+border-right-width: 1px;
+border-right-color: #D3D3D3;
+}
+#phheunqgln .gt_col_heading {
+color: #333333;
+background-color: #FFFFFF;
+font-size: 100%;
+font-weight: normal;
+text-transform: inherit;
+border-left-style: none;
+border-left-width: 1px;
+border-left-color: #D3D3D3;
+border-right-style: none;
+border-right-width: 1px;
+border-right-color: #D3D3D3;
+vertical-align: bottom;
+padding-top: 5px;
+padding-bottom: 6px;
+padding-left: 5px;
+padding-right: 5px;
+overflow-x: hidden;
+}
+#phheunqgln .gt_column_spanner_outer {
+color: #333333;
+background-color: #FFFFFF;
+font-size: 100%;
+font-weight: normal;
+text-transform: inherit;
+padding-top: 0;
+padding-bottom: 0;
+padding-left: 4px;
+padding-right: 4px;
+}
+#phheunqgln .gt_column_spanner_outer:first-child {
+padding-left: 0;
+}
+#phheunqgln .gt_column_spanner_outer:last-child {
+padding-right: 0;
+}
+#phheunqgln .gt_column_spanner {
+border-bottom-style: solid;
+border-bottom-width: 2px;
+border-bottom-color: #000000;
+vertical-align: bottom;
+padding-top: 5px;
+padding-bottom: 5px;
+overflow-x: hidden;
+display: inline-block;
+width: 100%;
+}
+#phheunqgln .gt_spanner_row {
+border-bottom-style: hidden;
+}
+#phheunqgln .gt_group_heading {
+padding-top: 8px;
+padding-bottom: 8px;
+padding-left: 5px;
+padding-right: 5px;
+color: #333333;
+background-color: #FFFFFF;
+font-size: 100%;
+font-weight: initial;
+text-transform: inherit;
+border-top-style: solid;
+border-top-width: 2px;
+border-top-color: #D3D3D3;
+border-bottom-style: solid;
+border-bottom-width: 2px;
+border-bottom-color: #FFFFFF;
+border-left-style: none;
+border-left-width: 1px;
+border-left-color: #D3D3D3;
+border-right-style: none;
+border-right-width: 1px;
+border-right-color: #D3D3D3;
+vertical-align: middle;
+text-align: left;
+}
+#phheunqgln .gt_empty_group_heading {
+padding: 0.5px;
+color: #333333;
+background-color: #FFFFFF;
+font-size: 100%;
+font-weight: initial;
+border-top-style: solid;
+border-top-width: 2px;
+border-top-color: #D3D3D3;
+border-bottom-style: solid;
+border-bottom-width: 2px;
+border-bottom-color: #FFFFFF;
+vertical-align: middle;
+}
+#phheunqgln .gt_from_md > :first-child {
+margin-top: 0;
+}
+#phheunqgln .gt_from_md > :last-child {
+margin-bottom: 0;
+}
+#phheunqgln .gt_row {
+padding-top: 8px;
+padding-bottom: 8px;
+padding-left: 5px;
+padding-right: 5px;
+margin: 10px;
+border-top-style: solid;
+border-top-width: 0px;
+border-top-color: #D3D3D3;
+border-left-style: none;
+border-left-width: 1px;
+border-left-color: #D3D3D3;
+border-right-style: none;
+border-right-width: 1px;
+border-right-color: #D3D3D3;
+vertical-align: middle;
+overflow-x: hidden;
+}
+#phheunqgln .gt_stub {
+color: #333333;
+background-color: #FFFFFF;
+font-size: 100%;
+font-weight: initial;
+text-transform: inherit;
+border-right-style: solid;
+border-right-width: 2px;
+border-right-color: #D3D3D3;
+padding-left: 5px;
+padding-right: 5px;
+}
+#phheunqgln .gt_stub_row_group {
+color: #333333;
+background-color: #FFFFFF;
+font-size: 100%;
+font-weight: initial;
+text-transform: inherit;
+border-right-style: solid;
+border-right-width: 2px;
+border-right-color: #D3D3D3;
+padding-left: 5px;
+padding-right: 5px;
+vertical-align: top;
+}
+#phheunqgln .gt_row_group_first td {
+border-top-width: 2px;
+}
+#phheunqgln .gt_row_group_first th {
+border-top-width: 2px;
+}
+#phheunqgln .gt_summary_row {
+color: #333333;
+background-color: #FFFFFF;
+text-transform: inherit;
+padding-top: 8px;
+padding-bottom: 8px;
+padding-left: 5px;
+padding-right: 5px;
+}
+#phheunqgln .gt_first_summary_row {
+border-top-style: solid;
+border-top-color: #D3D3D3;
+}
+#phheunqgln .gt_first_summary_row.thick {
+border-top-width: 2px;
+}
+#phheunqgln .gt_last_summary_row {
+padding-top: 8px;
+padding-bottom: 8px;
+padding-left: 5px;
+padding-right: 5px;
+border-bottom-style: solid;
+border-bottom-width: 2px;
+border-bottom-color: #D3D3D3;
+}
+#phheunqgln .gt_grand_summary_row {
+color: #333333;
+background-color: #FFFFFF;
+text-transform: inherit;
+padding-top: 8px;
+padding-bottom: 8px;
+padding-left: 5px;
+padding-right: 5px;
+}
+#phheunqgln .gt_first_grand_summary_row {
+padding-top: 8px;
+padding-bottom: 8px;
+padding-left: 5px;
+padding-right: 5px;
+border-top-style: double;
+border-top-width: 6px;
+border-top-color: #D3D3D3;
+}
+#phheunqgln .gt_last_grand_summary_row_top {
+padding-top: 8px;
+padding-bottom: 8px;
+padding-left: 5px;
+padding-right: 5px;
+border-bottom-style: double;
+border-bottom-width: 6px;
+border-bottom-color: #D3D3D3;
+}
+#phheunqgln .gt_striped {
+background-color: rgba(128, 128, 128, 0.05);
+}
+#phheunqgln .gt_table_body {
+border-top-style: solid;
+border-top-width: 3px;
+border-top-color: #000000;
+border-bottom-style: solid;
+border-bottom-width: 3px;
+border-bottom-color: #000000;
+}
+#phheunqgln .gt_footnotes {
+color: #333333;
+background-color: #FFFFFF;
+border-bottom-style: none;
+border-bottom-width: 2px;
+border-bottom-color: #D3D3D3;
+border-left-style: none;
+border-left-width: 2px;
+border-left-color: #D3D3D3;
+border-right-style: none;
+border-right-width: 2px;
+border-right-color: #D3D3D3;
+}
+#phheunqgln .gt_footnote {
+margin: 0px;
+font-size: 90%;
+padding-top: 4px;
+padding-bottom: 4px;
+padding-left: 5px;
+padding-right: 5px;
+}
+#phheunqgln .gt_sourcenotes {
+color: #333333;
+background-color: #FFFFFF;
+border-bottom-style: none;
+border-bottom-width: 2px;
+border-bottom-color: #D3D3D3;
+border-left-style: none;
+border-left-width: 2px;
+border-left-color: #D3D3D3;
+border-right-style: none;
+border-right-width: 2px;
+border-right-color: #D3D3D3;
+}
+#phheunqgln .gt_sourcenote {
+font-size: 90%;
+padding-top: 4px;
+padding-bottom: 4px;
+padding-left: 5px;
+padding-right: 5px;
+}
+#phheunqgln .gt_left {
+text-align: left;
+}
+#phheunqgln .gt_center {
+text-align: center;
+}
+#phheunqgln .gt_right {
+text-align: right;
+font-variant-numeric: tabular-nums;
+}
+#phheunqgln .gt_font_normal {
+font-weight: normal;
+}
+#phheunqgln .gt_font_bold {
+font-weight: bold;
+}
+#phheunqgln .gt_font_italic {
+font-style: italic;
+}
+#phheunqgln .gt_super {
+font-size: 65%;
+}
+#phheunqgln .gt_footnote_marks {
+font-size: 75%;
+vertical-align: 0.4em;
+position: initial;
+}
+#phheunqgln .gt_asterisk {
+font-size: 100%;
+vertical-align: 0;
+}
+#phheunqgln .gt_indent_1 {
+text-indent: 5px;
+}
+#phheunqgln .gt_indent_2 {
+text-indent: 10px;
+}
+#phheunqgln .gt_indent_3 {
+text-indent: 15px;
+}
+#phheunqgln .gt_indent_4 {
+text-indent: 20px;
+}
+#phheunqgln .gt_indent_5 {
+text-indent: 25px;
+}
+#phheunqgln .katex-display {
+display: inline-flex !important;
+margin-bottom: 0.75em !important;
+}
+#phheunqgln div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+height: 0px !important;
+}
+</style>
+
+<table class="gt_table caption-top" data-quarto-postprocess="true" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
 <thead>
-<tr class="header">
-<th style="text-align: left;">name</th>
-<th style="text-align: right;">height</th>
-<th style="text-align: right;">mass</th>
-<th style="text-align: left;">hair_color</th>
-<th style="text-align: left;">skin_color</th>
-<th style="text-align: left;">eye_color</th>
-<th style="text-align: right;">birth_year</th>
-<th style="text-align: left;">sex</th>
-<th style="text-align: left;">gender</th>
-<th style="text-align: left;">homeworld</th>
-<th style="text-align: left;">species</th>
-<th style="text-align: left;">films</th>
-<th style="text-align: left;">vehicles</th>
-<th style="text-align: left;">starships</th>
+<tr class="gt_col_headings header">
+<th id="name" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" scope="col">name</th>
+<th id="height" class="gt_col_heading gt_columns_bottom_border gt_center" data-quarto-table-cell-role="th" scope="col">height</th>
+<th id="mass" class="gt_col_heading gt_columns_bottom_border gt_center" data-quarto-table-cell-role="th" scope="col">mass</th>
+<th id="hair_color" class="gt_col_heading gt_columns_bottom_border gt_center" data-quarto-table-cell-role="th" scope="col">hair_color</th>
+<th id="skin_color" class="gt_col_heading gt_columns_bottom_border gt_center" data-quarto-table-cell-role="th" scope="col">skin_color</th>
+<th id="eye_color" class="gt_col_heading gt_columns_bottom_border gt_center" data-quarto-table-cell-role="th" scope="col">eye_color</th>
+<th id="birth_year" class="gt_col_heading gt_columns_bottom_border gt_center" data-quarto-table-cell-role="th" scope="col">birth_year</th>
+<th id="sex" class="gt_col_heading gt_columns_bottom_border gt_center" data-quarto-table-cell-role="th" scope="col">sex</th>
+<th id="gender" class="gt_col_heading gt_columns_bottom_border gt_center" data-quarto-table-cell-role="th" scope="col">gender</th>
+<th id="homeworld" class="gt_col_heading gt_columns_bottom_border gt_center" data-quarto-table-cell-role="th" scope="col">homeworld</th>
+<th id="species" class="gt_col_heading gt_columns_bottom_border gt_center" data-quarto-table-cell-role="th" scope="col">species</th>
+<th id="films" class="gt_col_heading gt_columns_bottom_border gt_center" data-quarto-table-cell-role="th" scope="col">films</th>
+<th id="vehicles" class="gt_col_heading gt_columns_bottom_border gt_center" data-quarto-table-cell-role="th" scope="col">vehicles</th>
+<th id="starships" class="gt_col_heading gt_columns_bottom_border gt_center" data-quarto-table-cell-role="th" scope="col">starships</th>
 </tr>
 </thead>
-<tbody>
+<tbody class="gt_table_body">
 <tr class="odd">
-<td style="text-align: left;">Leia Organa</td>
-<td style="text-align: right;">150</td>
-<td style="text-align: right;">49</td>
-<td style="text-align: left;">brown</td>
-<td style="text-align: left;">light</td>
-<td style="text-align: left;">brown</td>
-<td style="text-align: right;">19</td>
-<td style="text-align: left;">female</td>
-<td style="text-align: left;">feminine</td>
-<td style="text-align: left;">Alderaan</td>
-<td style="text-align: left;">Human</td>
-<td style="text-align: left;">The Empire Strikes Back, Revenge of the Sith , Return of the Jedi , A New Hope , The Force Awakens</td>
-<td style="text-align: left;">Imperial Speeder Bike</td>
-<td style="text-align: left;"></td>
+<td class="gt_row gt_left" headers="name">Leia Organa</td>
+<td class="gt_row gt_center" headers="height">150</td>
+<td class="gt_row gt_center" headers="mass">49</td>
+<td class="gt_row gt_center" headers="hair_color">brown</td>
+<td class="gt_row gt_center" headers="skin_color">light</td>
+<td class="gt_row gt_center" headers="eye_color">brown</td>
+<td class="gt_row gt_center" headers="birth_year">19</td>
+<td class="gt_row gt_center" headers="sex">female</td>
+<td class="gt_row gt_center" headers="gender">feminine</td>
+<td class="gt_row gt_center" headers="homeworld">Alderaan</td>
+<td class="gt_row gt_center" headers="species">Human</td>
+<td class="gt_row gt_center" headers="films">A New Hope, The Empire Strikes Back, Return of the Jedi, Revenge of the Sith, The Force Awakens</td>
+<td class="gt_row gt_center" headers="vehicles">Imperial Speeder Bike</td>
+<td class="gt_row gt_center" headers="starships"></td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">Beru Whitesun lars</td>
-<td style="text-align: right;">165</td>
-<td style="text-align: right;">75</td>
-<td style="text-align: left;">brown</td>
-<td style="text-align: left;">light</td>
-<td style="text-align: left;">blue</td>
-<td style="text-align: right;">47</td>
-<td style="text-align: left;">female</td>
-<td style="text-align: left;">feminine</td>
-<td style="text-align: left;">Tatooine</td>
-<td style="text-align: left;">Human</td>
-<td style="text-align: left;">Attack of the Clones, Revenge of the Sith , A New Hope</td>
-<td style="text-align: left;"></td>
-<td style="text-align: left;"></td>
+<td class="gt_row gt_left" headers="name">Beru Whitesun Lars</td>
+<td class="gt_row gt_center" headers="height">165</td>
+<td class="gt_row gt_center" headers="mass">75</td>
+<td class="gt_row gt_center" headers="hair_color">brown</td>
+<td class="gt_row gt_center" headers="skin_color">light</td>
+<td class="gt_row gt_center" headers="eye_color">blue</td>
+<td class="gt_row gt_center" headers="birth_year">47</td>
+<td class="gt_row gt_center" headers="sex">female</td>
+<td class="gt_row gt_center" headers="gender">feminine</td>
+<td class="gt_row gt_center" headers="homeworld">Tatooine</td>
+<td class="gt_row gt_center" headers="species">Human</td>
+<td class="gt_row gt_center" headers="films">A New Hope, Attack of the Clones, Revenge of the Sith</td>
+<td class="gt_row gt_center" headers="vehicles"></td>
+<td class="gt_row gt_center" headers="starships"></td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;">Cordé</td>
-<td style="text-align: right;">157</td>
-<td style="text-align: right;">NA</td>
-<td style="text-align: left;">brown</td>
-<td style="text-align: left;">light</td>
-<td style="text-align: left;">brown</td>
-<td style="text-align: right;">NA</td>
-<td style="text-align: left;">female</td>
-<td style="text-align: left;">feminine</td>
-<td style="text-align: left;">Naboo</td>
-<td style="text-align: left;">Human</td>
-<td style="text-align: left;">Attack of the Clones</td>
-<td style="text-align: left;"></td>
-<td style="text-align: left;"></td>
+<td class="gt_row gt_left" headers="name">Padmé Amidala</td>
+<td class="gt_row gt_center" headers="height">185</td>
+<td class="gt_row gt_center" headers="mass">45</td>
+<td class="gt_row gt_center" headers="hair_color">brown</td>
+<td class="gt_row gt_center" headers="skin_color">light</td>
+<td class="gt_row gt_center" headers="eye_color">brown</td>
+<td class="gt_row gt_center" headers="birth_year">46</td>
+<td class="gt_row gt_center" headers="sex">female</td>
+<td class="gt_row gt_center" headers="gender">feminine</td>
+<td class="gt_row gt_center" headers="homeworld">Naboo</td>
+<td class="gt_row gt_center" headers="species">Human</td>
+<td class="gt_row gt_center" headers="films">The Phantom Menace, Attack of the Clones, Revenge of the Sith</td>
+<td class="gt_row gt_center" headers="vehicles"></td>
+<td class="gt_row gt_center" headers="starships">Naboo fighter, H-type Nubian yacht, Naboo star skiff</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">Dormé</td>
-<td style="text-align: right;">165</td>
-<td style="text-align: right;">NA</td>
-<td style="text-align: left;">brown</td>
-<td style="text-align: left;">light</td>
-<td style="text-align: left;">brown</td>
-<td style="text-align: right;">NA</td>
-<td style="text-align: left;">female</td>
-<td style="text-align: left;">feminine</td>
-<td style="text-align: left;">Naboo</td>
-<td style="text-align: left;">Human</td>
-<td style="text-align: left;">Attack of the Clones</td>
-<td style="text-align: left;"></td>
-<td style="text-align: left;"></td>
+<td class="gt_row gt_left" headers="name">Dormé</td>
+<td class="gt_row gt_center" headers="height">165</td>
+<td class="gt_row gt_center" headers="mass">NA</td>
+<td class="gt_row gt_center" headers="hair_color">brown</td>
+<td class="gt_row gt_center" headers="skin_color">light</td>
+<td class="gt_row gt_center" headers="eye_color">brown</td>
+<td class="gt_row gt_center" headers="birth_year">NA</td>
+<td class="gt_row gt_center" headers="sex">female</td>
+<td class="gt_row gt_center" headers="gender">feminine</td>
+<td class="gt_row gt_center" headers="homeworld">Naboo</td>
+<td class="gt_row gt_center" headers="species">Human</td>
+<td class="gt_row gt_center" headers="films">Attack of the Clones</td>
+<td class="gt_row gt_center" headers="vehicles"></td>
+<td class="gt_row gt_center" headers="starships"></td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;">Rey</td>
-<td style="text-align: right;">NA</td>
-<td style="text-align: right;">NA</td>
-<td style="text-align: left;">brown</td>
-<td style="text-align: left;">light</td>
-<td style="text-align: left;">hazel</td>
-<td style="text-align: right;">NA</td>
-<td style="text-align: left;">female</td>
-<td style="text-align: left;">feminine</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">Human</td>
-<td style="text-align: left;">The Force Awakens</td>
-<td style="text-align: left;"></td>
-<td style="text-align: left;"></td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Padmé Amidala</td>
-<td style="text-align: right;">165</td>
-<td style="text-align: right;">45</td>
-<td style="text-align: left;">brown</td>
-<td style="text-align: left;">light</td>
-<td style="text-align: left;">brown</td>
-<td style="text-align: right;">46</td>
-<td style="text-align: left;">female</td>
-<td style="text-align: left;">feminine</td>
-<td style="text-align: left;">Naboo</td>
-<td style="text-align: left;">Human</td>
-<td style="text-align: left;">Attack of the Clones, The Phantom Menace , Revenge of the Sith</td>
-<td style="text-align: left;"></td>
-<td style="text-align: left;">H-type Nubian yacht, Naboo star skiff , Naboo fighter</td>
+<td class="gt_row gt_left" headers="name">Rey</td>
+<td class="gt_row gt_center" headers="height">NA</td>
+<td class="gt_row gt_center" headers="mass">NA</td>
+<td class="gt_row gt_center" headers="hair_color">brown</td>
+<td class="gt_row gt_center" headers="skin_color">light</td>
+<td class="gt_row gt_center" headers="eye_color">hazel</td>
+<td class="gt_row gt_center" headers="birth_year">NA</td>
+<td class="gt_row gt_center" headers="sex">female</td>
+<td class="gt_row gt_center" headers="gender">feminine</td>
+<td class="gt_row gt_center" headers="homeworld">NA</td>
+<td class="gt_row gt_center" headers="species">Human</td>
+<td class="gt_row gt_center" headers="films">The Force Awakens</td>
+<td class="gt_row gt_center" headers="vehicles"></td>
+<td class="gt_row gt_center" headers="starships"></td>
 </tr>
 </tbody>
 </table>
+
 </div>
 </div>
 </div>
@@ -1272,11 +1640,12 @@ Jürgen Wilbert
 </section>
 <section id="task-1" class="slide level2">
 <h2>Task</h2>
+<div class="task">
 <ul>
 <li>Take the <code>starwars</code> database.</li>
 <li>Filter for <code>Human</code> and select the variables <code>name, height, and mass</code> (Hint: variable <code>species</code>)</li>
 </ul>
-<p><span style="color: red;"><strong>:-)</strong></span></p>
+</div>
 </section>
 <section class="slide level2">
 
@@ -1316,7 +1685,7 @@ Jürgen Wilbert
 <td style="text-align: right;">120.0</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;">Beru Whitesun lars</td>
+<td style="text-align: left;">Beru Whitesun Lars</td>
 <td style="text-align: right;">165</td>
 <td style="text-align: right;">75.0</td>
 </tr>
@@ -1351,48 +1720,58 @@ Jürgen Wilbert
 <td style="text-align: right;">77.0</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">Jek Tono Porkins</td>
-<td style="text-align: right;">180</td>
-<td style="text-align: right;">110.0</td>
-</tr>
-<tr class="odd">
 <td style="text-align: left;">Palpatine</td>
 <td style="text-align: right;">170</td>
 <td style="text-align: right;">75.0</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td style="text-align: left;">Boba Fett</td>
 <td style="text-align: right;">183</td>
 <td style="text-align: right;">78.2</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td style="text-align: left;">Lando Calrissian</td>
 <td style="text-align: right;">177</td>
 <td style="text-align: right;">79.0</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td style="text-align: left;">Lobot</td>
 <td style="text-align: right;">175</td>
 <td style="text-align: right;">79.0</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td style="text-align: left;">Mon Mothma</td>
 <td style="text-align: right;">150</td>
 <td style="text-align: right;">NA</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td style="text-align: left;">Arvel Crynyd</td>
 <td style="text-align: right;">NA</td>
 <td style="text-align: right;">NA</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td style="text-align: left;">Qui-Gon Jinn</td>
 <td style="text-align: right;">193</td>
 <td style="text-align: right;">89.0</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td style="text-align: left;">Finis Valorum</td>
 <td style="text-align: right;">170</td>
+<td style="text-align: right;">NA</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Padmé Amidala</td>
+<td style="text-align: right;">185</td>
+<td style="text-align: right;">45.0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Ric Olié</td>
+<td style="text-align: right;">183</td>
+<td style="text-align: right;">NA</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Quarsh Panaka</td>
+<td style="text-align: right;">183</td>
 <td style="text-align: right;">NA</td>
 </tr>
 <tr class="odd">
@@ -1404,16 +1783,6 @@ Jürgen Wilbert
 <td style="text-align: left;">Mace Windu</td>
 <td style="text-align: right;">188</td>
 <td style="text-align: right;">84.0</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Gregar Typho</td>
-<td style="text-align: right;">185</td>
-<td style="text-align: right;">85.0</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Cordé</td>
-<td style="text-align: right;">157</td>
-<td style="text-align: right;">NA</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">Cliegg Lars</td>
@@ -1466,9 +1835,9 @@ Jürgen Wilbert
 <td style="text-align: right;">NA</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;">Padmé Amidala</td>
-<td style="text-align: right;">165</td>
-<td style="text-align: right;">45.0</td>
+<td style="text-align: left;">Captain Phasma</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
 </tr>
 </tbody>
 </table>
@@ -1476,7 +1845,7 @@ Jürgen Wilbert
 </div>
 </div>
 </section>
-<section id="help-functions-to-select-variables" class="slide level2">
+<section id="help-functions-to-select-variables" class="slide level2 smaller">
 <h2>Help functions to select variables</h2>
 <ul>
 <li><code>contains()</code>: selects all variables which names contain a certain string.<br>
@@ -1500,1444 +1869,530 @@ Jürgen Wilbert
 <div class="cell">
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href></a>starwars <span class="sc">%&gt;%</span> </span>
 <span id="cb6-2"><a href></a>  <span class="fu">relocate</span>(name, birth_year, sex)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
 <div class="cell-output-display">
-<div class="kable-table">
-<table class="caption-top" style="width:100%;">
-<colgroup>
-<col style="width: 4%">
-<col style="width: 2%">
-<col style="width: 3%">
-<col style="width: 1%">
-<col style="width: 1%">
-<col style="width: 2%">
-<col style="width: 4%">
-<col style="width: 2%">
-<col style="width: 2%">
-<col style="width: 3%">
-<col style="width: 3%">
-<col style="width: 34%">
-<col style="width: 9%">
-<col style="width: 26%">
-</colgroup>
+<div id="aenhtoclea" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#aenhtoclea table {
+font-family: times, system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+-webkit-font-smoothing: antialiased;
+-moz-osx-font-smoothing: grayscale;
+}
+#aenhtoclea thead, #aenhtoclea tbody, #aenhtoclea tfoot, #aenhtoclea tr, #aenhtoclea td, #aenhtoclea th {
+border-style: none;
+}
+#aenhtoclea p {
+margin: 0;
+padding: 0;
+}
+#aenhtoclea .gt_table {
+display: table;
+border-collapse: collapse;
+line-height: normal;
+margin-left: auto;
+margin-right: auto;
+color: #333333;
+font-size: 16px;
+font-weight: normal;
+font-style: normal;
+background-color: #FFFFFF;
+width: auto;
+border-top-style: solid;
+border-top-width: 2px;
+border-top-color: #FFFFFF;
+border-right-style: none;
+border-right-width: 2px;
+border-right-color: #D3D3D3;
+border-bottom-style: solid;
+border-bottom-width: 2px;
+border-bottom-color: #FFFFFF;
+border-left-style: none;
+border-left-width: 2px;
+border-left-color: #D3D3D3;
+}
+#aenhtoclea .gt_caption {
+padding-top: 4px;
+padding-bottom: 4px;
+}
+#aenhtoclea .gt_title {
+color: #333333;
+font-size: 100%;
+font-weight: initial;
+padding-top: 4px;
+padding-bottom: 4px;
+padding-left: 5px;
+padding-right: 5px;
+border-bottom-color: #FFFFFF;
+border-bottom-width: 0;
+}
+#aenhtoclea .gt_subtitle {
+color: #333333;
+font-size: 85%;
+font-weight: initial;
+padding-top: 3px;
+padding-bottom: 5px;
+padding-left: 5px;
+padding-right: 5px;
+border-top-color: #FFFFFF;
+border-top-width: 0;
+}
+#aenhtoclea .gt_heading {
+background-color: #FFFFFF;
+text-align: left;
+border-bottom-color: #FFFFFF;
+border-left-style: none;
+border-left-width: 1px;
+border-left-color: #D3D3D3;
+border-right-style: none;
+border-right-width: 1px;
+border-right-color: #D3D3D3;
+}
+#aenhtoclea .gt_bottom_border {
+border-bottom-style: solid;
+border-bottom-width: 3px;
+border-bottom-color: #000000;
+}
+#aenhtoclea .gt_col_headings {
+border-top-style: solid;
+border-top-width: 3px;
+border-top-color: #000000;
+border-bottom-style: solid;
+border-bottom-width: 2px;
+border-bottom-color: #000000;
+border-left-style: none;
+border-left-width: 1px;
+border-left-color: #D3D3D3;
+border-right-style: none;
+border-right-width: 1px;
+border-right-color: #D3D3D3;
+}
+#aenhtoclea .gt_col_heading {
+color: #333333;
+background-color: #FFFFFF;
+font-size: 100%;
+font-weight: normal;
+text-transform: inherit;
+border-left-style: none;
+border-left-width: 1px;
+border-left-color: #D3D3D3;
+border-right-style: none;
+border-right-width: 1px;
+border-right-color: #D3D3D3;
+vertical-align: bottom;
+padding-top: 5px;
+padding-bottom: 6px;
+padding-left: 5px;
+padding-right: 5px;
+overflow-x: hidden;
+}
+#aenhtoclea .gt_column_spanner_outer {
+color: #333333;
+background-color: #FFFFFF;
+font-size: 100%;
+font-weight: normal;
+text-transform: inherit;
+padding-top: 0;
+padding-bottom: 0;
+padding-left: 4px;
+padding-right: 4px;
+}
+#aenhtoclea .gt_column_spanner_outer:first-child {
+padding-left: 0;
+}
+#aenhtoclea .gt_column_spanner_outer:last-child {
+padding-right: 0;
+}
+#aenhtoclea .gt_column_spanner {
+border-bottom-style: solid;
+border-bottom-width: 2px;
+border-bottom-color: #000000;
+vertical-align: bottom;
+padding-top: 5px;
+padding-bottom: 5px;
+overflow-x: hidden;
+display: inline-block;
+width: 100%;
+}
+#aenhtoclea .gt_spanner_row {
+border-bottom-style: hidden;
+}
+#aenhtoclea .gt_group_heading {
+padding-top: 8px;
+padding-bottom: 8px;
+padding-left: 5px;
+padding-right: 5px;
+color: #333333;
+background-color: #FFFFFF;
+font-size: 100%;
+font-weight: initial;
+text-transform: inherit;
+border-top-style: solid;
+border-top-width: 2px;
+border-top-color: #D3D3D3;
+border-bottom-style: solid;
+border-bottom-width: 2px;
+border-bottom-color: #FFFFFF;
+border-left-style: none;
+border-left-width: 1px;
+border-left-color: #D3D3D3;
+border-right-style: none;
+border-right-width: 1px;
+border-right-color: #D3D3D3;
+vertical-align: middle;
+text-align: left;
+}
+#aenhtoclea .gt_empty_group_heading {
+padding: 0.5px;
+color: #333333;
+background-color: #FFFFFF;
+font-size: 100%;
+font-weight: initial;
+border-top-style: solid;
+border-top-width: 2px;
+border-top-color: #D3D3D3;
+border-bottom-style: solid;
+border-bottom-width: 2px;
+border-bottom-color: #FFFFFF;
+vertical-align: middle;
+}
+#aenhtoclea .gt_from_md > :first-child {
+margin-top: 0;
+}
+#aenhtoclea .gt_from_md > :last-child {
+margin-bottom: 0;
+}
+#aenhtoclea .gt_row {
+padding-top: 8px;
+padding-bottom: 8px;
+padding-left: 5px;
+padding-right: 5px;
+margin: 10px;
+border-top-style: solid;
+border-top-width: 0px;
+border-top-color: #D3D3D3;
+border-left-style: none;
+border-left-width: 1px;
+border-left-color: #D3D3D3;
+border-right-style: none;
+border-right-width: 1px;
+border-right-color: #D3D3D3;
+vertical-align: middle;
+overflow-x: hidden;
+}
+#aenhtoclea .gt_stub {
+color: #333333;
+background-color: #FFFFFF;
+font-size: 100%;
+font-weight: initial;
+text-transform: inherit;
+border-right-style: solid;
+border-right-width: 2px;
+border-right-color: #D3D3D3;
+padding-left: 5px;
+padding-right: 5px;
+}
+#aenhtoclea .gt_stub_row_group {
+color: #333333;
+background-color: #FFFFFF;
+font-size: 100%;
+font-weight: initial;
+text-transform: inherit;
+border-right-style: solid;
+border-right-width: 2px;
+border-right-color: #D3D3D3;
+padding-left: 5px;
+padding-right: 5px;
+vertical-align: top;
+}
+#aenhtoclea .gt_row_group_first td {
+border-top-width: 2px;
+}
+#aenhtoclea .gt_row_group_first th {
+border-top-width: 2px;
+}
+#aenhtoclea .gt_summary_row {
+color: #333333;
+background-color: #FFFFFF;
+text-transform: inherit;
+padding-top: 8px;
+padding-bottom: 8px;
+padding-left: 5px;
+padding-right: 5px;
+}
+#aenhtoclea .gt_first_summary_row {
+border-top-style: solid;
+border-top-color: #D3D3D3;
+}
+#aenhtoclea .gt_first_summary_row.thick {
+border-top-width: 2px;
+}
+#aenhtoclea .gt_last_summary_row {
+padding-top: 8px;
+padding-bottom: 8px;
+padding-left: 5px;
+padding-right: 5px;
+border-bottom-style: solid;
+border-bottom-width: 2px;
+border-bottom-color: #D3D3D3;
+}
+#aenhtoclea .gt_grand_summary_row {
+color: #333333;
+background-color: #FFFFFF;
+text-transform: inherit;
+padding-top: 8px;
+padding-bottom: 8px;
+padding-left: 5px;
+padding-right: 5px;
+}
+#aenhtoclea .gt_first_grand_summary_row {
+padding-top: 8px;
+padding-bottom: 8px;
+padding-left: 5px;
+padding-right: 5px;
+border-top-style: double;
+border-top-width: 6px;
+border-top-color: #D3D3D3;
+}
+#aenhtoclea .gt_last_grand_summary_row_top {
+padding-top: 8px;
+padding-bottom: 8px;
+padding-left: 5px;
+padding-right: 5px;
+border-bottom-style: double;
+border-bottom-width: 6px;
+border-bottom-color: #D3D3D3;
+}
+#aenhtoclea .gt_striped {
+background-color: rgba(128, 128, 128, 0.05);
+}
+#aenhtoclea .gt_table_body {
+border-top-style: solid;
+border-top-width: 3px;
+border-top-color: #000000;
+border-bottom-style: solid;
+border-bottom-width: 3px;
+border-bottom-color: #000000;
+}
+#aenhtoclea .gt_footnotes {
+color: #333333;
+background-color: #FFFFFF;
+border-bottom-style: none;
+border-bottom-width: 2px;
+border-bottom-color: #D3D3D3;
+border-left-style: none;
+border-left-width: 2px;
+border-left-color: #D3D3D3;
+border-right-style: none;
+border-right-width: 2px;
+border-right-color: #D3D3D3;
+}
+#aenhtoclea .gt_footnote {
+margin: 0px;
+font-size: 90%;
+padding-top: 4px;
+padding-bottom: 4px;
+padding-left: 5px;
+padding-right: 5px;
+}
+#aenhtoclea .gt_sourcenotes {
+color: #333333;
+background-color: #FFFFFF;
+border-bottom-style: none;
+border-bottom-width: 2px;
+border-bottom-color: #D3D3D3;
+border-left-style: none;
+border-left-width: 2px;
+border-left-color: #D3D3D3;
+border-right-style: none;
+border-right-width: 2px;
+border-right-color: #D3D3D3;
+}
+#aenhtoclea .gt_sourcenote {
+font-size: 90%;
+padding-top: 4px;
+padding-bottom: 4px;
+padding-left: 5px;
+padding-right: 5px;
+}
+#aenhtoclea .gt_left {
+text-align: left;
+}
+#aenhtoclea .gt_center {
+text-align: center;
+}
+#aenhtoclea .gt_right {
+text-align: right;
+font-variant-numeric: tabular-nums;
+}
+#aenhtoclea .gt_font_normal {
+font-weight: normal;
+}
+#aenhtoclea .gt_font_bold {
+font-weight: bold;
+}
+#aenhtoclea .gt_font_italic {
+font-style: italic;
+}
+#aenhtoclea .gt_super {
+font-size: 65%;
+}
+#aenhtoclea .gt_footnote_marks {
+font-size: 75%;
+vertical-align: 0.4em;
+position: initial;
+}
+#aenhtoclea .gt_asterisk {
+font-size: 100%;
+vertical-align: 0;
+}
+#aenhtoclea .gt_indent_1 {
+text-indent: 5px;
+}
+#aenhtoclea .gt_indent_2 {
+text-indent: 10px;
+}
+#aenhtoclea .gt_indent_3 {
+text-indent: 15px;
+}
+#aenhtoclea .gt_indent_4 {
+text-indent: 20px;
+}
+#aenhtoclea .gt_indent_5 {
+text-indent: 25px;
+}
+#aenhtoclea .katex-display {
+display: inline-flex !important;
+margin-bottom: 0.75em !important;
+}
+#aenhtoclea div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+height: 0px !important;
+}
+</style>
+
+<table class="gt_table caption-top" data-quarto-postprocess="true" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
 <thead>
-<tr class="header">
-<th style="text-align: left;">name</th>
-<th style="text-align: right;">birth_year</th>
-<th style="text-align: left;">sex</th>
-<th style="text-align: right;">height</th>
-<th style="text-align: right;">mass</th>
-<th style="text-align: left;">hair_color</th>
-<th style="text-align: left;">skin_color</th>
-<th style="text-align: left;">eye_color</th>
-<th style="text-align: left;">gender</th>
-<th style="text-align: left;">homeworld</th>
-<th style="text-align: left;">species</th>
-<th style="text-align: left;">films</th>
-<th style="text-align: left;">vehicles</th>
-<th style="text-align: left;">starships</th>
+<tr class="gt_col_headings header">
+<th id="name" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" scope="col">name</th>
+<th id="birth_year" class="gt_col_heading gt_columns_bottom_border gt_center" data-quarto-table-cell-role="th" scope="col">birth_year</th>
+<th id="sex" class="gt_col_heading gt_columns_bottom_border gt_center" data-quarto-table-cell-role="th" scope="col">sex</th>
+<th id="height" class="gt_col_heading gt_columns_bottom_border gt_center" data-quarto-table-cell-role="th" scope="col">height</th>
+<th id="mass" class="gt_col_heading gt_columns_bottom_border gt_center" data-quarto-table-cell-role="th" scope="col">mass</th>
+<th id="hair_color" class="gt_col_heading gt_columns_bottom_border gt_center" data-quarto-table-cell-role="th" scope="col">hair_color</th>
+<th id="skin_color" class="gt_col_heading gt_columns_bottom_border gt_center" data-quarto-table-cell-role="th" scope="col">skin_color</th>
+<th id="eye_color" class="gt_col_heading gt_columns_bottom_border gt_center" data-quarto-table-cell-role="th" scope="col">eye_color</th>
 </tr>
 </thead>
-<tbody>
+<tbody class="gt_table_body">
 <tr class="odd">
-<td style="text-align: left;">Luke Skywalker</td>
-<td style="text-align: right;">19.0</td>
-<td style="text-align: left;">male</td>
-<td style="text-align: right;">172</td>
-<td style="text-align: right;">77.0</td>
-<td style="text-align: left;">blond</td>
-<td style="text-align: left;">fair</td>
-<td style="text-align: left;">blue</td>
-<td style="text-align: left;">masculine</td>
-<td style="text-align: left;">Tatooine</td>
-<td style="text-align: left;">Human</td>
-<td style="text-align: left;">The Empire Strikes Back, Revenge of the Sith , Return of the Jedi , A New Hope , The Force Awakens</td>
-<td style="text-align: left;">Snowspeeder , Imperial Speeder Bike</td>
-<td style="text-align: left;">X-wing , Imperial shuttle</td>
+<td class="gt_row gt_left" headers="name">Luke Skywalker</td>
+<td class="gt_row gt_center" headers="birth_year">19.0</td>
+<td class="gt_row gt_center" headers="sex">male</td>
+<td class="gt_row gt_center" headers="height">172</td>
+<td class="gt_row gt_center" headers="mass">77</td>
+<td class="gt_row gt_center" headers="hair_color">blond</td>
+<td class="gt_row gt_center" headers="skin_color">fair</td>
+<td class="gt_row gt_center" headers="eye_color">blue</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">C-3PO</td>
-<td style="text-align: right;">112.0</td>
-<td style="text-align: left;">none</td>
-<td style="text-align: right;">167</td>
-<td style="text-align: right;">75.0</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">gold</td>
-<td style="text-align: left;">yellow</td>
-<td style="text-align: left;">masculine</td>
-<td style="text-align: left;">Tatooine</td>
-<td style="text-align: left;">Droid</td>
-<td style="text-align: left;">The Empire Strikes Back, Attack of the Clones , The Phantom Menace , Revenge of the Sith , Return of the Jedi , A New Hope</td>
-<td style="text-align: left;"></td>
-<td style="text-align: left;"></td>
+<td class="gt_row gt_left" headers="name">C-3PO</td>
+<td class="gt_row gt_center" headers="birth_year">112.0</td>
+<td class="gt_row gt_center" headers="sex">none</td>
+<td class="gt_row gt_center" headers="height">167</td>
+<td class="gt_row gt_center" headers="mass">75</td>
+<td class="gt_row gt_center" headers="hair_color">NA</td>
+<td class="gt_row gt_center" headers="skin_color">gold</td>
+<td class="gt_row gt_center" headers="eye_color">yellow</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;">R2-D2</td>
-<td style="text-align: right;">33.0</td>
-<td style="text-align: left;">none</td>
-<td style="text-align: right;">96</td>
-<td style="text-align: right;">32.0</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">white, blue</td>
-<td style="text-align: left;">red</td>
-<td style="text-align: left;">masculine</td>
-<td style="text-align: left;">Naboo</td>
-<td style="text-align: left;">Droid</td>
-<td style="text-align: left;">The Empire Strikes Back, Attack of the Clones , The Phantom Menace , Revenge of the Sith , Return of the Jedi , A New Hope , The Force Awakens</td>
-<td style="text-align: left;"></td>
-<td style="text-align: left;"></td>
+<td class="gt_row gt_left" headers="name">R2-D2</td>
+<td class="gt_row gt_center" headers="birth_year">33.0</td>
+<td class="gt_row gt_center" headers="sex">none</td>
+<td class="gt_row gt_center" headers="height">96</td>
+<td class="gt_row gt_center" headers="mass">32</td>
+<td class="gt_row gt_center" headers="hair_color">NA</td>
+<td class="gt_row gt_center" headers="skin_color">white, blue</td>
+<td class="gt_row gt_center" headers="eye_color">red</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">Darth Vader</td>
-<td style="text-align: right;">41.9</td>
-<td style="text-align: left;">male</td>
-<td style="text-align: right;">202</td>
-<td style="text-align: right;">136.0</td>
-<td style="text-align: left;">none</td>
-<td style="text-align: left;">white</td>
-<td style="text-align: left;">yellow</td>
-<td style="text-align: left;">masculine</td>
-<td style="text-align: left;">Tatooine</td>
-<td style="text-align: left;">Human</td>
-<td style="text-align: left;">The Empire Strikes Back, Revenge of the Sith , Return of the Jedi , A New Hope</td>
-<td style="text-align: left;"></td>
-<td style="text-align: left;">TIE Advanced x1</td>
+<td class="gt_row gt_left" headers="name">Darth Vader</td>
+<td class="gt_row gt_center" headers="birth_year">41.9</td>
+<td class="gt_row gt_center" headers="sex">male</td>
+<td class="gt_row gt_center" headers="height">202</td>
+<td class="gt_row gt_center" headers="mass">136</td>
+<td class="gt_row gt_center" headers="hair_color">none</td>
+<td class="gt_row gt_center" headers="skin_color">white</td>
+<td class="gt_row gt_center" headers="eye_color">yellow</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;">Leia Organa</td>
-<td style="text-align: right;">19.0</td>
-<td style="text-align: left;">female</td>
-<td style="text-align: right;">150</td>
-<td style="text-align: right;">49.0</td>
-<td style="text-align: left;">brown</td>
-<td style="text-align: left;">light</td>
-<td style="text-align: left;">brown</td>
-<td style="text-align: left;">feminine</td>
-<td style="text-align: left;">Alderaan</td>
-<td style="text-align: left;">Human</td>
-<td style="text-align: left;">The Empire Strikes Back, Revenge of the Sith , Return of the Jedi , A New Hope , The Force Awakens</td>
-<td style="text-align: left;">Imperial Speeder Bike</td>
-<td style="text-align: left;"></td>
+<td class="gt_row gt_left" headers="name">Leia Organa</td>
+<td class="gt_row gt_center" headers="birth_year">19.0</td>
+<td class="gt_row gt_center" headers="sex">female</td>
+<td class="gt_row gt_center" headers="height">150</td>
+<td class="gt_row gt_center" headers="mass">49</td>
+<td class="gt_row gt_center" headers="hair_color">brown</td>
+<td class="gt_row gt_center" headers="skin_color">light</td>
+<td class="gt_row gt_center" headers="eye_color">brown</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">Owen Lars</td>
-<td style="text-align: right;">52.0</td>
-<td style="text-align: left;">male</td>
-<td style="text-align: right;">178</td>
-<td style="text-align: right;">120.0</td>
-<td style="text-align: left;">brown, grey</td>
-<td style="text-align: left;">light</td>
-<td style="text-align: left;">blue</td>
-<td style="text-align: left;">masculine</td>
-<td style="text-align: left;">Tatooine</td>
-<td style="text-align: left;">Human</td>
-<td style="text-align: left;">Attack of the Clones, Revenge of the Sith , A New Hope</td>
-<td style="text-align: left;"></td>
-<td style="text-align: left;"></td>
+<td class="gt_row gt_left" headers="name">Owen Lars</td>
+<td class="gt_row gt_center" headers="birth_year">52.0</td>
+<td class="gt_row gt_center" headers="sex">male</td>
+<td class="gt_row gt_center" headers="height">178</td>
+<td class="gt_row gt_center" headers="mass">120</td>
+<td class="gt_row gt_center" headers="hair_color">brown, grey</td>
+<td class="gt_row gt_center" headers="skin_color">light</td>
+<td class="gt_row gt_center" headers="eye_color">blue</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;">Beru Whitesun lars</td>
-<td style="text-align: right;">47.0</td>
-<td style="text-align: left;">female</td>
-<td style="text-align: right;">165</td>
-<td style="text-align: right;">75.0</td>
-<td style="text-align: left;">brown</td>
-<td style="text-align: left;">light</td>
-<td style="text-align: left;">blue</td>
-<td style="text-align: left;">feminine</td>
-<td style="text-align: left;">Tatooine</td>
-<td style="text-align: left;">Human</td>
-<td style="text-align: left;">Attack of the Clones, Revenge of the Sith , A New Hope</td>
-<td style="text-align: left;"></td>
-<td style="text-align: left;"></td>
+<td class="gt_row gt_left" headers="name">Beru Whitesun Lars</td>
+<td class="gt_row gt_center" headers="birth_year">47.0</td>
+<td class="gt_row gt_center" headers="sex">female</td>
+<td class="gt_row gt_center" headers="height">165</td>
+<td class="gt_row gt_center" headers="mass">75</td>
+<td class="gt_row gt_center" headers="hair_color">brown</td>
+<td class="gt_row gt_center" headers="skin_color">light</td>
+<td class="gt_row gt_center" headers="eye_color">blue</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">R5-D4</td>
-<td style="text-align: right;">NA</td>
-<td style="text-align: left;">none</td>
-<td style="text-align: right;">97</td>
-<td style="text-align: right;">32.0</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">white, red</td>
-<td style="text-align: left;">red</td>
-<td style="text-align: left;">masculine</td>
-<td style="text-align: left;">Tatooine</td>
-<td style="text-align: left;">Droid</td>
-<td style="text-align: left;">A New Hope</td>
-<td style="text-align: left;"></td>
-<td style="text-align: left;"></td>
+<td class="gt_row gt_left" headers="name">R5-D4</td>
+<td class="gt_row gt_center" headers="birth_year">NA</td>
+<td class="gt_row gt_center" headers="sex">none</td>
+<td class="gt_row gt_center" headers="height">97</td>
+<td class="gt_row gt_center" headers="mass">32</td>
+<td class="gt_row gt_center" headers="hair_color">NA</td>
+<td class="gt_row gt_center" headers="skin_color">white, red</td>
+<td class="gt_row gt_center" headers="eye_color">red</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;">Biggs Darklighter</td>
-<td style="text-align: right;">24.0</td>
-<td style="text-align: left;">male</td>
-<td style="text-align: right;">183</td>
-<td style="text-align: right;">84.0</td>
-<td style="text-align: left;">black</td>
-<td style="text-align: left;">light</td>
-<td style="text-align: left;">brown</td>
-<td style="text-align: left;">masculine</td>
-<td style="text-align: left;">Tatooine</td>
-<td style="text-align: left;">Human</td>
-<td style="text-align: left;">A New Hope</td>
-<td style="text-align: left;"></td>
-<td style="text-align: left;">X-wing</td>
+<td class="gt_row gt_left" headers="name">Biggs Darklighter</td>
+<td class="gt_row gt_center" headers="birth_year">24.0</td>
+<td class="gt_row gt_center" headers="sex">male</td>
+<td class="gt_row gt_center" headers="height">183</td>
+<td class="gt_row gt_center" headers="mass">84</td>
+<td class="gt_row gt_center" headers="hair_color">black</td>
+<td class="gt_row gt_center" headers="skin_color">light</td>
+<td class="gt_row gt_center" headers="eye_color">brown</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">Obi-Wan Kenobi</td>
-<td style="text-align: right;">57.0</td>
-<td style="text-align: left;">male</td>
-<td style="text-align: right;">182</td>
-<td style="text-align: right;">77.0</td>
-<td style="text-align: left;">auburn, white</td>
-<td style="text-align: left;">fair</td>
-<td style="text-align: left;">blue-gray</td>
-<td style="text-align: left;">masculine</td>
-<td style="text-align: left;">Stewjon</td>
-<td style="text-align: left;">Human</td>
-<td style="text-align: left;">The Empire Strikes Back, Attack of the Clones , The Phantom Menace , Revenge of the Sith , Return of the Jedi , A New Hope</td>
-<td style="text-align: left;">Tribubble bongo</td>
-<td style="text-align: left;">Jedi starfighter , Trade Federation cruiser, Naboo star skiff , Jedi Interceptor , Belbullab-22 starfighter</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Anakin Skywalker</td>
-<td style="text-align: right;">41.9</td>
-<td style="text-align: left;">male</td>
-<td style="text-align: right;">188</td>
-<td style="text-align: right;">84.0</td>
-<td style="text-align: left;">blond</td>
-<td style="text-align: left;">fair</td>
-<td style="text-align: left;">blue</td>
-<td style="text-align: left;">masculine</td>
-<td style="text-align: left;">Tatooine</td>
-<td style="text-align: left;">Human</td>
-<td style="text-align: left;">Attack of the Clones, The Phantom Menace , Revenge of the Sith</td>
-<td style="text-align: left;">Zephyr-G swoop bike, XJ-6 airspeeder</td>
-<td style="text-align: left;">Trade Federation cruiser, Jedi Interceptor , Naboo fighter</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Wilhuff Tarkin</td>
-<td style="text-align: right;">64.0</td>
-<td style="text-align: left;">male</td>
-<td style="text-align: right;">180</td>
-<td style="text-align: right;">NA</td>
-<td style="text-align: left;">auburn, grey</td>
-<td style="text-align: left;">fair</td>
-<td style="text-align: left;">blue</td>
-<td style="text-align: left;">masculine</td>
-<td style="text-align: left;">Eriadu</td>
-<td style="text-align: left;">Human</td>
-<td style="text-align: left;">Revenge of the Sith, A New Hope</td>
-<td style="text-align: left;"></td>
-<td style="text-align: left;"></td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Chewbacca</td>
-<td style="text-align: right;">200.0</td>
-<td style="text-align: left;">male</td>
-<td style="text-align: right;">228</td>
-<td style="text-align: right;">112.0</td>
-<td style="text-align: left;">brown</td>
-<td style="text-align: left;">unknown</td>
-<td style="text-align: left;">blue</td>
-<td style="text-align: left;">masculine</td>
-<td style="text-align: left;">Kashyyyk</td>
-<td style="text-align: left;">Wookiee</td>
-<td style="text-align: left;">The Empire Strikes Back, Revenge of the Sith , Return of the Jedi , A New Hope , The Force Awakens</td>
-<td style="text-align: left;">AT-ST</td>
-<td style="text-align: left;">Millennium Falcon, Imperial shuttle</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Han Solo</td>
-<td style="text-align: right;">29.0</td>
-<td style="text-align: left;">male</td>
-<td style="text-align: right;">180</td>
-<td style="text-align: right;">80.0</td>
-<td style="text-align: left;">brown</td>
-<td style="text-align: left;">fair</td>
-<td style="text-align: left;">brown</td>
-<td style="text-align: left;">masculine</td>
-<td style="text-align: left;">Corellia</td>
-<td style="text-align: left;">Human</td>
-<td style="text-align: left;">The Empire Strikes Back, Return of the Jedi , A New Hope , The Force Awakens</td>
-<td style="text-align: left;"></td>
-<td style="text-align: left;">Millennium Falcon, Imperial shuttle</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Greedo</td>
-<td style="text-align: right;">44.0</td>
-<td style="text-align: left;">male</td>
-<td style="text-align: right;">173</td>
-<td style="text-align: right;">74.0</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">green</td>
-<td style="text-align: left;">black</td>
-<td style="text-align: left;">masculine</td>
-<td style="text-align: left;">Rodia</td>
-<td style="text-align: left;">Rodian</td>
-<td style="text-align: left;">A New Hope</td>
-<td style="text-align: left;"></td>
-<td style="text-align: left;"></td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Jabba Desilijic Tiure</td>
-<td style="text-align: right;">600.0</td>
-<td style="text-align: left;">hermaphroditic</td>
-<td style="text-align: right;">175</td>
-<td style="text-align: right;">1358.0</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">green-tan, brown</td>
-<td style="text-align: left;">orange</td>
-<td style="text-align: left;">masculine</td>
-<td style="text-align: left;">Nal Hutta</td>
-<td style="text-align: left;">Hutt</td>
-<td style="text-align: left;">The Phantom Menace, Return of the Jedi, A New Hope</td>
-<td style="text-align: left;"></td>
-<td style="text-align: left;"></td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Wedge Antilles</td>
-<td style="text-align: right;">21.0</td>
-<td style="text-align: left;">male</td>
-<td style="text-align: right;">170</td>
-<td style="text-align: right;">77.0</td>
-<td style="text-align: left;">brown</td>
-<td style="text-align: left;">fair</td>
-<td style="text-align: left;">hazel</td>
-<td style="text-align: left;">masculine</td>
-<td style="text-align: left;">Corellia</td>
-<td style="text-align: left;">Human</td>
-<td style="text-align: left;">The Empire Strikes Back, Return of the Jedi , A New Hope</td>
-<td style="text-align: left;">Snowspeeder</td>
-<td style="text-align: left;">X-wing</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Jek Tono Porkins</td>
-<td style="text-align: right;">NA</td>
-<td style="text-align: left;">male</td>
-<td style="text-align: right;">180</td>
-<td style="text-align: right;">110.0</td>
-<td style="text-align: left;">brown</td>
-<td style="text-align: left;">fair</td>
-<td style="text-align: left;">blue</td>
-<td style="text-align: left;">masculine</td>
-<td style="text-align: left;">Bestine IV</td>
-<td style="text-align: left;">Human</td>
-<td style="text-align: left;">A New Hope</td>
-<td style="text-align: left;"></td>
-<td style="text-align: left;">X-wing</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Yoda</td>
-<td style="text-align: right;">896.0</td>
-<td style="text-align: left;">male</td>
-<td style="text-align: right;">66</td>
-<td style="text-align: right;">17.0</td>
-<td style="text-align: left;">white</td>
-<td style="text-align: left;">green</td>
-<td style="text-align: left;">brown</td>
-<td style="text-align: left;">masculine</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">Yoda’s species</td>
-<td style="text-align: left;">The Empire Strikes Back, Attack of the Clones , The Phantom Menace , Revenge of the Sith , Return of the Jedi</td>
-<td style="text-align: left;"></td>
-<td style="text-align: left;"></td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Palpatine</td>
-<td style="text-align: right;">82.0</td>
-<td style="text-align: left;">male</td>
-<td style="text-align: right;">170</td>
-<td style="text-align: right;">75.0</td>
-<td style="text-align: left;">grey</td>
-<td style="text-align: left;">pale</td>
-<td style="text-align: left;">yellow</td>
-<td style="text-align: left;">masculine</td>
-<td style="text-align: left;">Naboo</td>
-<td style="text-align: left;">Human</td>
-<td style="text-align: left;">The Empire Strikes Back, Attack of the Clones , The Phantom Menace , Revenge of the Sith , Return of the Jedi</td>
-<td style="text-align: left;"></td>
-<td style="text-align: left;"></td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Boba Fett</td>
-<td style="text-align: right;">31.5</td>
-<td style="text-align: left;">male</td>
-<td style="text-align: right;">183</td>
-<td style="text-align: right;">78.2</td>
-<td style="text-align: left;">black</td>
-<td style="text-align: left;">fair</td>
-<td style="text-align: left;">brown</td>
-<td style="text-align: left;">masculine</td>
-<td style="text-align: left;">Kamino</td>
-<td style="text-align: left;">Human</td>
-<td style="text-align: left;">The Empire Strikes Back, Attack of the Clones , Return of the Jedi</td>
-<td style="text-align: left;"></td>
-<td style="text-align: left;">Slave 1</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">IG-88</td>
-<td style="text-align: right;">15.0</td>
-<td style="text-align: left;">none</td>
-<td style="text-align: right;">200</td>
-<td style="text-align: right;">140.0</td>
-<td style="text-align: left;">none</td>
-<td style="text-align: left;">metal</td>
-<td style="text-align: left;">red</td>
-<td style="text-align: left;">masculine</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">Droid</td>
-<td style="text-align: left;">The Empire Strikes Back</td>
-<td style="text-align: left;"></td>
-<td style="text-align: left;"></td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Bossk</td>
-<td style="text-align: right;">53.0</td>
-<td style="text-align: left;">male</td>
-<td style="text-align: right;">190</td>
-<td style="text-align: right;">113.0</td>
-<td style="text-align: left;">none</td>
-<td style="text-align: left;">green</td>
-<td style="text-align: left;">red</td>
-<td style="text-align: left;">masculine</td>
-<td style="text-align: left;">Trandosha</td>
-<td style="text-align: left;">Trandoshan</td>
-<td style="text-align: left;">The Empire Strikes Back</td>
-<td style="text-align: left;"></td>
-<td style="text-align: left;"></td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Lando Calrissian</td>
-<td style="text-align: right;">31.0</td>
-<td style="text-align: left;">male</td>
-<td style="text-align: right;">177</td>
-<td style="text-align: right;">79.0</td>
-<td style="text-align: left;">black</td>
-<td style="text-align: left;">dark</td>
-<td style="text-align: left;">brown</td>
-<td style="text-align: left;">masculine</td>
-<td style="text-align: left;">Socorro</td>
-<td style="text-align: left;">Human</td>
-<td style="text-align: left;">The Empire Strikes Back, Return of the Jedi</td>
-<td style="text-align: left;"></td>
-<td style="text-align: left;">Millennium Falcon</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Lobot</td>
-<td style="text-align: right;">37.0</td>
-<td style="text-align: left;">male</td>
-<td style="text-align: right;">175</td>
-<td style="text-align: right;">79.0</td>
-<td style="text-align: left;">none</td>
-<td style="text-align: left;">light</td>
-<td style="text-align: left;">blue</td>
-<td style="text-align: left;">masculine</td>
-<td style="text-align: left;">Bespin</td>
-<td style="text-align: left;">Human</td>
-<td style="text-align: left;">The Empire Strikes Back</td>
-<td style="text-align: left;"></td>
-<td style="text-align: left;"></td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Ackbar</td>
-<td style="text-align: right;">41.0</td>
-<td style="text-align: left;">male</td>
-<td style="text-align: right;">180</td>
-<td style="text-align: right;">83.0</td>
-<td style="text-align: left;">none</td>
-<td style="text-align: left;">brown mottle</td>
-<td style="text-align: left;">orange</td>
-<td style="text-align: left;">masculine</td>
-<td style="text-align: left;">Mon Cala</td>
-<td style="text-align: left;">Mon Calamari</td>
-<td style="text-align: left;">Return of the Jedi, The Force Awakens</td>
-<td style="text-align: left;"></td>
-<td style="text-align: left;"></td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Mon Mothma</td>
-<td style="text-align: right;">48.0</td>
-<td style="text-align: left;">female</td>
-<td style="text-align: right;">150</td>
-<td style="text-align: right;">NA</td>
-<td style="text-align: left;">auburn</td>
-<td style="text-align: left;">fair</td>
-<td style="text-align: left;">blue</td>
-<td style="text-align: left;">feminine</td>
-<td style="text-align: left;">Chandrila</td>
-<td style="text-align: left;">Human</td>
-<td style="text-align: left;">Return of the Jedi</td>
-<td style="text-align: left;"></td>
-<td style="text-align: left;"></td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Arvel Crynyd</td>
-<td style="text-align: right;">NA</td>
-<td style="text-align: left;">male</td>
-<td style="text-align: right;">NA</td>
-<td style="text-align: right;">NA</td>
-<td style="text-align: left;">brown</td>
-<td style="text-align: left;">fair</td>
-<td style="text-align: left;">brown</td>
-<td style="text-align: left;">masculine</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">Human</td>
-<td style="text-align: left;">Return of the Jedi</td>
-<td style="text-align: left;"></td>
-<td style="text-align: left;">A-wing</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Wicket Systri Warrick</td>
-<td style="text-align: right;">8.0</td>
-<td style="text-align: left;">male</td>
-<td style="text-align: right;">88</td>
-<td style="text-align: right;">20.0</td>
-<td style="text-align: left;">brown</td>
-<td style="text-align: left;">brown</td>
-<td style="text-align: left;">brown</td>
-<td style="text-align: left;">masculine</td>
-<td style="text-align: left;">Endor</td>
-<td style="text-align: left;">Ewok</td>
-<td style="text-align: left;">Return of the Jedi</td>
-<td style="text-align: left;"></td>
-<td style="text-align: left;"></td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Nien Nunb</td>
-<td style="text-align: right;">NA</td>
-<td style="text-align: left;">male</td>
-<td style="text-align: right;">160</td>
-<td style="text-align: right;">68.0</td>
-<td style="text-align: left;">none</td>
-<td style="text-align: left;">grey</td>
-<td style="text-align: left;">black</td>
-<td style="text-align: left;">masculine</td>
-<td style="text-align: left;">Sullust</td>
-<td style="text-align: left;">Sullustan</td>
-<td style="text-align: left;">Return of the Jedi</td>
-<td style="text-align: left;"></td>
-<td style="text-align: left;">Millennium Falcon</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Qui-Gon Jinn</td>
-<td style="text-align: right;">92.0</td>
-<td style="text-align: left;">male</td>
-<td style="text-align: right;">193</td>
-<td style="text-align: right;">89.0</td>
-<td style="text-align: left;">brown</td>
-<td style="text-align: left;">fair</td>
-<td style="text-align: left;">blue</td>
-<td style="text-align: left;">masculine</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">Human</td>
-<td style="text-align: left;">The Phantom Menace</td>
-<td style="text-align: left;">Tribubble bongo</td>
-<td style="text-align: left;"></td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Nute Gunray</td>
-<td style="text-align: right;">NA</td>
-<td style="text-align: left;">male</td>
-<td style="text-align: right;">191</td>
-<td style="text-align: right;">90.0</td>
-<td style="text-align: left;">none</td>
-<td style="text-align: left;">mottled green</td>
-<td style="text-align: left;">red</td>
-<td style="text-align: left;">masculine</td>
-<td style="text-align: left;">Cato Neimoidia</td>
-<td style="text-align: left;">Neimodian</td>
-<td style="text-align: left;">Attack of the Clones, The Phantom Menace , Revenge of the Sith</td>
-<td style="text-align: left;"></td>
-<td style="text-align: left;"></td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Finis Valorum</td>
-<td style="text-align: right;">91.0</td>
-<td style="text-align: left;">male</td>
-<td style="text-align: right;">170</td>
-<td style="text-align: right;">NA</td>
-<td style="text-align: left;">blond</td>
-<td style="text-align: left;">fair</td>
-<td style="text-align: left;">blue</td>
-<td style="text-align: left;">masculine</td>
-<td style="text-align: left;">Coruscant</td>
-<td style="text-align: left;">Human</td>
-<td style="text-align: left;">The Phantom Menace</td>
-<td style="text-align: left;"></td>
-<td style="text-align: left;"></td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Jar Jar Binks</td>
-<td style="text-align: right;">52.0</td>
-<td style="text-align: left;">male</td>
-<td style="text-align: right;">196</td>
-<td style="text-align: right;">66.0</td>
-<td style="text-align: left;">none</td>
-<td style="text-align: left;">orange</td>
-<td style="text-align: left;">orange</td>
-<td style="text-align: left;">masculine</td>
-<td style="text-align: left;">Naboo</td>
-<td style="text-align: left;">Gungan</td>
-<td style="text-align: left;">Attack of the Clones, The Phantom Menace</td>
-<td style="text-align: left;"></td>
-<td style="text-align: left;"></td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Roos Tarpals</td>
-<td style="text-align: right;">NA</td>
-<td style="text-align: left;">male</td>
-<td style="text-align: right;">224</td>
-<td style="text-align: right;">82.0</td>
-<td style="text-align: left;">none</td>
-<td style="text-align: left;">grey</td>
-<td style="text-align: left;">orange</td>
-<td style="text-align: left;">masculine</td>
-<td style="text-align: left;">Naboo</td>
-<td style="text-align: left;">Gungan</td>
-<td style="text-align: left;">The Phantom Menace</td>
-<td style="text-align: left;"></td>
-<td style="text-align: left;"></td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Rugor Nass</td>
-<td style="text-align: right;">NA</td>
-<td style="text-align: left;">male</td>
-<td style="text-align: right;">206</td>
-<td style="text-align: right;">NA</td>
-<td style="text-align: left;">none</td>
-<td style="text-align: left;">green</td>
-<td style="text-align: left;">orange</td>
-<td style="text-align: left;">masculine</td>
-<td style="text-align: left;">Naboo</td>
-<td style="text-align: left;">Gungan</td>
-<td style="text-align: left;">The Phantom Menace</td>
-<td style="text-align: left;"></td>
-<td style="text-align: left;"></td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Ric Olié</td>
-<td style="text-align: right;">NA</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: right;">183</td>
-<td style="text-align: right;">NA</td>
-<td style="text-align: left;">brown</td>
-<td style="text-align: left;">fair</td>
-<td style="text-align: left;">blue</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">Naboo</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">The Phantom Menace</td>
-<td style="text-align: left;"></td>
-<td style="text-align: left;">Naboo Royal Starship</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Watto</td>
-<td style="text-align: right;">NA</td>
-<td style="text-align: left;">male</td>
-<td style="text-align: right;">137</td>
-<td style="text-align: right;">NA</td>
-<td style="text-align: left;">black</td>
-<td style="text-align: left;">blue, grey</td>
-<td style="text-align: left;">yellow</td>
-<td style="text-align: left;">masculine</td>
-<td style="text-align: left;">Toydaria</td>
-<td style="text-align: left;">Toydarian</td>
-<td style="text-align: left;">Attack of the Clones, The Phantom Menace</td>
-<td style="text-align: left;"></td>
-<td style="text-align: left;"></td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Sebulba</td>
-<td style="text-align: right;">NA</td>
-<td style="text-align: left;">male</td>
-<td style="text-align: right;">112</td>
-<td style="text-align: right;">40.0</td>
-<td style="text-align: left;">none</td>
-<td style="text-align: left;">grey, red</td>
-<td style="text-align: left;">orange</td>
-<td style="text-align: left;">masculine</td>
-<td style="text-align: left;">Malastare</td>
-<td style="text-align: left;">Dug</td>
-<td style="text-align: left;">The Phantom Menace</td>
-<td style="text-align: left;"></td>
-<td style="text-align: left;"></td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Quarsh Panaka</td>
-<td style="text-align: right;">62.0</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: right;">183</td>
-<td style="text-align: right;">NA</td>
-<td style="text-align: left;">black</td>
-<td style="text-align: left;">dark</td>
-<td style="text-align: left;">brown</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">Naboo</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">The Phantom Menace</td>
-<td style="text-align: left;"></td>
-<td style="text-align: left;"></td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Shmi Skywalker</td>
-<td style="text-align: right;">72.0</td>
-<td style="text-align: left;">female</td>
-<td style="text-align: right;">163</td>
-<td style="text-align: right;">NA</td>
-<td style="text-align: left;">black</td>
-<td style="text-align: left;">fair</td>
-<td style="text-align: left;">brown</td>
-<td style="text-align: left;">feminine</td>
-<td style="text-align: left;">Tatooine</td>
-<td style="text-align: left;">Human</td>
-<td style="text-align: left;">Attack of the Clones, The Phantom Menace</td>
-<td style="text-align: left;"></td>
-<td style="text-align: left;"></td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Darth Maul</td>
-<td style="text-align: right;">54.0</td>
-<td style="text-align: left;">male</td>
-<td style="text-align: right;">175</td>
-<td style="text-align: right;">80.0</td>
-<td style="text-align: left;">none</td>
-<td style="text-align: left;">red</td>
-<td style="text-align: left;">yellow</td>
-<td style="text-align: left;">masculine</td>
-<td style="text-align: left;">Dathomir</td>
-<td style="text-align: left;">Zabrak</td>
-<td style="text-align: left;">The Phantom Menace</td>
-<td style="text-align: left;">Sith speeder</td>
-<td style="text-align: left;">Scimitar</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Bib Fortuna</td>
-<td style="text-align: right;">NA</td>
-<td style="text-align: left;">male</td>
-<td style="text-align: right;">180</td>
-<td style="text-align: right;">NA</td>
-<td style="text-align: left;">none</td>
-<td style="text-align: left;">pale</td>
-<td style="text-align: left;">pink</td>
-<td style="text-align: left;">masculine</td>
-<td style="text-align: left;">Ryloth</td>
-<td style="text-align: left;">Twi’lek</td>
-<td style="text-align: left;">Return of the Jedi</td>
-<td style="text-align: left;"></td>
-<td style="text-align: left;"></td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Ayla Secura</td>
-<td style="text-align: right;">48.0</td>
-<td style="text-align: left;">female</td>
-<td style="text-align: right;">178</td>
-<td style="text-align: right;">55.0</td>
-<td style="text-align: left;">none</td>
-<td style="text-align: left;">blue</td>
-<td style="text-align: left;">hazel</td>
-<td style="text-align: left;">feminine</td>
-<td style="text-align: left;">Ryloth</td>
-<td style="text-align: left;">Twi’lek</td>
-<td style="text-align: left;">Attack of the Clones, The Phantom Menace , Revenge of the Sith</td>
-<td style="text-align: left;"></td>
-<td style="text-align: left;"></td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Dud Bolt</td>
-<td style="text-align: right;">NA</td>
-<td style="text-align: left;">male</td>
-<td style="text-align: right;">94</td>
-<td style="text-align: right;">45.0</td>
-<td style="text-align: left;">none</td>
-<td style="text-align: left;">blue, grey</td>
-<td style="text-align: left;">yellow</td>
-<td style="text-align: left;">masculine</td>
-<td style="text-align: left;">Vulpter</td>
-<td style="text-align: left;">Vulptereen</td>
-<td style="text-align: left;">The Phantom Menace</td>
-<td style="text-align: left;"></td>
-<td style="text-align: left;"></td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Gasgano</td>
-<td style="text-align: right;">NA</td>
-<td style="text-align: left;">male</td>
-<td style="text-align: right;">122</td>
-<td style="text-align: right;">NA</td>
-<td style="text-align: left;">none</td>
-<td style="text-align: left;">white, blue</td>
-<td style="text-align: left;">black</td>
-<td style="text-align: left;">masculine</td>
-<td style="text-align: left;">Troiken</td>
-<td style="text-align: left;">Xexto</td>
-<td style="text-align: left;">The Phantom Menace</td>
-<td style="text-align: left;"></td>
-<td style="text-align: left;"></td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Ben Quadinaros</td>
-<td style="text-align: right;">NA</td>
-<td style="text-align: left;">male</td>
-<td style="text-align: right;">163</td>
-<td style="text-align: right;">65.0</td>
-<td style="text-align: left;">none</td>
-<td style="text-align: left;">grey, green, yellow</td>
-<td style="text-align: left;">orange</td>
-<td style="text-align: left;">masculine</td>
-<td style="text-align: left;">Tund</td>
-<td style="text-align: left;">Toong</td>
-<td style="text-align: left;">The Phantom Menace</td>
-<td style="text-align: left;"></td>
-<td style="text-align: left;"></td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Mace Windu</td>
-<td style="text-align: right;">72.0</td>
-<td style="text-align: left;">male</td>
-<td style="text-align: right;">188</td>
-<td style="text-align: right;">84.0</td>
-<td style="text-align: left;">none</td>
-<td style="text-align: left;">dark</td>
-<td style="text-align: left;">brown</td>
-<td style="text-align: left;">masculine</td>
-<td style="text-align: left;">Haruun Kal</td>
-<td style="text-align: left;">Human</td>
-<td style="text-align: left;">Attack of the Clones, The Phantom Menace , Revenge of the Sith</td>
-<td style="text-align: left;"></td>
-<td style="text-align: left;"></td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Ki-Adi-Mundi</td>
-<td style="text-align: right;">92.0</td>
-<td style="text-align: left;">male</td>
-<td style="text-align: right;">198</td>
-<td style="text-align: right;">82.0</td>
-<td style="text-align: left;">white</td>
-<td style="text-align: left;">pale</td>
-<td style="text-align: left;">yellow</td>
-<td style="text-align: left;">masculine</td>
-<td style="text-align: left;">Cerea</td>
-<td style="text-align: left;">Cerean</td>
-<td style="text-align: left;">Attack of the Clones, The Phantom Menace , Revenge of the Sith</td>
-<td style="text-align: left;"></td>
-<td style="text-align: left;"></td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Kit Fisto</td>
-<td style="text-align: right;">NA</td>
-<td style="text-align: left;">male</td>
-<td style="text-align: right;">196</td>
-<td style="text-align: right;">87.0</td>
-<td style="text-align: left;">none</td>
-<td style="text-align: left;">green</td>
-<td style="text-align: left;">black</td>
-<td style="text-align: left;">masculine</td>
-<td style="text-align: left;">Glee Anselm</td>
-<td style="text-align: left;">Nautolan</td>
-<td style="text-align: left;">Attack of the Clones, The Phantom Menace , Revenge of the Sith</td>
-<td style="text-align: left;"></td>
-<td style="text-align: left;"></td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Eeth Koth</td>
-<td style="text-align: right;">NA</td>
-<td style="text-align: left;">male</td>
-<td style="text-align: right;">171</td>
-<td style="text-align: right;">NA</td>
-<td style="text-align: left;">black</td>
-<td style="text-align: left;">brown</td>
-<td style="text-align: left;">brown</td>
-<td style="text-align: left;">masculine</td>
-<td style="text-align: left;">Iridonia</td>
-<td style="text-align: left;">Zabrak</td>
-<td style="text-align: left;">The Phantom Menace , Revenge of the Sith</td>
-<td style="text-align: left;"></td>
-<td style="text-align: left;"></td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Adi Gallia</td>
-<td style="text-align: right;">NA</td>
-<td style="text-align: left;">female</td>
-<td style="text-align: right;">184</td>
-<td style="text-align: right;">50.0</td>
-<td style="text-align: left;">none</td>
-<td style="text-align: left;">dark</td>
-<td style="text-align: left;">blue</td>
-<td style="text-align: left;">feminine</td>
-<td style="text-align: left;">Coruscant</td>
-<td style="text-align: left;">Tholothian</td>
-<td style="text-align: left;">The Phantom Menace , Revenge of the Sith</td>
-<td style="text-align: left;"></td>
-<td style="text-align: left;"></td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Saesee Tiin</td>
-<td style="text-align: right;">NA</td>
-<td style="text-align: left;">male</td>
-<td style="text-align: right;">188</td>
-<td style="text-align: right;">NA</td>
-<td style="text-align: left;">none</td>
-<td style="text-align: left;">pale</td>
-<td style="text-align: left;">orange</td>
-<td style="text-align: left;">masculine</td>
-<td style="text-align: left;">Iktotch</td>
-<td style="text-align: left;">Iktotchi</td>
-<td style="text-align: left;">The Phantom Menace , Revenge of the Sith</td>
-<td style="text-align: left;"></td>
-<td style="text-align: left;"></td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Yarael Poof</td>
-<td style="text-align: right;">NA</td>
-<td style="text-align: left;">male</td>
-<td style="text-align: right;">264</td>
-<td style="text-align: right;">NA</td>
-<td style="text-align: left;">none</td>
-<td style="text-align: left;">white</td>
-<td style="text-align: left;">yellow</td>
-<td style="text-align: left;">masculine</td>
-<td style="text-align: left;">Quermia</td>
-<td style="text-align: left;">Quermian</td>
-<td style="text-align: left;">The Phantom Menace</td>
-<td style="text-align: left;"></td>
-<td style="text-align: left;"></td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Plo Koon</td>
-<td style="text-align: right;">22.0</td>
-<td style="text-align: left;">male</td>
-<td style="text-align: right;">188</td>
-<td style="text-align: right;">80.0</td>
-<td style="text-align: left;">none</td>
-<td style="text-align: left;">orange</td>
-<td style="text-align: left;">black</td>
-<td style="text-align: left;">masculine</td>
-<td style="text-align: left;">Dorin</td>
-<td style="text-align: left;">Kel Dor</td>
-<td style="text-align: left;">Attack of the Clones, The Phantom Menace , Revenge of the Sith</td>
-<td style="text-align: left;"></td>
-<td style="text-align: left;">Jedi starfighter</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Mas Amedda</td>
-<td style="text-align: right;">NA</td>
-<td style="text-align: left;">male</td>
-<td style="text-align: right;">196</td>
-<td style="text-align: right;">NA</td>
-<td style="text-align: left;">none</td>
-<td style="text-align: left;">blue</td>
-<td style="text-align: left;">blue</td>
-<td style="text-align: left;">masculine</td>
-<td style="text-align: left;">Champala</td>
-<td style="text-align: left;">Chagrian</td>
-<td style="text-align: left;">Attack of the Clones, The Phantom Menace</td>
-<td style="text-align: left;"></td>
-<td style="text-align: left;"></td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Gregar Typho</td>
-<td style="text-align: right;">NA</td>
-<td style="text-align: left;">male</td>
-<td style="text-align: right;">185</td>
-<td style="text-align: right;">85.0</td>
-<td style="text-align: left;">black</td>
-<td style="text-align: left;">dark</td>
-<td style="text-align: left;">brown</td>
-<td style="text-align: left;">masculine</td>
-<td style="text-align: left;">Naboo</td>
-<td style="text-align: left;">Human</td>
-<td style="text-align: left;">Attack of the Clones</td>
-<td style="text-align: left;"></td>
-<td style="text-align: left;">Naboo fighter</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Cordé</td>
-<td style="text-align: right;">NA</td>
-<td style="text-align: left;">female</td>
-<td style="text-align: right;">157</td>
-<td style="text-align: right;">NA</td>
-<td style="text-align: left;">brown</td>
-<td style="text-align: left;">light</td>
-<td style="text-align: left;">brown</td>
-<td style="text-align: left;">feminine</td>
-<td style="text-align: left;">Naboo</td>
-<td style="text-align: left;">Human</td>
-<td style="text-align: left;">Attack of the Clones</td>
-<td style="text-align: left;"></td>
-<td style="text-align: left;"></td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Cliegg Lars</td>
-<td style="text-align: right;">82.0</td>
-<td style="text-align: left;">male</td>
-<td style="text-align: right;">183</td>
-<td style="text-align: right;">NA</td>
-<td style="text-align: left;">brown</td>
-<td style="text-align: left;">fair</td>
-<td style="text-align: left;">blue</td>
-<td style="text-align: left;">masculine</td>
-<td style="text-align: left;">Tatooine</td>
-<td style="text-align: left;">Human</td>
-<td style="text-align: left;">Attack of the Clones</td>
-<td style="text-align: left;"></td>
-<td style="text-align: left;"></td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Poggle the Lesser</td>
-<td style="text-align: right;">NA</td>
-<td style="text-align: left;">male</td>
-<td style="text-align: right;">183</td>
-<td style="text-align: right;">80.0</td>
-<td style="text-align: left;">none</td>
-<td style="text-align: left;">green</td>
-<td style="text-align: left;">yellow</td>
-<td style="text-align: left;">masculine</td>
-<td style="text-align: left;">Geonosis</td>
-<td style="text-align: left;">Geonosian</td>
-<td style="text-align: left;">Attack of the Clones, Revenge of the Sith</td>
-<td style="text-align: left;"></td>
-<td style="text-align: left;"></td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Luminara Unduli</td>
-<td style="text-align: right;">58.0</td>
-<td style="text-align: left;">female</td>
-<td style="text-align: right;">170</td>
-<td style="text-align: right;">56.2</td>
-<td style="text-align: left;">black</td>
-<td style="text-align: left;">yellow</td>
-<td style="text-align: left;">blue</td>
-<td style="text-align: left;">feminine</td>
-<td style="text-align: left;">Mirial</td>
-<td style="text-align: left;">Mirialan</td>
-<td style="text-align: left;">Attack of the Clones, Revenge of the Sith</td>
-<td style="text-align: left;"></td>
-<td style="text-align: left;"></td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Barriss Offee</td>
-<td style="text-align: right;">40.0</td>
-<td style="text-align: left;">female</td>
-<td style="text-align: right;">166</td>
-<td style="text-align: right;">50.0</td>
-<td style="text-align: left;">black</td>
-<td style="text-align: left;">yellow</td>
-<td style="text-align: left;">blue</td>
-<td style="text-align: left;">feminine</td>
-<td style="text-align: left;">Mirial</td>
-<td style="text-align: left;">Mirialan</td>
-<td style="text-align: left;">Attack of the Clones</td>
-<td style="text-align: left;"></td>
-<td style="text-align: left;"></td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Dormé</td>
-<td style="text-align: right;">NA</td>
-<td style="text-align: left;">female</td>
-<td style="text-align: right;">165</td>
-<td style="text-align: right;">NA</td>
-<td style="text-align: left;">brown</td>
-<td style="text-align: left;">light</td>
-<td style="text-align: left;">brown</td>
-<td style="text-align: left;">feminine</td>
-<td style="text-align: left;">Naboo</td>
-<td style="text-align: left;">Human</td>
-<td style="text-align: left;">Attack of the Clones</td>
-<td style="text-align: left;"></td>
-<td style="text-align: left;"></td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Dooku</td>
-<td style="text-align: right;">102.0</td>
-<td style="text-align: left;">male</td>
-<td style="text-align: right;">193</td>
-<td style="text-align: right;">80.0</td>
-<td style="text-align: left;">white</td>
-<td style="text-align: left;">fair</td>
-<td style="text-align: left;">brown</td>
-<td style="text-align: left;">masculine</td>
-<td style="text-align: left;">Serenno</td>
-<td style="text-align: left;">Human</td>
-<td style="text-align: left;">Attack of the Clones, Revenge of the Sith</td>
-<td style="text-align: left;">Flitknot speeder</td>
-<td style="text-align: left;"></td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Bail Prestor Organa</td>
-<td style="text-align: right;">67.0</td>
-<td style="text-align: left;">male</td>
-<td style="text-align: right;">191</td>
-<td style="text-align: right;">NA</td>
-<td style="text-align: left;">black</td>
-<td style="text-align: left;">tan</td>
-<td style="text-align: left;">brown</td>
-<td style="text-align: left;">masculine</td>
-<td style="text-align: left;">Alderaan</td>
-<td style="text-align: left;">Human</td>
-<td style="text-align: left;">Attack of the Clones, Revenge of the Sith</td>
-<td style="text-align: left;"></td>
-<td style="text-align: left;"></td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Jango Fett</td>
-<td style="text-align: right;">66.0</td>
-<td style="text-align: left;">male</td>
-<td style="text-align: right;">183</td>
-<td style="text-align: right;">79.0</td>
-<td style="text-align: left;">black</td>
-<td style="text-align: left;">tan</td>
-<td style="text-align: left;">brown</td>
-<td style="text-align: left;">masculine</td>
-<td style="text-align: left;">Concord Dawn</td>
-<td style="text-align: left;">Human</td>
-<td style="text-align: left;">Attack of the Clones</td>
-<td style="text-align: left;"></td>
-<td style="text-align: left;"></td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Zam Wesell</td>
-<td style="text-align: right;">NA</td>
-<td style="text-align: left;">female</td>
-<td style="text-align: right;">168</td>
-<td style="text-align: right;">55.0</td>
-<td style="text-align: left;">blonde</td>
-<td style="text-align: left;">fair, green, yellow</td>
-<td style="text-align: left;">yellow</td>
-<td style="text-align: left;">feminine</td>
-<td style="text-align: left;">Zolan</td>
-<td style="text-align: left;">Clawdite</td>
-<td style="text-align: left;">Attack of the Clones</td>
-<td style="text-align: left;">Koro-2 Exodrive airspeeder</td>
-<td style="text-align: left;"></td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Dexter Jettster</td>
-<td style="text-align: right;">NA</td>
-<td style="text-align: left;">male</td>
-<td style="text-align: right;">198</td>
-<td style="text-align: right;">102.0</td>
-<td style="text-align: left;">none</td>
-<td style="text-align: left;">brown</td>
-<td style="text-align: left;">yellow</td>
-<td style="text-align: left;">masculine</td>
-<td style="text-align: left;">Ojom</td>
-<td style="text-align: left;">Besalisk</td>
-<td style="text-align: left;">Attack of the Clones</td>
-<td style="text-align: left;"></td>
-<td style="text-align: left;"></td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Lama Su</td>
-<td style="text-align: right;">NA</td>
-<td style="text-align: left;">male</td>
-<td style="text-align: right;">229</td>
-<td style="text-align: right;">88.0</td>
-<td style="text-align: left;">none</td>
-<td style="text-align: left;">grey</td>
-<td style="text-align: left;">black</td>
-<td style="text-align: left;">masculine</td>
-<td style="text-align: left;">Kamino</td>
-<td style="text-align: left;">Kaminoan</td>
-<td style="text-align: left;">Attack of the Clones</td>
-<td style="text-align: left;"></td>
-<td style="text-align: left;"></td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Taun We</td>
-<td style="text-align: right;">NA</td>
-<td style="text-align: left;">female</td>
-<td style="text-align: right;">213</td>
-<td style="text-align: right;">NA</td>
-<td style="text-align: left;">none</td>
-<td style="text-align: left;">grey</td>
-<td style="text-align: left;">black</td>
-<td style="text-align: left;">feminine</td>
-<td style="text-align: left;">Kamino</td>
-<td style="text-align: left;">Kaminoan</td>
-<td style="text-align: left;">Attack of the Clones</td>
-<td style="text-align: left;"></td>
-<td style="text-align: left;"></td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Jocasta Nu</td>
-<td style="text-align: right;">NA</td>
-<td style="text-align: left;">female</td>
-<td style="text-align: right;">167</td>
-<td style="text-align: right;">NA</td>
-<td style="text-align: left;">white</td>
-<td style="text-align: left;">fair</td>
-<td style="text-align: left;">blue</td>
-<td style="text-align: left;">feminine</td>
-<td style="text-align: left;">Coruscant</td>
-<td style="text-align: left;">Human</td>
-<td style="text-align: left;">Attack of the Clones</td>
-<td style="text-align: left;"></td>
-<td style="text-align: left;"></td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Ratts Tyerell</td>
-<td style="text-align: right;">NA</td>
-<td style="text-align: left;">male</td>
-<td style="text-align: right;">79</td>
-<td style="text-align: right;">15.0</td>
-<td style="text-align: left;">none</td>
-<td style="text-align: left;">grey, blue</td>
-<td style="text-align: left;">unknown</td>
-<td style="text-align: left;">masculine</td>
-<td style="text-align: left;">Aleen Minor</td>
-<td style="text-align: left;">Aleena</td>
-<td style="text-align: left;">The Phantom Menace</td>
-<td style="text-align: left;"></td>
-<td style="text-align: left;"></td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">R4-P17</td>
-<td style="text-align: right;">NA</td>
-<td style="text-align: left;">none</td>
-<td style="text-align: right;">96</td>
-<td style="text-align: right;">NA</td>
-<td style="text-align: left;">none</td>
-<td style="text-align: left;">silver, red</td>
-<td style="text-align: left;">red, blue</td>
-<td style="text-align: left;">feminine</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">Droid</td>
-<td style="text-align: left;">Attack of the Clones, Revenge of the Sith</td>
-<td style="text-align: left;"></td>
-<td style="text-align: left;"></td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Wat Tambor</td>
-<td style="text-align: right;">NA</td>
-<td style="text-align: left;">male</td>
-<td style="text-align: right;">193</td>
-<td style="text-align: right;">48.0</td>
-<td style="text-align: left;">none</td>
-<td style="text-align: left;">green, grey</td>
-<td style="text-align: left;">unknown</td>
-<td style="text-align: left;">masculine</td>
-<td style="text-align: left;">Skako</td>
-<td style="text-align: left;">Skakoan</td>
-<td style="text-align: left;">Attack of the Clones</td>
-<td style="text-align: left;"></td>
-<td style="text-align: left;"></td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">San Hill</td>
-<td style="text-align: right;">NA</td>
-<td style="text-align: left;">male</td>
-<td style="text-align: right;">191</td>
-<td style="text-align: right;">NA</td>
-<td style="text-align: left;">none</td>
-<td style="text-align: left;">grey</td>
-<td style="text-align: left;">gold</td>
-<td style="text-align: left;">masculine</td>
-<td style="text-align: left;">Muunilinst</td>
-<td style="text-align: left;">Muun</td>
-<td style="text-align: left;">Attack of the Clones</td>
-<td style="text-align: left;"></td>
-<td style="text-align: left;"></td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Shaak Ti</td>
-<td style="text-align: right;">NA</td>
-<td style="text-align: left;">female</td>
-<td style="text-align: right;">178</td>
-<td style="text-align: right;">57.0</td>
-<td style="text-align: left;">none</td>
-<td style="text-align: left;">red, blue, white</td>
-<td style="text-align: left;">black</td>
-<td style="text-align: left;">feminine</td>
-<td style="text-align: left;">Shili</td>
-<td style="text-align: left;">Togruta</td>
-<td style="text-align: left;">Attack of the Clones, Revenge of the Sith</td>
-<td style="text-align: left;"></td>
-<td style="text-align: left;"></td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Grievous</td>
-<td style="text-align: right;">NA</td>
-<td style="text-align: left;">male</td>
-<td style="text-align: right;">216</td>
-<td style="text-align: right;">159.0</td>
-<td style="text-align: left;">none</td>
-<td style="text-align: left;">brown, white</td>
-<td style="text-align: left;">green, yellow</td>
-<td style="text-align: left;">masculine</td>
-<td style="text-align: left;">Kalee</td>
-<td style="text-align: left;">Kaleesh</td>
-<td style="text-align: left;">Revenge of the Sith</td>
-<td style="text-align: left;">Tsmeu-6 personal wheel bike</td>
-<td style="text-align: left;">Belbullab-22 starfighter</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Tarfful</td>
-<td style="text-align: right;">NA</td>
-<td style="text-align: left;">male</td>
-<td style="text-align: right;">234</td>
-<td style="text-align: right;">136.0</td>
-<td style="text-align: left;">brown</td>
-<td style="text-align: left;">brown</td>
-<td style="text-align: left;">blue</td>
-<td style="text-align: left;">masculine</td>
-<td style="text-align: left;">Kashyyyk</td>
-<td style="text-align: left;">Wookiee</td>
-<td style="text-align: left;">Revenge of the Sith</td>
-<td style="text-align: left;"></td>
-<td style="text-align: left;"></td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Raymus Antilles</td>
-<td style="text-align: right;">NA</td>
-<td style="text-align: left;">male</td>
-<td style="text-align: right;">188</td>
-<td style="text-align: right;">79.0</td>
-<td style="text-align: left;">brown</td>
-<td style="text-align: left;">light</td>
-<td style="text-align: left;">brown</td>
-<td style="text-align: left;">masculine</td>
-<td style="text-align: left;">Alderaan</td>
-<td style="text-align: left;">Human</td>
-<td style="text-align: left;">Revenge of the Sith, A New Hope</td>
-<td style="text-align: left;"></td>
-<td style="text-align: left;"></td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Sly Moore</td>
-<td style="text-align: right;">NA</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: right;">178</td>
-<td style="text-align: right;">48.0</td>
-<td style="text-align: left;">none</td>
-<td style="text-align: left;">pale</td>
-<td style="text-align: left;">white</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">Umbara</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">Attack of the Clones, Revenge of the Sith</td>
-<td style="text-align: left;"></td>
-<td style="text-align: left;"></td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Tion Medon</td>
-<td style="text-align: right;">NA</td>
-<td style="text-align: left;">male</td>
-<td style="text-align: right;">206</td>
-<td style="text-align: right;">80.0</td>
-<td style="text-align: left;">none</td>
-<td style="text-align: left;">grey</td>
-<td style="text-align: left;">black</td>
-<td style="text-align: left;">masculine</td>
-<td style="text-align: left;">Utapau</td>
-<td style="text-align: left;">Pau’an</td>
-<td style="text-align: left;">Revenge of the Sith</td>
-<td style="text-align: left;"></td>
-<td style="text-align: left;"></td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Finn</td>
-<td style="text-align: right;">NA</td>
-<td style="text-align: left;">male</td>
-<td style="text-align: right;">NA</td>
-<td style="text-align: right;">NA</td>
-<td style="text-align: left;">black</td>
-<td style="text-align: left;">dark</td>
-<td style="text-align: left;">dark</td>
-<td style="text-align: left;">masculine</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">Human</td>
-<td style="text-align: left;">The Force Awakens</td>
-<td style="text-align: left;"></td>
-<td style="text-align: left;"></td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Rey</td>
-<td style="text-align: right;">NA</td>
-<td style="text-align: left;">female</td>
-<td style="text-align: right;">NA</td>
-<td style="text-align: right;">NA</td>
-<td style="text-align: left;">brown</td>
-<td style="text-align: left;">light</td>
-<td style="text-align: left;">hazel</td>
-<td style="text-align: left;">feminine</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">Human</td>
-<td style="text-align: left;">The Force Awakens</td>
-<td style="text-align: left;"></td>
-<td style="text-align: left;"></td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Poe Dameron</td>
-<td style="text-align: right;">NA</td>
-<td style="text-align: left;">male</td>
-<td style="text-align: right;">NA</td>
-<td style="text-align: right;">NA</td>
-<td style="text-align: left;">brown</td>
-<td style="text-align: left;">light</td>
-<td style="text-align: left;">brown</td>
-<td style="text-align: left;">masculine</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">Human</td>
-<td style="text-align: left;">The Force Awakens</td>
-<td style="text-align: left;"></td>
-<td style="text-align: left;">T-70 X-wing fighter</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">BB8</td>
-<td style="text-align: right;">NA</td>
-<td style="text-align: left;">none</td>
-<td style="text-align: right;">NA</td>
-<td style="text-align: right;">NA</td>
-<td style="text-align: left;">none</td>
-<td style="text-align: left;">none</td>
-<td style="text-align: left;">black</td>
-<td style="text-align: left;">masculine</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">Droid</td>
-<td style="text-align: left;">The Force Awakens</td>
-<td style="text-align: left;"></td>
-<td style="text-align: left;"></td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Captain Phasma</td>
-<td style="text-align: right;">NA</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: right;">NA</td>
-<td style="text-align: right;">NA</td>
-<td style="text-align: left;">unknown</td>
-<td style="text-align: left;">unknown</td>
-<td style="text-align: left;">unknown</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">The Force Awakens</td>
-<td style="text-align: left;"></td>
-<td style="text-align: left;"></td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Padmé Amidala</td>
-<td style="text-align: right;">46.0</td>
-<td style="text-align: left;">female</td>
-<td style="text-align: right;">165</td>
-<td style="text-align: right;">45.0</td>
-<td style="text-align: left;">brown</td>
-<td style="text-align: left;">light</td>
-<td style="text-align: left;">brown</td>
-<td style="text-align: left;">feminine</td>
-<td style="text-align: left;">Naboo</td>
-<td style="text-align: left;">Human</td>
-<td style="text-align: left;">Attack of the Clones, The Phantom Menace , Revenge of the Sith</td>
-<td style="text-align: left;"></td>
-<td style="text-align: left;">H-type Nubian yacht, Naboo star skiff , Naboo fighter</td>
+<td class="gt_row gt_left" headers="name">Obi-Wan Kenobi</td>
+<td class="gt_row gt_center" headers="birth_year">57.0</td>
+<td class="gt_row gt_center" headers="sex">male</td>
+<td class="gt_row gt_center" headers="height">182</td>
+<td class="gt_row gt_center" headers="mass">77</td>
+<td class="gt_row gt_center" headers="hair_color">auburn, white</td>
+<td class="gt_row gt_center" headers="skin_color">fair</td>
+<td class="gt_row gt_center" headers="eye_color">blue-gray</td>
 </tr>
 </tbody>
 </table>
+
 </div>
 </div>
 </div>
 </section>
-<section id="mutate-adds-new-variables-that-are-functions-of-existing-variables" class="slide level2">
-<h2><code>mutate()</code> adds new variables that are functions of existing variables</h2>
+<section id="mutate" class="slide level2 smaller">
+<h2><code>mutate()</code></h2>
+<p>adds new variables that are functions of existing variables</p>
 <p><code>mutate(.data, ...)</code></p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href></a>mtcars <span class="sc">%&gt;%</span></span>
@@ -3503,13 +2958,14 @@ Jürgen Wilbert
 </section>
 <section id="task-2" class="slide level2">
 <h2>Task</h2>
+<div class="task">
 <ul>
 <li>Take the <code>starwars</code> database.</li>
 <li>Create a new variable with the body mass index <code>bmi</code>. Hint: bmi = kg / m²</li>
 <li>Filter all humans with an bmi &gt;= 26.</li>
 <li>Select <code>name, bmi, height, and mass</code></li>
 </ul>
-<p><span style="color: red;"><strong>:-)</strong></span></p>
+</div>
 </section>
 <section class="slide level2">
 
@@ -3549,7 +3005,7 @@ Jürgen Wilbert
 <td style="text-align: right;">120</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">Beru Whitesun lars</td>
+<td style="text-align: left;">Beru Whitesun Lars</td>
 <td style="text-align: right;">27.54821</td>
 <td style="text-align: right;">165</td>
 <td style="text-align: right;">75</td>
@@ -3559,12 +3015,6 @@ Jürgen Wilbert
 <td style="text-align: right;">26.64360</td>
 <td style="text-align: right;">170</td>
 <td style="text-align: right;">77</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Jek Tono Porkins</td>
-<td style="text-align: right;">33.95062</td>
-<td style="text-align: right;">180</td>
-<td style="text-align: right;">110</td>
 </tr>
 </tbody>
 </table>
@@ -3605,12 +3055,13 @@ Jürgen Wilbert
 </section>
 <section id="task-3" class="slide level2 build">
 <h2>Task</h2>
+<div class="task">
 <ul>
 <li>Take the <code>starwars</code> database.</li>
 <li>Filter <code>Humans</code></li>
 <li>Calculate the mean and the median for height and mass (Note: don’t forget to remove NA values: <code>na.rm = TRUE</code>)</li>
 </ul>
-<p><span style="color: red;"><strong>:-)</strong></span></p>
+</div>
 </section>
 <section class="slide level2">
 
@@ -3636,9 +3087,9 @@ Jürgen Wilbert
 </thead>
 <tbody>
 <tr class="odd">
-<td style="text-align: right;">176.6452</td>
-<td style="text-align: right;">180</td>
-<td style="text-align: right;">82.78182</td>
+<td style="text-align: right;">178</td>
+<td style="text-align: right;">181</td>
+<td style="text-align: right;">81.31</td>
 <td style="text-align: right;">79</td>
 </tr>
 </tbody>
@@ -3764,13 +3215,14 @@ Jürgen Wilbert
 </section>
 <section id="task-4" class="slide level2 build">
 <h2>Task</h2>
+<div class="task">
 <ul>
 <li>Take the <code>starwars</code> database.</li>
 <li>Group by sex</li>
 <li>Calculate the median for height and mass</li>
 <li>And the number of cases per group (Hint: <code>n()</code>)</li>
 </ul>
-<p><span style="color: red;"><strong>:-)</strong></span></p>
+</div>
 </section>
 <section class="slide level2">
 
@@ -3796,32 +3248,32 @@ Jürgen Wilbert
 <tbody>
 <tr class="odd">
 <td style="text-align: left;">female</td>
-<td style="text-align: right;">166</td>
+<td style="text-align: right;">167.5</td>
 <td style="text-align: right;">55.0</td>
 <td style="text-align: right;">16</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">hermaphroditic</td>
-<td style="text-align: right;">175</td>
+<td style="text-align: right;">175.0</td>
 <td style="text-align: right;">1358.0</td>
 <td style="text-align: right;">1</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">male</td>
-<td style="text-align: right;">183</td>
+<td style="text-align: right;">183.0</td>
 <td style="text-align: right;">80.0</td>
 <td style="text-align: right;">60</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">none</td>
-<td style="text-align: right;">97</td>
+<td style="text-align: right;">97.0</td>
 <td style="text-align: right;">53.5</td>
 <td style="text-align: right;">6</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">NA</td>
-<td style="text-align: right;">183</td>
-<td style="text-align: right;">48.0</td>
+<td style="text-align: right;">179.0</td>
+<td style="text-align: right;">85.0</td>
 <td style="text-align: right;">4</td>
 </tr>
 </tbody>
@@ -3926,8 +3378,9 @@ Jürgen Wilbert
 </div>
 </div>
 </section>
-<section id="task-5" class="slide level2">
+<section id="task-5" class="slide level2 smaller">
 <h2>Task</h2>
+<div class="task">
 <ul>
 <li>Take the <code>starwars</code> database.</li>
 <li>Calculate the bmi.</li>
@@ -3937,7 +3390,7 @@ Jürgen Wilbert
 <li>Only show cases with <code>n &gt; 2</code>.</li>
 <li>Arrange the resulting table. Sort by <code>n</code> in descending order.</li>
 </ul>
-<p><span style="color: red;"><strong>:-)</strong></span></p>
+</div>
 </section>
 <section class="slide level2">
 
@@ -3964,7 +3417,7 @@ Jürgen Wilbert
 <tbody>
 <tr class="odd">
 <td style="text-align: left;">Human</td>
-<td style="text-align: right;">24.8</td>
+<td style="text-align: right;">24.3</td>
 <td style="text-align: right;">35</td>
 </tr>
 <tr class="even">
@@ -3974,7 +3427,7 @@ Jürgen Wilbert
 </tr>
 <tr class="odd">
 <td style="text-align: left;">NA</td>
-<td style="text-align: right;">15.1</td>
+<td style="text-align: right;">24.8</td>
 <td style="text-align: right;">4</td>
 </tr>
 <tr class="even">
@@ -5172,12 +4625,15 @@ window.QuartoSupport = function () {
       // Fire the "slideenter" event (handled by htmlwidgets.js) when the current
       // slide changes (different for each slide format).
       (function () {
-        function fireSlideChanged(previousSlide, currentSlide) {
-
-          // dispatch for htmlwidgets
+        // dispatch for htmlwidgets
+        function fireSlideEnter() {
           const event = window.document.createEvent("Event");
           event.initEvent("slideenter", true, true);
           window.document.dispatchEvent(event);
+        }
+
+        function fireSlideChanged(previousSlide, currentSlide) {
+          fireSlideEnter();
 
           // dispatch for shiny
           if (window.jQuery) {
@@ -5188,13 +4644,6 @@ window.QuartoSupport = function () {
               window.jQuery(currentSlide).trigger("shown");
             }
           }
-        }
-
-        // hookup for reveal
-        if (window.Reveal) {
-          window.Reveal.addEventListener("slidechanged", function(event) {
-            fireSlideChanged(event.previousSlide, event.currentSlide);
-          });
         }
 
         // hookup for slidy

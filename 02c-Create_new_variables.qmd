@@ -3,7 +3,7 @@ title: "Create new variables in data frames"
 format: revealjs
 ---
 
-## Create a new variable in a dataset with missing values
+## Create a new variable in a dataset with missing values {.smaller}
 
 Please copy this syntax into R-Studio and execute:
 
@@ -34,14 +34,14 @@ study$Q5 <- c(5, 1, 4, 2, 1, 3)
 study
 ```
 
-## Create new variables from existing ones
+## Create new variables from existing ones {.smaller}
 
 ```{r}
 study$age2 <- study$age / 12
 study
 ```
 
-## Drop a variable
+## Drop a variable {.smaller}
 
 ```{r}
 study$age2 <- NULL
@@ -51,13 +51,15 @@ study
 
 ```
 
-## Task
+## Task {background-image="images/bg-task.png"}
+
+:::task
 
 Create a new variable `Q_sum_1_3` as the sum of `Q1` to `Q3`.
 
-{{< include _stop.qmd >}}
+:::
 
----
+---  
 
 ```{r}
 study$Q_sum_1_3 <- with(study, Q1 + Q2 + Q3)
@@ -65,16 +67,19 @@ study$Q_sum_1_3 <- with(study, Q1 + Q2 + Q3)
 # or:
 
 study$Q_sum_1_3 <- study$Q1 + study$Q2 + study$Q3
-study
+
+study$Q_sum_1_3
 ```
 
-## Task
+## Task {background-image="images/bg-task.png"}
 
-Create the variables `age_year` and `age_month` where both variables do not have decimals 
+:::task
+Create the variables `age_year` and `age_month` where both variables do not have decimals  
+:::
 
-(tip: `trunc` function or the `%%` modulo operator and the integer division `%/%` operator. Use the help function if needed)
-
-{{< include _stop.qmd >}}
+::: tip
+Use the `trunc` function or the `%%` modulo and the integer division `%/%` operators. Use the help function if needed)
+:::
 
 ---
 
@@ -87,7 +92,8 @@ study$age_month <- study$age - (study$age_year * 12)
 study$age_year <- study$age %/% 12
 study$age_month <- study$age %% 12
 
-study
+study[, c("age", "age_year", "age_month")]
+# or: study[, startsWith(names(study), "age")]
 ```
 
 ## The apply function {.smaller}
@@ -105,18 +111,22 @@ The `apply` function applies a function to every row or column of a data frame.
 ```{r}
 # An example:
 study$Q_sum_1_2 <- apply(study[, c("Q1", "Q2")], 1, sum)
-study
+study$Q_sum_1_2
 ```
 
 ## Task
 
+::: task
 Create a new variable `Q_sum` with the sum of Q1 to Q5 (sums should be build when NAs are in the data)
+::: 
 
 ---
 
 ```{r}
-study$Q_sum <- apply(subset(study, select = Q1:Q5), 1, sum, na.rm = TRUE)
+vars <- c("Q1", "Q2", "Q3", "Q4", "Q5")
 
+study$Q_sum <- apply(study[, vars], 1, sum, na.rm = TRUE)
+study$Q_sum
 ```
 
 

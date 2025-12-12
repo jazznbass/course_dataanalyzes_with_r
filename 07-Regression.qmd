@@ -78,7 +78,7 @@ ggplot(cars, aes(x = speed, y = dist)) +
 
 ## Example
 
-::: left
+::: left37
 ```{r echo = FALSE}
 ggplot(cars, aes(x = speed, y = dist)) +
   geom_point() +
@@ -89,16 +89,16 @@ ggplot(cars, aes(x = speed, y = dist)) +
 ```
 :::
 
-::: right
+::: right37
 ```{r}
 fit <- lm(dist ~ speed, data = cars)
 fit
 ```
 :::
 
-$dist_i = -17.579 + 3.932 * speed_i$
+$dist_i = -17.579 + 3.932 \times speed_i$
 
-## Use `summary()` to get detailed analyses
+## Use `summary()` for detailed analyses {.smaller}
 
 ```{r}
 summary(fit)
@@ -109,11 +109,13 @@ $F(1, 48) = 89.57; p < .001 ; R² = .65$
 
 ## Task
 
+:::task
 -   Take the `mtcars` dataset.
 -   Calculate the correlation of mileage `mpg` and car weight `wt`.
 -   Plot a scatterplot with ggplot (mileage on the x-axis and weight on the y-axis).
 -   Add a regression line with (`geom_smooth(method = "lm")`).
 -   Regress mileage `mpg` on car weight `wt` (that is, predict mileage by means of weight).
+:::
 
 ## 
 
@@ -133,11 +135,13 @@ ggplot(mtcars, aes(x = mpg, y = wt)) +
 
 ## Task
 
+::: task
 -   Take the `temp_carbon` dataset from the `dslabs` library.
 -   Make yourself familiar with the dataset: `?temp_carbon`.
 -   Plot a scatterplot with ggplot (year on the x-axis and temp_anomaly on the y-axis).
 -   Add a regression line with (`geom_smooth(method = "lm")`).
 -   Regress `temp_anomaly` on `year` (that is, predict temp_anomaly by means of year).
+:::
 
 ## 
 
@@ -163,9 +167,9 @@ ggplot(temp_carbon, aes(x = year,
     `y ~ x1 + x2`
 -   An Interaction describes a relation between two (or more) predictors where the influence of one predictor changes with the value of the other predictor (e.g. weight and smoking influence blood pressure. And the influence of smoking is even higher for those who are overweight).
 -   An interaction is modeled with a `:` sign:\
-    y \~ x1 + x2 + x1:x2
+    `y ~ x1 + x2 + x1:x2`
 
-## Example
+## Example {.smaller}
 
 Predict mileage `'mpg'` by weight `'wt'` and number of cylinders `'cyl'` and its interaction
 
@@ -176,10 +180,12 @@ summary(fit)
 
 ## Task
 
+:::task
 -   Take the `gapminder` dataset from the `dslabs` library.
 -   Predict infant mortality (`infant_mortality`) by year (`year`) and average number of children per woman (`fertility`).
 -   Take the interaction into account.
 -   How to interpret the estimates?
+:::
 
 ------------------------------------------------------------------------
 
@@ -238,7 +244,7 @@ fit <- lm(infant_mortality ~ year + fertility + fertility:year, data = dat)
 summary(fit)
 ```
 
-## Categorical predictors: comparing groups
+## Categorical predictors: <br> comparing groups
 
 -   Predictors can be categorical variables.
 -   Examples of categorical variables are: students with vs. without special educational needs; gender; Haircolor.
@@ -260,13 +266,15 @@ summary(fit)
 
 ## Task
 
+:::task
 ```{r}
 heights$sex <- factor(heights$sex)
 fit <- lm(height ~ sex, data = heights)
 summary(fit)
 ```
+:::
 
-## Contrasts
+## Contrasts {.smaller}
 
 -   In the previous example, we compared the effect of an automatic against a manual gearshift. This is called a **contrast**. In this case, our intercept represented the *mpg* for the automatic gearshift and the predictor represented the change in the *mpg* values for manual gearshifts.
 
@@ -302,27 +310,29 @@ coefficients(fit)
 contrasts(mtcars$am_factor) <- contr.treatment(2)
 ```
 
--   Helmert contrasts for two factor levels:\
+-   Sum contrasts for two factor levels:\
 
 ``` r
-contrasts(mtcars$am_factor) <- contr.helmert(2)
+contrasts(mtcars$am_factor) <- contr.sum(2)
 ```
 
 ## Task {.smaller}
 
+:::task
 -   Take the `mtcars` dataset
 -   Predict `mpg` by `wt` and the transmission type `am` and their interaction
 -   By default `am` is not a factor. Please create a factor `transmission` for `am` first
--   Set the contrasts of the factor to *Helmert* and calculate the model.
--   Set the contrasts of the factor to *Treatment* and calculate the model
--   Compare the results of the two models and discuss them with you seatmate
+-   Set the contrasts of the factor to *Sum* and calculate the model.
+-   Set the contrasts of the factor to *Treatment* and calculate the model.
+-   Compare the results of the two models and discuss them with you seatmate.
+:::
 
-------------------------------------------------------------------------
+## {.smaller}
 
 ```{r}
 mtcars$transmission <- factor(mtcars$am, labels = c("Automatic", "Manual"))
 mtcars$wt_centered <- scale(mtcars$wt, scale = FALSE)
-contrasts(mtcars$transmission) <- contr.helmert(2)
+contrasts(mtcars$transmission) <- contr.sum(2)
 fit1 <- lm(mpg ~ wt_centered + transmission + wt_centered:transmission, data = mtcars)
 summary(fit1)
 ```
@@ -338,45 +348,61 @@ summary(fit2)
 ## Design example {.smaller}
 
 ```{r}
-library(sjPlot)
-tab_model(fit1)
+wmisc::nice_regression_table(fit1)
 ```
 
 ##  {.smaller}
 
 ```{r}
-tab_model(fit1, fit2)
+wmisc::nice_regression_table(fit1, fit2)
 ```
 
 ##  {.smaller}
 
 ```{r}
-tab_model(fit1, fit2,
-  show.ci = FALSE, show.se = TRUE,string.se = "se", string.est = "B",
-  dv.labels = c("Model with helmert contrast", "Model with treatment contrast")
+wmisc::nice_regression_table(
+  fit1, fit2,
+  labels_models = c("Model with sum contrast", "Model with treatment contrast"),
+  rename_cols = list(SE = "se", "Estimate" = "B")
 )
 ```
 
+
+```{r}
+#| echo: false
+#tab_model(fit1, fit2,
+#  show.ci = FALSE, show.se = TRUE,string.se = "se", string.est = "B",
+#  dv.labels = c("Model with helmert contrast", "Model with treatment contrast")
+#)
+```
+
+
 # Multilevel regressions {background-image="images/bg-h1-3.jpg"}
 
-## Multilevel regression formula
+## Multilevel regression formula {.smaller}
 
+::: left
 $y_{ij} = \beta_{0j} + \beta_{1j} X_{ij} + e_{ij}$
 
 Level 2:\
-$\beta_{0j} = \gamma_{01}W_j + \upsilon_{0j}$\
+$\beta_{0j} = \gamma_{01}G_j + \upsilon_{0j}$\
 $\beta_{1j} = \gamma_{10} + \upsilon_{1j}$
+:::
 
+::: right
 $y$ = Criteria variable\
 $i$ = Subject number (measurement number)\
-$\beta_0$ = Intercept of $y$\
+$j$ = Level 2 group number\
+<br>
+$\beta_0$ = Intercept  
 $\beta_1$ = Weight of predictor $X$\
 $X$ = Predictor variable\
 $e$ = Error term\
-$j$ = Level 2 group number\
+
 $\gamma_{00}$ = Intercept\
-$W$ = Level 2 predictor (grouping variable)\
-$\gamma_{01}$ = Weight for $W$\
+$G$ = Level 2 predictor (grouping variable)\
+$\gamma_{01}$ = Weight for $G$\
 $\gamma_{10}$ = Weight of the predictor\
-$\upsilon_{0j}$ = Error term for intercept 
+$\upsilon_{0j}$ = Error term for intercept  
 $\upsilon_{0j}$ = Error term for slope
+:::
