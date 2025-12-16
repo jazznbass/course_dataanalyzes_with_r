@@ -25,8 +25,10 @@ embed-resources: true
 format: 
   revealjs:
     scrollable: true
-    theme: [style.scss]
+    theme: [sky, style.scss]
     footer: "Jürgen Wilbert - Introduction to R"
     logo: images/logo-tree-transparent.png
     title-slide-attributes:
       data-background-image: images/bg-digital-data.jpg
+    transition: none
+    background-transition: fade
