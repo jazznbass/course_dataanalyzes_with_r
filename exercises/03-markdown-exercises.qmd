@@ -1,0 +1,16 @@
+---
+title: "Exercises – Markdown (Introduction to R)"
+format:
+  html:
+    toc: true
+execute:
+  echo: true
+---
+
+
+## Task
+
+-   Take your notes of this course - the .R file - and turn it into a Quarto document.
+-   Enrich the file with header, remarks, etc.
+-   Render the file as an html and a word docx file.
+
