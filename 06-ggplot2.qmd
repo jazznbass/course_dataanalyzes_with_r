@@ -26,7 +26,7 @@ library(tidyverse)
 
 ![](images/ggplot_layers.png){width="800"}
 
-## Basic concepts of ggplot2
+## Basic concepts of ggplot2 {.smaller}
 
 A ggplot graphic has at least three key components:
 
@@ -40,18 +40,18 @@ A ggplot graphic has at least three key components:
 ![](images/ggplot_layer_1_3.png){width="800"}
 :::
 
-## Task
+## Task  {.smaller}
 
+::: task
 -   Copy and execute these lines:
 -   `displ` displacement by `hwy` highway miles per gallon
+:::
 
 ```{r eval=FALSE}
 library(tidyverse)
 ggplot(data = mpg, mapping = aes(x = displ, y = hwy)) + 
-  geom_point()
+geom_point()
 ```
-
-{{< include _stop.qmd >}}
 
 ## 
 
@@ -63,17 +63,16 @@ ggplot(mpg, aes(x = displ, y = hwy)) +
 
 ## Task
 
+::: task
 -   Copy and execute these lines:
--   Axis: `displ` displacement and `hwy` highway miles per gallon
+-   Axis: `displ` (displacement) and `hwy` (highway miles per gallon)
 -   Colour: `drv` f = front-wheel drive, r = rear wheel drive, 4 = 4wd
 -   Size: `cyl` number of cylinders
-
+:::
 ```{r eval = FALSE}
 ggplot(mpg, aes(x = displ, y = hwy, color = drv, size = cyl)) + 
   geom_point()
 ```
-
-{{< include _stop.qmd >}}
 
 ------------------------------------------------------------------------
 
@@ -96,21 +95,21 @@ ggplot(mpg, aes(x = displ, y = hwy, color = drv, size = cyl)) +
   geom_point()
 ```
 
-## Task
+## Task {.smaller}
 
+::: task
 -   Take the `mpg` data frame.
 -   Plot a graph with ...
-    -   `cty` and `hwy` displayed on the axis and
+    -   `cty` (city miles per gallon) and `hwy` (highway miles per galon) displayed on the axis and
     -   the colour is mapped on the variable `class` and
     -   the shape (`shape = drv`) is mapped on the variable `drv`.
 -   Use the `geom_point()` layer.
-
-{{< include _stop.qmd >}}
+:::
 
 ------------------------------------------------------------------------
 
 ```{r ggplot-ex-1}
-ggplot(mpg, aes(cty, hwy, colour = class, shape = drv))  + 
+ggplot(mpg, aes(x = cty, y = hwy, colour = class, shape = drv))  + 
   geom_point()
 ```
 
@@ -120,7 +119,7 @@ ggplot(mpg, aes(cty, hwy, colour = class, shape = drv))  +
 -   Here they are not mapped to variables but fixed.
 
 ```{r, fig.width=5, fig.height=3}
-ggplot(diamonds, aes(carat, price)) + 
+ggplot(diamonds, aes(x = carat, y = price)) + 
   geom_point(colour ="red", shape = "+", size = 1)
 ```
 
@@ -141,7 +140,7 @@ df <- data.frame(
   y = c(2, 4, 6), 
   label = c("a","b","c")
 )
-p <- ggplot(df, aes(x, y, label = label)) + 
+p <- ggplot(df, aes(x = x, y = y, label = label)) + 
   labs(x = NULL, y = NULL) + # Hide axis label
   theme(plot.title = element_text(size = 12)) # Shrink plot title
 p + geom_point() + ggtitle("geom_point")
@@ -152,16 +151,16 @@ p + geom_line() + ggtitle("geom_line")
 
 ## Task
 
+::: task
 -   Take the `economics` data frame
 -   Create a lineplot for `date` and `unemployment`. (`geom_line()`)
 -   Add a second layer for red dots of size = 1 (`geom_point()`)
-
-{{< include _stop.qmd >}}
+:::
 
 ------------------------------------------------------------------------
 
 ```{r}
-ggplot(economics, aes(date, unemploy)) + 
+ggplot(economics, aes(x = date, y = unemploy)) + 
   geom_line() + 
   geom_point(color = "red", size = 1)
 ```
@@ -179,17 +178,17 @@ ggplot(mpg, aes(class)) +
 
 ## Task
 
+::: task
 -   Take the `mpg` data frame.
 -   Create a barplot with the counts of categories for the `drv` variable.
 -   Colour the bars `red` with the `fill` argument.
 -   Set the argument `width = 0.8` to resize the bar width.
-
-{{< include _stop.qmd >}}
+:::
 
 ------------------------------------------------------------------------
 
 ```{r}
-ggplot(mpg, aes(drv)) +
+ggplot(mpg, aes(x = drv)) +
   geom_bar(fill = "red", width = 0.8)
 ```
 
@@ -208,30 +207,19 @@ ggplot(df, aes(x = type, y = mean)) +
   geom_col()
 ```
 
-## Task
+## Task {.smaller}
 
+::: task
 -   Take the `starwars` database.
--   Calculate the bmi.
-
-``` .r
-mutate(bmi = mass / (height / 100)^2)
-```
+-   Calculate the bmi. `mutate(bmi = mass / (height / 100)^2)`
 -   Filter all `bmi < 100`.
 -   Summarise the median of the bmi grouped by species.
 -   Create a fitting barplot.
 -   Add the following layer. Otherwise the x-labels will overlap:
-
-```.r
-theme(axis.text.x = element_text(angle = 40, hjust=1))
-```
-
-Hint: 
-
-```.r
-summarise(mean_bmi = median(bmi, na.rm = TRUE)
-```
-
-{{< include _stop.qmd >}}
+    `theme(axis.text.x = element_text(angle = 40, hjust=1))`
+    What does this layer do?
+- Hint: `summarise(mean_bmi = median(bmi, na.rm = TRUE)`
+:::
 
 ------------------------------------------------------------------------
 
@@ -243,7 +231,7 @@ starwars %>%
   summarise(
     mean_bmi = median(bmi, na.rm = TRUE)
   ) %>%
-  ggplot(aes(species, mean_bmi)) +
+  ggplot(aes(x = species, y = mean_bmi)) +
     geom_col() +
     theme(axis.text.x = element_text(angle = 40, hjust=1))
 ```
@@ -253,40 +241,39 @@ starwars %>%
 geom_smooth() is used to add smoothed conditional means in scatterplots.
 
 ```{r}
-ggplot(mpg,aes(displ, hwy)) + 
+ggplot(mpg,aes(x = displ, y = hwy)) + 
   geom_point() +
   geom_smooth()
 ```
 
 ## Task
 
+::: task
 -   Take the `economics` data frame.
 -   Create a scatterplot with number of unemployed `unemploy` by population `pop`.
 -   Add a `geom_smooth` layer.
-
-{{< include _stop.qmd >}}
+:::
 
 ------------------------------------------------------------------------
 
 ```{r}
 economics %>%
-  ggplot(aes(pop, unemploy)) + 
+  ggplot(aes(x = pop, y = unemploy)) + 
     geom_point() + 
     geom_smooth()
 ```
 
-## Task
+## Task {.smaller}
 
+::: task
 -   Install and activate the library `dslabs`.
 -   Take the dataframe `gapminder`.
 -   Group the data by `year` and `continent`.
 -   Use the `summarize()` function to calculate the mean of `infant_mortality`.
 -   Create a line and dot plot with `year` on x-axis, mean of `infant_mortality` on y-axis, and `continent` as line/dot colours.
 -   Add a `smooth` layer.
-
-Hint: `group_by(year, continent)`
-
-{{< include _stop.qmd >}}
+- Hint: `group_by(year, continent)`
+:::
 
 ##  {.smaller}
 
@@ -301,7 +288,7 @@ gapminder %>% group_by(year, continent) %>%
 
 ```
 
-## Distributions of multiple datapoints in categories
+## Distributions of multiple datapoints in categories {.smaller}
 
 When you have multiple values ordered in a categorical variable simple plots become messy:
 
@@ -320,13 +307,13 @@ Solutions
 
 ## Task
 
+::: task
 -   Take the `mgp` dataset
 -   Create the following plots for the variables x = drv and y = hwy
     -   geom_jitter()
     -   geom_boxplot()
     -   geom_violin()
-
-{{< include _stop.qmd >}}
+:::
 
 ------------------------------------------------------------------------
 
@@ -350,11 +337,29 @@ ggplot(mpg,aes(drv, hwy)) +geom_violin()
 
 ## Further layers
 
--   Add a title: ggtitle() ( e.g. ggtitle("My first plot") )
--   Change axis labels: labs(x = NULL, y = NULL) (e.g. labs(x = "Categories", y = "Mean"))
--   Change axis scales: ylim(min = 0, max = 10) ; xlim(min = 0, max = 10)
+-   Add a title: `ggtitle()` ( e.g. `ggtitle("My first plot")` )
+-   Change axis labels: `labs(x = NULL, y = NULL)` (e.g. `labs(x = "Categories", y = "Mean")`)
+-   Change axis scales: `ylim(min = 0, max = 10)` ; `xlim(min = 0, max = 10)`
 
 ## Task
+
+::: task
+- Recreate this plot and add fitting title and axis labels.
+:::
+````
+ggplot(mpg,aes(x = displ, y = hwy)) + 
+  geom_point() +
+  geom_smooth()
+````
+------------------------------------------------------------------------
+
+```{r}
+ggplot(mpg,aes(x = displ, y = hwy)) +
+  geom_point() +
+  geom_smooth() +
+  ggtitle("Displacement vs. Highway Miles per Gallon") +
+  labs(x = "Displacement (liters)", y = "Highway Miles per Gallon")
+```
 
 ## Facets {.smaller}
 
@@ -378,18 +383,17 @@ ggplot(mpg, aes(cty, hwy)) +
 ```
 :::
 
-## Task
+## Task {.smaller}
 
+::: task
 -   Take the economics dataset\
 -   Create a new Variable `year` by extracting the year from the `date` variable.
--   Turn the saving rate variable `psavert` in to a categorical variable `saving_rate` with three levels
+-   Turn the *saving rate* variable `psavert` in to a categorical variable `saving_rate` with three levels
 -   Plot year by unemployment rate with facets for `saving_rate`.
-
-Hint1: `year = format(date, format = "%Y")`\
-Hint2: `saving_rate = cut(psavert, breaks = 3, labels = c("Low","Medium","High"))`\
-Hint3: unemployment rate: `unemploy / pop * 100`
-
-{{< include _stop.qmd >}}
+- Hint1: `year = format(date, format = "%Y")`\
+- Hint2: `saving_rate = cut(psavert, breaks = 3, labels = c("Low","Medium","High"))`\
+- Hint3: unemployment rate: `unemploy / pop * 100`
+:::
 
 ##  {.smaller}
 
@@ -397,9 +401,10 @@ Hint3: unemployment rate: `unemploy / pop * 100`
 economics %>%
   mutate(
     year = format(date, format = "%Y"),
-    saving_rate = cut(psavert, breaks = 3, labels = c("Low","Medium","High"))
+    saving_rate = cut(psavert, breaks = 3, labels = c("Low","Medium","High")),
+    unemploy_rate = unemploy / pop * 100
   ) %>%
-  ggplot(aes(year, unemploy/pop*100)) + 
+  ggplot(aes(x = year, y = unemploy_rate)) + 
     geom_point(size = 0.5) +
     facet_wrap(~saving_rate) +
     theme(axis.text.x = element_text(angle = 90, hjust=1, size = 5))
@@ -414,11 +419,12 @@ economics %>%
 
 stats <- mpg %>%
   group_by(class) %>%
-  summarise(n=n(), hwy = mean(hwy))
+  summarise(n=n(), lpk = 235.2 / mean(hwy))
 
-ggplot(mpg, aes(class, hwy)) +
+ggplot(mpg, aes(x = class, y = 235.2 / hwy)) +
   geom_jitter(width = 0.2) +
-  geom_point(data = stats, mapping = aes(class, hwy), colour = "red", size = 6) +
-  geom_text(data = stats, aes(class, 10, label = paste0("n=", n))) + 
-  ylim(10, 45)
+  geom_point(data = stats, mapping = aes(x = class, y = lpk), colour = "red", size = 6) +
+  geom_text(data = stats, aes(x = class, y = 5, label = paste0("n=", n)),) + 
+  ylim(5,20) +
+  ylab("Liters per 100 kilometers on a highway")
 ```

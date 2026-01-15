@@ -1,0 +1,14 @@
+---
+title: "Exercises – Markdown (Introduction to R)"
+format:
+  html:
+    toc: true
+execute:
+  echo: true
+---
+
+## Task
+
+
+
+
