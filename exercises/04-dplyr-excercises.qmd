@@ -1,5 +1,5 @@
 ---
-title: "Exercises – Markdown (Introduction to R)"
+title: "Exercises – dplyr"
 format:
   html:
     toc: true

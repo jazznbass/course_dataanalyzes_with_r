@@ -1,0 +1,26 @@
+---
+title: "Exercises – tidyr"
+format:
+  html:
+    toc: true
+execute:
+  echo: true
+---
+
+## Task 1
+
+- Using `mtcars`, reshape the data from wide to long format so that  the variables `mpg`, `hp`, and `wt` are stored in two columns called `variable` and `value`.  
+- Store the result in `mtcars_long`.
+
+## Task 2
+
+- Starting from `mtcars_long` (Task 1):
+- Reshape the data back to wide format so that each value of `variable` becomes its own column again.
+- Store the result in `mtcars_wide`.
+
+## Task 3
+
+- Using `gapminder`, create a tidy data frame that keeps only the variables `country`, `year`, `life_expectancy`, and `fertility`,  
+- reshapes the data so that `life_expectancy` and `fertility` are stored in  
+  two columns called `indicator` and `value`.  
+- Store the result in `gapminder_long`.
