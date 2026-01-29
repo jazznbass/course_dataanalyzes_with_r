@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Jürgen Wilbert">
-<meta name="dcterms.date" content="2026-01-15">
+<meta name="dcterms.date" content="2026-01-29">
 
 <title>Exercises – Markdown (Introduction to R)</title>
 <style>
@@ -2145,7 +2145,16 @@ vertical-align: -.125em;
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#task" id="toc-task" class="nav-link active" data-scroll-target="#task">Task</a></li>
+  <li><a href="#task-1" id="toc-task-1" class="nav-link active" data-scroll-target="#task-1">Task 1</a></li>
+  <li><a href="#task-2" id="toc-task-2" class="nav-link" data-scroll-target="#task-2">Task 2</a></li>
+  <li><a href="#task-3" id="toc-task-3" class="nav-link" data-scroll-target="#task-3">Task 3</a></li>
+  <li><a href="#task-4" id="toc-task-4" class="nav-link" data-scroll-target="#task-4">Task 4</a></li>
+  <li><a href="#task-5" id="toc-task-5" class="nav-link" data-scroll-target="#task-5">Task 5</a></li>
+  <li><a href="#task-6" id="toc-task-6" class="nav-link" data-scroll-target="#task-6">Task 6</a></li>
+  <li><a href="#task-7" id="toc-task-7" class="nav-link" data-scroll-target="#task-7">Task 7</a></li>
+  <li><a href="#task-8" id="toc-task-8" class="nav-link" data-scroll-target="#task-8">Task 8</a></li>
+  <li><a href="#task-9" id="toc-task-9" class="nav-link" data-scroll-target="#task-9">Task 9</a></li>
+  <li><a href="#task-10" id="toc-task-10" class="nav-link" data-scroll-target="#task-10">Task 10</a></li>
   </ul>
 </nav>
 </div>
@@ -2177,7 +2186,7 @@ vertical-align: -.125em;
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">January 15, 2026</p>
+      <p class="date">January 29, 2026</p>
     </div>
   </div>
   
@@ -2189,8 +2198,113 @@ vertical-align: -.125em;
 </header>
 
 
-<section id="task" class="level2">
-<h2 class="anchored" data-anchor-id="task">Task</h2>
+<section id="task-1" class="level2">
+<h2 class="anchored" data-anchor-id="task-1">Task 1</h2>
+<ul>
+<li>Using <code>mtcars</code>, select all cars with<br>
+</li>
+<li>more than 6 cylinders (<code>cyl &gt; 6</code>) and<br>
+</li>
+<li>mileage below 20 (<code>mpg &lt; 20</code>).</li>
+</ul>
+</section>
+<section id="task-2" class="level2">
+<h2 class="anchored" data-anchor-id="task-2">Task 2</h2>
+<ul>
+<li>Using <code>mtcars</code>, sort the cars by<br>
+</li>
+<li>descending horsepower (<code>hp</code>), and<br>
+</li>
+<li>ascending weight (<code>wt</code>).</li>
+</ul>
+</section>
+<section id="task-3" class="level2">
+<h2 class="anchored" data-anchor-id="task-3">Task 3</h2>
+<ul>
+<li>From <code>mtcars</code>, select only the variables <code>mpg</code>, <code>cyl</code>, <code>hp</code>, and <code>wt</code>.</li>
+</ul>
+</section>
+<section id="task-4" class="level2">
+<h2 class="anchored" data-anchor-id="task-4">Task 4</h2>
+<ul>
+<li>Using <code>mtcars</code>, create a new variable <code>power_to_weight = hp / wt</code>.</li>
+</ul>
+</section>
+<section id="task-5" class="level2">
+<h2 class="anchored" data-anchor-id="task-5">Task 5</h2>
+<ul>
+<li>Using <code>mtcars</code>, compute <strong>per number of cylinders (<code>cyl</code>)</strong><br>
+</li>
+<li>the mean mileage (<code>mpg</code>), and<br>
+</li>
+<li>the number of cars.</li>
+</ul>
+</section>
+<section id="task-6" class="level2">
+<h2 class="anchored" data-anchor-id="task-6">Task 6</h2>
+<p>Write a single dplyr pipeline that</p>
+<ol type="1">
+<li>keeps only cars with automatic transmission (<code>am == 0</code>),<br>
+</li>
+<li>groups the data by <code>cyl</code>,<br>
+</li>
+<li>computes the mean horsepower (<code>hp</code>),<br>
+</li>
+<li>arranges the result by descending mean horsepower.</li>
+</ol>
+</section>
+<section id="task-7" class="level2">
+<h2 class="anchored" data-anchor-id="task-7">Task 7</h2>
+<ul>
+<li>Using <code>starwars</code>, select all characters who<br>
+</li>
+<li>are human, and<br>
+</li>
+<li>have a known height.<br>
+</li>
+<li>Keep only the variables <code>name</code>, <code>height</code>, and <code>mass</code>.<br>
+</li>
+<li>Store the result in <code>human_characters</code>.</li>
+</ul>
+</section>
+<section id="task-8" class="level2">
+<h2 class="anchored" data-anchor-id="task-8">Task 8</h2>
+<ul>
+<li>Using <code>starwars</code>, create a new variable <code>bmi = mass / (height / 100)^2</code><br>
+</li>
+<li>Ignore rows with missing <code>height</code> or <code>mass</code>.<br>
+</li>
+<li>Store the result in <code>starwars_bmi</code>.</li>
+</ul>
+</section>
+<section id="task-9" class="level2">
+<h2 class="anchored" data-anchor-id="task-9">Task 9</h2>
+<ul>
+<li>Using <code>starwars</code>, compute <strong>per species</strong><br>
+</li>
+<li>the mean height, and<br>
+</li>
+<li>the number of characters.<br>
+</li>
+<li>Remove species with fewer than 3 characters.</li>
+</ul>
+</section>
+<section id="task-10" class="level2">
+<h2 class="anchored" data-anchor-id="task-10">Task 10</h2>
+<p>Write a single dplyr pipeline that</p>
+<ol type="1">
+<li>keeps only characters with known <code>gender</code> and <code>mass</code>,<br>
+</li>
+<li>groups the data by <code>gender</code>,<br>
+</li>
+<li>computes the median mass per gender,<br>
+</li>
+<li>keeps only genders with a median mass above the overall median mass,<br>
+</li>
+<li>returns a tidy summary table.<br>
+</li>
+<li>Store the result in <code>gender_mass_summary</code>.</li>
+</ol>
 </section>
 
 </main>

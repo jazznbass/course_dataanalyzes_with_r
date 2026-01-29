@@ -7,9 +7,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Jürgen Wilbert">
-<meta name="dcterms.date" content="2026-01-15">
+<meta name="dcterms.date" content="2026-01-29">
 
-<title>Exercises – 04 dplyr (Introduction to R)</title>
+<title>Exercises – ggplot2</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -2145,7 +2145,18 @@ vertical-align: -.125em;
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#tasks" id="toc-tasks" class="nav-link active" data-scroll-target="#tasks">Tasks</a></li>
+  <li><a href="#task-1" id="toc-task-1" class="nav-link active" data-scroll-target="#task-1">Task 1</a></li>
+  <li><a href="#task-2" id="toc-task-2" class="nav-link" data-scroll-target="#task-2">Task 2</a></li>
+  <li><a href="#task-3" id="toc-task-3" class="nav-link" data-scroll-target="#task-3">Task 3</a></li>
+  <li><a href="#task-4" id="toc-task-4" class="nav-link" data-scroll-target="#task-4">Task 4</a></li>
+  <li><a href="#task-5" id="toc-task-5" class="nav-link" data-scroll-target="#task-5">Task 5</a></li>
+  <li><a href="#task-6" id="toc-task-6" class="nav-link" data-scroll-target="#task-6">Task 6</a>
+  <ul class="collapse">
+  <li><a href="#task-7" id="toc-task-7" class="nav-link" data-scroll-target="#task-7">Task 7</a></li>
+  </ul></li>
+  <li><a href="#task-8" id="toc-task-8" class="nav-link" data-scroll-target="#task-8">Task 8</a></li>
+  <li><a href="#task-9" id="toc-task-9" class="nav-link" data-scroll-target="#task-9">Task 9</a></li>
+  <li><a href="#task-10" id="toc-task-10" class="nav-link" data-scroll-target="#task-10">Task 10</a></li>
   </ul>
 </nav>
 </div>
@@ -2153,7 +2164,7 @@ vertical-align: -.125em;
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Exercises – 04 dplyr (Introduction to R)</h1>
+<h1 class="title">Exercises – ggplot2</h1>
 </div>
 
 
@@ -2177,7 +2188,7 @@ vertical-align: -.125em;
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">January 15, 2026</p>
+      <p class="date">January 29, 2026</p>
     </div>
   </div>
   
@@ -2189,8 +2200,87 @@ vertical-align: -.125em;
 </header>
 
 
-<section id="tasks" class="level2">
-<h2 class="anchored" data-anchor-id="tasks">Tasks</h2>
+<section id="task-1" class="level2">
+<h2 class="anchored" data-anchor-id="task-1">Task 1</h2>
+<ul>
+<li>Using the dataset <code>mpg</code>, create a scatterplot with<br>
+</li>
+<li><code>displ</code> on the x-axis and<br>
+</li>
+<li><code>hwy</code> on the y-axis.<br>
+</li>
+<li><code>class</code> should not be mapped to color.</li>
+</ul>
+</section>
+<section id="task-2" class="level2">
+<h2 class="anchored" data-anchor-id="task-2">Task 2</h2>
+<ul>
+<li>Using <code>mpg</code>, create a scatterplot of <code>displ</code> vs. <code>hwy</code>, and facet the plot by <code>drv</code>.</li>
+</ul>
+</section>
+<section id="task-3" class="level2">
+<h2 class="anchored" data-anchor-id="task-3">Task 3</h2>
+<ul>
+<li>Using <code>mtcars</code>, create a boxplot showing mileage (<code>mpg</code>) by number of cylinders (<code>cyl</code>, treated as a factor).</li>
+</ul>
+</section>
+<section id="task-4" class="level2">
+<h2 class="anchored" data-anchor-id="task-4">Task 4</h2>
+<ul>
+<li>Using <code>mtcars</code>, create a scatterplot of weight (<code>wt</code>) vs. mileage (<code>mpg</code>) and add a smoothing line.</li>
+</ul>
+</section>
+<section id="task-5" class="level2">
+<h2 class="anchored" data-anchor-id="task-5">Task 5</h2>
+<ul>
+<li>Using <code>starwars</code>, create a bar chart showing the number of characters per <code>species</code>.<br>
+</li>
+<li>Exclude missing values of <code>species</code>.</li>
+</ul>
+</section>
+<section id="task-6" class="level2">
+<h2 class="anchored" data-anchor-id="task-6">Task 6</h2>
+<ul>
+<li>Using <code>gapminder</code>, create a scatterplot for the year <strong>2007</strong> with<br>
+</li>
+<li><code>fertility</code> on the x-axis,<br>
+</li>
+<li><code>life_expectancy</code> on the y-axis,<br>
+</li>
+<li><code>continent</code> mapped to color,<br>
+</li>
+<li><code>population</code> mapped to point size.</li>
+</ul>
+<section id="task-7" class="level3">
+<h3 class="anchored" data-anchor-id="task-7">Task 7</h3>
+<ul>
+<li>Using <code>starwars</code>, create a scatterplot with <code>height</code> on the x-axis, <code>mass</code> on the y-axis, and map <code>gender</code> to color.<br>
+</li>
+<li>Ignore observations with missing <code>height</code> or <code>mass</code>.</li>
+</ul>
+</section>
+</section>
+<section id="task-8" class="level2">
+<h2 class="anchored" data-anchor-id="task-8">Task 8</h2>
+<ul>
+<li>Using <code>gapminder</code>, create a line plot showing <code>life_expectancy</code> over <code>year</code> for <strong>Germany</strong> only.</li>
+</ul>
+</section>
+<section id="task-9" class="level2">
+<h2 class="anchored" data-anchor-id="task-9">Task 9</h2>
+<ul>
+<li>Using <code>gapminder</code>, create a line plot showing <code>life_expectancy</code> over <code>year</code> for all countries in Europe.<br>
+</li>
+<li>Each country should be a separate line.</li>
+</ul>
+</section>
+<section id="task-10" class="level2">
+<h2 class="anchored" data-anchor-id="task-10">Task 10</h2>
+<ul>
+<li>Using <code>gapminder</code>, create a scatterplot using the year <strong>2007</strong> only with <code>gdp</code> on the x-axis (use a log10 scale by adding the layer <code>scale_x_log10()</code>), <code>life_expectancy</code> on the y-axis, <code>population</code> mapped to point size, <code>continent</code> mapped to color.<br>
+</li>
+<li>Exclude rows with missing <code>gdp</code>, <code>life_expectancy</code>, or <code>population</code>.</li>
+</ul>
 </section>
 
 </main>

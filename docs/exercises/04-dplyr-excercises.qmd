@@ -7,8 +7,69 @@ execute:
   echo: true
 ---
 
-## Task
+## Task 1
 
+- Using `mtcars`, select all cars with  
+- more than 6 cylinders (`cyl > 6`) and  
+- mileage below 20 (`mpg < 20`).  
 
+## Task 2
 
+- Using `mtcars`, sort the cars by  
+- descending horsepower (`hp`), and  
+- ascending weight (`wt`).  
 
+## Task 3
+
+- From `mtcars`, select only the variables `mpg`, `cyl`, `hp`, and `wt`.  
+
+## Task 4
+
+- Using `mtcars`, create a new variable  `power_to_weight = hp / wt`.  
+
+## Task 5
+
+- Using `mtcars`, compute **per number of cylinders (`cyl`)**  
+- the mean mileage (`mpg`), and  
+- the number of cars.  
+
+## Task 6
+
+Write a single dplyr pipeline that  
+
+1. keeps only cars with automatic transmission (`am == 0`),  
+2. groups the data by `cyl`,  
+3. computes the mean horsepower (`hp`),  
+4. arranges the result by descending mean horsepower.  
+
+## Task 7
+
+- Using `starwars`, select all characters who  
+- are human, and  
+- have a known height.  
+- Keep only the variables `name`, `height`, and `mass`.  
+- Store the result in `human_characters`.
+
+## Task 8
+
+- Using `starwars`, create a new variable `bmi = mass / (height / 100)^2`  
+- Ignore rows with missing `height` or `mass`.  
+- Store the result in `starwars_bmi`.
+
+## Task 9
+
+- Using `starwars`, compute **per species**  
+- the mean height, and  
+- the number of characters.  
+- Remove species with fewer than 3 characters.  
+
+## Task 10
+
+Write a single dplyr pipeline that
+
+1. keeps only characters with known `gender` and `mass`,  
+2. groups the data by `gender`,  
+3. computes the median mass per gender,  
+4. keeps only genders with a median mass above the overall median mass,  
+5. returns a tidy summary table.  
+6. Store the result in `gender_mass_summary`.

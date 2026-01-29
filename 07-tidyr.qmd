@@ -9,11 +9,58 @@ library(tidyverse)
 
 # From wide to long {background-image="images/bg-h1-3.jpg"}
 
-## `pivot_longer()`
+## Wide and long format {.smaller}
+
+::: left
+**Wide format:**
+
+```{r}
+#| echo: FALSE
+df_wide <- data.frame(player=c('A', 'B', 'C', 'D', 'E', 'F'),
+                 year1=c(12, 15, 19, 19, 14, 17),
+                 year2=c(22, 29, 18, 12, 24, 20))
+df_wide
+```
+:::
+
+::: right
+**Long format:**
+
+```{r}
+#| echo: FALSE
+
+df_long <-  pivot_longer(
+  df_wide, 
+  cols = 2:3, 
+  names_to = 'year', 
+  values_to = 'points'
+)
+df_long
+```
+:::
+
+
+## `pivot_longer()` function {.smaller}
 
 -   `cols`: The columns to be aggregated into a new variable].\
 -   `names_to`: The name of the new variable containing the names of the aggregated columns.\
 -   `values_to`: The name of the variable containing the values of the aggregated columns.
+
+::: left
+```{r}
+#| echo: FALSE
+
+df_wide
+```
+:::
+
+::: right
+```{r}
+#| echo: FALSE
+
+df_long
+```
+:::
 
 ## 
 
@@ -66,10 +113,7 @@ billboard %>%
                values_to = "position", values_drop_na = TRUE)
 ```
 
-##  {.smaller}
-
-::: left
-**Wide format:**
+## 2-step pivoting {.smaller}
 
 ```{r echo=FALSE, collapse=FALSE}
 n <- 30
@@ -84,9 +128,13 @@ df$dia <- df$dia + df$anxious * 10 - df$happy *10
 df$sys <- df$sys + df$anxious * 7 - df$happy *7
 df
 ```
-:::
 
-::: right
+
+
+## {.smaller}
+
+We want to turn this wide format into a long format like this: 
+
 ```{r}
 df %>%
   pivot_longer(cols = 2:3, 
@@ -96,7 +144,6 @@ df %>%
                names_to = 'emotion', 
                values_to = 'emotion_value')
 ```
-:::
 
 ## Task: Create this plot:
 
@@ -114,13 +161,9 @@ df %>%
 
 ------------------------------------------------------------------------
 
--   Load the dataset with:
+-   Load the dataset `excercise.csv` from the coursepage:
 
 ``` r
-download.file(
-  "https://raw.githubusercontent.com/jazznbass/datasets/main/bp_example.csv", 
-  destfile = "example.csv", method = "curl"
-)
 df <- read.csv("example.csv")
 ```
 
@@ -298,65 +341,32 @@ Joins to datasets:
 
 ## Example {.smaller}
 
-::: left37
 df_student:
 
 ```{r echo=FALSE}
-n <- 12
-df_student <- data.frame(
-  age = sample(5:10, n, replace = TRUE),
-  sex = sample(c("M", "F"), n, replace = TRUE),
-  T_score = sample(30:70, n, replace = TRUE),
-  class_id = rep(LETTERS[1:(n/3)], each = 3)
-)
-df_student
+df_student <- read.csv(file.path("files", "students.csv"))
+df_student[1:100,]
 ```
 
 df_teacher:
 
 ```{r echo=FALSE}
-n <- n/3
-df_teacher <- data.frame(
-  class_id = LETTERS[1:n],
-  self_efficacy = sample(30:70, n, replace = TRUE)
-)
+df_teacher <- read.csv(file.path("files", "teachers.csv"))
 df_teacher
 ```
-:::
 
-::: right37
-```{r collapse = FALSE}
-full_join(df_student, df_teacher, by = "class_id")
+Joined dataset:
+
+```{r collapse = FALSE, echo=FALSE}
+full_join(df_student, df_teacher, by = "class_id", suffix = c("_student", "_teacher")) |> head(100)
 ```
-:::
+
 
 ## Example with duplicated names {.smaller}
 
-::: left37
-df_student:
-
-```{r echo=FALSE}
-df_student
-```
-
-df_teacher:
-
-```{r echo=FALSE}
-df_teacher <- data.frame(
-  class_id = LETTERS[1:n],
-  self_efficacy = sample(30:70, n, replace = TRUE),
-  age = sample(25:65, n, replace = TRUE),
-  sex = sample(c("M", "F"), n, replace = TRUE)
-)
-df_teacher
-```
-:::
-
-::: right37
 ```{r collapse = FALSE}
 full_join(df_student, df_teacher, by = "class_id")
 ```
-:::
 
 ## Example {.smaller}
 
@@ -370,14 +380,9 @@ full_join(df_student, df_teacher, by = "class_id", suffix = c("_student", "_teac
 
 ## Task
 
--   Load the df_student and df_teacher dataset:
+-   Load the student and teacher datasets from the course page:
 
 ```{r}
-download.file("https://raw.githubusercontent.com/jazznbass/datasets/main/df_student.csv", 
-    destfile = "students.csv", method = "curl")
-download.file("https://raw.githubusercontent.com/jazznbass/datasets/main/df_teacher.csv", 
-    destfile = "teachers.csv", method = "curl")
-
 df_students <- read.csv("students.csv")
 df_teachers <- read.csv("teachers.csv")
 ```
